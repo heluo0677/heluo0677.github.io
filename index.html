@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="154">
+<meta name="application-version" content="156">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -4020,8 +4020,8 @@ html body .analysisYearCenter strong{
 .shopHead{display:grid;grid-template-columns:auto minmax(220px,1fr) auto;align-items:center;gap:16px}
 .shopHead h2{white-space:nowrap}
 .shopSearchWrap{position:relative;display:flex;align-items:center;min-width:0;height:44px}
-.shopSearchInput{box-sizing:border-box;width:100%;height:44px;padding:0 82px 0 40px;border:1px solid #e4e7ec;border-radius:14px;background:#f7f8fa;color:#1d1d1f;font-size:14px;outline:none;transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
-.shopSearchInput::placeholder{color:#98a0ad}
+.shopSearchInput{box-sizing:border-box;width:100%;height:44px;padding:0 44px 0 40px;border:1px solid #e4e7ec;border-radius:14px;background:#f7f8fa;color:#1d1d1f;font-size:14px;outline:none;transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
+.shopSearchInput::placeholder{color:#98a0ad;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .shopSearchInput:hover{background:#f4f5f7}
 .shopSearchInput:focus{background:#fff;border-color:rgba(0,122,255,.28);box-shadow:0 0 0 4px rgba(0,122,255,.08)}
 .shopSearchIcon{position:absolute;left:14px;top:50%;transform:translateY(-52%);font-size:19px;line-height:1;color:#8d96a5;pointer-events:none}
@@ -4450,7 +4450,7 @@ html body .morningBack{z-index:12000 ;}
   .activityForm label{margin-top:5px;}
   .modalActions{gap:7px;}
   .modalActions .btn{flex:1;min-width:0;}
-  .shopSearchInput{font-size:16px;}
+  .shopSearchInput{font-size:16px;padding-right:40px;}
 }
 @media(min-resolution:2dppx){
   .modalBack .modal{max-width:min(720px,calc(100vw - 24px));}
@@ -5527,6 +5527,53 @@ html body .shopGrid .shopDelete{z-index:3 }
   html body .shopGrid .shopDesc--medium{font-size:10.75px }
   html body .shopGrid .shopDesc--long{font-size:10px }
   html body .shopGrid .shopPrice{min-height:46px }
+}
+
+/* V156 — Coin shop redemption buttons use the same calm secondary hierarchy as the Add Reward button. Legacy primary styling is neutralized by the selector specificity and by removing the primary class. */
+html body .app .shopGrid .shopRedeemBtn{
+  min-height:42px;
+  height:42px;
+  background:rgba(0,122,255,.10);
+  color:#007aff;
+  border:1px solid rgba(0,122,255,.12);
+  box-shadow:none;
+  font-weight:600;
+  border-radius:12px;
+}
+html body .shopGrid .shopRedeemBtn:hover,
+html body .shopGrid .shopRedeemBtn:focus-visible{
+  background:#007aff;
+  color:#fff;
+  border-color:#007aff;
+  box-shadow:0 5px 14px rgba(0,122,255,.16);
+  transform:translateY(-1px);
+}
+html body .shopGrid .shopRedeemBtn:active{
+  background:#006ee6;
+  color:#fff;
+  border-color:#006ee6;
+  transform:none;
+  box-shadow:none;
+}
+
+html body .shopHead .shopSearchWrap{min-width:320px;}
+html body .shopSearchInput{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+html body .app .shopGrid .shopRedeemBtn{
+  background:rgba(0,122,255,.10);
+  color:#007aff;
+  border:1px solid rgba(0,122,255,.12);
+  box-shadow:none;
+}
+html body .app .shopGrid .shopRedeemBtn:hover,
+html body .app .shopGrid .shopRedeemBtn:focus-visible{
+  background:#007aff;
+  color:#fff;
+  border-color:#007aff;
+}
+html body .app .shopGrid .shopRedeemBtn:active{
+  background:#006ee6;
+  color:#fff;
+  border-color:#006ee6;
 }
 
 html body /* V103 — calmer Apple-style task typography. */
@@ -6661,21 +6708,19 @@ html body #shopGrid.shopGrid > .shopItem{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v151</span>
+  <span class="siteFooterVersion">v156</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle">v151 更新说明</h3>
-    <div class="releaseNotesIntro">v146 稳定性升级：加入多标签页按日期合并、增强持久化错误提示、扩充自测、可选自测入口，并继续整理样式补丁结构。</div>
+    <h3 id="releaseNotesTitle">v156 更新说明</h3>
+    <div class="releaseNotesIntro">v156：修正 Coin 商店兑换按钮层级与搜索框文字布局；兑换按钮统一为浅色次级样式，搜索占位文字不再被右侧空间挤压。</div>
     <div class="releaseNotesList">
-      <div class="releaseNoteItem"><b>纯本地架构清理</b><span>移除历史云端入口与残留逻辑，当前版本只使用浏览器本地存储。</span></div>
-      <div class="releaseNoteItem"><b>版本统一</b><span>统一当前发布版本为 v146，更新说明、页脚与应用版本标识保持一致。</span></div>
-      <div class="releaseNoteItem"><b>数据与代码解耦</b><span>不再把个人历史记录嵌入 HTML；继续复用现有 LocalStorage 数据，首次使用时自动创建干净的数据结构。</span></div>
-      <div class="releaseNoteItem"><b>持久化增强</b><span>继续保留空闲时保存、页面隐藏、pagehide 与 freeze 触发的本地持久化，以及 JSON 导入导出和撤销能力。</span></div>
-      <div class="releaseNoteItem"><b>发布结构整理</b><span>按 core / bootstrap / app / feature 模块整理单文件内部代码区段，发布时仍保持单 HTML 文件，无外部依赖。</span></div>
+      <div class="releaseNoteItem"><b>兑换按钮统一</b><span>“兑换”按钮与顶部“＋添加实物奖励”采用同一套浅蓝背景、蓝色文字和细边框。</span></div>
+      <div class="releaseNoteItem"><b>交互保持一致</b><span>悬停、聚焦和按下状态仍保留明确反馈，但默认状态不再使用高饱和蓝色。</span></div>
+      <div class="releaseNoteItem"><b>版本统一</b><span>应用版本、页脚署名和更新说明统一为 v156。</span></div>
     </div>
     <div class="modalActions">
       <button class="btn primary" id="releaseNotesClose" type="button" data-i18n-key="txt_cb63c62e50" data-i18n-text="1">知道了</button>
@@ -6685,8 +6730,8 @@ html body #shopGrid.shopGrid > .shopItem{
 </div>
 <script>
 
-// 34 Coins v146 · standalone local release · no external runtime dependencies
-const APP_VERSION='154';
+// 34 Coins v156 · standalone local release · no external runtime dependencies
+const APP_VERSION='156';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -9710,7 +9755,7 @@ function renderShop(){
         <span class="shopRmbValue">≈ ¥${rmb.toFixed(2)}</span>
       </div>
       <div class="shopBtns">
-        <button class="btn primary shopRedeemBtn" data-buy="${escapeHtml(item.id)}">兑换</button>
+        <button class="btn shopRedeemBtn" data-buy="${escapeHtml(item.id)}">兑换</button>
       </div>
     </div>`;
   }).join('') || '<div class="empty" style="grid-column:1/-1">还没有实物奖励。可以添加实物奖励。</div>';
