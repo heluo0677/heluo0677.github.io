@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="153">
+<meta name="application-version" content="154">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -5960,63 +5960,63 @@ html body .shopGrid .shopName{
 }
 
 
-/* V152 — Coin shop viewport: desktop shows exactly 4 columns × 2 complete rows.
-   Eight cards are fully visible at once; additional products remain scrollable.
-   This block is intentionally last so older shop-grid sizing patches cannot
-   collapse the second row. */
+/* V154 — Coin shop viewport: four columns × two complete rows, with
+   enough vertical room for the full card content. Additional products scroll
+   inside the shop viewport instead of spilling into the next row. */
 html body #shopGrid.shopGrid{
   grid-template-columns:repeat(4,minmax(0,1fr));
-  grid-template-rows:repeat(2,246px);
-  grid-auto-rows:246px;
+  grid-template-rows:repeat(2,330px);
+  grid-auto-rows:330px;
   column-gap:10px;
   row-gap:10px;
-  height:510px;
-  min-height:510px;
-  max-height:510px;
+  height:670px;
+  min-height:670px;
+  max-height:670px;
   overflow-y:auto;
   overflow-x:hidden;
   align-content:start;
   box-sizing:border-box;
 }
 html body #shopGrid.shopGrid > .shopItem{
-  height:246px;
-  min-height:246px;
-  max-height:246px;
+  height:330px;
+  min-height:330px;
+  max-height:330px;
   box-sizing:border-box;
+  overflow:hidden;
 }
 @media(max-width:1050px) and (min-width:761px){
   html body #shopGrid.shopGrid{
     grid-template-columns:repeat(3,minmax(0,1fr));
-    grid-template-rows:repeat(2,246px);
-    grid-auto-rows:246px;
-    height:510px;
-    min-height:510px;
-    max-height:510px;
+    grid-template-rows:repeat(2,330px);
+    grid-auto-rows:330px;
+    height:670px;
+    min-height:670px;
+    max-height:670px;
   }
 }
 @media(max-width:760px){
   html body #shopGrid.shopGrid{
     grid-template-columns:repeat(2,minmax(0,1fr));
-    grid-template-rows:repeat(2,232px);
-    grid-auto-rows:232px;
-    height:482px;
-    min-height:482px;
-    max-height:482px;
+    grid-template-rows:repeat(2,300px);
+    grid-auto-rows:300px;
+    height:610px;
+    min-height:610px;
+    max-height:610px;
   }
   html body #shopGrid.shopGrid > .shopItem{
-    height:232px;
-    min-height:232px;
-    max-height:232px;
+    height:300px;
+    min-height:300px;
+    max-height:300px;
   }
 }
 @media(max-width:430px){
   html body #shopGrid.shopGrid{
     grid-template-columns:1fr;
-    grid-template-rows:repeat(2,232px);
-    grid-auto-rows:232px;
-    height:482px;
-    min-height:482px;
-    max-height:482px;
+    grid-template-rows:repeat(2,300px);
+    grid-auto-rows:300px;
+    height:610px;
+    min-height:610px;
+    max-height:610px;
   }
 }
 </style>
@@ -6686,7 +6686,7 @@ html body #shopGrid.shopGrid > .shopItem{
 <script>
 
 // 34 Coins v146 · standalone local release · no external runtime dependencies
-const APP_VERSION='153';
+const APP_VERSION='154';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
