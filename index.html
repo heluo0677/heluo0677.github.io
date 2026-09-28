@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="150">
+<meta name="application-version" content="153">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -4407,11 +4407,7 @@ html body /* V69.17 — calmer empty time slots + unified trend line weight */
 
 /* v89 tokenomics */
 .flowComboBox,.flowComboRewardNote{margin-top:10px;padding:10px 12px;border:1px solid #dfe7f3;border-radius:12px;background:linear-gradient(180deg,#f8fbff 0%,#f4f8fc 100%);color:#526276;font-size:11px;line-height:1.5}
-.wellnessShopItem{background:linear-gradient(180deg,#fbfffc 0%,#f7faf8 100%);border-color:#dfeadf}
-.rewardTypeBadge.wellness{background:#eef8ef;color:#4d7652}
 .shopEmojiStatic{cursor:default}
-html body .wellnessRedeemBtn{background:#5c8b64 ;border-color:#5c8b64 }
-html body .wellnessRedeemBtn:hover{background:#4f7a57 }
 
 
 /* v89 destructive UI hardening: extreme text, narrow viewports, mobile IME, modal stacking */
@@ -4463,7 +4459,6 @@ html body .morningBack{z-index:12000 ;}
 .quickStep > :last-child{min-width:0;}
 
 
-/* V91 UI precision fixes: keep energy indicator clear of delete control; never clip wellness copy. */
 .coinMatrixCell{overflow:hidden}
 html body .coinMatrixTop{position:relative;min-width:0;padding-right:70px ;justify-content:flex-start ;align-items:center ;min-height:26px}
 .coinMatrixTime{min-width:0;max-width:calc(100% - 2px);overflow:hidden;text-overflow:ellipsis;word-break:break-word;white-space:nowrap}
@@ -4478,8 +4473,6 @@ html body .coinMatrixCell.empty .coinMatrixTop{padding-right:0 }
 .shopName,.shopDesc{min-width:0;overflow-wrap:anywhere;word-break:break-word}
 .shopName{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-height:1.3;min-height:1.3em}
 .shopDesc{line-height:1.45}
-.wellnessShopItem .shopDesc{display:block;min-height:52px;max-height:78px;overflow:hidden;-webkit-line-clamp:unset;text-overflow:clip;white-space:normal}
-.wellnessShopItem{min-height:228px}
 .shopPrice{min-width:0;flex-wrap:wrap}
 .shopCoinValue{min-width:0;display:flex;align-items:baseline;gap:4px;flex-wrap:nowrap}
 .shopCoinValue b{white-space:nowrap}
@@ -4487,9 +4480,7 @@ html body .coinMatrixCell.empty .coinMatrixTop{padding-right:0 }
 .shopBtns{flex:0 0 auto}
 .shopBtns .btn{min-width:0;overflow-wrap:anywhere}
 @media(max-width:430px){
-  .wellnessShopItem{min-height:238px}
-  .wellnessShopItem .shopDesc{min-height:52px}
-  html body .shopName{font-size:12px }
+      html body .shopName{font-size:12px }
 }
 
 
@@ -4503,8 +4494,7 @@ html body .coinMatrixCell.filled .coinMatrixDelete{right:7px;top:7px;z-index:5}
 html body /* v93 shop sizing: cards grow with content; scroll belongs to the shop viewport, html body not the card. */
 .shopGrid{grid-auto-rows:minmax(246px,max-content);align-items:start}
 html body .shopGrid .shopItem{height:auto;min-height:246px;overflow:visible;box-sizing:border-box}
-html body .shopGrid .wellnessShopItem{min-height:246px;height:auto}
-html body .shopGrid .shopDesc{overflow-wrap:anywhere;word-break:break-word;white-space:normal;display:block;max-height:none;overflow:visible}
+html body .shopGrid html body .shopGrid .shopDesc{overflow-wrap:anywhere;word-break:break-word;white-space:normal;display:block;max-height:none;overflow:visible}
 html body .shopGrid .shopBtns{margin-top:auto;align-self:stretch}
 html body .shopGrid .shopRedeemBtn{min-height:40px}
 
@@ -5940,6 +5930,95 @@ html body .weekThumbEmpty, html body .monthMiniEmpty, html body .yearMiniEmpty{
   .app .monthMiniDaySpacer,.app .monthMiniDayCol,.app .monthMiniDate{width:44px;min-width:44px}
 }
 .selfTestPanel{position:fixed;right:18px;bottom:18px;z-index:10050;max-width:min(420px,calc(100vw - 36px));padding:12px 14px;border:1px solid rgba(85,104,216,.18);border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 14px 40px rgba(20,30,60,.16);font-size:12px;color:#344056;backdrop-filter:blur(14px)}.selfTestPanel.pass{border-color:rgba(52,199,89,.28)}.selfTestPanel.fail{border-color:rgba(255,59,48,.30)}
+
+
+/* V151 — Coin Shop product names: reserve a complete, stable two-line title area.
+   Titles up to two lines remain fully visible; longer titles are intentionally
+   limited to two complete lines so every card keeps the same visual rhythm. */
+html body .shopGrid .shopName{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  text-overflow:clip;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  line-height:1.3;
+  height:39px;
+  min-height:39px;
+  max-height:39px;
+  margin:0;
+}
+@media(max-width:650px){
+  html body .shopGrid .shopName{
+    line-height:1.3;
+    height:36.4px;
+    min-height:36.4px;
+    max-height:36.4px;
+  }
+}
+
+
+/* V152 — Coin shop viewport: desktop shows exactly 4 columns × 2 complete rows.
+   Eight cards are fully visible at once; additional products remain scrollable.
+   This block is intentionally last so older shop-grid sizing patches cannot
+   collapse the second row. */
+html body #shopGrid.shopGrid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:repeat(2,246px);
+  grid-auto-rows:246px;
+  column-gap:10px;
+  row-gap:10px;
+  height:510px;
+  min-height:510px;
+  max-height:510px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  align-content:start;
+  box-sizing:border-box;
+}
+html body #shopGrid.shopGrid > .shopItem{
+  height:246px;
+  min-height:246px;
+  max-height:246px;
+  box-sizing:border-box;
+}
+@media(max-width:1050px) and (min-width:761px){
+  html body #shopGrid.shopGrid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-rows:repeat(2,246px);
+    grid-auto-rows:246px;
+    height:510px;
+    min-height:510px;
+    max-height:510px;
+  }
+}
+@media(max-width:760px){
+  html body #shopGrid.shopGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:repeat(2,232px);
+    grid-auto-rows:232px;
+    height:482px;
+    min-height:482px;
+    max-height:482px;
+  }
+  html body #shopGrid.shopGrid > .shopItem{
+    height:232px;
+    min-height:232px;
+    max-height:232px;
+  }
+}
+@media(max-width:430px){
+  html body #shopGrid.shopGrid{
+    grid-template-columns:1fr;
+    grid-template-rows:repeat(2,232px);
+    grid-auto-rows:232px;
+    height:482px;
+    min-height:482px;
+    max-height:482px;
+  }
+}
 </style>
 
 
@@ -6327,7 +6406,7 @@ html body .weekThumbEmpty, html body .monthMiniEmpty, html body .yearMiniEmpty{
           <div><label data-i18n-key="txt_01c3e12110" data-i18n-text="1">每周固定生活费（参考）</label><input id="weeklyBudget" type="number" min="0" step="10"></div>
           <div><label data-i18n-key="txt_5fd12960d4" data-i18n-text="1">每周最低任务完成率</label><input id="weeklyTarget" type="number" min="0" max="100" step="5"></div>
         </div>
-        <div class="smallhint" data-i18n-key="txt_54ee5ecb0e" data-i18n-text="1">根据你给出的每周 ¥500 固定生活费，系统默认把 1 Coin 设为约 ¥2.10：34 Coins × 7 天 ≈ ¥500。</div>
+        <div id="coinRuleHint" class="smallhint">根据每周 ¥500 固定生活费，系统默认 1 Coin = ¥2.10；当前每周标准为 34 Coins × 7 天。</div>
       </div>
       <div id="penaltyBox" class="penaltyBox"></div>
       <div id="timeBlackHoleWarning" class="timeBlackHoleWarning" hidden></div>
@@ -6346,7 +6425,7 @@ html body .weekThumbEmpty, html body .monthMiniEmpty, html body .yearMiniEmpty{
         </div>
         <button class="btn primary" id="addShopItemBtn" data-i18n-key="txt_e6e4b203ba" data-i18n-text="1">＋ 添加实物奖励</button>
       </div>
-      <div id="shopGrid" class="shopGrid"></div><div id="shopPagination" class="shopPagination" aria-label="商品翻页"></div><div class="smallhint shopEditHint" style="grid-column:1/-1">💡 自定义商品可点击 Emoji 编辑；“×”删除。恢复权益为系统保护项。</div>
+      <div id="shopGrid" class="shopGrid"></div><div id="shopPagination" class="shopPagination" aria-label="商品翻页"></div><div class="smallhint shopEditHint" style="grid-column:1/-1">💡 自定义商品可点击 Emoji 编辑；“×”删除。</div>
       <div class="historyBox">
         <div class="historyTitle">最近兑换 <span class="historyHint" data-i18n-key="txt_9fb577fb83" data-i18n-text="1">每页 5 条</span></div>
         <div id="purchaseHistory" class="historyList"></div>
@@ -6387,7 +6466,7 @@ html body .weekThumbEmpty, html body .monthMiniEmpty, html body .yearMiniEmpty{
         <label data-i18n-key="txt_e0361480e3" data-i18n-text="1">备注</label>
         <input id="itemNote" maxlength="80" placeholder="可选">
       </div>
-      <div class="smallhint" data-i18n-key="txt_5cdaad37eb" data-i18n-text="1">Coin 商店包含可以实际兑换的实物奖励与恢复权益；主题皮肤、头像框等虚拟奖励已移除。</div>
+      <div class="smallhint" data-i18n-key="txt_5cdaad37eb" data-i18n-text="1">Coin 商店只提供可以实际兑换的实物奖励；主题皮肤、头像框等虚拟奖励已移除。</div>
       <div class="modalActions">
         <button class="btn" id="cancelShopBtn" data-i18n-key="txt_4d0b4688c7" data-i18n-text="1">取消</button>
         <button class="btn primary" id="saveShopBtn" data-i18n-key="txt_29fa80a652" data-i18n-text="1">保存商品</button>
@@ -6582,14 +6661,14 @@ html body .weekThumbEmpty, html body .monthMiniEmpty, html body .yearMiniEmpty{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v150</span>
+  <span class="siteFooterVersion">v151</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle">v150 更新说明</h3>
+    <h3 id="releaseNotesTitle">v151 更新说明</h3>
     <div class="releaseNotesIntro">v146 稳定性升级：加入多标签页按日期合并、增强持久化错误提示、扩充自测、可选自测入口，并继续整理样式补丁结构。</div>
     <div class="releaseNotesList">
       <div class="releaseNoteItem"><b>纯本地架构清理</b><span>移除历史云端入口与残留逻辑，当前版本只使用浏览器本地存储。</span></div>
@@ -6607,14 +6686,14 @@ html body .weekThumbEmpty, html body .monthMiniEmpty, html body .yearMiniEmpty{
 <script>
 
 // 34 Coins v146 · standalone local release · no external runtime dependencies
-const APP_VERSION='150';
+const APP_VERSION='153';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
 const DEFAULT_SETTINGS = {
   rewardMinutes:10,rewardMoney:1,coinRmb:2.1,weeklyBudget:500,
   weeklyTarget:70,penaltyMid:10,penaltyLow:20,
-  flowComboMinSlots:3,flowComboMultiplier:1.2,guiltFreeRestMinutes:60,guiltFreeRestCoinPrice:2,
+  flowComboMinSlots:3,flowComboMultiplier:1.2,
   streak3:3,streak7:10,streak14:20,streak30:50,streak60:80,streak90:120,
   categoryPaletteVersion:2,
   examName:'考研',examDate:'2026-12-19',examStartDate:'',
@@ -6623,12 +6702,7 @@ const DEFAULT_SETTINGS = {
   completedGoals:[]
 };
 
-const GUILT_FREE_REST_MINUTES=60;
-const GUILT_FREE_REST_COIN_PRICE=2;
-const GUILT_FREE_REST_EFFECT='guilt_free_rest_60';
-
 const DEFAULT_SHOP = [{id:'sample-anchor',emoji:'🥛',name:'安佳牛奶 12L',price:100,note:'示例商品，可删除或修改'}];
-const DEFAULT_WELLNESS_REWARD={id:'wellness-rest-60',emoji:'🫧',name:'无条件放空 1 小时',price:4.2,coinPrice:2,note:'兑换后，当天 60 分钟休整受规则保护，不计入时间黑洞警示。',kind:'wellness',effect:'guilt_free_rest_60',protectedMinutes:60,system:true};
 
 function normalizeCoinColor(value){
   // Empty / whitespace / null colors are unlogged time, not category 0.
@@ -6729,8 +6803,6 @@ function normalizeState(input){
   x.settings.penaltyLow=Math.max(0,Math.min(100000,finite(x.settings.penaltyLow,20)));
   x.settings.flowComboMinSlots=Math.max(3,Math.min(34,Math.round(finite(x.settings.flowComboMinSlots,3))));
   x.settings.flowComboMultiplier=Math.max(1,Math.min(2,finite(x.settings.flowComboMultiplier,1.2)));
-  x.settings.guiltFreeRestMinutes=Math.max(0,Math.min(24*60,finite(x.settings.guiltFreeRestMinutes,60)));
-  x.settings.guiltFreeRestCoinPrice=Math.max(0,Math.min(100000,finite(x.settings.guiltFreeRestCoinPrice,2)));
   // Backward-compatible migration from the original single-target fields.
   if(!Array.isArray(x.settings.goals)){
     const legacyDate=String(x.settings.examDate||'');
@@ -6772,28 +6844,19 @@ function normalizeState(input){
   });
   x.checkIns=normalizedCheckIns;
   const hasShopField=Object.prototype.hasOwnProperty.call(x,'shop');
-  if(!hasShopField)x.shop=cloneState([...DEFAULT_SHOP,DEFAULT_WELLNESS_REWARD]);
+  if(!hasShopField)x.shop=cloneState(DEFAULT_SHOP);
   else if(!Array.isArray(x.shop))x.shop=[];
-  x.shop=x.shop.filter(item=>item&&typeof item==='object').map((item,index)=>{
+  x.shop=x.shop.filter(item=>item&&typeof item==='object'&&item.kind!=='wellness'&&item.id!=='wellness-rest-60').map((item,index)=>{
     const y={...item};
     y.name=String(y.name||'未命名商品').slice(0,80);
     y.note=String(y.note||'').slice(0,300);
     y.id=String(y.id||`shop-${stableHash(`${index}|${y.name}|${y.note}`)}`);
     y.emoji=String(y.emoji||'🎁').slice(0,16);
-    y.kind=y.kind==='wellness'?'wellness':'physical';
-    if(y.kind==='wellness'){
-      y.effect=String(y.effect||GUILT_FREE_REST_EFFECT);
-      y.coinPrice=Math.max(0,Math.min(100000,Number(y.coinPrice)||GUILT_FREE_REST_COIN_PRICE));
-      y.protectedMinutes=Math.max(0,Math.min(24*60,Number(y.protectedMinutes)||GUILT_FREE_REST_MINUTES));
-      y.price=Math.max(0,Math.min(10000000,Number(y.price)||4.2));
-      y.system=y.system!==false;
-    }else{
-      y.price=Math.max(0,Math.min(10000000,Number(y.price)||0));
-      y.effect=''; delete y.coinPrice; delete y.protectedMinutes;
-    }
+    y.kind='physical';
+    y.price=Math.max(0,Math.min(10000000,Number(y.price)||0));
+    y.effect=''; delete y.coinPrice; delete y.protectedMinutes;
     return y;
   });
-  if(!x.shop.some(item=>item&&item.kind==='wellness'&&item.effect==='guilt_free_rest_60'))x.shop.push(cloneState(DEFAULT_WELLNESS_REWARD));
   if(!Array.isArray(x.purchases))x.purchases=[];
   x.purchases=x.purchases.filter(r=>r&&typeof r==='object'&&validDateKey(r.date)).map(r=>({...r,coins:Math.max(0,Number(r.coins)||0),coinPrice:Math.max(0,Number(r.coinPrice)||0),price:Math.max(0,Number(r.price)||0),date:String(r.date),protectedMinutes:Math.max(0,Number(r.protectedMinutes)||0)}));
   // Legacy category storage migration. Old pre-v2 palette values are first normalized to the v2 color slots;
@@ -7052,7 +7115,7 @@ function normalizeBackupState(input,{slots=34}={}){
   }
   return normalizeState(state);
 }
-{ DEFAULT_SETTINGS, DEFAULT_SHOP, DEFAULT_WELLNESS_REWARD };
+{ DEFAULT_SETTINGS, DEFAULT_SHOP };
 // ===== shared/utils/date.js =====
 function pad2(n){return String(n).padStart(2,'0');}
 
@@ -7106,13 +7169,6 @@ function calculateFlowCombo(coins,{minSlots=FLOW_COMBO_MIN_SLOTS,multiplier=FLOW
   const flush=end=>{if(start<0)return;const length=end-start;if(length>=minSlots)runs.push({start,end:end-1,length,bonus:round4(length*(multiplier-1))});start=-1;};
   for(let i=0;i<source.length;i++){if(isFlowCoin(source[i])){if(start<0)start=i;}else flush(i);} flush(source.length);
   return {multiplier,minSlots,qualifyingCoins:runs.reduce((s,r)=>s+r.length,0),bonusCoins:round4(runs.reduce((s,r)=>s+r.bonus,0)),runs};
-}
-function protectedRestMinutesFromPurchases(purchases,date,effect=GUILT_FREE_REST_EFFECT){
-  return (Array.isArray(purchases)?purchases:[]).reduce((sum,p)=>{
-    if(String(p?.date||'')!==String(date||''))return sum;
-    if(p?.kind!=='wellness'||p?.effect!==effect)return sum;
-    return sum+Math.max(0,Number(p?.protectedMinutes)||GUILT_FREE_REST_MINUTES);
-  },0);
 }
 // ===== shared/bootstrap.js =====
 function initBootstrap(){
@@ -7237,7 +7293,7 @@ function safeLocalGet(key,fallback=null){try{const v=localStorage.getItem(key);r
 function safeLocalSet(key,value){try{localStorage.setItem(key,String(value));return true;}catch{return false;}}
 function safeLocalRemove(key){try{localStorage.removeItem(key);return true;}catch{return false;}}
 let currentLang='zh';
-const I18N_SEMANTIC={"txt_c3304d1e49":{"zh":"天","en":"days","zh_key":"天"},"txt_17e83cc25e":{"zh":"今天","en":"Today","zh_key":"今天"},"txt_fe9ea3f070":{"zh":"今年","en":"This year","zh_key":"今年"},"txt_4d0b4688c7":{"zh":"取消","en":"Cancel","zh_key":"取消"},"txt_8a12b12125":{"zh":"周期","en":"Period","zh_key":"周期"},"txt_e0361480e3":{"zh":"备注","en":"Notes","zh_key":"备注"},"txt_33246f6a5e":{"zh":"完成","en":"Done","zh_key":"完成"},"txt_7cda072d45":{"zh":"普通","en":"Normal","zh_key":"普通"},"txt_941f08313a":{"zh":"目标","en":"Goal","zh_key":"目标"},"txt_6a0e665087":{"zh":"签到","en":"Check in","zh_key":"签到"},"txt_3bc40569b4":{"zh":"精力","en":"Energy","zh_key":"精力"},"txt_8ef4886033":{"zh":"颜色","en":"Color","zh_key":"颜色"},"txt_d94731eaa9":{"zh":"已记录","en":"Recorded","zh_key":"已记录"},"txt_7369b4b9a3":{"zh":"恢复日","en":"Recovery day","zh_key":"恢复日"},"txt_a1eb66d357":{"zh":"时间流","en":"Time flow","zh_key":"时间流"},"txt_cb63c62e50":{"zh":"知道了","en":"Got it","zh_key":"知道了"},"txt_953443b639":{"zh":"今日农历","en":"Lunar date","zh_key":"今日农历"},"txt_fdb84efa1d":{"zh":"今日复盘","en":"Daily review","zh_key":"今日复盘"},"txt_973fde7657":{"zh":"今日签到","en":"Daily check-in","zh_key":"今日签到"},"txt_8edd0f641d":{"zh":"今日计划","en":"Today’s plan","zh_key":"今日计划"},"txt_51521c52c6":{"zh":"休闲娱乐","en":"Leisure","zh_key":"休闲娱乐"},"txt_29fa80a652":{"zh":"保存商品","en":"Save item","zh_key":"保存商品"},"txt_f485883644":{"zh":"做了什么","en":"What did you do?","zh_key":"做了什么"},"txt_8ce9e55cf3":{"zh":"分析中心","en":"Analytics","zh_key":"分析中心"},"txt_8fc7972599":{"zh":"去年今日","en":"Same day last year","zh_key":"去年今日"},"txt_000a97406d":{"zh":"周度分析","en":"Weekly analysis","zh_key":"周度分析"},"txt_47b74133f2":{"zh":"商品名称","en":"Item name","zh_key":"商品名称"},"txt_0a5343e344":{"zh":"商品图标","en":"Item icon","zh_key":"商品图标"},"txt_2bd4d6d86d":{"zh":"复盘思考","en":"Reflection","zh_key":"复盘思考"},"txt_a0064f5f32":{"zh":"奖励规则","en":"Reward rules","zh_key":"奖励规则"},"txt_a00375ecf2":{"zh":"奖励金额","en":"Reward amount","zh_key":"奖励金额"},"txt_57a47fc722":{"zh":"娱乐时间","en":"Leisure time","zh_key":"娱乐时间"},"txt_a26f1abe64":{"zh":"导入备份","en":"Import backup","zh_key":"导入备份"},"txt_d11b66842a":{"zh":"导出备份","en":"Export backup","zh_key":"导出备份"},"txt_2aadd3e0b6":{"zh":"备份","en":"Backup","zh_key":"备份"},"txt_b5561dd5e7":{"zh":"尚未设置","en":"Not set","zh_key":"尚未设置"},"txt_21ecec0b14":{"zh":"年度分析","en":"Annual analysis","zh_key":"年度分析"},"txt_2402bdfd00":{"zh":"开始今天","en":"Start today","zh_key":"开始今天"},"txt_e8868af6eb":{"zh":"开始时间","en":"Start time","zh_key":"开始时间"},"txt_67589ea29e":{"zh":"持续时间","en":"Duration","zh_key":"持续时间"},"txt_f1f1a3ab7f":{"zh":"收起说明","en":"Collapse guide","zh_key":"收起说明"},"txt_f0f33e26b7":{"zh":"数据安全","en":"Data safety","zh_key":"数据安全"},"txt_3724531cb7":{"zh":"数据看板","en":"Dashboard","zh_key":"数据看板"},"txt_5ef37c50d1":{"zh":"明日计划","en":"Tomorrow’s plan","zh_key":"明日计划"},"txt_eb310a7bd7":{"zh":"最近兑换","en":"Recent redemptions","zh_key":"最近兑换"},"txt_3dd8fccd92":{"zh":"月度分析","en":"Monthly analysis","zh_key":"月度分析"},"txt_b96c19d2e2":{"zh":"有效硬币","en":"Effective coins","zh_key":"有效硬币"},"txt_d6bca501bb":{"zh":"本周总结","en":"Weekly summary","zh_key":"本周总结"},"txt_e65ca80982":{"zh":"本月总结","en":"Monthly summary","zh_key":"本月总结"},"txt_6e7c567ac1":{"zh":"样本不足","en":"Insufficient sample","zh_key":"样本不足"},"txt_5444202bfd":{"zh":"添加目标","en":"Add goal","zh_key":"添加目标"},"txt_6996c52847":{"zh":"清空当天","en":"Clear today","zh_key":"清空当天"},"txt_32b2806a45":{"zh":"生活事务","en":"Life admin","zh_key":"生活事务"},"txt_d90e7eb36e":{"zh":"目标管理","en":"Goal management","zh_key":"目标管理"},"txt_6f651b7bec":{"zh":"硬币钱包","en":"Coin wallet","zh_key":"硬币钱包"},"txt_a6c2f0c0b6":{"zh":"经济规则","en":"Economics rules","zh_key":"经济规则"},"txt_1a1bdf7714":{"zh":"强迫工作 / 学习","en":"Forced work / study","zh_key":"强迫工作 / 学习"},"txt_650b38bcad":{"zh":"记录时间","en":"Track time","zh_key":"记录时间"},"txt_cc7a872401":{"zh":"趋势分析","en":"Trend analysis","zh_key":"趋势分析"},"txt_8ca795a967":{"zh":"趋势总结","en":"Trend summary","zh_key":"趋势总结"},"txt_51f2680d72":{"zh":"趋势解读","en":"Trend interpretation","zh_key":"趋势解读"},"txt_db0f8a9e8e":{"zh":"距离目标","en":"Until goal","zh_key":"距离目标"},"txt_70b9a8697c":{"zh":"人民币价格","en":"RMB price","zh_key":"人民币价格"},"txt_e3095e26d2":{"zh":"今日完成度","en":"Today’s completion","zh_key":"今日完成度"},"txt_a439ddd919":{"zh":"保存时间块","en":"Save time block","zh_key":"保存时间块"},"txt_76f3409f29":{"zh":"已完成目标","en":"Completed goals","zh_key":"已完成目标"},"txt_fccf37a3b6":{"zh":"按状态整理","en":"Sort by status","zh_key":"按状态整理"},"txt_abcc3195e1":{"zh":"有效/34","en":"Effective / 34","zh_key":"有效/34"},"txt_74a7af88f0":{"zh":"添加新目标","en":"Add new goal","zh_key":"添加新目标"},"txt_bf58ab2020":{"zh":"添加时间块","en":"Add time block","zh_key":"添加时间块"},"txt_be45e25544":{"zh":"目标完成墙","en":"Goal wall","zh_key":"目标完成墙"},"txt_1c8dbbb352":{"zh":"给时间分类","en":"Classify time","zh_key":"给时间分类"},"txt_514f2f23ea":{"zh":"🌿 恢复日","en":"🌿 Recovery day","zh_key":"🌿 恢复日"},"txt_e81b0ce83d":{"zh":"☁️ 仅本地","en":"☁️ Local only","zh_key":"☁️ 仅本地"},"txt_fca6d8aefe":{"zh":"尚未设置目标","en":"No goal set","zh_key":"尚未设置目标"},"txt_74c30c68b2":{"zh":"恢复默认规则","en":"Restore defaults","zh_key":"恢复默认规则"},"txt_95f8c67fc2":{"zh":"有效硬币统计","en":"Effective coin stats","zh_key":"有效硬币统计"},"txt_8890de5c87":{"zh":"本周时间结构","en":"This week’s time structure","zh_key":"本周时间结构"},"txt_b6fa0aba51":{"zh":"本月时间结构","en":"This month’s time structure","zh_key":"本月时间结构"},"txt_9fb577fb83":{"zh":"每页 5 条","en":"5 per page","zh_key":"每页 5 条"},"txt_c3a4b42760":{"zh":"添加完成目标","en":"Add completed goal","zh_key":"添加完成目标"},"txt_a0c91e97d5":{"zh":"添加实物奖励","en":"Add physical reward","zh_key":"添加实物奖励"},"txt_5a3aa4d53f":{"zh":"目标管理 →","en":"Goal management →","zh_key":"目标管理 →"},"txt_b92e79c0f1":{"zh":"看统计与奖励","en":"View stats & rewards","zh_key":"看统计与奖励"},"txt_943bdffd94":{"zh":"＋ 添加任务","en":"+ Add task","zh_key":"＋ 添加任务"},"txt_af355cd344":{"zh":"Coin 商店","en":"Coin shop","zh_key":"Coin 商店"},"txt_0be695db43":{"zh":"今天的时间概览","en":"Today’s time overview","zh_key":"今天的时间概览"},"txt_5c7ef49634":{"zh":"你好，追梦人！","en":"Hello, dreamer!","zh_key":"你好，追梦人！"},"txt_0e647cb207":{"zh":"拖延浪费","en":"Procrastination / waste","zh_key":"拖延浪费"},"txt_b990a57274":{"zh":"最大的时间损失","en":"Biggest time loss","zh_key":"最大的时间损失"},"txt_832bfd66c5":{"zh":"有效硬币与奖励","en":"Effective coins & rewards","zh_key":"有效硬币与奖励"},"txt_1113080921":{"zh":"有效硬币产出率","en":"Effective coin rate","zh_key":"有效硬币产出率"},"txt_8ae98d927b":{"zh":"本周时间缩略图","en":"Weekly time thumbnail","zh_key":"本周时间缩略图"},"txt_e0fbf32c1c":{"zh":"本年度时间结构","en":"This year’s time structure","zh_key":"本年度时间结构"},"txt_bcaa023549":{"zh":"本年度累计时长","en":"This year’s recorded time","zh_key":"本年度累计时长"},"txt_e79c8b505f":{"zh":"本月时间缩略图","en":"Monthly time thumbnail","zh_key":"本月时间缩略图"},"txt_daa4755a68":{"zh":"目标进度 0%","en":"Goal progress 0%","zh_key":"目标进度 0%"},"txt_e1b7461c95":{"zh":"自动化时间诊断","en":"Automated time diagnosis","zh_key":"自动化时间诊断"},"txt_3c5fad1d6e":{"zh":"计划会自动保存","en":"Plan saves automatically","zh_key":"计划会自动保存"},"txt_44579f99df":{"zh":"↗ 继承昨日任务","en":"↗ Carry over yesterday’s tasks","zh_key":"↗ 继承昨日任务"},"txt_d16c137c2d":{"zh":"今天最重要的成果","en":"Most important result today","zh_key":"今天最重要的成果"},"txt_0150d584fd":{"zh":"明天应该停止什么","en":"What to stop tomorrow","zh_key":"明天应该停止什么"},"txt_3bf1391192":{"zh":"明天应该继续什么","en":"What to continue tomorrow","zh_key":"明天应该继续什么"},"txt_9d58940d3c":{"zh":"本年度时间缩略图","en":"Annual time thumbnail","zh_key":"本年度时间缩略图"},"txt_fd51ae2138":{"zh":"记录一次娱乐兑换","en":"Record leisure redemption","zh_key":"记录一次娱乐兑换"},"txt_a50d352076":{"zh":"连续低谷减负模式","en":"Consecutive low-period relief mode","zh_key":"连续低谷减负模式"},"txt_e6e4b203ba":{"zh":"＋ 添加实物奖励","en":"+ Add physical reward","zh_key":"＋ 添加实物奖励"},"txt_5fd12960d4":{"zh":"每周最低任务完成率","en":"Weekly minimum task completion","zh_key":"每周最低任务完成率"},"txt_5398a0dc05":{"zh":"＋ 添加已完成目标","en":"+ Add completed goal","zh_key":"＋ 添加已完成目标"},"txt_7ecb42c60b":{"zh":"总结按月份自动保存。","en":"Summary is saved by month automatically.","zh_key":"总结按月份自动保存。"},"txt_1641340caa":{"zh":"系统诊断：尚未生成。","en":"System diagnosis: not generated yet.","zh_key":"系统诊断：尚未生成。"},"txt_3e31b7173c":{"zh":"v90 更新说明","en":"v90 release notes","zh_key":"v90 更新说明"},"txt_27b0a3719a":{"zh":"当天首次打开后自动缓存","en":"Cached automatically after the first open of the day","zh_key":"当天首次打开后自动缓存"},"txt_01c3e12110":{"zh":"每周固定生活费（参考）","en":"Weekly fixed living cost (reference)","zh_key":"每周固定生活费（参考）"},"txt_03d2289513":{"zh":"添加一个目标开始倒计时","en":"Add a goal to start the countdown","zh_key":"添加一个目标开始倒计时"},"txt_e6aaee5c06":{"zh":"今天，专注于下一枚硬币。","en":"Today, focus on the next coin.","zh_key":"今天，专注于下一枚硬币。"},"txt_a95b63f324":{"zh":"高效工作 / 学习","en":"High-efficiency work / study","zh_key":"高效工作 / 学习"},"txt_43d170ba19":{"zh":"本周每天 · 有效时长","en":"Daily effective time this week","zh_key":"本周每天 · 有效时长"},"txt_f9ac72d8e7":{"zh":"Prime Time 更准确","en":"More accurate Prime Time","zh_key":"Prime Time 更准确"},"txt_b604112ca7":{"zh":"悬停每日拐点查看日期与有效率","en":"Hover a daily point to see date and rate","zh_key":"悬停每日拐点查看日期与有效率"},"txt_d60ea600fa":{"zh":"悬停每月拐点查看月份与有效率","en":"Hover a monthly point to see month and rate","zh_key":"悬停每月拐点查看月份与有效率"},"txt_e8f84a8e53":{"zh":"本月每天 · 有效硬币产出率","en":"Daily effective coin rate this month","zh_key":"本月每天 · 有效硬币产出率"},"txt_2b99b48a85":{"zh":"近 8 周 · 记录时长趋势","en":"Recorded-time trend · last 8 weeks","zh_key":"近 8 周 · 记录时长趋势"},"txt_7d786a9eb3":{"zh":"34 COINS · 本次更新","en":"34 COINS · Release notes","zh_key":"34 COINS · 本次更新"},"txt_0252924bc2":{"zh":"把“计划”和“实际”放在一起看","en":"View your plan and reality together","zh_key":"把“计划”和“实际”放在一起看"},"txt_1e7296a9c7":{"zh":"把有效时间转成你的“内部货币”","en":"Turn effective time into your “internal currency”","zh_key":"把有效时间转成你的“内部货币”"},"txt_62e713ebe0":{"zh":"本年度每月 · 有效硬币产出率","en":"Monthly effective coin rate this year","zh_key":"本年度每月 · 有效硬币产出率"},"txt_cd4255bfe5":{"zh":"精力 / 心流 Overlay","en":"Energy / flow overlay","zh_key":"精力 / 心流 Overlay"},"txt_e2338d2ef1":{"zh":"总结会按“周一所在周”自动保存。","en":"Summary is saved by Monday-based week.","zh_key":"总结会按“周一所在周”自动保存。"},"txt_3a68e3076c":{"zh":"1 个有效硬币 = 奖励金额（元）","en":"1 effective coin = reward amount (RMB)","zh_key":"1 个有效硬币 = 奖励金额（元）"},"txt_6b80c0de9b":{"zh":"34 Coins · 每日时间账本","en":"34 Coins · Daily time ledger","zh_key":"34 Coins · 每日时间账本"},"txt_184ff2825b":{"zh":"KEEP GOING · 继续向前","en":"KEEP GOING · Keep moving forward","zh_key":"KEEP GOING · 继续向前"},"txt_414f0a6606":{"zh":"Prime Time · 高能时段","en":"Prime Time · High-energy window","zh_key":"Prime Time · 高能时段"},"txt_d7230539cd":{"zh":"完成今天的一次签到，记录你的坚持。","en":"Check in once today to keep your streak going.","zh_key":"完成今天的一次签到，记录你的坚持。"},"txt_9981c309fe":{"zh":"把“完成有效时间”转成可消费的奖励","en":"Turn effective time into spendable rewards","zh_key":"把“完成有效时间”转成可消费的奖励"},"txt_fda8bfdf95":{"zh":"1 个有效硬币 = 娱乐时间（分钟）","en":"1 effective coin = leisure minutes","zh_key":"1 个有效硬币 = 娱乐时间（分钟）"},"txt_b0121fa47e":{"zh":"34 Coins · 时间记录与分析","en":"34 Coins · Time tracking & analytics","zh_key":"34 Coins · 时间记录与分析"},"txt_25cf91b159":{"zh":"Prime Time · 我的高能窗口","en":"Prime Time · My high-energy windows","zh_key":"Prime Time · 我的高能窗口"},"txt_d50434e4d0":{"zh":"每格代表一天，颜色面积代表当天时间结构","en":"Each cell is a day; color area shows that day’s time structure","zh_key":"每格代表一天，颜色面积代表当天时间结构"},"txt_484bdbfbe0":{"zh":"五年后的你，不会后悔今天认真努力的自己。","en":"Five years from now, you won’t regret the effort you made today.","zh_key":"五年后的你，不会后悔今天认真努力的自己。"},"txt_74ab94a446":{"zh":"34 Coins 是什么？｜3 步快速上手","en":"What is 34 Coins? | 3-step quick start","zh_key":"34 Coins 是什么？｜3 步快速上手"},"txt_7c75ea7a1e":{"zh":"Vulnerable Time · 拖延风险","en":"Vulnerable Time · procrastination risk","zh_key":"Vulnerable Time · 拖延风险"},"txt_28a9342b42":{"zh":"记录已经完成的目标，并回看完成时的真实效率。","en":"Record completed goals and review their real efficiency.","zh_key":"记录已经完成的目标，并回看完成时的真实效率。"},"txt_31c2062358":{"zh":"今天也向前走一步，未来会感谢现在认真生活的你。","en":"Take one step forward today; your future self will thank you.","zh_key":"今天也向前走一步，未来会感谢现在认真生活的你。"},"txt_f99861e288":{"zh":"坚持走好每一步，平凡的积累终会变成非凡的结果。","en":"Consistent small steps turn ordinary days into extraordinary results.","zh_key":"坚持走好每一步，平凡的积累终会变成非凡的结果。"},"txt_54a4019a54":{"zh":"每列 = 1 天；颜色面积 = 该天各类时间占比","en":"Each column = 1 day; color area = that day’s time share","zh_key":"每列 = 1 天；颜色面积 = 该天各类时间占比"},"txt_7d74ef8850":{"zh":"Vulnerable Time · 我的拖延重灾区","en":"Vulnerable Time · My high-risk windows","zh_key":"Vulnerable Time · 我的拖延重灾区"},"txt_cdb813804d":{"zh":"每格代表一个月；颜色面积 = 当月各类时间累计占比","en":"Each cell is a month; color area = that month’s time share","zh_key":"每格代表一个月；颜色面积 = 当月各类时间累计占比"},"txt_e2cb219db4":{"zh":"— 今天的每一枚 Coin，都是写给未来自己的答案。","en":"— Every coin today is an answer written to your future self.","zh_key":"— 今天的每一枚 Coin，都是写给未来自己的答案。"},"txt_e56783e3a0":{"zh":"可直接粘贴/输入，也可以按分类选择实物 Emoji。","en":"Paste/type directly, or choose a physical-item emoji by category.","zh_key":"可直接粘贴/输入，也可以按分类选择实物 Emoji。"},"txt_2366a987ee":{"zh":"把一天的时间变成可记录、可统计、可奖励的“时间硬币”。","en":"Turn a day into trackable, measurable, rewardable time coins.","zh_key":"把一天的时间变成可记录、可统计、可奖励的“时间硬币”。"},"txt_a33a0f2b15":{"zh":"统计会随着每天的填写自动更新 · 年度缩略图按月份累计","en":"Stats update as you log time · annual thumbnails accumulate by month","zh_key":"统计会随着每天的填写自动更新 · 年度缩略图按月份累计"},"txt_570f7f647b":{"zh":"💡 点击商品的 Emoji 可直接编辑；“×”用于删除商品。","en":"💡 Click a product emoji to edit; “×” deletes it.","zh_key":"💡 点击商品的 Emoji 可直接编辑；“×”用于删除商品。"},"txt_f79b63aa8c":{"zh":"基于过去 4 个完整周的历史记录，识别稳定的高能窗口与风险窗口。","en":"Uses the last 4 complete weeks to detect stable high-energy and risk windows.","zh_key":"基于过去 4 个完整周的历史记录，识别稳定的高能窗口与风险窗口。"},"txt_f5e1c493fb":{"zh":"用颜色区分五种时间：高效工作 / 学习、尽情娱乐、必要休息、强迫工作 / 学习和拖延浪费。","en":"Use five time categories: high-efficiency work/study, wholehearted leisure, necessary rest, forced work/study, and procrastination/waste.","zh_key":"用颜色区分五种时间：高效工作 / 学习、尽情娱乐、必要休息、强迫工作 / 学习和拖延浪费。"},"txt_f723ee4cae":{"zh":"任务数量可完全自定义，考研期间可以添加 5、10、20 个甚至更多任务。","en":"Add as many tasks as you like; 5, 10, 20 or more are supported.","zh_key":"任务数量可完全自定义，考研期间可以添加 5、10、20 个甚至更多任务。"},"txt_0980463564":{"zh":"每个时间块增加 1–3 级精力标记，可快速记录低能、正常与高光心流状态。","en":"Each time block supports a 1–3 energy level for low, normal, and flow states.","zh_key":"每个时间块增加 1–3 级精力标记，可快速记录低能、正常与高光心流状态。"},"txt_18d0727ccd":{"zh":"每格 = 30 分钟；按早晨、下午、晚间分组。点击时间格即可添加或编辑。","en":"Each cell = 30 minutes; grouped into morning, afternoon, and evening. Click a cell to add or edit.","zh_key":"每格 = 30 分钟；按早晨、下午、晚间分组。点击时间格即可添加或编辑。"},"txt_ae630f6e7e":{"zh":"☀️ DAILY MORNING BOOST · 香港时间 05:00 更新","en":"☀️ DAILY MORNING BOOST · Updated at 05:00 Hong Kong time","zh_key":"☀️ DAILY MORNING BOOST · 香港时间 05:00 更新"},"txt_e14aa89d97":{"zh":"高能窗口诊断同时参考有效产出率与精力评分，减少“坐在桌前但其实强撑”的误判。","en":"High-energy diagnosis considers both effective rate and energy to reduce false positives from “sitting at the desk but forcing it.”","zh_key":"高能窗口诊断同时参考有效产出率与精力评分，减少“坐在桌前但其实强撑”的误判。"},"txt_5cdaad37eb":{"zh":"Coin 商店包含可以实际兑换的实物奖励与恢复权益；主题皮肤、头像框等虚拟奖励已移除。","en":"Coin shop includes physical rewards and recovery privileges; virtual skins and frames have been removed.","zh_key":"Coin 商店包含可以实际兑换的实物奖励与恢复权益；主题皮肤、头像框等虚拟奖励已移除。"},"txt_d4130308e3":{"zh":"系统自动统计日、周、月的有效 Coins，并把时间投入转化成钱包、奖励和趋势。","en":"The system tracks effective coins by day, week, and month, then turns time into wallet, rewards, and trends.","zh_key":"系统自动统计日、周、月的有效 Coins，并把时间投入转化成钱包、奖励和趋势。"},"txt_a1acd3134c":{"zh":"可主动将某一天标记为恢复日，该日不进入拖延诊断，降低偶发低谷对长期记录的心理压力。","en":"Mark a day as a recovery day; it is excluded from procrastination diagnosis to reduce pressure from short-term dips.","zh_key":"可主动将某一天标记为恢复日，该日不进入拖延诊断，降低偶发低谷对长期记录的心理压力。"},"txt_65f5b66ce4":{"zh":"本次版本加入精力/心流记录与弹性恢复机制，让诊断更关注真实状态，而不只是记录数量。","en":"This release adds energy/flow tracking and resilient recovery so diagnosis focuses on real state, not just volume.","zh_key":"本次版本加入精力/心流记录与弹性恢复机制，让诊断更关注真实状态，而不只是记录数量。"},"txt_ed3a048424":{"zh":"检测到连续 3 天风险明显升高时，欢迎语与复盘页会切换为减负建议，而不是继续施压。","en":"After 3 consecutive high-risk days, the greeting and reflection page switch to relief suggestions instead of adding pressure.","zh_key":"检测到连续 3 天风险明显升高时，欢迎语与复盘页会切换为减负建议，而不是继续施压。"},"txt_da4de75aa8":{"zh":"可以添加多个目标，顶部会自动轮播；开始日期用于计算目标完成墙的持续天数与日均有效硬币产出率。","en":"Add multiple goals; the top rotates automatically. Start date powers completion-wall duration and daily effective-rate calculations.","zh_key":"可以添加多个目标，顶部会自动轮播；开始日期用于计算目标完成墙的持续天数与日均有效硬币产出率。"},"txt_0ef4d505eb":{"zh":"每枚 Coin 默认代表 30 分钟。连续做同一件事，可以合并成 1、2、3 小时的大时间块。","en":"Each coin represents 30 minutes by default. Consecutive identical work can be merged into 1, 2, or 3-hour blocks.","zh_key":"每枚 Coin 默认代表 30 分钟。连续做同一件事，可以合并成 1、2、3 小时的大时间块。"},"txt_489d9e70f3":{"zh":"默认按“30分钟硬币”计算，但奖励换算可以自行调整。奖励不是必须兑现成现金，也可以只兑换娱乐时间。","en":"Default: 30-minute coins. Reward conversion is adjustable; rewards can stay as leisure time instead of cash.","zh_key":"默认按“30分钟硬币”计算，但奖励换算可以自行调整。奖励不是必须兑现成现金，也可以只兑换娱乐时间。"},"txt_1175896ef6":{"zh":"最简单的开始方式：每天先安排任务，再记录实际做了什么；当天结束后看一次“今日概览”，每周再看“周度缩略图”。","en":"Easiest start: plan tasks first, then log what you actually did; review today’s overview at day end and the weekly thumbnail each week.","zh_key":"最简单的开始方式：每天先安排任务，再记录实际做了什么；当天结束后看一次“今日概览”，每周再看“周度缩略图”。"},"txt_ef72688921":{"zh":"例如：开始时间 08:00 + 持续 3 小时，只填写一次，系统会自动占用 08:00–11:00 的 6 个硬币。","en":"Example: start 08:00 + 3 hours uses 08:00–11:00 automatically, filling 6 coins.","zh_key":"例如：开始时间 08:00 + 持续 3 小时，只填写一次，系统会自动占用 08:00–11:00 的 6 个硬币。"},"txt_54ee5ecb0e":{"zh":"根据你给出的每周 ¥500 固定生活费，系统默认把 1 Coin 设为约 ¥2.10：34 Coins × 7 天 ≈ ¥500。","en":"Based on the weekly ¥500 fixed living cost you provided, 1 coin defaults to about ¥2.10: 34 coins × 7 days ≈ ¥500.","zh_key":"根据你给出的每周 ¥500 固定生活费，系统默认把 1 Coin 设为约 ¥2.10：34 Coins × 7 天 ≈ ¥500。"},"txt_6e49f6215a":{"zh":"📱 Android 也支持：Chrome / 常见现代浏览器可直接本地使用；以后还可以“添加到主屏幕”，像 App 一样打开。","en":"📱 Android supported: Chrome and modern browsers work locally; you can also add it to the home screen like an app.","zh_key":"📱 Android 也支持：Chrome / 常见现代浏览器可直接本地使用；以后还可以“添加到主屏幕”，像 App 一样打开。"},"txt_378901c612":{"zh":"今日时间概览","en":"Today’s time overview","zh_key":"今日时间概览"},"txt_2b7f0e4333":{"zh":"📚 学习","en":"📚 Study","zh_key":"📚 学习"},"txt_c69db4c40d":{"zh":"💼 工作/事业","en":"💼 Work / career","zh_key":"💼 工作/事业"},"txt_d73affc66c":{"zh":"🏃 健康","en":"🏃 Health","zh_key":"🏃 健康"},"txt_26604e039d":{"zh":"🏠 生活事务","en":"🏠 Life admin","zh_key":"🏠 生活事务"},"txt_c900a80c66":{"zh":"👥 社交","en":"👥 Social","zh_key":"👥 社交"},"txt_c429c937e0":{"zh":"🎮 娱乐","en":"🎮 Entertainment","zh_key":"🎮 娱乐"},"txt_6292f2b9c5":{"zh":"🎨 兴趣/个人成长","en":"🎨 Interests / growth","zh_key":"🎨 兴趣/个人成长"},"txt_791736a72f":{"zh":"🛒 购物/财务","en":"🛒 Shopping / finance","zh_key":"🛒 购物/财务"},"txt_e95353d8c8":{"zh":"🚇 出行","en":"🚇 Travel","zh_key":"🚇 出行"},"txt_aa9e5e9a3b":{"zh":"🧘 休息/恢复","en":"🧘 Rest / recovery","zh_key":"🧘 休息/恢复"},"txt_d71f1d6768":{"zh":"＋ 自定义","en":"+ Custom","zh_key":"＋ 自定义"},"txt_a7f814c0a4":{"zh":"编辑","en":"Edit","zh_key":"编辑"},"txt_3755f56f2f":{"zh":"删除","en":"Delete","zh_key":"删除"},"txt_25e74dceac":{"zh":"当前","en":"Current","zh_key":"当前"},"txt_df334e287b":{"zh":"设为当前","en":"Set current","zh_key":"设为当前"},"txt_a998a263a3":{"zh":"设为当前目标","en":"Set as current","zh_key":"设为当前目标"},"txt_3cea483afd":{"zh":"添加已完成目标","en":"Add completed goal","zh_key":"添加已完成目标"},"txt_d397fce55a":{"zh":"目标名称","en":"Goal name","zh_key":"目标名称"},"txt_5586ea7ac7":{"zh":"目标截止日期","en":"Goal deadline","zh_key":"目标截止日期"},"txt_bfcdd6c656":{"zh":"目标开始日期","en":"Goal start date","zh_key":"目标开始日期"},"txt_c01c7227e8":{"zh":"目标完成日期","en":"Goal completion date","zh_key":"目标完成日期"},"txt_1f29196891":{"zh":"开始日期","en":"Start date","zh_key":"开始日期"},"txt_9b3177f0b7":{"zh":"截止日期","en":"Deadline","zh_key":"截止日期"},"txt_02cb025ca3":{"zh":"完成日期","en":"Completion date","zh_key":"完成日期"},"txt_7edaa864ff":{"zh":"目标名称，例如：考研","en":"Goal name, e.g. exam prep","zh_key":"目标名称，例如：考研"},"txt_b0ac425530":{"zh":"目标名称，例如：雅思 7.5","en":"Goal name, e.g. IELTS 7.5","zh_key":"目标名称，例如：雅思 7.5"},"txt_0b5fbb71e3":{"zh":"实物奖励","en":"Physical reward","zh_key":"实物奖励"},"txt_a6fe6bdd9f":{"zh":"兑换","en":"Redeem","zh_key":"兑换"},"txt_12ab0e5f96":{"zh":"搜索商品名称或备注","en":"Search item name or notes","zh_key":"搜索商品名称或备注"},"txt_fa5849ab35":{"zh":"没有找到匹配的商品。","en":"No matching items.","zh_key":"没有找到匹配的商品。"},"txt_dae828fe4f":{"zh":"第","en":"Page","zh_key":"第"},"txt_73422182ab":{"zh":"页","en":"Page","zh_key":"页"},"txt_574cd4fb79":{"zh":"今日","en":"Today","zh_key":"今日"},"txt_e16e8248b1":{"zh":"本周","en":"This week","zh_key":"本周"},"txt_389f0007de":{"zh":"本月","en":"This month","zh_key":"本月"},"txt_25e591cc19":{"zh":"本周平均/天","en":"Weekly average / day","zh_key":"本周平均/天"},"txt_adcd8bda24":{"zh":"本月平均/天","en":"Monthly average / day","zh_key":"本月平均/天"},"txt_c02d697612":{"zh":"钱包","en":"Wallet","zh_key":"钱包"},"txt_51cc55073e":{"zh":"余额","en":"Balance","zh_key":"余额"},"txt_595ac22cfc":{"zh":"累计有效硬币","en":"Total effective coins","zh_key":"累计有效硬币"},"txt_68a5f6cc06":{"zh":"连续打卡奖励","en":"Check-in streak bonus","zh_key":"连续打卡奖励"},"txt_8100dd3e00":{"zh":"已兑换/消费","en":"Redeemed / spent","zh_key":"已兑换/消费"},"txt_0005b7de18":{"zh":"1 Coin = 人民币","en":"1 coin = RMB","zh_key":"1 Coin = 人民币"},"txt_a40bb42659":{"zh":"时间黑洞折损","en":"Time black-hole loss","zh_key":"时间黑洞折损"},"txt_c1505b0429":{"zh":"连续达标打卡","en":"Check-in streak","zh_key":"连续达标打卡"},"txt_bcc5dca840":{"zh":"里程碑奖励","en":"Milestone rewards","zh_key":"里程碑奖励"},"txt_6d2bfbc2b8":{"zh":"我的高能窗口","en":"My high-energy windows","zh_key":"我的高能窗口"},"txt_d0498a3216":{"zh":"我的拖延重灾区","en":"My high-risk windows","zh_key":"我的拖延重灾区"},"txt_425621629d":{"zh":"暂无稳定高能时段","en":"No stable high-energy window yet","zh_key":"暂无稳定高能时段"},"txt_fc2bebaa1d":{"zh":"暂无稳定风险时段","en":"No stable risk window yet","zh_key":"暂无稳定风险时段"},"txt_3cfc703841":{"zh":"系统诊断：当前历史样本不足，暂不预填。","en":"System diagnosis: not enough historical samples to prefill.","zh_key":"系统诊断：当前历史样本不足，暂不预填。"},"txt_99d96a401a":{"zh":"系统诊断：已根据过去 4 个完整周预填，内容可直接修改。","en":"System diagnosis: prefilled from the last 4 complete weeks; edit freely.","zh_key":"系统诊断：已根据过去 4 个完整周预填，内容可直接修改。"},"txt_c8a476234e":{"zh":"恢复日：今天不做拖延诊断，先恢复。","en":"Recovery day: no procrastination diagnosis today. Recover first.","zh_key":"恢复日：今天不做拖延诊断，先恢复。"},"txt_9f5a07a577":{"zh":"减负干预：最近连续 3 天风险升高，建议先恢复节奏。","en":"Relief mode: risk has risen for 3 consecutive days. Stabilize first.","zh_key":"减负干预：最近连续 3 天风险升高，建议先恢复节奏。"},"txt_0fed6781a5":{"zh":"🌿 今日是恢复日","en":"🌿 Today is a recovery day","zh_key":"🌿 今日是恢复日"},"txt_5f84ce7d23":{"zh":"今天不计入拖延诊断，先恢复体力与节奏。","en":"Today is excluded from procrastination diagnosis. Recover first.","zh_key":"今天不计入拖延诊断，先恢复体力与节奏。"},"txt_d44bd12b14":{"zh":"🫧 减负模式","en":"🫧 Relief mode","zh_key":"🫧 减负模式"},"txt_b9dab79c59":{"zh":"例如：396 数学真题","en":"e.g. 396 math problems","zh_key":"例如：396 数学真题"},"txt_2786371aaa":{"zh":"编辑时间块","en":"Edit time block","zh_key":"编辑时间块"},"txt_21d82d239c":{"zh":"低能","en":"Low","zh_key":"低能"},"txt_f78d037abc":{"zh":"正常","en":"Normal","zh_key":"正常"},"txt_1622f2ddd2":{"zh":"高光","en":"Flow","zh_key":"高光"},"txt_6e01538b7f":{"zh":"能量","en":"Energy","zh_key":"能量"},"txt_930c5e19ad":{"zh":"能量评分","en":"Energy score","zh_key":"能量评分"},"txt_376df657e6":{"zh":"趋势","en":"Trend","zh_key":"趋势"},"txt_bd2428b0ef":{"zh":"最近一周","en":"Latest week","zh_key":"最近一周"},"txt_c5134eb19c":{"zh":"建议","en":"Suggestion","zh_key":"建议"},"txt_affbf7c991":{"zh":"可消费的奖励","en":"Spendable rewards","zh_key":"可消费的奖励"},"txt_6087c5ee21":{"zh":"奖励金额（元）","en":"Reward amount (RMB)","zh_key":"奖励金额（元）"},"txt_1c7cb2c365":{"zh":"娱乐时间（分钟）","en":"Leisure time (minutes)","zh_key":"娱乐时间（分钟）"},"txt_fadf24dbc5":{"zh":"保存","en":"Save","zh_key":"保存"},"txt_6c14bd7f6f":{"zh":"关闭","en":"Close","zh_key":"关闭"},"txt_23bb68e0f5":{"zh":"已签到 ✓","en":"Checked in ✓","zh_key":"已签到 ✓"},"txt_9ed627bcf6":{"zh":"邮箱","en":"Email","zh_key":"邮箱"},"txt_699ec2aa39":{"zh":"密码（至少 6 位）","en":"Password (6+ characters)","zh_key":"密码（至少 6 位）"},"txt_c839a8ff17":{"zh":"密码","en":"Password","zh_key":"密码"},"txt_87c2be267c":{"zh":"切换语言","en":"Switch language","zh_key":"切换语言"},"txt_3d127c8d78":{"zh":"第 1 页","en":"Page 1","zh_key":"第 1 页"},"txt_dcfb419253":{"zh":"没有找到匹配的 Emoji，试试更换关键词。","en":"No matching emoji. Try another keyword.","zh_key":"没有找到匹配的 Emoji，试试更换关键词。"},"txt_b5f4827cae":{"zh":"按分类选择 Emoji","en":"Choose an emoji by category","zh_key":"按分类选择 Emoji"},"txt_71265fc4cb":{"zh":"最近使用","en":"Recent","zh_key":"最近使用"},"txt_778fc8f994":{"zh":"全部","en":"All","zh_key":"全部"},"txt_50783db68a":{"zh":"常用","en":"Common","zh_key":"常用"},"txt_fecd664062":{"zh":"表情","en":"Smileys","zh_key":"表情"},"txt_b755b68373":{"zh":"人物","en":"People","zh_key":"人物"},"txt_41ac3e62af":{"zh":"动物","en":"Animals","zh_key":"动物"},"txt_8183773155":{"zh":"食物","en":"Food","zh_key":"食物"},"txt_b2548636f0":{"zh":"活动","en":"Activities","zh_key":"活动"},"txt_578f5fe3dc":{"zh":"交通","en":"Travel","zh_key":"交通"},"txt_5c2475c0b4":{"zh":"物品","en":"Objects","zh_key":"物品"},"txt_e2cf6fbb19":{"zh":"符号","en":"Symbols","zh_key":"符号"},"txt_5cf448ac40":{"zh":"旗帜","en":"Flags","zh_key":"旗帜"},"txt_90fec09fdb":{"zh":"每格 = 30 分钟","en":"Each cell = 30 minutes","zh_key":"每格 = 30 分钟"},"txt_450505ac23":{"zh":"空白时间","en":"Unlogged time","zh_key":"空白时间"},"txt_1b93795b97":{"zh":"—","en":"—","zh_key":"—"},"txt_3b346faa12":{"zh":"尽情娱乐","en":"Wholehearted leisure","zh_key":"尽情娱乐"},"txt_995ef72aca":{"zh":"必要休息","en":"Necessary rest","zh_key":"必要休息"},"txt_600552cda3":{"zh":"全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。","en":"Core time with deep focus, high output, and growth value, such as intensive vocabulary study, problem solving, and report writing.","zh_key":"全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。"},"txt_e8051b01f7":{"zh":"高质量、无愧疚感的玩乐与放松，如朋友聚会、专心看一部好电影、健身运动。","en":"High-quality, guilt-free leisure and relaxation, such as meeting friends, focusing on a great movie, or exercising.","zh_key":"高质量、无愧疚感的玩乐与放松，如朋友聚会、专心看一部好电影、健身运动。"},"txt_206faa1234":{"zh":"维持身体机能的必要生理缓冲，如三餐吃饭、午休小憩、通勤放空。","en":"Necessary physiological buffers that maintain the body, such as meals, a short nap, or mentally unwinding during a commute.","zh_key":"维持身体机能的必要生理缓冲，如三餐吃饭、午休小憩、通勤放空。"},"txt_c9fdbb0c76":{"zh":"不得不做但个人主动性不高、专注度一般的事务，如机械性开会、被动应酬。","en":"Tasks you have to do with low personal agency and average focus, such as mechanical meetings or obligatory socializing.","zh_key":"不得不做但个人主动性不高、专注度一般的事务，如机械性开会、被动应酬。"},"txt_fa6c40c746":{"zh":"毫无价值、事后懊悔的虚度时间，如无目的刷短视频、拖延发呆。","en":"Time spent with little value that you regret afterward, such as purposeless short-video scrolling or procrastinating in a daze.","zh_key":"毫无价值、事后懊悔的虚度时间，如无目的刷短视频、拖延发呆。"},"undo":{"zh":"撤销","en":"Undo","zh_key":"撤销"},"today":{"zh":"今天","en":"Today","zh_key":"今天"},"backup_export":{"zh":"导出备份","en":"Export backup","zh_key":"导出备份"},"backup_import":{"zh":"导入备份","en":"Import backup","zh_key":"导入备份"},"time_flow":{"zh":"时间流","en":"Time flow","zh_key":"时间流"},"dashboard":{"zh":"数据看板","en":"Dashboard","zh_key":"数据看板"},"weekly":{"zh":"周度分析","en":"Weekly analysis","zh_key":"周度分析"},"monthly":{"zh":"月度分析","en":"Monthly analysis","zh_key":"月度分析"},"yearly":{"zh":"年度分析","en":"Yearly analysis","zh_key":"年度分析"},"trends":{"zh":"趋势分析","en":"Trend analysis","zh_key":"趋势分析"},"output_prompt":{"zh":"把今天的成果记录成一个数字","en":"Turn today’s result into a number","zh_key":"把今天的成果记录成一个数字"},"metric_name":{"zh":"指标名称","en":"Metric name","zh_key":"指标名称"},"unit":{"zh":"单位","en":"Unit","zh_key":"单位"},"delete":{"zh":"删除","en":"Delete","zh_key":"删除"},"no_numeric_output":{"zh":"暂无可分析的数值产出","en":"No numeric output metrics to analyze yet","zh_key":"暂无可分析的数值产出"},"data_accumulating":{"zh":"数据积累中","en":"Building data history","zh_key":"数据积累中"},"keep_logging":{"zh":"继续记录","en":"Keep logging","zh_key":"继续记录"},"min_20_data":{"zh":"至少 20 个同类数据点","en":"At least 20 comparable data points","zh_key":"至少 20 个同类数据点"},"trend_30_more_stable":{"zh":"达到 30 个后趋势会更稳健","en":"The trend becomes more stable after 30 points","zh_key":"达到 30 个后趋势会更稳健"},"correlation_window_note":{"zh":"按过去 90 天的非恢复日计算；Spearman 相关系数只表示关联，不代表因果。样本较少时仅作探索性参考。","en":"Based on non-recovery days over the past 90 days; Spearman measures association, not causation. Treat small samples as exploratory only.","zh_key":"按过去 90 天的非恢复日计算；Spearman 相关系数只表示关联，不代表因果。样本较少时仅作探索性参考。"},"no_stable_association":{"zh":"目前没有稳定关联","en":"No stable association yet","zh_key":"目前没有稳定关联"},"higher_input_higher_output":{"zh":"投入越多，产出通常越高","en":"Higher input is generally associated with higher output","zh_key":"投入越多，产出通常越高"},"higher_input_lower_output":{"zh":"投入越多，产出反而下降","en":"Higher input is associated with lower output","zh_key":"投入越多，产出反而下降"},"data_points":{"zh":"数据点","en":"Data points","zh_key":"数据点"},"low_input_avg":{"zh":"低投入日均值","en":"Low-input average","zh_key":"低投入日均值"},"high_input_avg":{"zh":"高投入日均值","en":"High-input average","zh_key":"高投入日均值"},"more_stable":{"zh":"较稳定","en":"More stable","zh_key":"较稳定"},"exploratory_trend":{"zh":"探索性趋势","en":"Exploratory trend","zh_key":"探索性趋势"},"no_causal_claim":{"zh":"不做因果结论","en":"No causal claim","zh_key":"不做因果结论"},"flow_combo":{"zh":"心流连击","en":"Flow combo","zh_key":"心流连击"}};
+const I18N_SEMANTIC={"txt_c3304d1e49":{"zh":"天","en":"days","zh_key":"天"},"txt_17e83cc25e":{"zh":"今天","en":"Today","zh_key":"今天"},"txt_fe9ea3f070":{"zh":"今年","en":"This year","zh_key":"今年"},"txt_4d0b4688c7":{"zh":"取消","en":"Cancel","zh_key":"取消"},"txt_8a12b12125":{"zh":"周期","en":"Period","zh_key":"周期"},"txt_e0361480e3":{"zh":"备注","en":"Notes","zh_key":"备注"},"txt_33246f6a5e":{"zh":"完成","en":"Done","zh_key":"完成"},"txt_7cda072d45":{"zh":"普通","en":"Normal","zh_key":"普通"},"txt_941f08313a":{"zh":"目标","en":"Goal","zh_key":"目标"},"txt_6a0e665087":{"zh":"签到","en":"Check in","zh_key":"签到"},"txt_3bc40569b4":{"zh":"精力","en":"Energy","zh_key":"精力"},"txt_8ef4886033":{"zh":"颜色","en":"Color","zh_key":"颜色"},"txt_d94731eaa9":{"zh":"已记录","en":"Recorded","zh_key":"已记录"},"txt_7369b4b9a3":{"zh":"恢复日","en":"Recovery day","zh_key":"恢复日"},"txt_a1eb66d357":{"zh":"时间流","en":"Time flow","zh_key":"时间流"},"txt_cb63c62e50":{"zh":"知道了","en":"Got it","zh_key":"知道了"},"txt_953443b639":{"zh":"今日农历","en":"Lunar date","zh_key":"今日农历"},"txt_fdb84efa1d":{"zh":"今日复盘","en":"Daily review","zh_key":"今日复盘"},"txt_973fde7657":{"zh":"今日签到","en":"Daily check-in","zh_key":"今日签到"},"txt_8edd0f641d":{"zh":"今日计划","en":"Today’s plan","zh_key":"今日计划"},"txt_51521c52c6":{"zh":"休闲娱乐","en":"Leisure","zh_key":"休闲娱乐"},"txt_29fa80a652":{"zh":"保存商品","en":"Save item","zh_key":"保存商品"},"txt_f485883644":{"zh":"做了什么","en":"What did you do?","zh_key":"做了什么"},"txt_8ce9e55cf3":{"zh":"分析中心","en":"Analytics","zh_key":"分析中心"},"txt_8fc7972599":{"zh":"去年今日","en":"Same day last year","zh_key":"去年今日"},"txt_000a97406d":{"zh":"周度分析","en":"Weekly analysis","zh_key":"周度分析"},"txt_47b74133f2":{"zh":"商品名称","en":"Item name","zh_key":"商品名称"},"txt_0a5343e344":{"zh":"商品图标","en":"Item icon","zh_key":"商品图标"},"txt_2bd4d6d86d":{"zh":"复盘思考","en":"Reflection","zh_key":"复盘思考"},"txt_a0064f5f32":{"zh":"奖励规则","en":"Reward rules","zh_key":"奖励规则"},"txt_a00375ecf2":{"zh":"奖励金额","en":"Reward amount","zh_key":"奖励金额"},"txt_57a47fc722":{"zh":"娱乐时间","en":"Leisure time","zh_key":"娱乐时间"},"txt_a26f1abe64":{"zh":"导入备份","en":"Import backup","zh_key":"导入备份"},"txt_d11b66842a":{"zh":"导出备份","en":"Export backup","zh_key":"导出备份"},"txt_2aadd3e0b6":{"zh":"备份","en":"Backup","zh_key":"备份"},"txt_b5561dd5e7":{"zh":"尚未设置","en":"Not set","zh_key":"尚未设置"},"txt_21ecec0b14":{"zh":"年度分析","en":"Annual analysis","zh_key":"年度分析"},"txt_2402bdfd00":{"zh":"开始今天","en":"Start today","zh_key":"开始今天"},"txt_e8868af6eb":{"zh":"开始时间","en":"Start time","zh_key":"开始时间"},"txt_67589ea29e":{"zh":"持续时间","en":"Duration","zh_key":"持续时间"},"txt_f1f1a3ab7f":{"zh":"收起说明","en":"Collapse guide","zh_key":"收起说明"},"txt_f0f33e26b7":{"zh":"数据安全","en":"Data safety","zh_key":"数据安全"},"txt_3724531cb7":{"zh":"数据看板","en":"Dashboard","zh_key":"数据看板"},"txt_5ef37c50d1":{"zh":"明日计划","en":"Tomorrow’s plan","zh_key":"明日计划"},"txt_eb310a7bd7":{"zh":"最近兑换","en":"Recent redemptions","zh_key":"最近兑换"},"txt_3dd8fccd92":{"zh":"月度分析","en":"Monthly analysis","zh_key":"月度分析"},"txt_b96c19d2e2":{"zh":"有效硬币","en":"Effective coins","zh_key":"有效硬币"},"txt_d6bca501bb":{"zh":"本周总结","en":"Weekly summary","zh_key":"本周总结"},"txt_e65ca80982":{"zh":"本月总结","en":"Monthly summary","zh_key":"本月总结"},"txt_6e7c567ac1":{"zh":"样本不足","en":"Insufficient sample","zh_key":"样本不足"},"txt_5444202bfd":{"zh":"添加目标","en":"Add goal","zh_key":"添加目标"},"txt_6996c52847":{"zh":"清空当天","en":"Clear today","zh_key":"清空当天"},"txt_32b2806a45":{"zh":"生活事务","en":"Life admin","zh_key":"生活事务"},"txt_d90e7eb36e":{"zh":"目标管理","en":"Goal management","zh_key":"目标管理"},"txt_6f651b7bec":{"zh":"硬币钱包","en":"Coin wallet","zh_key":"硬币钱包"},"txt_a6c2f0c0b6":{"zh":"经济规则","en":"Economics rules","zh_key":"经济规则"},"txt_1a1bdf7714":{"zh":"强迫工作 / 学习","en":"Forced work / study","zh_key":"强迫工作 / 学习"},"txt_650b38bcad":{"zh":"记录时间","en":"Track time","zh_key":"记录时间"},"txt_cc7a872401":{"zh":"趋势分析","en":"Trend analysis","zh_key":"趋势分析"},"txt_8ca795a967":{"zh":"趋势总结","en":"Trend summary","zh_key":"趋势总结"},"txt_51f2680d72":{"zh":"趋势解读","en":"Trend interpretation","zh_key":"趋势解读"},"txt_db0f8a9e8e":{"zh":"距离目标","en":"Until goal","zh_key":"距离目标"},"txt_70b9a8697c":{"zh":"人民币价格","en":"RMB price","zh_key":"人民币价格"},"txt_e3095e26d2":{"zh":"今日完成度","en":"Today’s completion","zh_key":"今日完成度"},"txt_a439ddd919":{"zh":"保存时间块","en":"Save time block","zh_key":"保存时间块"},"txt_76f3409f29":{"zh":"已完成目标","en":"Completed goals","zh_key":"已完成目标"},"txt_fccf37a3b6":{"zh":"按状态整理","en":"Sort by status","zh_key":"按状态整理"},"txt_abcc3195e1":{"zh":"有效/34","en":"Effective / 34","zh_key":"有效/34"},"txt_74a7af88f0":{"zh":"添加新目标","en":"Add new goal","zh_key":"添加新目标"},"txt_bf58ab2020":{"zh":"添加时间块","en":"Add time block","zh_key":"添加时间块"},"txt_be45e25544":{"zh":"目标完成墙","en":"Goal wall","zh_key":"目标完成墙"},"txt_1c8dbbb352":{"zh":"给时间分类","en":"Classify time","zh_key":"给时间分类"},"txt_514f2f23ea":{"zh":"🌿 恢复日","en":"🌿 Recovery day","zh_key":"🌿 恢复日"},"txt_e81b0ce83d":{"zh":"☁️ 仅本地","en":"☁️ Local only","zh_key":"☁️ 仅本地"},"txt_fca6d8aefe":{"zh":"尚未设置目标","en":"No goal set","zh_key":"尚未设置目标"},"txt_74c30c68b2":{"zh":"恢复默认规则","en":"Restore defaults","zh_key":"恢复默认规则"},"txt_95f8c67fc2":{"zh":"有效硬币统计","en":"Effective coin stats","zh_key":"有效硬币统计"},"txt_8890de5c87":{"zh":"本周时间结构","en":"This week’s time structure","zh_key":"本周时间结构"},"txt_b6fa0aba51":{"zh":"本月时间结构","en":"This month’s time structure","zh_key":"本月时间结构"},"txt_9fb577fb83":{"zh":"每页 5 条","en":"5 per page","zh_key":"每页 5 条"},"txt_c3a4b42760":{"zh":"添加完成目标","en":"Add completed goal","zh_key":"添加完成目标"},"txt_a0c91e97d5":{"zh":"添加实物奖励","en":"Add physical reward","zh_key":"添加实物奖励"},"txt_5a3aa4d53f":{"zh":"目标管理 →","en":"Goal management →","zh_key":"目标管理 →"},"txt_b92e79c0f1":{"zh":"看统计与奖励","en":"View stats & rewards","zh_key":"看统计与奖励"},"txt_943bdffd94":{"zh":"＋ 添加任务","en":"+ Add task","zh_key":"＋ 添加任务"},"txt_af355cd344":{"zh":"Coin 商店","en":"Coin shop","zh_key":"Coin 商店"},"txt_0be695db43":{"zh":"今天的时间概览","en":"Today’s time overview","zh_key":"今天的时间概览"},"txt_5c7ef49634":{"zh":"你好，追梦人！","en":"Hello, dreamer!","zh_key":"你好，追梦人！"},"txt_0e647cb207":{"zh":"拖延浪费","en":"Procrastination / waste","zh_key":"拖延浪费"},"txt_b990a57274":{"zh":"最大的时间损失","en":"Biggest time loss","zh_key":"最大的时间损失"},"txt_832bfd66c5":{"zh":"有效硬币与奖励","en":"Effective coins & rewards","zh_key":"有效硬币与奖励"},"txt_1113080921":{"zh":"有效硬币产出率","en":"Effective coin rate","zh_key":"有效硬币产出率"},"txt_8ae98d927b":{"zh":"本周时间缩略图","en":"Weekly time thumbnail","zh_key":"本周时间缩略图"},"txt_e0fbf32c1c":{"zh":"本年度时间结构","en":"This year’s time structure","zh_key":"本年度时间结构"},"txt_bcaa023549":{"zh":"本年度累计时长","en":"This year’s recorded time","zh_key":"本年度累计时长"},"txt_e79c8b505f":{"zh":"本月时间缩略图","en":"Monthly time thumbnail","zh_key":"本月时间缩略图"},"txt_daa4755a68":{"zh":"目标进度 0%","en":"Goal progress 0%","zh_key":"目标进度 0%"},"txt_e1b7461c95":{"zh":"自动化时间诊断","en":"Automated time diagnosis","zh_key":"自动化时间诊断"},"txt_3c5fad1d6e":{"zh":"计划会自动保存","en":"Plan saves automatically","zh_key":"计划会自动保存"},"txt_44579f99df":{"zh":"↗ 继承昨日任务","en":"↗ Carry over yesterday’s tasks","zh_key":"↗ 继承昨日任务"},"txt_d16c137c2d":{"zh":"今天最重要的成果","en":"Most important result today","zh_key":"今天最重要的成果"},"txt_0150d584fd":{"zh":"明天应该停止什么","en":"What to stop tomorrow","zh_key":"明天应该停止什么"},"txt_3bf1391192":{"zh":"明天应该继续什么","en":"What to continue tomorrow","zh_key":"明天应该继续什么"},"txt_9d58940d3c":{"zh":"本年度时间缩略图","en":"Annual time thumbnail","zh_key":"本年度时间缩略图"},"txt_fd51ae2138":{"zh":"记录一次娱乐兑换","en":"Record leisure redemption","zh_key":"记录一次娱乐兑换"},"txt_a50d352076":{"zh":"连续低谷减负模式","en":"Consecutive low-period relief mode","zh_key":"连续低谷减负模式"},"txt_e6e4b203ba":{"zh":"＋ 添加实物奖励","en":"+ Add physical reward","zh_key":"＋ 添加实物奖励"},"txt_5fd12960d4":{"zh":"每周最低任务完成率","en":"Weekly minimum task completion","zh_key":"每周最低任务完成率"},"txt_5398a0dc05":{"zh":"＋ 添加已完成目标","en":"+ Add completed goal","zh_key":"＋ 添加已完成目标"},"txt_7ecb42c60b":{"zh":"总结按月份自动保存。","en":"Summary is saved by month automatically.","zh_key":"总结按月份自动保存。"},"txt_1641340caa":{"zh":"系统诊断：尚未生成。","en":"System diagnosis: not generated yet.","zh_key":"系统诊断：尚未生成。"},"txt_3e31b7173c":{"zh":"v90 更新说明","en":"v90 release notes","zh_key":"v90 更新说明"},"txt_27b0a3719a":{"zh":"当天首次打开后自动缓存","en":"Cached automatically after the first open of the day","zh_key":"当天首次打开后自动缓存"},"txt_01c3e12110":{"zh":"每周固定生活费（参考）","en":"Weekly fixed living cost (reference)","zh_key":"每周固定生活费（参考）"},"txt_03d2289513":{"zh":"添加一个目标开始倒计时","en":"Add a goal to start the countdown","zh_key":"添加一个目标开始倒计时"},"txt_e6aaee5c06":{"zh":"今天，专注于下一枚硬币。","en":"Today, focus on the next coin.","zh_key":"今天，专注于下一枚硬币。"},"txt_a95b63f324":{"zh":"高效工作 / 学习","en":"High-efficiency work / study","zh_key":"高效工作 / 学习"},"txt_43d170ba19":{"zh":"本周每天 · 有效时长","en":"Daily effective time this week","zh_key":"本周每天 · 有效时长"},"txt_f9ac72d8e7":{"zh":"Prime Time 更准确","en":"More accurate Prime Time","zh_key":"Prime Time 更准确"},"txt_b604112ca7":{"zh":"悬停每日拐点查看日期与有效率","en":"Hover a daily point to see date and rate","zh_key":"悬停每日拐点查看日期与有效率"},"txt_d60ea600fa":{"zh":"悬停每月拐点查看月份与有效率","en":"Hover a monthly point to see month and rate","zh_key":"悬停每月拐点查看月份与有效率"},"txt_e8f84a8e53":{"zh":"本月每天 · 有效硬币产出率","en":"Daily effective coin rate this month","zh_key":"本月每天 · 有效硬币产出率"},"txt_2b99b48a85":{"zh":"近 8 周 · 记录时长趋势","en":"Recorded-time trend · last 8 weeks","zh_key":"近 8 周 · 记录时长趋势"},"txt_7d786a9eb3":{"zh":"34 COINS · 本次更新","en":"34 COINS · Release notes","zh_key":"34 COINS · 本次更新"},"txt_0252924bc2":{"zh":"把“计划”和“实际”放在一起看","en":"View your plan and reality together","zh_key":"把“计划”和“实际”放在一起看"},"txt_1e7296a9c7":{"zh":"把有效时间转成你的“内部货币”","en":"Turn effective time into your “internal currency”","zh_key":"把有效时间转成你的“内部货币”"},"txt_62e713ebe0":{"zh":"本年度每月 · 有效硬币产出率","en":"Monthly effective coin rate this year","zh_key":"本年度每月 · 有效硬币产出率"},"txt_cd4255bfe5":{"zh":"精力 / 心流 Overlay","en":"Energy / flow overlay","zh_key":"精力 / 心流 Overlay"},"txt_e2338d2ef1":{"zh":"总结会按“周一所在周”自动保存。","en":"Summary is saved by Monday-based week.","zh_key":"总结会按“周一所在周”自动保存。"},"txt_3a68e3076c":{"zh":"1 个有效硬币 = 奖励金额（元）","en":"1 effective coin = reward amount (RMB)","zh_key":"1 个有效硬币 = 奖励金额（元）"},"txt_6b80c0de9b":{"zh":"34 Coins · 每日时间账本","en":"34 Coins · Daily time ledger","zh_key":"34 Coins · 每日时间账本"},"txt_184ff2825b":{"zh":"KEEP GOING · 继续向前","en":"KEEP GOING · Keep moving forward","zh_key":"KEEP GOING · 继续向前"},"txt_414f0a6606":{"zh":"Prime Time · 高能时段","en":"Prime Time · High-energy window","zh_key":"Prime Time · 高能时段"},"txt_d7230539cd":{"zh":"完成今天的一次签到，记录你的坚持。","en":"Check in once today to keep your streak going.","zh_key":"完成今天的一次签到，记录你的坚持。"},"txt_9981c309fe":{"zh":"把“完成有效时间”转成可消费的奖励","en":"Turn effective time into spendable rewards","zh_key":"把“完成有效时间”转成可消费的奖励"},"txt_fda8bfdf95":{"zh":"1 个有效硬币 = 娱乐时间（分钟）","en":"1 effective coin = leisure minutes","zh_key":"1 个有效硬币 = 娱乐时间（分钟）"},"txt_b0121fa47e":{"zh":"34 Coins · 时间记录与分析","en":"34 Coins · Time tracking & analytics","zh_key":"34 Coins · 时间记录与分析"},"txt_25cf91b159":{"zh":"Prime Time · 我的高能窗口","en":"Prime Time · My high-energy windows","zh_key":"Prime Time · 我的高能窗口"},"txt_d50434e4d0":{"zh":"每格代表一天，颜色面积代表当天时间结构","en":"Each cell is a day; color area shows that day’s time structure","zh_key":"每格代表一天，颜色面积代表当天时间结构"},"txt_484bdbfbe0":{"zh":"五年后的你，不会后悔今天认真努力的自己。","en":"Five years from now, you won’t regret the effort you made today.","zh_key":"五年后的你，不会后悔今天认真努力的自己。"},"txt_74ab94a446":{"zh":"34 Coins 是什么？｜3 步快速上手","en":"What is 34 Coins? | 3-step quick start","zh_key":"34 Coins 是什么？｜3 步快速上手"},"txt_7c75ea7a1e":{"zh":"Vulnerable Time · 拖延风险","en":"Vulnerable Time · procrastination risk","zh_key":"Vulnerable Time · 拖延风险"},"txt_28a9342b42":{"zh":"记录已经完成的目标，并回看完成时的真实效率。","en":"Record completed goals and review their real efficiency.","zh_key":"记录已经完成的目标，并回看完成时的真实效率。"},"txt_31c2062358":{"zh":"今天也向前走一步，未来会感谢现在认真生活的你。","en":"Take one step forward today; your future self will thank you.","zh_key":"今天也向前走一步，未来会感谢现在认真生活的你。"},"txt_f99861e288":{"zh":"坚持走好每一步，平凡的积累终会变成非凡的结果。","en":"Consistent small steps turn ordinary days into extraordinary results.","zh_key":"坚持走好每一步，平凡的积累终会变成非凡的结果。"},"txt_54a4019a54":{"zh":"每列 = 1 天；颜色面积 = 该天各类时间占比","en":"Each column = 1 day; color area = that day’s time share","zh_key":"每列 = 1 天；颜色面积 = 该天各类时间占比"},"txt_7d74ef8850":{"zh":"Vulnerable Time · 我的拖延重灾区","en":"Vulnerable Time · My high-risk windows","zh_key":"Vulnerable Time · 我的拖延重灾区"},"txt_cdb813804d":{"zh":"每格代表一个月；颜色面积 = 当月各类时间累计占比","en":"Each cell is a month; color area = that month’s time share","zh_key":"每格代表一个月；颜色面积 = 当月各类时间累计占比"},"txt_e2cb219db4":{"zh":"— 今天的每一枚 Coin，都是写给未来自己的答案。","en":"— Every coin today is an answer written to your future self.","zh_key":"— 今天的每一枚 Coin，都是写给未来自己的答案。"},"txt_e56783e3a0":{"zh":"可直接粘贴/输入，也可以按分类选择实物 Emoji。","en":"Paste/type directly, or choose a physical-item emoji by category.","zh_key":"可直接粘贴/输入，也可以按分类选择实物 Emoji。"},"txt_2366a987ee":{"zh":"把一天的时间变成可记录、可统计、可奖励的“时间硬币”。","en":"Turn a day into trackable, measurable, rewardable time coins.","zh_key":"把一天的时间变成可记录、可统计、可奖励的“时间硬币”。"},"txt_a33a0f2b15":{"zh":"统计会随着每天的填写自动更新 · 年度缩略图按月份累计","en":"Stats update as you log time · annual thumbnails accumulate by month","zh_key":"统计会随着每天的填写自动更新 · 年度缩略图按月份累计"},"txt_570f7f647b":{"zh":"💡 点击商品的 Emoji 可直接编辑；“×”用于删除商品。","en":"💡 Click a product emoji to edit; “×” deletes it.","zh_key":"💡 点击商品的 Emoji 可直接编辑；“×”用于删除商品。"},"txt_f79b63aa8c":{"zh":"基于过去 4 个完整周的历史记录，识别稳定的高能窗口与风险窗口。","en":"Uses the last 4 complete weeks to detect stable high-energy and risk windows.","zh_key":"基于过去 4 个完整周的历史记录，识别稳定的高能窗口与风险窗口。"},"txt_f5e1c493fb":{"zh":"用颜色区分五种时间：高效工作 / 学习、尽情娱乐、必要休息、强迫工作 / 学习和拖延浪费。","en":"Use five time categories: high-efficiency work/study, wholehearted leisure, necessary rest, forced work/study, and procrastination/waste.","zh_key":"用颜色区分五种时间：高效工作 / 学习、尽情娱乐、必要休息、强迫工作 / 学习和拖延浪费。"},"txt_f723ee4cae":{"zh":"任务数量可完全自定义，考研期间可以添加 5、10、20 个甚至更多任务。","en":"Add as many tasks as you like; 5, 10, 20 or more are supported.","zh_key":"任务数量可完全自定义，考研期间可以添加 5、10、20 个甚至更多任务。"},"txt_0980463564":{"zh":"每个时间块增加 1–3 级精力标记，可快速记录低能、正常与高光心流状态。","en":"Each time block supports a 1–3 energy level for low, normal, and flow states.","zh_key":"每个时间块增加 1–3 级精力标记，可快速记录低能、正常与高光心流状态。"},"txt_18d0727ccd":{"zh":"每格 = 30 分钟；按早晨、下午、晚间分组。点击时间格即可添加或编辑。","en":"Each cell = 30 minutes; grouped into morning, afternoon, and evening. Click a cell to add or edit.","zh_key":"每格 = 30 分钟；按早晨、下午、晚间分组。点击时间格即可添加或编辑。"},"txt_ae630f6e7e":{"zh":"☀️ DAILY MORNING BOOST · 香港时间 05:00 更新","en":"☀️ DAILY MORNING BOOST · Updated at 05:00 Hong Kong time","zh_key":"☀️ DAILY MORNING BOOST · 香港时间 05:00 更新"},"txt_e14aa89d97":{"zh":"高能窗口诊断同时参考有效产出率与精力评分，减少“坐在桌前但其实强撑”的误判。","en":"High-energy diagnosis considers both effective rate and energy to reduce false positives from “sitting at the desk but forcing it.”","zh_key":"高能窗口诊断同时参考有效产出率与精力评分，减少“坐在桌前但其实强撑”的误判。"},"txt_5cdaad37eb":{"zh":"Coin 商店只提供可以实际兑换的实物奖励；主题皮肤、头像框等虚拟奖励已移除。","en":"Coin shop includes physical rewards and recovery privileges; virtual skins and frames have been removed.","zh_key":"Coin 商店只提供可以实际兑换的实物奖励；主题皮肤、头像框等虚拟奖励已移除。"},"txt_d4130308e3":{"zh":"系统自动统计日、周、月的有效 Coins，并把时间投入转化成钱包、奖励和趋势。","en":"The system tracks effective coins by day, week, and month, then turns time into wallet, rewards, and trends.","zh_key":"系统自动统计日、周、月的有效 Coins，并把时间投入转化成钱包、奖励和趋势。"},"txt_a1acd3134c":{"zh":"可主动将某一天标记为恢复日，该日不进入拖延诊断，降低偶发低谷对长期记录的心理压力。","en":"Mark a day as a recovery day; it is excluded from procrastination diagnosis to reduce pressure from short-term dips.","zh_key":"可主动将某一天标记为恢复日，该日不进入拖延诊断，降低偶发低谷对长期记录的心理压力。"},"txt_65f5b66ce4":{"zh":"本次版本加入精力/心流记录与弹性恢复机制，让诊断更关注真实状态，而不只是记录数量。","en":"This release adds energy/flow tracking and resilient recovery so diagnosis focuses on real state, not just volume.","zh_key":"本次版本加入精力/心流记录与弹性恢复机制，让诊断更关注真实状态，而不只是记录数量。"},"txt_ed3a048424":{"zh":"检测到连续 3 天风险明显升高时，欢迎语与复盘页会切换为减负建议，而不是继续施压。","en":"After 3 consecutive high-risk days, the greeting and reflection page switch to relief suggestions instead of adding pressure.","zh_key":"检测到连续 3 天风险明显升高时，欢迎语与复盘页会切换为减负建议，而不是继续施压。"},"txt_da4de75aa8":{"zh":"可以添加多个目标，顶部会自动轮播；开始日期用于计算目标完成墙的持续天数与日均有效硬币产出率。","en":"Add multiple goals; the top rotates automatically. Start date powers completion-wall duration and daily effective-rate calculations.","zh_key":"可以添加多个目标，顶部会自动轮播；开始日期用于计算目标完成墙的持续天数与日均有效硬币产出率。"},"txt_0ef4d505eb":{"zh":"每枚 Coin 默认代表 30 分钟。连续做同一件事，可以合并成 1、2、3 小时的大时间块。","en":"Each coin represents 30 minutes by default. Consecutive identical work can be merged into 1, 2, or 3-hour blocks.","zh_key":"每枚 Coin 默认代表 30 分钟。连续做同一件事，可以合并成 1、2、3 小时的大时间块。"},"txt_489d9e70f3":{"zh":"默认按“30分钟硬币”计算，但奖励换算可以自行调整。奖励不是必须兑现成现金，也可以只兑换娱乐时间。","en":"Default: 30-minute coins. Reward conversion is adjustable; rewards can stay as leisure time instead of cash.","zh_key":"默认按“30分钟硬币”计算，但奖励换算可以自行调整。奖励不是必须兑现成现金，也可以只兑换娱乐时间。"},"txt_1175896ef6":{"zh":"最简单的开始方式：每天先安排任务，再记录实际做了什么；当天结束后看一次“今日概览”，每周再看“周度缩略图”。","en":"Easiest start: plan tasks first, then log what you actually did; review today’s overview at day end and the weekly thumbnail each week.","zh_key":"最简单的开始方式：每天先安排任务，再记录实际做了什么；当天结束后看一次“今日概览”，每周再看“周度缩略图”。"},"txt_ef72688921":{"zh":"例如：开始时间 08:00 + 持续 3 小时，只填写一次，系统会自动占用 08:00–11:00 的 6 个硬币。","en":"Example: start 08:00 + 3 hours uses 08:00–11:00 automatically, filling 6 coins.","zh_key":"例如：开始时间 08:00 + 持续 3 小时，只填写一次，系统会自动占用 08:00–11:00 的 6 个硬币。"},"txt_54ee5ecb0e":{"zh":"根据你给出的每周 ¥500 固定生活费，系统默认把 1 Coin 设为约 ¥2.10：34 Coins × 7 天 ≈ ¥500。","en":"Based on the weekly ¥500 fixed living cost you provided, 1 coin defaults to about ¥2.10: 34 coins × 7 days ≈ ¥500.","zh_key":"根据你给出的每周 ¥500 固定生活费，系统默认把 1 Coin 设为约 ¥2.10：34 Coins × 7 天 ≈ ¥500。"},"txt_6e49f6215a":{"zh":"📱 Android 也支持：Chrome / 常见现代浏览器可直接本地使用；以后还可以“添加到主屏幕”，像 App 一样打开。","en":"📱 Android supported: Chrome and modern browsers work locally; you can also add it to the home screen like an app.","zh_key":"📱 Android 也支持：Chrome / 常见现代浏览器可直接本地使用；以后还可以“添加到主屏幕”，像 App 一样打开。"},"txt_378901c612":{"zh":"今日时间概览","en":"Today’s time overview","zh_key":"今日时间概览"},"txt_2b7f0e4333":{"zh":"📚 学习","en":"📚 Study","zh_key":"📚 学习"},"txt_c69db4c40d":{"zh":"💼 工作/事业","en":"💼 Work / career","zh_key":"💼 工作/事业"},"txt_d73affc66c":{"zh":"🏃 健康","en":"🏃 Health","zh_key":"🏃 健康"},"txt_26604e039d":{"zh":"🏠 生活事务","en":"🏠 Life admin","zh_key":"🏠 生活事务"},"txt_c900a80c66":{"zh":"👥 社交","en":"👥 Social","zh_key":"👥 社交"},"txt_c429c937e0":{"zh":"🎮 娱乐","en":"🎮 Entertainment","zh_key":"🎮 娱乐"},"txt_6292f2b9c5":{"zh":"🎨 兴趣/个人成长","en":"🎨 Interests / growth","zh_key":"🎨 兴趣/个人成长"},"txt_791736a72f":{"zh":"🛒 购物/财务","en":"🛒 Shopping / finance","zh_key":"🛒 购物/财务"},"txt_e95353d8c8":{"zh":"🚇 出行","en":"🚇 Travel","zh_key":"🚇 出行"},"txt_aa9e5e9a3b":{"zh":"🧘 休息/恢复","en":"🧘 Rest / recovery","zh_key":"🧘 休息/恢复"},"txt_d71f1d6768":{"zh":"＋ 自定义","en":"+ Custom","zh_key":"＋ 自定义"},"txt_a7f814c0a4":{"zh":"编辑","en":"Edit","zh_key":"编辑"},"txt_3755f56f2f":{"zh":"删除","en":"Delete","zh_key":"删除"},"txt_25e74dceac":{"zh":"当前","en":"Current","zh_key":"当前"},"txt_df334e287b":{"zh":"设为当前","en":"Set current","zh_key":"设为当前"},"txt_a998a263a3":{"zh":"设为当前目标","en":"Set as current","zh_key":"设为当前目标"},"txt_3cea483afd":{"zh":"添加已完成目标","en":"Add completed goal","zh_key":"添加已完成目标"},"txt_d397fce55a":{"zh":"目标名称","en":"Goal name","zh_key":"目标名称"},"txt_5586ea7ac7":{"zh":"目标截止日期","en":"Goal deadline","zh_key":"目标截止日期"},"txt_bfcdd6c656":{"zh":"目标开始日期","en":"Goal start date","zh_key":"目标开始日期"},"txt_c01c7227e8":{"zh":"目标完成日期","en":"Goal completion date","zh_key":"目标完成日期"},"txt_1f29196891":{"zh":"开始日期","en":"Start date","zh_key":"开始日期"},"txt_9b3177f0b7":{"zh":"截止日期","en":"Deadline","zh_key":"截止日期"},"txt_02cb025ca3":{"zh":"完成日期","en":"Completion date","zh_key":"完成日期"},"txt_7edaa864ff":{"zh":"目标名称，例如：考研","en":"Goal name, e.g. exam prep","zh_key":"目标名称，例如：考研"},"txt_b0ac425530":{"zh":"目标名称，例如：雅思 7.5","en":"Goal name, e.g. IELTS 7.5","zh_key":"目标名称，例如：雅思 7.5"},"txt_0b5fbb71e3":{"zh":"实物奖励","en":"Physical reward","zh_key":"实物奖励"},"txt_a6fe6bdd9f":{"zh":"兑换","en":"Redeem","zh_key":"兑换"},"txt_12ab0e5f96":{"zh":"搜索商品名称或备注","en":"Search item name or notes","zh_key":"搜索商品名称或备注"},"txt_fa5849ab35":{"zh":"没有找到匹配的商品。","en":"No matching items.","zh_key":"没有找到匹配的商品。"},"txt_dae828fe4f":{"zh":"第","en":"Page","zh_key":"第"},"txt_73422182ab":{"zh":"页","en":"Page","zh_key":"页"},"txt_574cd4fb79":{"zh":"今日","en":"Today","zh_key":"今日"},"txt_e16e8248b1":{"zh":"本周","en":"This week","zh_key":"本周"},"txt_389f0007de":{"zh":"本月","en":"This month","zh_key":"本月"},"txt_25e591cc19":{"zh":"本周平均/天","en":"Weekly average / day","zh_key":"本周平均/天"},"txt_adcd8bda24":{"zh":"本月平均/天","en":"Monthly average / day","zh_key":"本月平均/天"},"txt_c02d697612":{"zh":"钱包","en":"Wallet","zh_key":"钱包"},"txt_51cc55073e":{"zh":"余额","en":"Balance","zh_key":"余额"},"txt_595ac22cfc":{"zh":"累计有效硬币","en":"Total effective coins","zh_key":"累计有效硬币"},"txt_68a5f6cc06":{"zh":"连续打卡奖励","en":"Check-in streak bonus","zh_key":"连续打卡奖励"},"txt_8100dd3e00":{"zh":"已兑换/消费","en":"Redeemed / spent","zh_key":"已兑换/消费"},"txt_0005b7de18":{"zh":"1 Coin = 人民币","en":"1 coin = RMB","zh_key":"1 Coin = 人民币"},"txt_a40bb42659":{"zh":"时间黑洞折损","en":"Time black-hole loss","zh_key":"时间黑洞折损"},"txt_c1505b0429":{"zh":"连续达标打卡","en":"Check-in streak","zh_key":"连续达标打卡"},"txt_bcc5dca840":{"zh":"里程碑奖励","en":"Milestone rewards","zh_key":"里程碑奖励"},"txt_6d2bfbc2b8":{"zh":"我的高能窗口","en":"My high-energy windows","zh_key":"我的高能窗口"},"txt_d0498a3216":{"zh":"我的拖延重灾区","en":"My high-risk windows","zh_key":"我的拖延重灾区"},"txt_425621629d":{"zh":"暂无稳定高能时段","en":"No stable high-energy window yet","zh_key":"暂无稳定高能时段"},"txt_fc2bebaa1d":{"zh":"暂无稳定风险时段","en":"No stable risk window yet","zh_key":"暂无稳定风险时段"},"txt_3cfc703841":{"zh":"系统诊断：当前历史样本不足，暂不预填。","en":"System diagnosis: not enough historical samples to prefill.","zh_key":"系统诊断：当前历史样本不足，暂不预填。"},"txt_99d96a401a":{"zh":"系统诊断：已根据过去 4 个完整周预填，内容可直接修改。","en":"System diagnosis: prefilled from the last 4 complete weeks; edit freely.","zh_key":"系统诊断：已根据过去 4 个完整周预填，内容可直接修改。"},"txt_c8a476234e":{"zh":"恢复日：今天不做拖延诊断，先恢复。","en":"Recovery day: no procrastination diagnosis today. Recover first.","zh_key":"恢复日：今天不做拖延诊断，先恢复。"},"txt_9f5a07a577":{"zh":"减负干预：最近连续 3 天风险升高，建议先恢复节奏。","en":"Relief mode: risk has risen for 3 consecutive days. Stabilize first.","zh_key":"减负干预：最近连续 3 天风险升高，建议先恢复节奏。"},"txt_0fed6781a5":{"zh":"🌿 今日是恢复日","en":"🌿 Today is a recovery day","zh_key":"🌿 今日是恢复日"},"txt_5f84ce7d23":{"zh":"今天不计入拖延诊断，先恢复体力与节奏。","en":"Today is excluded from procrastination diagnosis. Recover first.","zh_key":"今天不计入拖延诊断，先恢复体力与节奏。"},"txt_d44bd12b14":{"zh":"🫧 减负模式","en":"🫧 Relief mode","zh_key":"🫧 减负模式"},"txt_b9dab79c59":{"zh":"例如：396 数学真题","en":"e.g. 396 math problems","zh_key":"例如：396 数学真题"},"txt_2786371aaa":{"zh":"编辑时间块","en":"Edit time block","zh_key":"编辑时间块"},"txt_21d82d239c":{"zh":"低能","en":"Low","zh_key":"低能"},"txt_f78d037abc":{"zh":"正常","en":"Normal","zh_key":"正常"},"txt_1622f2ddd2":{"zh":"高光","en":"Flow","zh_key":"高光"},"txt_6e01538b7f":{"zh":"能量","en":"Energy","zh_key":"能量"},"txt_930c5e19ad":{"zh":"能量评分","en":"Energy score","zh_key":"能量评分"},"txt_376df657e6":{"zh":"趋势","en":"Trend","zh_key":"趋势"},"txt_bd2428b0ef":{"zh":"最近一周","en":"Latest week","zh_key":"最近一周"},"txt_c5134eb19c":{"zh":"建议","en":"Suggestion","zh_key":"建议"},"txt_affbf7c991":{"zh":"可消费的奖励","en":"Spendable rewards","zh_key":"可消费的奖励"},"txt_6087c5ee21":{"zh":"奖励金额（元）","en":"Reward amount (RMB)","zh_key":"奖励金额（元）"},"txt_1c7cb2c365":{"zh":"娱乐时间（分钟）","en":"Leisure time (minutes)","zh_key":"娱乐时间（分钟）"},"txt_fadf24dbc5":{"zh":"保存","en":"Save","zh_key":"保存"},"txt_6c14bd7f6f":{"zh":"关闭","en":"Close","zh_key":"关闭"},"txt_23bb68e0f5":{"zh":"已签到 ✓","en":"Checked in ✓","zh_key":"已签到 ✓"},"txt_9ed627bcf6":{"zh":"邮箱","en":"Email","zh_key":"邮箱"},"txt_699ec2aa39":{"zh":"密码（至少 6 位）","en":"Password (6+ characters)","zh_key":"密码（至少 6 位）"},"txt_c839a8ff17":{"zh":"密码","en":"Password","zh_key":"密码"},"txt_87c2be267c":{"zh":"切换语言","en":"Switch language","zh_key":"切换语言"},"txt_3d127c8d78":{"zh":"第 1 页","en":"Page 1","zh_key":"第 1 页"},"txt_dcfb419253":{"zh":"没有找到匹配的 Emoji，试试更换关键词。","en":"No matching emoji. Try another keyword.","zh_key":"没有找到匹配的 Emoji，试试更换关键词。"},"txt_b5f4827cae":{"zh":"按分类选择 Emoji","en":"Choose an emoji by category","zh_key":"按分类选择 Emoji"},"txt_71265fc4cb":{"zh":"最近使用","en":"Recent","zh_key":"最近使用"},"txt_778fc8f994":{"zh":"全部","en":"All","zh_key":"全部"},"txt_50783db68a":{"zh":"常用","en":"Common","zh_key":"常用"},"txt_fecd664062":{"zh":"表情","en":"Smileys","zh_key":"表情"},"txt_b755b68373":{"zh":"人物","en":"People","zh_key":"人物"},"txt_41ac3e62af":{"zh":"动物","en":"Animals","zh_key":"动物"},"txt_8183773155":{"zh":"食物","en":"Food","zh_key":"食物"},"txt_b2548636f0":{"zh":"活动","en":"Activities","zh_key":"活动"},"txt_578f5fe3dc":{"zh":"交通","en":"Travel","zh_key":"交通"},"txt_5c2475c0b4":{"zh":"物品","en":"Objects","zh_key":"物品"},"txt_e2cf6fbb19":{"zh":"符号","en":"Symbols","zh_key":"符号"},"txt_5cf448ac40":{"zh":"旗帜","en":"Flags","zh_key":"旗帜"},"txt_90fec09fdb":{"zh":"每格 = 30 分钟","en":"Each cell = 30 minutes","zh_key":"每格 = 30 分钟"},"txt_450505ac23":{"zh":"空白时间","en":"Unlogged time","zh_key":"空白时间"},"txt_1b93795b97":{"zh":"—","en":"—","zh_key":"—"},"txt_3b346faa12":{"zh":"尽情娱乐","en":"Wholehearted leisure","zh_key":"尽情娱乐"},"txt_995ef72aca":{"zh":"必要休息","en":"Necessary rest","zh_key":"必要休息"},"txt_600552cda3":{"zh":"全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。","en":"Core time with deep focus, high output, and growth value, such as intensive vocabulary study, problem solving, and report writing.","zh_key":"全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。"},"txt_e8051b01f7":{"zh":"高质量、无愧疚感的玩乐与放松，如朋友聚会、专心看一部好电影、健身运动。","en":"High-quality, guilt-free leisure and relaxation, such as meeting friends, focusing on a great movie, or exercising.","zh_key":"高质量、无愧疚感的玩乐与放松，如朋友聚会、专心看一部好电影、健身运动。"},"txt_206faa1234":{"zh":"维持身体机能的必要生理缓冲，如三餐吃饭、午休小憩、通勤放空。","en":"Necessary physiological buffers that maintain the body, such as meals, a short nap, or mentally unwinding during a commute.","zh_key":"维持身体机能的必要生理缓冲，如三餐吃饭、午休小憩、通勤放空。"},"txt_c9fdbb0c76":{"zh":"不得不做但个人主动性不高、专注度一般的事务，如机械性开会、被动应酬。","en":"Tasks you have to do with low personal agency and average focus, such as mechanical meetings or obligatory socializing.","zh_key":"不得不做但个人主动性不高、专注度一般的事务，如机械性开会、被动应酬。"},"txt_fa6c40c746":{"zh":"毫无价值、事后懊悔的虚度时间，如无目的刷短视频、拖延发呆。","en":"Time spent with little value that you regret afterward, such as purposeless short-video scrolling or procrastinating in a daze.","zh_key":"毫无价值、事后懊悔的虚度时间，如无目的刷短视频、拖延发呆。"},"undo":{"zh":"撤销","en":"Undo","zh_key":"撤销"},"today":{"zh":"今天","en":"Today","zh_key":"今天"},"backup_export":{"zh":"导出备份","en":"Export backup","zh_key":"导出备份"},"backup_import":{"zh":"导入备份","en":"Import backup","zh_key":"导入备份"},"time_flow":{"zh":"时间流","en":"Time flow","zh_key":"时间流"},"dashboard":{"zh":"数据看板","en":"Dashboard","zh_key":"数据看板"},"weekly":{"zh":"周度分析","en":"Weekly analysis","zh_key":"周度分析"},"monthly":{"zh":"月度分析","en":"Monthly analysis","zh_key":"月度分析"},"yearly":{"zh":"年度分析","en":"Yearly analysis","zh_key":"年度分析"},"trends":{"zh":"趋势分析","en":"Trend analysis","zh_key":"趋势分析"},"output_prompt":{"zh":"把今天的成果记录成一个数字","en":"Turn today’s result into a number","zh_key":"把今天的成果记录成一个数字"},"metric_name":{"zh":"指标名称","en":"Metric name","zh_key":"指标名称"},"unit":{"zh":"单位","en":"Unit","zh_key":"单位"},"delete":{"zh":"删除","en":"Delete","zh_key":"删除"},"no_numeric_output":{"zh":"暂无可分析的数值产出","en":"No numeric output metrics to analyze yet","zh_key":"暂无可分析的数值产出"},"data_accumulating":{"zh":"数据积累中","en":"Building data history","zh_key":"数据积累中"},"keep_logging":{"zh":"继续记录","en":"Keep logging","zh_key":"继续记录"},"min_20_data":{"zh":"至少 20 个同类数据点","en":"At least 20 comparable data points","zh_key":"至少 20 个同类数据点"},"trend_30_more_stable":{"zh":"达到 30 个后趋势会更稳健","en":"The trend becomes more stable after 30 points","zh_key":"达到 30 个后趋势会更稳健"},"correlation_window_note":{"zh":"按过去 90 天的非恢复日计算；Spearman 相关系数只表示关联，不代表因果。样本较少时仅作探索性参考。","en":"Based on non-recovery days over the past 90 days; Spearman measures association, not causation. Treat small samples as exploratory only.","zh_key":"按过去 90 天的非恢复日计算；Spearman 相关系数只表示关联，不代表因果。样本较少时仅作探索性参考。"},"no_stable_association":{"zh":"目前没有稳定关联","en":"No stable association yet","zh_key":"目前没有稳定关联"},"higher_input_higher_output":{"zh":"投入越多，产出通常越高","en":"Higher input is generally associated with higher output","zh_key":"投入越多，产出通常越高"},"higher_input_lower_output":{"zh":"投入越多，产出反而下降","en":"Higher input is associated with lower output","zh_key":"投入越多，产出反而下降"},"data_points":{"zh":"数据点","en":"Data points","zh_key":"数据点"},"low_input_avg":{"zh":"低投入日均值","en":"Low-input average","zh_key":"低投入日均值"},"high_input_avg":{"zh":"高投入日均值","en":"High-input average","zh_key":"高投入日均值"},"more_stable":{"zh":"较稳定","en":"More stable","zh_key":"较稳定"},"exploratory_trend":{"zh":"探索性趋势","en":"Exploratory trend","zh_key":"探索性趋势"},"no_causal_claim":{"zh":"不做因果结论","en":"No causal claim","zh_key":"不做因果结论"},"flow_combo":{"zh":"心流连击","en":"Flow combo","zh_key":"心流连击"}};
 const I18N_ZH_TO_KEY=Object.create(null);
 for(const[key,entry] of Object.entries(I18N_SEMANTIC)){I18N_ZH_TO_KEY[entry.zh]=key;}
 function t(key){
@@ -7375,7 +7431,7 @@ function translateDynamicText(root){
     }else if(dynI18nOriginal.has(n)){n.nodeValue=dynI18nOriginal.get(n);dynI18nOriginal.delete(n);}
   }
 }
-Object.assign(I18N,{'🌊 心流连击奖励':'🌊 Flow combo bonus','心流连击':'Flow combo','恢复权益':'Recovery privilege','无条件放空 1 小时':'1-hour guilt-free rest','兑换权益':'Redeem privilege','关键数值产出':'Output metrics','可选':'Optional','把成果变成可比较的数据':'Turn results into comparable data','刷题数':'Problems solved','背诵单词数':'Words memorized','背词数':'Words memorized','正确率':'Accuracy','题':'questions','词':'words','指标名称':'Metric name','单位':'Unit','投入 × 产出关联':'Input × output relationship','按同一指标比较每日有效投入与实际成果；数据越多，结论越稳定。':'Compare effective input with actual output for the same metric; more data makes the signal more stable.','相关 ≠ 因果':'Correlation ≠ causation','数据积累中':'Building data history','早期趋势':'Early trend','较稳定':'More stable','数据点':'Data points','继续记录':'Keep logging','目前没有稳定关联':'No stable association yet','暂无可分析的数值产出':'No numeric output metrics to analyze yet','投入越多，产出通常越高':'More input is generally associated with higher output','投入越多，产出反而下降':'Higher input is associated with lower output','不做因果结论':'No causal claim is made','低投入日均值':'Low-input avg.','高投入日均值':'High-input avg.','关联系数':'Association coefficient','添加指标':'+ Add metric','把今天的成果记录成一个数字':'Record today’s result as a number','至少 14 个同类数据点':'at least 14 comparable points','达到 30 个后趋势会更稳健':'the trend becomes more robust after 30 points','按过去 90 天的非恢复日计算；相关系数只表示关联，不代表因果。':'Based on non-recovery days in the last 90 days; correlation does not imply causation.','更稳定':'More stable'});
+Object.assign(I18N,{'🌊 心流连击奖励':'🌊 Flow combo bonus','心流连击':'Flow combo','关键数值产出':'Output metrics','可选':'Optional','把成果变成可比较的数据':'Turn results into comparable data','刷题数':'Problems solved','背诵单词数':'Words memorized','背词数':'Words memorized','正确率':'Accuracy','题':'questions','词':'words','指标名称':'Metric name','单位':'Unit','投入 × 产出关联':'Input × output relationship','按同一指标比较每日有效投入与实际成果；数据越多，结论越稳定。':'Compare effective input with actual output for the same metric; more data makes the signal more stable.','相关 ≠ 因果':'Correlation ≠ causation','数据积累中':'Building data history','早期趋势':'Early trend','较稳定':'More stable','数据点':'Data points','继续记录':'Keep logging','目前没有稳定关联':'No stable association yet','暂无可分析的数值产出':'No numeric output metrics to analyze yet','投入越多，产出通常越高':'More input is generally associated with higher output','投入越多，产出反而下降':'Higher input is associated with lower output','不做因果结论':'No causal claim is made','低投入日均值':'Low-input avg.','高投入日均值':'High-input avg.','关联系数':'Association coefficient','添加指标':'+ Add metric','把今天的成果记录成一个数字':'Record today’s result as a number','至少 14 个同类数据点':'at least 14 comparable points','达到 30 个后趋势会更稳健':'the trend becomes more robust after 30 points','按过去 90 天的非恢复日计算；相关系数只表示关联，不代表因果。':'Based on non-recovery days in the last 90 days; correlation does not imply causation.','更稳定':'More stable'});
 
 const COLORS = [
   {key:'c1',name:'高效工作 / 学习',var:'--c1',desc:'全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。'},
@@ -9479,7 +9535,6 @@ function flowComboForDay(key){
 function flowComboBonusForDay(key){return flowComboForDay(key).bonusCoins;}
 function economicCoinsForDay(key){if(String(key)>todayKey())return 0;return effectiveCoinsForDay(key)+flowComboBonusForDay(key);}
 function totalFlowComboBonus(){return earnedDayKeys().reduce((s,k)=>s+flowComboBonusForDay(k),0);}
-function guiltFreeRestMinutesForDay(key){return protectedRestMinutesFromPurchases(db.purchases,key,GUILT_FREE_REST_EFFECT);}
 function taskProductiveHoursForDay(key){
   const d=peekDay(key);
   return d.tasks.filter(t=>['done','partial'].includes(t.status) && !['entertainment','rest'].includes(t.type))
@@ -9642,14 +9697,12 @@ function renderShop(){
     const coins=shopItemCoins(item);
     const rmb=shopItemRmb(item);
     const emoji=item.emoji||'🎁';
-    const wellness=item.kind==='wellness';
-    const system=wellness && item.system!==false;
     const noteText=String(item.note||'');
     const noteDensity=shopNoteDensityClass(noteText);
-    return `<div class="shopItem ${wellness?'wellnessShopItem':''}">
-      ${system?'':`<button class="shopDelete" title="删除商品" data-id="${escapeHtml(item.id)}">×</button>`}
-      ${system?`<div class="shopEmoji shopEmojiStatic" aria-hidden="true">${escapeHtml(emoji)}</div>`:`<button class="shopEmoji shopEmojiEdit" type="button" title="点击 Emoji 编辑商品" data-edit-emoji="${escapeHtml(item.id)}" aria-label="点击 ${escapeHtml(item.name||'商品')} 的 Emoji 编辑">${escapeHtml(emoji)}</button>`}
-      <div class="rewardTypeBadge ${wellness?'wellness':''}">${wellness?'🌿 恢复权益':'🛍️ 实物奖励'}</div>
+    return `<div class="shopItem">
+      <button class="shopDelete" title="删除商品" data-id="${escapeHtml(item.id)}">×</button>
+      <button class="shopEmoji shopEmojiEdit" type="button" title="点击 Emoji 编辑商品" data-edit-emoji="${escapeHtml(item.id)}" aria-label="点击 ${escapeHtml(item.name||'商品')} 的 Emoji 编辑">${escapeHtml(emoji)}</button>
+      <div class="rewardTypeBadge">🛍️ 实物奖励</div>
       <div class="shopName">${escapeHtml(item.name||'未命名商品')}</div>
       <div class="shopDesc ${noteDensity}">${escapeHtml(noteText)}</div>
       <div class="shopPrice">
@@ -9657,10 +9710,10 @@ function renderShop(){
         <span class="shopRmbValue">≈ ¥${rmb.toFixed(2)}</span>
       </div>
       <div class="shopBtns">
-        <button class="btn ${wellness?'wellnessRedeemBtn':''} primary shopRedeemBtn" data-buy="${escapeHtml(item.id)}">${wellness?'兑换权益':'兑换'}</button>
+        <button class="btn primary shopRedeemBtn" data-buy="${escapeHtml(item.id)}">兑换</button>
       </div>
     </div>`;
-  }).join('') || '<div class="empty" style="grid-column:1/-1">还没有奖励。可以添加实物奖励，也会自动提供恢复权益。</div>';
+  }).join('') || '<div class="empty" style="grid-column:1/-1">还没有实物奖励。可以添加实物奖励。</div>';
 
   grid.querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>buyShopItem(b.dataset.buy));
   grid.querySelectorAll('[data-edit-emoji]').forEach(b=>b.onclick=()=>openShopModal(b.dataset.editEmoji));
@@ -9693,7 +9746,7 @@ function renderShop(){
   const recent=allPurchases.slice(start,start+PURCHASE_HISTORY_PAGE_SIZE);
   const history=document.getElementById('purchaseHistory');
   history.innerHTML=recent.length
-    ? recent.map(p=>`<div class="historyItem"><span>${escapeHtml(p.emoji||'🎁')} ${escapeHtml(p.name)}</span><span>-${fmt(p.coins)} Coins · ${escapeHtml(p.date)}${p.kind==='wellness'?' · 恢复权益':''}</span></div>`).join('')
+    ? recent.map(p=>`<div class="historyItem"><span>${escapeHtml(p.emoji||'🎁')} ${escapeHtml(p.name)}</span><span>-${fmt(p.coins)} Coins · ${escapeHtml(p.date)}</span></div>`).join('')
     : '<div style="font-size:11px;color:#9aa2b1">暂无兑换记录</div>';
 
   const pager=document.getElementById('purchaseHistoryPagination');
@@ -9888,9 +9941,12 @@ function saveShopItem(){
 }
 function normalizePhysicalShop(){
   if(!Array.isArray(db.shop))db.shop=[];
-  db.shop=db.shop.filter(x=>x&&(x.kind==='physical'||x.kind==='wellness'||x.kind==='theme'||x.kind==='frame'||!x.kind)).filter(x=>x.kind!=='theme'&&x.kind!=='frame').map(x=>{
-    if(x.kind==='wellness')return {...x,kind:'wellness',effect:x.effect||GUILT_FREE_REST_EFFECT,protectedMinutes:Number(x.protectedMinutes)||GUILT_FREE_REST_MINUTES,coinPrice:Number(x.coinPrice)||GUILT_FREE_REST_COIN_PRICE,system:x.system!==false,price:Number(x.price)||4.2};
-    const y={...x,kind:'physical'};if(!Number.isFinite(Number(y.price))&&Number.isFinite(Number(y.coinPrice))){const rate=Number(db.settings.coinRmb)||2.1;y.price=Math.max(0,Math.round(Number(y.coinPrice)*rate*10)/10);}delete y.coinPrice;delete y.effect;return y;
+  db.shop=db.shop.filter(x=>x&&typeof x==='object'&&x.kind!=='wellness'&&x.id!=='wellness-rest-60'&&x.kind!=='theme'&&x.kind!=='frame').map(x=>{
+    const y={...x,kind:'physical'};
+    if(!Number.isFinite(Number(y.price))&&Number.isFinite(Number(y.coinPrice))){const rate=Number(db.settings.coinRmb)||2.1;y.price=Math.max(0,Math.round(Number(y.coinPrice)*rate*10)/10);}
+    y.price=Math.max(0,Number(y.price)||0);
+    delete y.coinPrice;delete y.effect;delete y.protectedMinutes;delete y.system;
+    return y;
   });
 }
 
@@ -9903,8 +9959,8 @@ function shopNoteDensityClass(note){
   return 'shopDesc--long';
 }
 
-function shopItemCoins(item){if(item?.kind==='wellness'&&Number.isFinite(Number(item.coinPrice)))return Number(item.coinPrice);const rate=Number(db.settings.coinRmb)||2.1;return Math.round((Number(item?.price)||0)/rate*10)/10;}
-function shopItemRmb(item){if(item?.kind==='wellness')return shopItemCoins(item)*(Number(db.settings.coinRmb)||2.1);return Number(item?.price)||0;}
+function shopItemCoins(item){const rate=Number(db.settings.coinRmb)||2.1;return Math.round((Number(item?.price)||0)/rate*10)/10;}
+function shopItemRmb(item){return Number(item?.price)||0;}
 function buyShopItem(id){
   if(purchaseInFlight.has(id))return;
   purchaseInFlight.add(id);
@@ -9914,16 +9970,13 @@ function buyShopItem(id){
   if(coins>bal){alert(`余额不足。需要 ${fmt(coins)} Coins，你现在有 ${fmt(bal)} Coins。`);return;}
   const rmb=shopItemRmb(item);if(!confirm(`兑换“${item.name}”？
 需要 ${fmt(coins)} Coins（≈ ¥${rmb.toFixed(2)}）`))return;
-  const isWellness=item.kind==='wellness';
-  db.purchases.push({id:'buy-'+Date.now(),date:todayKey(),itemId:id,emoji:item.emoji,name:item.name,price:rmb,coinPrice:coins,coins,kind:isWellness?'wellness':'physical',effect:isWellness?(item.effect||GUILT_FREE_REST_EFFECT):'',protectedMinutes:isWellness?(Number(item.protectedMinutes)||GUILT_FREE_REST_MINUTES):0});
+  db.purchases.push({id:'buy-'+Date.now(),date:todayKey(),itemId:id,emoji:item.emoji,name:item.name,price:rmb,coinPrice:coins,coins,kind:'physical',effect:'',protectedMinutes:0});
   saveDB();purchaseHistoryPage=1;renderWallet();renderShop();renderCompletedGoals();
-  if(isWellness)alert(`已兑换“${item.name}”。今天 ${fmt(Number(item.protectedMinutes)||GUILT_FREE_REST_MINUTES)} 分钟休整受规则保护，不计入时间黑洞警示。`);
   }finally{purchaseInFlight.delete(id);}
 }
 
 function deleteShopItem(id){
   const item=db.shop.find(x=>x.id===id);
-  if(item?.kind==='wellness'&&item.system!==false){alert('恢复权益是系统内置规则，不能删除。');return;}
   if(!confirm('删除这个商品？不会影响已完成的历史兑换。'))return;
   db.shop=db.shop.filter(x=>x.id!==id);saveDB();renderShop();
 }
@@ -9952,17 +10005,13 @@ function renderTimeBlackHoleWarning(){
   if(dayObj.recoveryDay===true){el.hidden=true;el.innerHTML='';return;}
   const day=dayObj.coins;
   const blank=day.filter(x=>!isRecordedCoin(x)).length;
-  const protectedMinutes=guiltFreeRestMinutesForDay(currentDate);
-  const protectedBlank=Math.min(blank,Math.floor(protectedMinutes/30));
   const wasteTagged=day.filter(x=>isRecordedCoin(x) && x.color===3).length;
-  const exposedBlank=Math.max(0,blank-protectedBlank);
-  const triggered=exposedBlank>6 || wasteTagged>=4;
+  const triggered=blank>6 || wasteTagged>=4;
   if(!triggered){el.hidden=true;el.innerHTML='';return;}
-  const lossCoins=exposedBlank+wasteTagged;
+  const lossCoins=blank+wasteTagged;
   const level=(blank>=10 || wasteTagged>=6)?'danger':'warn';
   el.hidden=false; el.className=`timeBlackHoleWarning ${level}`;
-  const protectedLine=protectedBlank?`已保护 ${fmt(protectedBlank*.5)} 小时放空，不计入本次黑洞警示。`:'';
-  el.innerHTML=`<div class="timeBlackHoleIcon">◌</div><div><b>时间黑洞折损</b><span>今天有 ${exposedBlank} 枚未受保护的空白硬币、${wasteTagged} 枚拖延浪费硬币，估算损耗 ${fmt(lossCoins)} 枚（${fmt(lossCoins*.5)} 小时）。${protectedLine}</span></div>`;
+  el.innerHTML=`<div class="timeBlackHoleIcon">◌</div><div><b>时间黑洞折损</b><span>今天有 ${blank} 枚空白硬币、${wasteTagged} 枚拖延浪费硬币，估算损耗 ${fmt(lossCoins)} 枚（${fmt(lossCoins*.5)} 小时）。</span></div>`;
 }
 function renderWallet(){
   normalizeShopItems();
@@ -9979,6 +10028,7 @@ function renderWallet(){
   document.getElementById('coinRmb').value=rate;
   document.getElementById('weeklyBudget').value=Number(db.settings.weeklyBudget)||500;
   document.getElementById('weeklyTarget').value=Number(db.settings.weeklyTarget)||70;
+  updateCoinRuleHint();
   const pn=weeklyPenaltyTotal();
   document.getElementById('penaltyBox').innerHTML=pn.detail.length
     ? `最近已结束周中，有 <b>${pn.detail.length}</b> 周未达到 ${fmt(db.settings.weeklyTarget)}% 任务完成率，共扣除 <b>${fmt(pn.total)} Coins</b>。中度未达标扣 ${fmt(db.settings.penaltyMid)}，严重未达标扣 ${fmt(db.settings.penaltyLow)}。`
@@ -10004,8 +10054,26 @@ function renderWallet(){
 }
 
 
-document.getElementById('coinRmb').oninput=()=>{db.settings.coinRmb=Math.max(.1,Number(document.getElementById('coinRmb').value)||2.1);saveDB();renderWallet()};
-document.getElementById('weeklyBudget').oninput=()=>{db.settings.weeklyBudget=Math.max(0,Number(document.getElementById('weeklyBudget').value)||0);saveDB();};
+function updateCoinRuleHint(){
+  const el=document.getElementById('coinRuleHint');
+  if(!el)return;
+  const rate=Math.max(0.1,Number(db.settings.coinRmb)||2.1);
+  const budget=Math.max(0,Number(db.settings.weeklyBudget)||500);
+  const weeklyCoins=34*7;
+  const impliedBudget=weeklyCoins*rate;
+  const rateText=rate.toFixed(2).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1');
+  const budgetText=budget.toFixed(0);
+  const impliedText=impliedBudget.toFixed(2).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1');
+  el.textContent=`每周固定生活费参考 ¥${budgetText}；当前 1 Coin = ¥${rateText}。按标准 34 Coins × 7 天计算，每周对应约 ¥${impliedText}。`;
+}
+
+document.getElementById('coinRmb').oninput=()=>{
+  db.settings.coinRmb=Math.max(.1,Number(document.getElementById('coinRmb').value)||2.1);
+  saveDB();
+  updateCoinRuleHint();
+  renderWallet();
+};
+document.getElementById('weeklyBudget').oninput=()=>{db.settings.weeklyBudget=Math.max(0,Number(document.getElementById('weeklyBudget').value)||0);saveDB();updateCoinRuleHint();};
 document.getElementById('weeklyTarget').oninput=()=>{const n=Number(document.getElementById('weeklyTarget').value);db.settings.weeklyTarget=Number.isFinite(n)?Math.min(100,Math.max(0,n)):70;saveDB();renderWallet()};
 document.getElementById('addShopItemBtn').onclick=()=>openShopModal();
 const shopSearchInput=document.getElementById('shopSearchInput');
