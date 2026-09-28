@@ -6999,7 +6999,7 @@ html,body{min-width:0;max-width:100%;}
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v143</span>
+  <span class="siteFooterVersion">v144</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
@@ -7007,7 +7007,7 @@ html,body{min-width:0;max-width:100%;}
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker">34 COINS · 本次更新</div>
     <h3 id="releaseNotesTitle">v143 更新说明</h3>
-    <div class="releaseNotesIntro">v143 稳定性升级：IndexedDB 主存储、容量预警、持久化权限、页面内撤销与错误可见化，并优化分析与多语言性能。</div>
+    <div class="releaseNotesIntro">v144 稳定性修复：修复整库备份导入后刷新丢失历史记录的问题，并强化 IndexedDB 全量替换写入。</div>
     <div class="releaseNotesList">
       <div class="releaseNoteItem"><b>纯本地架构清理</b><span>移除历史云端入口与残留逻辑，当前版本只使用浏览器本地存储。</span></div>
       <div class="releaseNoteItem"><b>版本统一</b><span>统一当前发布版本为 v143，更新说明与应用版本标识保持一致。</span></div>
@@ -7367,6 +7367,34 @@ class DataStore{
     if(bytes<=5*1024*1024){try{this.storage.setItem(this.key,payload);this.persistent=this.storage?.__persistent!==false;this.writeMeta({savedAt:now,bytes,backend:'localStorage-fallback'});return state;}catch{this.persistent=false;emitStorageWarning('write-failed','本地存储写入失败，当前改动可能只保留在内存中；请立即导出备份。');return state;}}
     this.persistent=false;
     emitStorageWarning('oversize','数据已超过 5 MB 且 IndexedDB 不可用，请立即导出备份；主数据未被删除。');
+    return state;
+  }
+  replaceAll(state){
+    const now=Date.now();this.lastPersistError=null;
+    if(this.idbAvailable&&this.idb){
+      const days=Object.entries(state.days||{});
+      const meta={savedAt:now,settings:state.settings||{},summaries:state.summaries||{},redeems:state.redeems||[],shop:state.shop||[],purchases:state.purchases||[],checkIns:state.checkIns||{},schemaVersion:state.schemaVersion,totalBytes:0};
+      this.dayBytes.clear();
+      let total=JSON.stringify(meta).length;
+      for(const[date,data] of days){const bytes=JSON.stringify(data||{}).length;this.dayBytes.set(date,bytes);total+=bytes;}
+      meta.totalBytes=total;this.lastAppBytes=total;
+      this.persistPromise=new Promise((resolve,reject)=>{
+        const tx=this.idb.transaction([this.idbDays,this.idbMeta],'readwrite');
+        const ds=tx.objectStore(this.idbDays),ms=tx.objectStore(this.idbMeta);
+        ds.clear();
+        for(const[date,data] of days)ds.put({date,data},date);
+        ms.put(meta,'root');
+        tx.oncomplete=()=>resolve(true);
+        tx.onerror=()=>reject(tx.error||new Error('IndexedDB replace failed'));
+        tx.onabort=()=>reject(tx.error||new Error('IndexedDB replace transaction aborted'));
+      }).then(()=>{safeLocalRemove(`${this.key}.persist-failed`);updateStorageHealth?.();return true;}).catch(e=>{this.lastPersistError=e;safeLocalSet(`${this.key}.persist-failed`,'1');emitStorageWarning('idb-replace-failed','导入备份后写入 IndexedDB 失败；请立即再次导出备份。');updateStorageHealth?.();return false;});
+      // Keep a small compatibility mirror when feasible; never truncate or overwrite the main IDB dataset.
+      try{const raw=JSON.stringify(state);if(raw.length<=5*1024*1024){this.storage.setItem(this.key,raw);this.writeMeta({savedAt:now,bytes:raw.length,backend:'idb-primary'});}}catch{}
+      return state;
+    }
+    const payload=JSON.stringify(state),bytes=payload.length;
+    if(bytes<=5*1024*1024){try{this.storage.setItem(this.key,payload);this.persistent=this.storage?.__persistent!==false;this.writeMeta({savedAt:now,bytes,backend:'localStorage-fallback'});return state;}catch{this.persistent=false;emitStorageWarning('write-failed','导入备份写入本地存储失败；请立即导出备份。');return state;}}
+    emitStorageWarning('oversize','导入备份超过 5 MB 且 IndexedDB 不可用，请立即导出备份；主数据未被删除。');
     return state;
   }
   clear(){try{this.storage.removeItem(this.key);}catch{}try{this.storage.removeItem(this.metaKey);}catch{}if(this.idbAvailable&&this.idb){try{const tx=this.idb.transaction([this.idbDays,this.idbMeta],'readwrite');tx.objectStore(this.idbDays).clear();tx.objectStore(this.idbMeta).delete('root');}catch{}}}
@@ -10565,7 +10593,7 @@ updateUndoUI();
 document.getElementById('importInput').onchange=e=>{
   const f=e.target.files[0]; if(!f)return;
   if(f.size>100*1024*1024){alert('备份文件过大，当前版本最大支持 100 MB。');e.target.value='';return;}
-  const r=new FileReader(); r.onload=()=>{
+  const r=new FileReader(); r.onload=async()=>{
     try{
       const x=normalizeBackupState(JSON.parse(r.result),{slots:SLOTS});
       if(!x.days || typeof x.days!=='object') throw new Error('days');
@@ -10574,11 +10602,16 @@ document.getElementById('importInput').onchange=e=>{
       undoSnapshot=null;
       lastSavedSnapshot=captureUndoSnapshot();
       markLocalDirty();
-      scheduleLocalPersist();
+      // IMPORTANT: an import replaces the entire database, not just the current day.
+      store.replaceAll(db);
+      const persisted=await store.persistPromise;
+      if(!persisted)throw new Error('persist');
+      localPersistPending=false;
+      safeLocalSet('34coins_last_import_at',String(Date.now()));
       updateStorageHealth?.();
       render();
-      alert('备份导入成功。');
-    }catch(_){alert('导入失败：请确认选择的是本工具导出的 JSON 备份文件。')}
+      alert('备份导入成功，全部历史记录已经写入 IndexedDB。');
+    }catch(_){alert('导入失败：请确认选择的是本工具导出的 JSON 备份文件，并检查浏览器本地存储权限。')}
   }; r.readAsText(f); e.target.value='';
 };
 async function finalizeAppBoot(){
