@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="165">
+<meta name="application-version" content="168">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -6916,20 +6916,21 @@ html body #addShopItemBtn{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v165</span>
+  <span class="siteFooterVersion">v169</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle">v165 更新说明</h3>
-    <div class="releaseNotesIntro">v165：签到月历新增苹果风格月度翻页控件，可浏览往月签到记录。</div>
+    <h3 id="releaseNotesTitle">v169 更新说明</h3>
+    <div class="releaseNotesIntro">v169：补强启动合并、全量替换与 Fast Boot 的一致性保护，进一步避免本地数据回退或覆盖。</div>
     <div class="releaseNotesList">
-      <div class="releaseNoteItem"><b>兑换按钮统一</b><span>“兑换”按钮与顶部“＋添加实物奖励”采用同一套浅蓝背景、蓝色文字和细边框。</span></div>
-      <div class="releaseNoteItem"><b>交互保持一致</b><span>悬停、聚焦和按下状态仍保留明确反馈，但默认状态不再使用高饱和蓝色。</span></div>
-      <div class="releaseNoteItem"><b>启动性能</b><span>首次打开不再等待 IndexedDB 全量读取；本地首屏先渲染，后台同步后仅在发现更新时二次刷新。</span></div>
-      <div class="releaseNoteItem"><b>签到月历</b><span>每日激励弹窗加入当月签到日历；已签到日期显示对勾，今天用蓝色描边标记，保持轻量 Apple 风格。</span></div>
+      <div class="releaseNoteItem"><b>硬性防覆盖</b><span>升级启动时同时检查 LocalStorage 与 IndexedDB；空数据、记录更少的数据不会自动覆盖历史数据。</span></div>
+      <div class="releaseNoteItem"><b>跨日期保存</b><span>快速切换日期时，所有尚未落盘的实际修改日期都会一起保存，不再只保存当前日期。</span></div>
+      <div class="releaseNoteItem"><b>保守合并</b><span>两份本地数据同时存在时，按日期保留非空记录；无法安全判定的冲突不自动删除。</span></div>
+      <div class="releaseNoteItem"><b>升级快照</b><span>检测到新版本且已有本地数据时，先生成独立的本地安全快照，再继续启动。</span></div>
+      <div class="releaseNoteItem"><b>启动回归测试</b><span>加入“空候选不能覆盖非空历史”等持久化自测，避免后续版本再次出现同类问题。</span></div>
     </div>
     <div class="modalActions">
       <button class="btn primary" id="releaseNotesClose" type="button" data-i18n-key="txt_cb63c62e50" data-i18n-text="1">知道了</button>
@@ -6939,8 +6940,8 @@ html body #addShopItemBtn{
 </div>
 <script>
 
-// 34 Coins v165 · standalone local release · no external runtime dependencies
-const APP_VERSION='165';
+// 34 Coins v169 · standalone local release · hard overwrite protection · boot reconciliation · mirror consistency · no external runtime dependencies
+const APP_VERSION='169';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -7233,7 +7234,7 @@ class DataStore{
     this.key=key;this.metaKey=`${key}.meta`;this.idbName=idbName;this.idbDays='days';this.idbMeta='meta';
     this.memoryStorage=createMemoryStorage();const safe=getSafeStorage(storage);this.storage=safe.storage;this.persistent=safe.persistent;
     const meta=this.readMeta?.()||{};
-    this.idb=null;this.idbAvailable=false;this.lastPersistError=null;this.persistPromise=Promise.resolve(true);this.lastAppBytes=0;this.dayBytes=new Map();this.revision=Number(meta.revision)||0;this.lastPersistedAt=Number(meta.savedAt)||0;this.bootSource='unknown';this.bootSourceSavedAt=0;this.bootRecoveryPromise=Promise.resolve(false);this.ready=this.initialize();
+    this.idb=null;this.idbAvailable=false;this.lastPersistError=null;this.persistPromise=Promise.resolve(true);this.lastAppBytes=0;this.dayBytes=new Map();this.revision=Number(meta.revision)||0;this.lastPersistedAt=Number(meta.savedAt)||0;this.ready=this.initialize();
   }
   _readLocalRaw(){try{return this.storage.getItem(this.key);}catch(e){this.persistent=false;this.storage=this.memoryStorage;emitStorageWarning('unavailable','本地存储读取失败，已降级为内存模式。');return null;}}
   load(){
@@ -7249,10 +7250,17 @@ class DataStore{
     }
     const fast=readFastBootSnapshot(this.storage);
     const localMeta=this.readMeta?.()||{};
-    if(fast && Number(fast.savedAt||0)>=Number(localMeta.savedAt||0)){
+    // Fast Boot is only a settings shortcut. It may contribute settings when
+    // it is at least as new as the complete LocalStorage snapshot; a stale
+    // Fast Boot record must never roll settings backward.
+    const localSavedAt=Number(localMeta.savedAt||0);
+    const fastSavedAt=Number(fast?.savedAt||0);
+    if(fast?.settings && (!raw || fastSavedAt>=localSavedAt)){
       state.settings=Object.assign({},state.settings||{},cloneState(fast.settings||{}));
       state=normalizeState(state);
     }
+    this.initialLocalState=cloneState(state);
+    this.initialLocalMeta={...localMeta,savedAt:Math.max(localSavedAt,fastSavedAt),revision:Math.max(Number(localMeta.revision||0),Number(fast?.revision||0))};
     return state;
   }
   async initialize(){
@@ -7260,53 +7268,92 @@ class DataStore{
     try{
       this.idb=await new Promise((resolve,reject)=>{const req=indexedDB.open(this.idbName,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(this.idbDays))db.createObjectStore(this.idbDays);if(!db.objectStoreNames.contains(this.idbMeta))db.createObjectStore(this.idbMeta);};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('IndexedDB open failed'));});
       this.idbAvailable=true;
-      const idbMetaState=await this.idbLoadMetaState();
-      const localRaw=this._readLocalRaw(),localMeta=this.readMeta()||{};
-      const localSavedAt=Number(localMeta.savedAt||0);
-      const idbSavedAt=Number(idbMetaState?.savedAt||0);
+      const localRaw=this._readLocalRaw();
+      const localMeta=this.readMeta?.()||{};
+      const fast=readFastBootSnapshot(this.storage);
+      let localState=null;
+      try{if(localRaw)localState=normalizeState(JSON.parse(localRaw));}catch(e){localState=null;}
+      const idbFull=await this.idbLoadState();
 
-      if(idbMetaState){
-        this.revision=Math.max(Number(this.revision)||0,Number(idbMetaState.revision)||0);
-        this.lastPersistedAt=Math.max(Number(this.lastPersistedAt)||0,idbSavedAt);
+      // Version upgrades always snapshot the available candidates before any
+      // reconciliation or migration can happen.
+      const previousVersion=safeLocalGet(LAST_BOOT_VERSION_KEY,'');
+      if(previousVersion!==APP_VERSION){
+        writeBootSafetySnapshot(this.storage,{
+          localState,
+          idbState:idbFull?.state||null,
+          localMeta:this.initialLocalMeta||localMeta,
+          idbMeta:{savedAt:idbFull?.savedAt,revision:idbFull?.revision}
+        });
       }
 
-      // Recovery rule: compare actual save timestamps, not revision counters.
-      // Older releases could write LocalStorage without persisting the same revision,
-      // so revision-only arbitration could incorrectly discard newer local history.
-      if(localRaw && (!idbMetaState || localSavedAt>idbSavedAt)){
-        const state=normalizeState(JSON.parse(localRaw));
-        this.bootSource='local-newer';
-        this.bootSourceSavedAt=Math.max(localSavedAt,Number(this.lastPersistedAt)||0);
-        writeFastBootSnapshot(state,{savedAt:localSavedAt||Date.now(),revision:Number(this.revision||0)});
-        // Upgrade the complete newer local snapshot into IndexedDB before any
-        // full historical hydration can replace the in-memory state.
-        this.bootRecoveryPromise=this.migrateStateToIndexedDB(state,localSavedAt||Date.now())
-          .then(()=>{
-            writeFastBootSnapshot(state,{savedAt:localSavedAt||Date.now(),revision:Number(this.revision||0)});
-            return true;
-          })
-          .catch(e=>{this.lastPersistError=e;return false;});
-        return state;
-      }
+      if(localState&&idbFull){
+        const localMirrorSavedAt=localMeta?.backend==='idb-primary'
+          ? Number(localMeta.mirrorSavedAt||0)
+          : Number(localMeta.savedAt||fast?.savedAt||0);
+        const choice=selectSafeBootstrapCandidate(localState,idbFull.state,{
+          localSavedAt:localMirrorSavedAt,
+          localRevision:Number(localMeta.revision||fast?.revision||0),
+          remoteSavedAt:Number(idbFull.savedAt||0),
+          remoteRevision:Number(idbFull.revision||0)
+        });
+        this.bootChoice=choice;
+        this.revision=Math.max(Number(idbFull.revision||0),Number(localMeta.revision||0),Number(fast?.revision||0),Number(this.revision||0));
+        this.lastPersistedAt=Math.max(Number(idbFull.savedAt||0),Number(localMeta.savedAt||0),Number(fast?.savedAt||0),Number(this.lastPersistedAt||0));
 
-      if(idbMetaState){
-        this.bootSource='idb';
-        this.bootSourceSavedAt=idbSavedAt;
-        writeFastBootSnapshot(idbMetaState.state,{savedAt:idbSavedAt,revision:idbMetaState.revision});
-        return idbMetaState.state;
+        const localProfile=stateProfile(localState),remoteProfile=stateProfile(idbFull.state),chosenProfile=stateProfile(choice.state);
+        const chosenDiffersFromSources=stableHash(choice.state)!==stableHash(idbFull.state) || stableHash(choice.state)!==stableHash(localState);
+        const nonDestructive=chosenProfile.meaningfulDayCount>=Math.max(localProfile.meaningfulDayCount,remoteProfile.meaningfulDayCount)
+          && chosenProfile.recordedCoins>=Math.max(localProfile.recordedCoins,remoteProfile.recordedCoins)
+          && chosenProfile.populatedTasks>=Math.max(localProfile.populatedTasks,remoteProfile.populatedTasks);
+        if(chosenDiffersFromSources && nonDestructive){
+          this.bootReconciliationPending=true;
+          try{
+            const ok=await this.replaceAll(choice.state);
+            if(ok){
+              this.bootReconciliationPending=false;
+              this.bootReconciled=true;
+            }else{
+              this.bootReadOnlyConflict=true;
+            }
+          }catch(e){
+            this.lastPersistError=e;
+            this.bootReadOnlyConflict=true;
+          }
+        }
+        // Never put an unpersisted merge result into Fast Boot. If a concurrent
+        // writer won the race, the next boot must continue from a persisted
+        // source instead of a temporary in-memory merge.
+        if(!chosenDiffersFromSources || this.bootReconciled){
+          writeFastBootSnapshot(choice.state,{savedAt:this.lastPersistedAt||Date.now(),revision:this.revision||0});
+        }
+        if(choice.conflicts?.length){
+          emitStorageWarning('boot-data-conflict','检测到两份本地数据存在差异；已按保守规则启动，未用空数据覆盖历史记录。建议尽快导出备份。');
+          this.bootReadOnlyConflict=true;
+        }
+        return choice.state;
       }
-
-      if(localRaw){
-        const state=normalizeState(JSON.parse(localRaw));
-        this.bootSource='local';
-        this.bootSourceSavedAt=localSavedAt||Date.now();
-        writeFastBootSnapshot(state,{savedAt:localSavedAt||Date.now(),revision:Number(localMeta.revision||this.revision||0)});
-        this.bootRecoveryPromise=this.migrateStateToIndexedDB(state,localSavedAt||Date.now())
-          .then(()=>true).catch(e=>{this.lastPersistError=e;return false;});
-        return state;
+      if(idbFull){
+        this.bootChoice={state:idbFull.state,reason:'idb-only',conflicts:[]};
+        this.revision=Number(idbFull.revision)||this.revision;
+        this.lastPersistedAt=Number(idbFull.savedAt)||this.lastPersistedAt;
+        writeFastBootSnapshot(idbFull.state,{savedAt:idbFull.savedAt,revision:idbFull.revision});
+        return idbFull.state;
+      }
+      if(localState){
+        const localSavedAt=Number(localMeta?.savedAt||fast?.savedAt||Date.now());
+        this.bootChoice={state:localState,reason:'local-only',conflicts:[]};
+        // Only migrate when the IndexedDB store is truly empty. Never replace
+        // an existing day store merely because its metadata appears old.
+        __34coinsLifecycle?.setTimeout?.(()=>{
+          void this.migrateStateToIndexedDB(localState,localSavedAt).then(ok=>{
+            if(ok)writeFastBootSnapshot(localState,{savedAt:localSavedAt,revision:Number(this.revision||0)});
+          }).catch(e=>{this.lastPersistError=e;});
+        },0);
+        writeFastBootSnapshot(localState,{savedAt:localSavedAt,revision:Number(localMeta?.revision||fast?.revision||this.revision||0)});
+        return localState;
       }
     }catch(e){this.idbAvailable=false;this.lastPersistError=e;emitStorageWarning('idb-unavailable','IndexedDB 当前不可用，暂时继续使用浏览器本地存储。');}
-    this.bootSource='empty';
     return null;
   }
   requestPersistentStorage(){try{if(navigator.storage?.persist)navigator.storage.persist().then(granted=>{safeLocalSet(`${this.key}.persist`,granted?'1':'0');}).catch(e=>{this.lastPersistError=e;});}catch(e){this.lastPersistError=e;}}
@@ -7371,9 +7418,18 @@ class DataStore{
       tx.onabort=()=>{};
     });
   }
-  migrateStateToIndexedDB(state,savedAt){
-    if(!this.idbAvailable||!this.idb)return Promise.resolve(false);
-    const days=Object.entries(state.days||{});const meta={savedAt,revision:Math.max(1,(Number(this.revision)||0)+1),settings:state.settings||{},summaries:state.summaries||{},redeems:state.redeems||[],shop:state.shop||[],purchases:state.purchases||[],checkIns:state.checkIns||{},schemaVersion:state.schemaVersion,totalBytes:0};
+  async migrateStateToIndexedDB(state,savedAt){
+    if(!this.idbAvailable||!this.idb)return false;
+    const existing=await this.idbLoadState();
+    if(existing){
+      const candidate=selectSafeBootstrapCandidate(state,existing.state,{localSavedAt:savedAt,localRevision:this.revision,remoteSavedAt:existing.savedAt,remoteRevision:existing.revision});
+      const ep=stateProfile(existing.state),cp=stateProfile(candidate.state);
+      if(cp.meaningfulDayCount<ep.meaningfulDayCount || cp.recordedCoins<ep.recordedCoins){
+        const err=new Error('Boot migration blocked by non-destructive guard');err.code='BOOT_LOSS_GUARD';this.lastPersistError=err;emitStorageWarning('boot-loss-guard','已阻止启动迁移：候选数据少于现有 IndexedDB 记录。');return false;
+      }
+      if(candidate.reason!=='local-only'&&candidate.reason!=='remote-has-history')return false;
+    }
+    const days=Object.entries(state.days||{});const meta={savedAt,revision:Math.max(1,Number(this.revision)||0),settings:state.settings||{},summaries:state.summaries||{},redeems:state.redeems||[],shop:state.shop||[],purchases:state.purchases||[],checkIns:state.checkIns||{},schemaVersion:state.schemaVersion,totalBytes:0};
     const total=JSON.stringify(meta).length+days.reduce((sum,[date,data])=>{this.dayBytes.set(date,JSON.stringify(data).length);return sum+JSON.stringify(data).length;},0);meta.totalBytes=total;this.lastAppBytes=total;
     return new Promise((resolve,reject)=>{const tx=this.idb.transaction([this.idbDays,this.idbMeta],'readwrite'),ds=tx.objectStore(this.idbDays),ms=tx.objectStore(this.idbMeta);for(const[date,data]of days)ds.put({date,data},date);ms.put(meta,'root');tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error||new Error('IndexedDB migration failed'));tx.onabort=()=>reject(tx.error||new Error('IndexedDB migration aborted'));});
   }
@@ -7381,13 +7437,23 @@ class DataStore{
     const now=Date.now();this.lastPersistError=null;
     if(this.idbAvailable){
       this.persistPromise=this.idbWriteDayAndMeta(state,date).then(()=>{
-        const savedAt=this.lastPersistedAt||Date.now();
-        writeFastBootSnapshot(state,{savedAt,revision:this.revision||0});
-        this.writeMeta({savedAt,revision:this.revision||0,bytes:this.lastAppBytes,backend:'idb-primary'});
+        const persistedAt=this.lastPersistedAt||Date.now();
+        // Keep a complete LocalStorage compatibility mirror when it fits. The
+        // mirror must only be timestamped as current after the IndexedDB write
+        // succeeds, otherwise boot reconciliation could trust stale metadata.
+        try{
+          const mirrorRaw=JSON.stringify(state);
+          if(mirrorRaw.length<=5*1024*1024){
+            this.storage.setItem(this.key,mirrorRaw);
+            this.writeMeta({savedAt:persistedAt,mirrorSavedAt:persistedAt,revision:this.revision,bytes:mirrorRaw.length,backend:'idb-primary'});
+          }else{
+            const priorMeta=this.readMeta()||{};
+            this.writeMeta({savedAt:persistedAt,mirrorSavedAt:Number(priorMeta.mirrorSavedAt||0),revision:this.revision,bytes:mirrorRaw.length,backend:'idb-primary'});
+          }
+        }catch(e){recordRuntimeError('local-mirror-write',e);}
+        writeFastBootSnapshot(state,{savedAt:persistedAt,revision:this.revision||0});
         safeLocalRemove(`${this.key}.persist-failed`);return true;
       }).catch(e=>{this.lastPersistError=e;safeLocalSet(`${this.key}.persist-failed`,'1');emitStorageWarning('idb-write-failed','IndexedDB 写入失败，当前改动可能尚未持久化；请立即导出备份。');return false;});
-      // Keep the legacy LocalStorage snapshot as a compatibility mirror only when small.
-      try{const raw=this._readLocalRaw();if(raw&&raw.length<=5*1024*1024)this.writeMeta({savedAt:now,bytes:this.lastAppBytes,backend:'idb-primary'});}catch(e){recordRuntimeError('silent-catch',e)}
       if(this.lastAppBytes>5*1024*1024)emitStorageWarning('oversize','数据已超过 5 MB 阈值，主数据继续由 IndexedDB 按天保存；请立即导出备份。');
       return state;
     }
@@ -7403,28 +7469,67 @@ class DataStore{
       const days=Object.entries(state.days||{}),expectedRevision=Number(this.revision)||0;
       const meta={savedAt:now,revision:expectedRevision+1,settings:state.settings||{},summaries:state.summaries||{},redeems:state.redeems||[],shop:state.shop||[],purchases:state.purchases||[],checkIns:state.checkIns||{},schemaVersion:state.schemaVersion,totalBytes:0};
       this.dayBytes.clear();let total=JSON.stringify(meta).length;
-      for(const[date,data] of days){const bytes=JSON.stringify(data||{}).length;this.dayBytes.set(date,bytes);total+=bytes;}
+      for(const[date,data]of days){const bytes=JSON.stringify(data||{}).length;this.dayBytes.set(date,bytes);total+=bytes;}
       meta.totalBytes=total;
       this.persistPromise=new Promise((resolve,reject)=>{
         const tx=this.idb.transaction([this.idbDays,this.idbMeta],'readwrite'),ds=tx.objectStore(this.idbDays),ms=tx.objectStore(this.idbMeta),metaReq=ms.get('root');
-        metaReq.onsuccess=()=>{const remoteMeta=metaReq.result||{},remoteRevision=Number(remoteMeta.revision)||0;if(remoteRevision>expectedRevision){const err=new Error('Another tab has newer data');err.code='CONFLICT';tx.abort();reject(err);return;}ds.clear();for(const[date,data] of days)ds.put({date,data},date);ms.put(meta,'root');tx.__34meta=meta;};
+        metaReq.onsuccess=()=>{
+          const remoteMeta=metaReq.result||{},remoteRevision=Number(remoteMeta.revision)||0;
+          if(remoteRevision>expectedRevision){const err=new Error('Another tab has newer data');err.code='CONFLICT';err.remoteRevision=remoteRevision;tx.abort();reject(err);return;}
+          ds.clear();for(const[date,data]of days)ds.put({date,data},date);ms.put(meta,'root');tx.__34meta=meta;
+        };
         tx.oncomplete=()=>{this.revision=Number(tx.__34meta?.revision)||this.revision+1;this.lastPersistedAt=Number(tx.__34meta?.savedAt)||Date.now();this.lastAppBytes=meta.totalBytes;resolve(true);};
-        tx.onerror=()=>reject(tx.error||new Error('IndexedDB replace failed'));tx.onabort=()=>{};
+        tx.onerror=()=>reject(tx.error||new Error('IndexedDB replace failed'));
+        tx.onabort=()=>{};
       }).then(()=>{
-        writeFastBootSnapshot(state,{savedAt:this.lastPersistedAt||Date.now(),revision:this.revision||0});
+        // LocalStorage is a compatibility mirror, never the source of truth for
+        // an all-state replacement. Only write it after IndexedDB commits.
+        try{
+          const raw=JSON.stringify(state);
+          if(raw.length<=5*1024*1024){
+            this.storage.setItem(this.key,raw);
+            this.writeMeta({savedAt:this.lastPersistedAt||now,mirrorSavedAt:this.lastPersistedAt||now,revision:this.revision,bytes:raw.length,backend:'idb-primary'});
+          }else{
+            const priorMeta=this.readMeta()||{};
+            this.writeMeta({savedAt:this.lastPersistedAt||now,mirrorSavedAt:Number(priorMeta.mirrorSavedAt||0),revision:this.revision,bytes:raw.length,backend:'idb-primary'});
+          }
+        }catch(e){
+          recordRuntimeError('local-mirror-write',e);
+          emitStorageWarning('local-mirror-write','IndexedDB 已保存成功，但 LocalStorage 兼容镜像未更新；主数据仍以 IndexedDB 为准。');
+        }
+        writeFastBootSnapshot(state,{savedAt:this.lastPersistedAt||now,revision:this.revision||0});
         safeLocalRemove(`${this.key}.persist-failed`);return true;
-      }).catch(e=>{this.lastPersistError=e;safeLocalSet(`${this.key}.persist-failed`,'1');if(e.code==='CONFLICT')emitStorageWarning('multi-tab-conflict','检测到其他标签页有更新，已阻止覆盖并等待你选择是否载入最新数据。');else emitStorageWarning('idb-replace-failed','导入备份后写入 IndexedDB 失败；请立即再次导出备份。');return false;});
-      try{const raw=JSON.stringify(state);if(raw.length<=5*1024*1024){this.storage.setItem(this.key,raw);this.writeMeta({savedAt:now,revision:this.revision,bytes:raw.length,backend:'idb-primary'});}}catch(e){this.lastPersistError=this.lastPersistError||e;}
+      }).catch(e=>{
+        this.lastPersistError=e;
+        safeLocalSet(`${this.key}.persist-failed`,'1');
+        if(e.code==='CONFLICT')emitStorageWarning('multi-tab-conflict','检测到其他标签页有更新，已阻止全量覆盖。请先载入最新数据。');
+        else emitStorageWarning('idb-replace-failed','全量数据写入 IndexedDB 失败；原有本地数据未被 LocalStorage 镜像提前覆盖。');
+        return false;
+      });
       return state;
     }
     const payload=JSON.stringify(state),bytes=payload.length,nowTs=Date.now();
-    if(bytes<=5*1024*1024){try{const localMeta=this.readMeta()||{},remoteRevision=Number(localMeta.revision)||0;if(remoteRevision>Number(this.revision||0)){const err=new Error('Another tab has newer data');err.code='CONFLICT';throw err;}this.revision=remoteRevision+1;this.storage.setItem(this.key,payload);this.persistent=this.storage?.__persistent!==false;this.writeMeta({savedAt:nowTs,revision:this.revision,bytes,backend:'localStorage-fallback'});this.lastPersistedAt=nowTs;this.lastAppBytes=bytes;this.lastPersistError=null;return state;}catch(e){this.lastPersistError=e;if(e.code==='CONFLICT')emitStorageWarning('multi-tab-conflict','检测到其他标签页有更新，已阻止覆盖并等待你选择是否载入最新数据。');else{this.persistent=false;emitStorageWarning('write-failed','导入备份写入本地存储失败；请立即导出备份。');}return state;}}
-    emitStorageWarning('oversize','导入备份超过 5 MB 且 IndexedDB 不可用，请立即导出备份；主数据未被删除。');
+    if(bytes<=5*1024*1024){
+      try{
+        const localMeta=this.readMeta()||{},remoteRevision=Number(localMeta.revision)||0;
+        if(remoteRevision>Number(this.revision||0)){const err=new Error('Another tab has newer data');err.code='CONFLICT';throw err;}
+        this.revision=remoteRevision+1;this.storage.setItem(this.key,payload);this.persistent=this.storage?.__persistent!==false;
+        this.writeMeta({savedAt:nowTs,revision:this.revision,bytes,backend:'localStorage-fallback'});this.lastPersistedAt=nowTs;this.lastAppBytes=bytes;this.lastPersistError=null;return state;
+      }catch(e){
+        this.lastPersistError=e;
+        if(e.code==='CONFLICT')emitStorageWarning('multi-tab-conflict','检测到其他标签页有更新，已阻止覆盖并等待你选择是否载入最新数据。');
+        else{this.persistent=false;emitStorageWarning('write-failed','导入备份写入本地存储失败；原有数据未被清除。');}
+        return state;
+      }
+    }
+    emitStorageWarning('oversize','导入备份超过 5 MB 且 IndexedDB 不可用，请立即导出备份；原有数据未被清除。');
     return state;
   }
+
   hydrateAll(){
+    if(this.bootChoice?.state)return Promise.resolve(cloneState(this.bootChoice.state));
     if(!this.idbAvailable||!this.idb)return Promise.resolve(null);
-    return this.idbLoadState();
+    return this.idbLoadState().then(x=>x?.state||null);
   }
   async loadFreshState(){
     if(this.idbAvailable&&this.idb){const fresh=await this.idbLoadState();if(fresh){this.revision=fresh.revision||this.revision;this.lastPersistedAt=fresh.savedAt||this.lastPersistedAt;return fresh.state;}}
@@ -7817,6 +7922,128 @@ const CATEGORY_DISPLAY_ORDER=[0,2,1,4,3];
 const DISPLAY_COLORS=CATEGORY_DISPLAY_ORDER.map(i=>COLORS[i]);
 const STORAGE_KEY='coins34_local_v2';
 const FAST_BOOT_KEY=STORAGE_KEY+'.fast_boot_v1';
+
+const SAFETY_BACKUP_PREFIX='34coins_safety_backup_v1_';
+const LAST_BOOT_VERSION_KEY='34coins_last_boot_version_v1';
+const BOOT_GUARD_VERSION='v1';
+
+function stateDayHasMeaning(day){
+  if(!day || typeof day!=='object')return false;
+  const coins=Array.isArray(day.coins)?day.coins:[];
+  if(coins.some(c=>c&&String(c.text??'').trim()))return true;
+  if(Array.isArray(day.tasks)&&day.tasks.length>0)return true;
+  const review=day.review&&typeof day.review==='object'?day.review:{};
+  if(Object.values(review).some(v=>Array.isArray(v)?v.length>0:String(v??'').trim()!==''))return true;
+  return day.recoveryDay===true;
+}
+function stateProfile(state){
+  const source=state&&typeof state==='object'?state:{};
+  const days=source.days&&typeof source.days==='object'&&!Array.isArray(source.days)?source.days:{};
+  const keys=Object.keys(days);
+  const meaningfulKeys=keys.filter(k=>stateDayHasMeaning(days[k]));
+  const populatedTasks=meaningfulKeys.reduce((sum,k)=>sum+(Array.isArray(days[k]?.tasks)?days[k].tasks.length:0),0);
+  const recordedCoins=meaningfulKeys.reduce((sum,k)=>sum+(Array.isArray(days[k]?.coins)?days[k].coins.filter(c=>c&&String(c.text??'').trim()).length:0),0);
+  return {dayCount:keys.length,meaningfulDayCount:meaningfulKeys.length,meaningfulKeys,recordedCoins,populatedTasks};
+}
+function compareStateProfiles(a,b){
+  const pa=stateProfile(a),pb=stateProfile(b);
+  if(pa.meaningfulDayCount!==pb.meaningfulDayCount)return pa.meaningfulDayCount-pb.meaningfulDayCount;
+  if(pa.recordedCoins!==pb.recordedCoins)return pa.recordedCoins-pb.recordedCoins;
+  if(pa.populatedTasks!==pb.populatedTasks)return pa.populatedTasks-pb.populatedTasks;
+  return pa.dayCount-pb.dayCount;
+}
+function safeCandidateScore(state,meta={}){
+  const p=stateProfile(state);
+  return [p.meaningfulDayCount,p.recordedCoins,p.populatedTasks,p.dayCount,Number(meta.savedAt||0),Number(meta.revision||0)];
+}
+function candidateScoreCompare(a,b){
+  const as=safeCandidateScore(a.state,a.meta),bs=safeCandidateScore(b.state,b.meta);
+  for(let i=0;i<as.length;i++){if(as[i]!==bs[i])return as[i]-bs[i];}
+  return 0;
+}
+function mergeBootStatesConservatively(localState,remoteState,meta={}){
+  const local=normalizeState(cloneState(localState||{}));
+  const remote=normalizeState(cloneState(remoteState||{}));
+  const merged=cloneState(remote),conflicts=[];
+  if(!merged.days||typeof merged.days!=='object'||Array.isArray(merged.days))merged.days={};
+  const dates=new Set([...Object.keys(local.days||{}),...Object.keys(remote.days||{})]);
+  for(const date of dates){
+    const l=local.days?.[date],r=remote.days?.[date];
+    const lm=stateDayHasMeaning(l),rm=stateDayHasMeaning(r);
+    if(lm&&!rm){merged.days[date]=cloneState(l);continue;}
+    if(!lm&&rm){merged.days[date]=cloneState(r);continue;}
+    if(!lm&&!rm){if(l&&r)merged.days[date]=cloneState(r);continue;}
+    const lh=stableHash(l),rh=stableHash(r);
+    if(lh===rh){merged.days[date]=cloneState(r);continue;}
+    const lp=stateProfile({days:{[date]:l}}),rp=stateProfile({days:{[date]:r}});
+    const localDayScore=[lp.recordedCoins,lp.populatedTasks,JSON.stringify(l||{}).length];
+    const remoteDayScore=[rp.recordedCoins,rp.populatedTasks,JSON.stringify(r||{}).length];
+    let pick='remote';
+    for(let i=0;i<localDayScore.length;i++){
+      if(localDayScore[i]!==remoteDayScore[i]){pick=localDayScore[i]>remoteDayScore[i]?'local':'remote';break;}
+    }
+    if(localDayScore.every((v,i)=>v===remoteDayScore[i])){
+      const ls=Number(meta.localSavedAt||0),rs=Number(meta.remoteSavedAt||0);
+      pick=ls>rs?'local':'remote';
+      conflicts.push(date);
+    }
+    merged.days[date]=cloneState(pick==='local'?l:r);
+  }
+  const localScore=safeCandidateScore(local,{savedAt:meta.localSavedAt,revision:meta.localRevision});
+  const remoteScore=safeCandidateScore(remote,{savedAt:meta.remoteSavedAt,revision:meta.remoteRevision});
+  const metaLocalNewer=(Number(meta.localSavedAt||0)>Number(meta.remoteSavedAt||0)) || (Number(meta.localSavedAt||0)===Number(meta.remoteSavedAt||0)&&Number(meta.localRevision||0)>=Number(meta.remoteRevision||0));
+  const sourceMeta=metaLocalNewer?local:remote;
+  for(const k of ['settings','summaries','redeems','shop','purchases','checkIns','schemaVersion'])merged[k]=cloneState(sourceMeta[k]);
+  const profile=stateProfile(merged),localProfile=stateProfile(local),remoteProfile=stateProfile(remote);
+  const mustPreserve=Math.max(localProfile.meaningfulDayCount,remoteProfile.meaningfulDayCount);
+  if(profile.meaningfulDayCount<mustPreserve){
+    // Absolute last-resort guard: never return a candidate with fewer meaningful days.
+    const stronger=candidateScoreCompare({state:local,meta:{savedAt:meta.localSavedAt,revision:meta.localRevision}},{state:remote,meta:{savedAt:meta.remoteSavedAt,revision:meta.remoteRevision}})>=0?local:remote;
+    return {state:cloneState(stronger),conflicts:[...new Set([...conflicts,'BOOT_GUARD'])],reason:'fallback-stronger-candidate'};
+  }
+  return {state:normalizeState(merged),conflicts:[...new Set(conflicts)],reason:'conservative-merge',profiles:{local:localProfile,remote:remoteProfile,merged:profile}};
+}
+function selectSafeBootstrapCandidate(localState,remoteState,meta={}){
+  const local=normalizeState(cloneState(localState||{}));
+  const remote=normalizeState(cloneState(remoteState||{}));
+  const lp=stateProfile(local),rp=stateProfile(remote);
+  if(lp.meaningfulDayCount===0&&rp.meaningfulDayCount>0)return {state:remote,reason:'remote-has-history',conflicts:[],profiles:{local:lp,remote:rp}};
+  if(rp.meaningfulDayCount===0&&lp.meaningfulDayCount>0)return {state:local,reason:'local-has-history',conflicts:[],profiles:{local:lp,remote:rp}};
+  if(lp.meaningfulDayCount===0&&rp.meaningfulDayCount===0){
+    return Number(meta.remoteSavedAt||0)>Number(meta.localSavedAt||0)?{state:remote,reason:'remote-empty-newer',conflicts:[],profiles:{local:lp,remote:rp}}:{state:local,reason:'local-empty',conflicts:[],profiles:{local:lp,remote:rp}};
+  }
+  if(stableHash(local)===stableHash(remote))return {state:local,reason:'identical',conflicts:[],profiles:{local:lp,remote:rp}};
+  // Once both sides contain real history, always merge by date instead of
+  // selecting the snapshot with the larger day count. That prevents a state
+  // with more dates from silently deleting unique dates from the other side.
+  return mergeBootStatesConservatively(local,remote,meta);
+}
+function writeBootSafetySnapshot(storage,{localState=null,idbState=null,localMeta={},idbMeta={}}={}){
+  try{
+    const local=localState?normalizeState(cloneState(localState)):null;
+    const idb=idbState?normalizeState(cloneState(idbState)):null;
+    const localProfile=local?stateProfile(local):null, idbProfile=idb?stateProfile(idb):null;
+    if(!localProfile&&!idbProfile)return null;
+    const ts=Date.now();
+    const payload={
+      formatVersion:BOOT_GUARD_VERSION,appVersion:APP_VERSION,createdAt:ts,
+      local:local?{savedAt:Number(localMeta.savedAt||ts),revision:Number(localMeta.revision||0),profile:localProfile,state:local}:null,
+      idb:idb?{savedAt:Number(idbMeta.savedAt||ts),revision:Number(idbMeta.revision||0),profile:idbProfile,state:idb}:null
+    };
+    const raw=JSON.stringify(payload);
+    // Safety backup is optional and must never consume enough quota to put the
+    // real application mirror at risk. Keep one compact snapshot per release.
+    if(raw.length>1.5*1024*1024)return null;
+    let existingBytes=0;
+    for(let i=0;i<storage.length;i++){const k=storage.key(i);if(k&&k.startsWith(SAFETY_BACKUP_PREFIX))continue;try{existingBytes+=String(storage.getItem(k)||'').length}catch(e){recordRuntimeError('safety-backup-size',e)}}
+    if(existingBytes+raw.length>4.5*1024*1024)return null;
+    for(let i=storage.length-1;i>=0;i--){const k=storage.key(i);if(k&&k.startsWith(SAFETY_BACKUP_PREFIX))try{storage.removeItem(k)}catch(e){recordRuntimeError('safety-backup-trim',e)}}
+    const key=`${SAFETY_BACKUP_PREFIX}${APP_VERSION}`;
+    storage?.setItem?.(key,raw);
+    return key;
+  }catch(e){recordRuntimeError('safety-backup-write',e);return null;}
+}
+function markBootVersion(){try{localStorage.setItem(LAST_BOOT_VERSION_KEY,APP_VERSION);}catch(e){recordRuntimeError('boot-version-write',e)}}
 // v146: personal history is intentionally NOT embedded in the release file.
 // Existing data under STORAGE_KEY continues to load normally; fresh installs start clean.
 const LOCAL_DIRTY_KEY='34coins_local_dirty_v1';
@@ -7860,7 +8087,47 @@ function currentMetaHash(){return stableHash(metaStateOf(db));}
 function localChangedDates(){const dates=new Set(localDirtyDates);for(const date of Object.keys(db.days||{})){const baseHash=baseDayHashes.has(date)?baseDayHashes.get(date):stableHash(null);if(stableHash(db.days[date])!==baseHash)dates.add(date);}return dates;}
 function captureUndoSnapshot(){return{date:currentDate,day:cloneState(db.days?.[currentDate]||{}),settings:cloneState(db.settings||{}),shop:cloneState(db.shop||[]),purchases:cloneState(db.purchases||[]),redeems:cloneState(db.redeems||[]),checkIns:cloneState(db.checkIns||{}),summaries:cloneState(db.summaries||{})};}
 function restoreUndoSnapshot(snapshot){if(!snapshot)return false;if(!db.days)db.days={};db.days[snapshot.date]=cloneState(snapshot.day||{});db.settings=cloneState(snapshot.settings||{});db.shop=cloneState(snapshot.shop||[]);db.purchases=cloneState(snapshot.purchases||[]);db.redeems=cloneState(snapshot.redeems||[]);db.checkIns=cloneState(snapshot.checkIns||{});db.summaries=cloneState(snapshot.summaries||{});return true;}
-async function persistLocalNow(){if(localPersistTimer){if(typeof cancelIdleCallback==='function'){try{cancelIdleCallback(localPersistTimer);}catch(e){recordRuntimeError('silent-catch',e)}}clearTimeout(localPersistTimer);localPersistTimer=null;}if(!localPersistPending)return false;try{store.save(db,currentDate);localPersistPending=false;const result=await store.persistPromise;if(result===false){if(store.lastPersistError?.code==='CONFLICT'){await handleStorageConflict(store.lastPersistError);return false;}throw store.lastPersistError||new Error('IndexedDB persistence failed');}if(!store.idbAvailable&&!store.persistent)throw new Error('No persistent backend');localDirtyDates.delete(currentDate);refreshBaseHashesFromState(db);broadcastPeerUpdate('persisted');return true;}catch(e){if(e?.code==='CONFLICT'){await handleStorageConflict(e);return false;}localPersistPending=true;store.lastPersistError=e;emitStorageWarning('persist-failed','数据保存失败；当前页面仍保留未持久化改动，请立即导出备份。');window.showToast?.('⚠️ 数据暂未可靠保存，请立即导出备份。');return false;}}
+async function persistLocalNow(){
+  if(localPersistTimer){
+    if(typeof cancelIdleCallback==='function'){try{cancelIdleCallback(localPersistTimer);}catch(e){recordRuntimeError('silent-catch',e)}}
+    clearTimeout(localPersistTimer);localPersistTimer=null;
+  }
+  if(!localPersistPending)return false;
+  try{
+    const pendingDates=[...localChangedDates()];
+    if(!pendingDates.length)pendingDates.push(currentDate);
+    localPersistPending=false;
+    for(const date of pendingDates){
+      store.save(db,date);
+      const result=await store.persistPromise;
+      if(result===false){
+        if(store.lastPersistError?.code==='CONFLICT'){
+          const merged=await handleStorageConflict(store.lastPersistError);
+          if(!merged)localPersistPending=true;
+          return !!merged;
+        }
+        throw store.lastPersistError||new Error('IndexedDB persistence failed');
+      }
+      localDirtyDates.delete(date);
+    }
+    if(!store.idbAvailable&&!store.persistent)throw new Error('No persistent backend');
+    refreshBaseHashesFromState(db);
+    broadcastPeerUpdate('persisted');
+    return true;
+  }catch(e){
+    if(e?.code==='CONFLICT'){
+      const merged=await handleStorageConflict(e);
+      if(!merged)localPersistPending=true;
+      return !!merged;
+    }
+    localPersistPending=true;
+    store.lastPersistError=e;
+    emitStorageWarning('persist-failed','数据保存失败；当前页面仍保留未持久化改动，请立即导出备份。');
+    window.showToast?.('⚠️ 数据暂未可靠保存，请立即导出备份。');
+    return false;
+  }
+}
+
 function markLocalDirty(){memoryLocalDirty=true;memoryLocalDirtyOwner=TAB_ID||'local';localDirtyDates.add(currentDate);safeLocalSet(LOCAL_DIRTY_KEY,'1');safeLocalSet(LOCAL_DIRTY_OWNER_KEY,memoryLocalDirtyOwner);}
 function clearLocalDirty(){memoryLocalDirty=false;memoryLocalDirtyOwner='local';localDirtyDates.clear();safeLocalRemove(LOCAL_DIRTY_KEY);safeLocalRemove(LOCAL_DIRTY_OWNER_KEY);}
 function isLocalDirty(){return memoryLocalDirty||safeLocalGet(LOCAL_DIRTY_KEY)==='1'||localDirtyDates.size>0;}
@@ -10801,10 +11068,9 @@ let __34coinsFastBootPhase=true;
 async function finalizeAppBoot(){
   const bootRevision=Number(store.revision)||0;
   const bootDataRevision=dataRevision;
-  const fastBoot=readFastBootSnapshot();
-  if(fastBoot?.settings){
-    db.settings=normalizeState({...db,settings:Object.assign({},db.settings||{},cloneState(fastBoot.settings))}).settings;
-  }
+  // Fast Boot settings are already reconciled by DataStore.load(); do not
+  // apply the shortcut a second time here, or a stale snapshot could roll
+  // settings backward between first render and IndexedDB hydration.
   getDay(currentDate);
   lastSavedSnapshot=captureUndoSnapshot();
   refreshBaseHashesFromState(db);
@@ -10818,32 +11084,23 @@ async function finalizeAppBoot(){
   initMultiTabSync();
 
   try{
+    // The store.open/meta phase is intentionally lightweight.
     await store.ready;
-    // When LocalStorage is newer than IndexedDB, initialize() already chose it
-    // and is upgrading the full snapshot in the background. Never overwrite it
-    // with the stale IDB copy during this boot.
-    if(store.bootSource==='local-newer' || store.bootSource==='local'){
-      await store.bootRecoveryPromise;
-    }else{
-      const hydrated=await store.hydrateAll();
-      const hydratedRevision=Number(store.revision)||0;
-      const hydratedSavedAt=Number(store.lastPersistedAt)||0;
-      const currentSourceSavedAt=Math.max(Number(store.bootSourceSavedAt)||0,Number(fastBoot?.savedAt||0));
-      if(hydrated&&hydrated.days&&
-         hydratedSavedAt>=currentSourceSavedAt&&
-         hydratedRevision>=bootRevision&&
-         dataRevision===bootDataRevision&&
-         !isLocalDirty()){
-        db=normalizeState(hydrated);
-        dataRevision++;
-        invalidateAnalysisCache();
-        getDay(currentDate);
-        lastSavedSnapshot=captureUndoSnapshot();
-        refreshBaseHashesFromState(db);
-        undoStack.length=0;
-        render();
-        updateUndoUI();
-      }
+    // Full historical day hydration happens only after the first render.
+    const hydrated=await store.hydrateAll();
+    const hydratedRevision=Number(store.revision)||0;
+    const currentProfile=stateProfile(db),hydratedProfile=stateProfile(hydrated||{});
+    const safeHydration=hydrated&&hydrated.days&&hydratedProfile.meaningfulDayCount>=currentProfile.meaningfulDayCount;
+    if(safeHydration&&dataRevision===bootDataRevision&&!isLocalDirty()){
+      db=normalizeState(hydrated);
+      dataRevision++;
+      invalidateAnalysisCache();
+      getDay(currentDate);
+      lastSavedSnapshot=captureUndoSnapshot();
+      refreshBaseHashesFromState(db);
+      undoStack.length=0;
+      render();
+      updateUndoUI();
     }
   }catch(e){
     emitStorageWarning('hydrate-failed','IndexedDB 读取失败，当前继续使用本地镜像数据。');
@@ -10851,7 +11108,10 @@ async function finalizeAppBoot(){
 
   if(new URLSearchParams(location.search).get('selftest')==='1')void run34CoinsSelfTests(true);
   __34coinsLifecycle.setTimeout(showMorningMotivation,250);
-  if(window.__34coinsStorageWarning){
+  markBootVersion();
+  if(store.bootReadOnlyConflict){
+    __34coinsLifecycle.setTimeout(()=>window.showToast?.('🛡️ 检测到本地数据差异，已启用保守保护；未自动覆盖历史记录。请尽快导出备份。'),1100);
+  }else if(window.__34coinsStorageWarning){
     __34coinsLifecycle.setTimeout(()=>window.showToast?.('⚠️ '+(window.__34coinsStorageWarning.message||'本地存储当前状态需要检查。')),900);
   }
 }
@@ -10880,7 +11140,7 @@ function getAppContext(){
     storageKey:STORAGE_KEY
   };
 }
-// ===== v146 self-tests =====
+// ===== v169 persistence self-tests =====
 async function run34CoinsSelfTests(showPanel=false){
   const results=[],assert=(name,ok)=>results.push({name,ok:!!ok});
   const panel=document.getElementById('34coinsSelfTestPanel');
@@ -10890,6 +11150,35 @@ async function run34CoinsSelfTests(showPanel=false){
     assert('normalizeState preserves valid day',Object.keys(sample.days).includes('2026-01-01'));assert('34 slots preserved',sample.days['2026-01-01'].coins.length===34);
     const flow=calculateFlowCombo(Array.from({length:3},()=>({text:'x',color:0})));assert('flow combo non-negative',flow.bonusCoins>=0);assert('spearman monotonic = 1',Math.abs((spearman([1,2,3],[10,20,30])||0)-1)<1e-9);
     const backup=normalizeBackupState(sample,{slots:34});assert('backup normalize keeps all days',Object.keys(backup.days).length===1);assert('backup round-trip keeps 34 slots',backup.days['2026-01-01'].coins.length===34);assert('escapeHtml neutralizes markup',escapeHtml('<img src=x onerror=alert(1)>').includes('&lt;img')&&!escapeHtml('<img src=x onerror=alert(1)>').includes('<img'));assert('semantic i18n dictionary uses non-Chinese keys',Object.keys(I18N_SEMANTIC).every(k=>!/[\u3400-\u9fff]/.test(k)));
+    const rich=cloneState(sample);
+    rich.days['2026-01-03']=cloneState(sample.days['2026-01-01']);
+    rich.days['2026-01-03'].coins[0]={text:'重要历史',color:0,groupId:null,energy:2};
+    const blank=normalizeState({days:{},settings:{}});
+    const keepRich=selectSafeBootstrapCandidate(blank,rich,{localSavedAt:2,remoteSavedAt:1});
+    assert('boot guard rejects empty candidate',stateProfile(keepRich.state).meaningfulDayCount===1);
+    const mergedHistory=selectSafeBootstrapCandidate(rich,sample,{localSavedAt:2,remoteSavedAt:1});
+    assert('boot reconciliation preserves richer history',stateProfile(mergedHistory.state).meaningfulDayCount>=stateProfile(rich).meaningfulDayCount);
+    const localDate=cloneState(sample);localDate.days['2026-02-01']=cloneState(sample.days['2026-01-01']);
+    const remoteDate=cloneState(sample);remoteDate.days['2026-03-01']=cloneState(sample.days['2026-01-01']);
+    localDate.days['2026-02-01'].coins[0]={text:'local',color:0,groupId:null,energy:2};
+    remoteDate.days['2026-03-01'].coins[0]={text:'remote',color:2,groupId:null,energy:2};
+    const mergedDates=selectSafeBootstrapCandidate(localDate,remoteDate,{localSavedAt:5,remoteSavedAt:4});
+    assert('boot merge preserves non-overlapping dates',!!mergedDates.state.days['2026-02-01']&&!!mergedDates.state.days['2026-03-01']);
+    const richerRemote=cloneState(sample);richerRemote.days['2026-04-01']=cloneState(sample.days['2026-01-01']);richerRemote.days['2026-04-01'].coins[0]={text:'remote newer',color:0,groupId:null,energy:3};
+    const thinnerLocal=cloneState(sample);thinnerLocal.settings.coinRmb=9.9;
+    const guarded=selectSafeBootstrapCandidate(thinnerLocal,richerRemote,{localSavedAt:999,remoteSavedAt:1000,localRevision:9,remoteRevision:8});
+    assert('boot choice never reduces meaningful-day count',stateProfile(guarded.state).meaningfulDayCount>=stateProfile(richerRemote).meaningfulDayCount);
+    assert('boot choice keeps remote-only date',!!guarded.state.days['2026-04-01']);
+    const savedDb=cloneState(db),savedDate=currentDate,savedBaseHashes=new Map(baseDayHashes),savedDirty=new Set(localDirtyDates);
+    try{
+      const d1='2099-02-01',d2='2099-02-02';
+      db=normalizeState({days:{[d1]:{coins:[{text:'edited',color:0,energy:2}]},[d2]:{coins:[]}},settings:{}});
+      currentDate=d2;baseDayHashes.clear();baseDayHashes.set(d2,stableHash(db.days[d2]));localDirtyDates.clear();
+      assert('pending save tracks edited date after date switch',localChangedDates().has(d1));
+      assert('empty newly viewed date is not treated as edited history',!localChangedDates().has(d2));
+    }finally{
+      db=savedDb;currentDate=savedDate;baseDayHashes.clear();for(const[k,v]of savedBaseHashes)baseDayHashes.set(k,v);localDirtyDates.clear();for(const v of savedDirty)localDirtyDates.add(v);
+    }
     if(typeof indexedDB==='undefined')return finish(new Error('IndexedDB unavailable'));
     const testKey=`34coins_selftest_${TAB_ID}`,testDbName=`34coins_selftest_db_${Date.now()}`,tempStorage=createMemoryStorage();const tempStore=new DataStore({key:testKey,storage:tempStorage,idbName:testDbName});await tempStore.ready;
     if(tempStore.idbAvailable){const imported={...sample,days:{...sample.days,'2026-02-02':sample.days['2026-01-01']}};tempStore.replaceAll(imported);const p=await tempStore.persistPromise;assert('backup replaceAll persists',p===true);const reloaded=await tempStore.idbLoadState();assert('backup survives reload',!!reloaded&&Object.keys(reloaded.state.days).length===2);assert('revision monotonic',Number(reloaded?.revision||0)>=1);const fresh=await tempStore.loadFreshState();assert('loadFreshState returns data',!!fresh&&Object.keys(fresh.days||{}).length===2);tempStore.idb.close();await new Promise(resolve=>{const req=indexedDB.deleteDatabase(testDbName);req.onsuccess=req.onerror=req.onblocked=()=>resolve();});}
