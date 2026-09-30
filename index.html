@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="158">
+<meta name="application-version" content="159">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -6753,19 +6753,19 @@ html body #addShopItemBtn{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v158</span>
+  <span class="siteFooterVersion">v159</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle">v158 更新说明</h3>
-    <div class="releaseNotesIntro">v158：修复今日农历动态内容被国际化渲染覆盖的问题，并优化农历缓存刷新路径。</div>
+    <h3 id="releaseNotesTitle">v159 更新说明</h3>
+    <div class="releaseNotesIntro">v159：优化启动路径，首次打开先用本地数据立即渲染，再后台完成 IndexedDB 同步，降低首屏等待时间。</div>
     <div class="releaseNotesList">
       <div class="releaseNoteItem"><b>兑换按钮统一</b><span>“兑换”按钮与顶部“＋添加实物奖励”采用同一套浅蓝背景、蓝色文字和细边框。</span></div>
       <div class="releaseNoteItem"><b>交互保持一致</b><span>悬停、聚焦和按下状态仍保留明确反馈，但默认状态不再使用高饱和蓝色。</span></div>
-      <div class="releaseNoteItem"><b>版本统一</b><span>应用版本、页脚署名和更新说明统一为 v158。</span></div>
+      <div class="releaseNoteItem"><b>启动性能</b><span>首次打开不再等待 IndexedDB 全量读取；本地首屏先渲染，后台同步后仅在发现更新时二次刷新。</span></div>
     </div>
     <div class="modalActions">
       <button class="btn primary" id="releaseNotesClose" type="button" data-i18n-key="txt_cb63c62e50" data-i18n-text="1">知道了</button>
@@ -6775,8 +6775,8 @@ html body #addShopItemBtn{
 </div>
 <script>
 
-// 34 Coins v158 · standalone local release · no external runtime dependencies
-const APP_VERSION='158';
+// 34 Coins v159 · standalone local release · no external runtime dependencies
+const APP_VERSION='159';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -8210,7 +8210,7 @@ function render(){
   const beforePaletteVersion=Number(db.settings?.categoryPaletteVersion||0);
   if(beforePaletteVersion<3){
     db=normalizeState(db);
-    saveDB({recordUndo:false,markDirty:false});
+    if(!__34coinsFastBootPhase)saveDB({recordUndo:false,markDirty:false});
   }
   document.getElementById('datePicker').value=currentDate;
   updateRecoveryToggle();
@@ -10432,10 +10432,48 @@ document.getElementById('importInput').onchange=e=>{
     }catch(_){alert('导入失败：请确认选择的是本工具导出的 JSON 备份文件，并检查浏览器本地存储权限。')}
   }; r.readAsText(f); e.target.value='';
 };
+let __34coinsFastBootPhase=true;
+
 async function finalizeAppBoot(){
-  try{const hydrated=await store.ready;if(hydrated&&hydrated.days)db=normalizeState(hydrated);}catch(e){emitStorageWarning('hydrate-failed','IndexedDB 读取失败，当前继续使用本地镜像数据。');}
-  getDay(currentDate);lastSavedSnapshot=captureUndoSnapshot();refreshBaseHashesFromState(db);undoStack.length=0;initMultiTabSync();renderEmojiPalette();renderDailyGreeting();buildActivitySelectors();render();updateUndoUI();if(new URLSearchParams(location.search).get('selftest')==='1')void run34CoinsSelfTests(true);__34coinsLifecycle.setTimeout(showMorningMotivation,250);
-  if(window.__34coinsStorageWarning){__34coinsLifecycle.setTimeout(()=>window.showToast?.('⚠️ '+(window.__34coinsStorageWarning.message||'本地存储当前状态需要检查。')),900);}
+  // Fast path: render immediately from the synchronous local snapshot.
+  // IndexedDB hydration continues in parallel and only triggers a second render
+  // when its revision is newer than the local snapshot we just rendered.
+  const bootRevision=Number(store.revision)||0;
+  getDay(currentDate);
+  lastSavedSnapshot=captureUndoSnapshot();
+  refreshBaseHashesFromState(db);
+  undoStack.length=0;
+  renderEmojiPalette();
+  renderDailyGreeting();
+  buildActivitySelectors();
+  render();
+  __34coinsFastBootPhase=false;
+  updateUndoUI();
+  initMultiTabSync();
+
+  try{
+    const hydrated=await store.ready;
+    const hydratedRevision=Number(store.revision)||0;
+    if(hydrated&&hydrated.days&&hydratedRevision>bootRevision){
+      db=normalizeState(hydrated);
+      dataRevision++;
+      invalidateAnalysisCache();
+      getDay(currentDate);
+      lastSavedSnapshot=captureUndoSnapshot();
+      refreshBaseHashesFromState(db);
+      undoStack.length=0;
+      render();
+      updateUndoUI();
+    }
+  }catch(e){
+    emitStorageWarning('hydrate-failed','IndexedDB 读取失败，当前继续使用本地镜像数据。');
+  }
+
+  if(new URLSearchParams(location.search).get('selftest')==='1')void run34CoinsSelfTests(true);
+  __34coinsLifecycle.setTimeout(showMorningMotivation,250);
+  if(window.__34coinsStorageWarning){
+    __34coinsLifecycle.setTimeout(()=>window.showToast?.('⚠️ '+(window.__34coinsStorageWarning.message||'本地存储当前状态需要检查。')),900);
+  }
 }
 void finalizeAppBoot();
 
