@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="170">
+<meta name="application-version" content="175">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -4212,7 +4212,9 @@ html body .analysisYearCenter strong{
   width:100%;
   min-width:0;
   justify-content:flex-start;
-  white-space:nowrap;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  line-height:1.25;
 }
 .overview .stats{
   grid-template-columns:repeat(5,minmax(0,1fr));
@@ -4260,6 +4262,11 @@ html body .analysisYearCenter strong{
 .goalListFields{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(140px,.8fr) minmax(140px,.8fr);gap:8px}
 .goalListFields input,.goalAddGrid input{min-width:0;border:1px solid #e1e1e6;background:#fff;border-radius:10px;padding:10px 11px;font:inherit;color:#1d1d1f;outline:none}
 .goalListFields input:focus,.goalAddGrid input:focus{border-color:#9bbfff;box-shadow:0 0 0 3px rgba(0,122,255,.10)}
+.goalDateField{position:relative;width:100%;min-width:0}
+.goalDateField input[type="date"]{width:100%;min-width:0}
+.goalDateField input[type="date"][data-date-empty="true"]::-webkit-datetime-edit{color:transparent}
+.goalDatePlaceholder{position:absolute;z-index:1;left:12px;right:36px;top:1px;bottom:1px;display:flex;align-items:center;overflow:hidden;background:#fff;color:#98a0ad;white-space:nowrap;pointer-events:none}
+.goalDateField.hasValue .goalDatePlaceholder{display:none}
 .goalListActions{display:flex;gap:6px}
 .goalSetBtn,.goalDeleteBtn{border:0;border-radius:10px;padding:9px 11px;font-size:12px;background:#f1f2f6;color:#636366;cursor:pointer}
 .goalSetBtn.selected{background:#e9f3ff;color:#007aff}
@@ -6273,6 +6280,21 @@ html body #addShopItemBtn{
   html body .shopHead .shopSearchWrap{grid-area:search;}
   html body .shopHead .btn{grid-area:action;justify-self:end;}
 }
+
+/* V178 — Anchor product prices to a shared baseline within each equal-height shop row. */
+html body #shopGrid.shopGrid > .shopItem .shopPrice{
+  margin-top:auto;
+}
+html body #shopGrid.shopGrid > .shopItem .shopBtns{
+  margin-top:0;
+}
+html body #shopGrid.shopGrid > .shopItem .shopDesc:not(.shopDesc--empty){
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 </style>
 
 
@@ -6323,12 +6345,12 @@ html body #addShopItemBtn{
           <div class="goalProgressTrack"><div class="goalProgressFill" id="goalProgressFill"></div></div>
           <div class="goalProgressMeta"><span id="goalProgressLabel" data-i18n-key="txt_daa4755a68" data-i18n-text="1">目标进度 0%</span><span id="goalProgressDays" data-i18n-key="txt_1b93795b97" data-i18n-text="1">—</span></div>
         </div>
-        <div class="focusSub" id="examMeta" data-i18n-key="txt_fca6d8aefe" data-i18n-text="1">尚未设置目标</div>
+        <div class="focusSub" id="examMeta">尚未设置目标</div>
       </div>
       <div class="goalHero" aria-live="polite">
         <div class="goalHeroEyebrow" data-i18n-key="txt_941f08313a" data-i18n-text="1">目标</div>
-        <div class="goalHeroName" id="goalHeroName" data-i18n-key="txt_b5561dd5e7" data-i18n-text="1">尚未设置</div>
-        <div class="goalHeroDate" id="goalHeroDate" data-i18n-key="txt_03d2289513" data-i18n-text="1">添加一个目标开始倒计时</div>
+        <div class="goalHeroName" id="goalHeroName">尚未设置</div>
+        <div class="goalHeroDate" id="goalHeroDate">添加一个目标开始倒计时</div>
         <div class="goalDots" id="goalDots" aria-label="目标轮播"></div>
         <button type="button" class="goalManageCircle" id="editCountdownBtn" title="目标管理" aria-label="目标管理" data-i18n-title="txt_d90e7eb36e" data-i18n-aria-label="txt_d90e7eb36e">⚙︎</button>
       </div>
@@ -6356,9 +6378,9 @@ html body #addShopItemBtn{
       <div class="goalAddPanel">
         <div class="goalAddTitle" data-i18n-key="txt_74a7af88f0" data-i18n-text="1">添加新目标</div>
         <div class="goalAddGrid">
-          <input id="examNameInput" maxlength="30" placeholder="目标名称，例如：考研" data-i18n-placeholder="txt_7edaa864ff">
-          <input id="examStartInput" type="date" aria-label="目标开始日期" title="目标开始日期" data-i18n-title="txt_bfcdd6c656" data-i18n-aria-label="txt_bfcdd6c656">
-          <input id="examDateInput" type="date" aria-label="目标截止日期" title="目标截止日期" data-i18n-title="txt_5586ea7ac7" data-i18n-aria-label="txt_5586ea7ac7">
+          <input id="examNameInput" maxlength="30" placeholder="目标名称，例如：考研" data-i18n-key="txt_7edaa864ff" data-i18n-placeholder="txt_7edaa864ff">
+          <div class="goalDateField"><input id="examStartInput" type="date" aria-label="目标开始日期" title="目标开始日期" data-i18n-key="txt_bfcdd6c656" data-i18n-title="txt_bfcdd6c656" data-i18n-aria-label="txt_bfcdd6c656"><span class="goalDatePlaceholder" aria-hidden="true"></span></div>
+          <div class="goalDateField"><input id="examDateInput" type="date" aria-label="目标截止日期" title="目标截止日期" data-i18n-key="txt_5586ea7ac7" data-i18n-title="txt_5586ea7ac7" data-i18n-aria-label="txt_5586ea7ac7"><span class="goalDatePlaceholder" aria-hidden="true"></span></div>
           <button class="btn primary" id="addGoalBtn" type="button" data-i18n-key="txt_5444202bfd" data-i18n-text="1">添加目标</button>
         </div>
         <div class="goalCompletedAddLinkRow">
@@ -6368,8 +6390,8 @@ html body #addShopItemBtn{
           <div class="goalAddTitle" data-i18n-key="txt_76f3409f29" data-i18n-text="1">已完成目标</div>
           <div class="goalAddGrid completedGoalAddGrid">
             <input id="completedGoalNameInput" maxlength="30" placeholder="目标名称，例如：雅思 7.5" data-i18n-placeholder="txt_b0ac425530">
-            <input id="completedGoalStartInput" type="date" aria-label="目标开始日期" data-i18n-aria-label="txt_bfcdd6c656">
-            <input id="completedGoalDateInput" type="date" aria-label="目标完成日期" data-i18n-aria-label="txt_c01c7227e8">
+            <div class="goalDateField"><input id="completedGoalStartInput" type="date" aria-label="目标开始日期" data-i18n-key="txt_bfcdd6c656" data-i18n-aria-label="txt_bfcdd6c656"><span class="goalDatePlaceholder" aria-hidden="true"></span></div>
+            <div class="goalDateField"><input id="completedGoalDateInput" type="date" aria-label="目标完成日期" data-i18n-key="txt_c01c7227e8" data-i18n-aria-label="txt_c01c7227e8"><span class="goalDatePlaceholder" aria-hidden="true"></span></div>
             <button class="btn primary" id="addCompletedGoalBtn" type="button" data-i18n-key="txt_c3a4b42760" data-i18n-text="1">添加完成目标</button>
           </div>
         </div>
@@ -6383,11 +6405,11 @@ html body #addShopItemBtn{
   <div class="topbar">
     <div class="brand">
       <h1 data-i18n-key="txt_6b80c0de9b" data-i18n-text="1">34 Coins · 每日时间账本</h1>
-      <p>06:00—23:00 · 34 个时间硬币 · 纯本地版 · 数据保存在当前浏览器</p>
+      <p data-i18n-key="header_subtitle" data-i18n-text="1">06:00—23:00 · 34 个时间硬币 · 纯本地版 · 数据保存在当前浏览器</p>
     </div>
     <div class="actions">
       <div class="backupMenu" id="backupMenu">
-        <button class="btn backupMenuBtn" id="backupMenuBtn" type="button" aria-haspopup="menu" aria-expanded="false">备份 <span class="backupChevron">⌄</span></button>
+        <button class="btn backupMenuBtn" id="backupMenuBtn" type="button" aria-haspopup="menu" aria-expanded="false"><span data-i18n-key="txt_2aadd3e0b6" data-i18n-text="1">备份</span> <span class="backupChevron">⌄</span></button>
         <div class="backupMenuPanel" id="backupMenuPanel" role="menu" hidden>
           <button class="backupMenuItem" id="backupExportItem" type="button" role="menuitem" data-i18n-key="backup_export" data-i18n-text="1">导出备份</button>
           <button class="backupMenuItem" id="backupImportItem" type="button" role="menuitem" data-i18n-key="backup_import" data-i18n-text="1">导入备份</button>
@@ -6416,13 +6438,13 @@ html body #addShopItemBtn{
     </div>
     <div class="quickStep quickStepCategories">
       <div class="quickNum">2</div>
-      <div><b data-i18n-key="txt_1c8dbbb352" data-i18n-text="1">给时间分类</b><span>每一枚 Coin 都按当时真实状态分类，不用“做了什么”替代“这段时间是什么质量”。</span></div>
+      <div><b data-i18n-key="txt_1c8dbbb352" data-i18n-text="1">给时间分类</b><span data-i18n-key="quick_classify_desc" data-i18n-text="1">每一枚 Coin 都按当时真实状态分类，不用“做了什么”替代“这段时间是什么质量”。</span></div>
     </div>
     <div class="quickStep">
       <div class="quickNum">3</div>
       <div><b data-i18n-key="txt_b92e79c0f1" data-i18n-text="1">看统计与奖励</b><span data-i18n-key="txt_d4130308e3" data-i18n-text="1">系统自动统计日、周、月的有效 Coins，并把时间投入转化成钱包、奖励和趋势。</span></div>
     </div>
-    <div class="categoryGuide" aria-label="34 Coins 五种时间分类">
+    <div class="categoryGuide" aria-label="34 Coins 五种时间分类" data-i18n-key="category_guide_aria" data-i18n-aria-label="category_guide_aria">
       <div class="categoryGuideItem">
         <div class="categoryGuidePill"><span class="categoryGuideSwatch c1"></span><strong data-i18n-key="txt_a95b63f324" data-i18n-text="1">高效工作 / 学习</strong></div>
         <p data-i18n-key="txt_600552cda3" data-i18n-text="1">全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。</p>
@@ -6445,13 +6467,13 @@ html body #addShopItemBtn{
       </div>
     </div>
   </div>
-  <div class="quickTip">使用方式：每天先安排任务，再记录实际做了什么；当天结束后看“今日概览”，每周看“周度缩略图”。</div>
-  <div class="syncHint">💾 本地保存：每次修改都会保存到当前浏览器；重要数据建议定期导出备份。</div>
+  <div class="quickTip" data-i18n-key="quick_tip" data-i18n-text="1">使用方式：每天先安排任务，再记录实际做了什么；当天结束后看“今日概览”，每周看“周度缩略图”。</div>
+  <div class="syncHint" data-i18n-key="sync_hint" data-i18n-text="1">💾 本地保存：每次修改都会保存到当前浏览器；重要数据建议定期导出备份。</div>
   <div id="multiTabSyncBanner" class="multiTabSyncBanner" role="status" aria-live="assertive">
-    <div><strong>检测到其他标签页刚刚更新了数据。</strong> 当前页面有未同步改动时不会静默覆盖。</div>
+    <div><strong data-i18n-key="multi_tab_updated" data-i18n-text="1">检测到其他标签页刚刚更新了数据。</strong> <span data-i18n-key="multi_tab_no_overwrite" data-i18n-text="1">当前页面有未同步改动时不会静默覆盖。</span></div>
     <div class="multiTabSyncActions">
-      <button type="button" id="multiTabExportDraft">导出当前草稿</button>
-      <button type="button" class="primary" id="multiTabReloadLatest">载入最新数据</button>
+      <button type="button" id="multiTabExportDraft" data-i18n-key="multi_tab_export" data-i18n-text="1">导出当前草稿</button>
+      <button type="button" class="primary" id="multiTabReloadLatest" data-i18n-key="multi_tab_reload" data-i18n-text="1">载入最新数据</button>
     </div>
   </div>
 </div>
@@ -6488,7 +6510,7 @@ html body #addShopItemBtn{
     <div id="planPager" class="planPager" aria-label="今日计划翻页"></div>
     <div class="planMeta">
       <span data-i18n-key="txt_f723ee4cae" data-i18n-text="1">任务数量可完全自定义，考研期间可以添加 5、10、20 个甚至更多任务。</span>
-      <span id="planHint" data-i18n-key="txt_3c5fad1d6e" data-i18n-text="1">计划会自动保存</span>
+      <span id="planHint">计划会自动保存</span>
     </div>
     <div id="planSummary" class="planSummary"></div>
   </div>
@@ -6497,11 +6519,11 @@ html body #addShopItemBtn{
     <div class="card overview">
       <h2 data-i18n-key="txt_0be695db43" data-i18n-text="1">今天的时间概览</h2>
       <div class="legend">
-        <div class="chip"><span class="dot c1"></span>高效工作 / 学习</div>
-        <div class="chip"><span class="dot c3"></span>尽情娱乐</div>
-        <div class="chip"><span class="dot c2"></span>必要休息</div>
-        <div class="chip"><span class="dot c5"></span>强迫工作 / 学习</div>
-        <div class="chip"><span class="dot c4"></span>拖延浪费</div>
+        <div class="chip"><span class="dot c1"></span><span data-i18n-key="overview_cat_high" data-i18n-text="1">高效工作 / 学习</span></div>
+        <div class="chip"><span class="dot c3"></span><span data-i18n-key="overview_cat_leisure" data-i18n-text="1">尽情娱乐</span></div>
+        <div class="chip"><span class="dot c2"></span><span data-i18n-key="overview_cat_rest" data-i18n-text="1">必要休息</span></div>
+        <div class="chip"><span class="dot c5"></span><span data-i18n-key="overview_cat_forced" data-i18n-text="1">强迫工作 / 学习</span></div>
+        <div class="chip"><span class="dot c4"></span><span data-i18n-key="overview_cat_waste" data-i18n-text="1">拖延浪费</span></div>
       </div>
       <div class="stats" id="stats"></div>
     </div>
@@ -6527,17 +6549,17 @@ html body #addShopItemBtn{
     <div class="reviewGrid">
       <div class="reviewBox">
         <h4 data-i18n-key="txt_d16c137c2d" data-i18n-text="1">今天最重要的成果</h4>
-        <textarea class="planTextarea" id="reviewWin" placeholder="今天真正完成了什么？"></textarea>
-        <div class="outputAnchorPanel" aria-label="关键数值产出">
-          <div class="outputAnchorHead"><div>关键数值产出 <span class="outputAnchorOptional">可选</span></div><span>把成果变成可比较的数据</span></div>
+        <textarea class="planTextarea" id="reviewWin" placeholder="今天真正完成了什么？" data-i18n-key="review_win_placeholder" data-i18n-placeholder="review_win_placeholder"></textarea>
+        <div class="outputAnchorPanel" aria-label="关键数值产出" data-i18n-key="output_metrics_head" data-i18n-aria-label="output_metrics_head">
+          <div class="outputAnchorHead"><div><span data-i18n-key="output_metrics_head" data-i18n-text="1">关键数值产出</span> <span class="outputAnchorOptional" data-i18n-key="output_optional" data-i18n-text="1">可选</span></div><span data-i18n-key="output_metrics_subtitle" data-i18n-text="1">把成果变成可比较的数据</span></div>
           <div id="outputAnchorList" class="outputAnchorList"></div>
           <div class="outputAnchorSuggestions" id="outputAnchorSuggestions">
-            <button type="button" class="outputSuggestion" data-output-example="刷题数|25|题">刷题数</button>
-            <button type="button" class="outputSuggestion" data-output-example="背诵单词数|120|词">背词数</button>
-            <button type="button" class="outputSuggestion" data-output-example="正确率|82|%">正确率</button>
-            <button type="button" class="outputSuggestion outputSuggestionAdd" id="addOutputAnchorBtn">＋ 添加指标</button>
+            <button type="button" class="outputSuggestion" data-output-example="刷题数|25|题" data-output-example-en="Problems solved|25|problems" data-i18n-key="output_suggestion_problems" data-i18n-text="1">刷题数</button>
+            <button type="button" class="outputSuggestion" data-output-example="背诵单词数|120|词" data-output-example-en="Words memorized|120|words" data-i18n-key="output_suggestion_words" data-i18n-text="1">背词数</button>
+            <button type="button" class="outputSuggestion" data-output-example="正确率|82|%" data-output-example-en="Accuracy|82|%" data-i18n-key="output_suggestion_accuracy" data-i18n-text="1">正确率</button>
+            <button type="button" class="outputSuggestion outputSuggestionAdd" id="addOutputAnchorBtn" data-i18n-key="output_add_metric" data-i18n-text="1">＋ 添加指标</button>
           </div>
-          <div class="outputAnchorHint">例如：396 刷题 25 题、背词 120 词、模拟考正确率 82%。</div>
+          <div class="outputAnchorHint" data-i18n-key="output_metrics_hint" data-i18n-text="1">例如：396 刷题 25 题、背词 120 词、模拟考正确率 82%。</div>
         </div>
       </div>
       <div class="reviewBox">
@@ -6546,25 +6568,25 @@ html body #addShopItemBtn{
           <button type="button" class="reviewSourceBtn" id="reviewLossSourceBtn" aria-label="引用今天的低效时间">↳</button>
         </div>
         <div class="reviewTextareaWrap">
-          <textarea class="planTextarea" id="reviewLoss" placeholder="哪段时间偏离计划？为什么？"></textarea>
+          <textarea class="planTextarea" id="reviewLoss" placeholder="哪段时间偏离计划？为什么？" data-i18n-key="review_loss_placeholder" data-i18n-placeholder="review_loss_placeholder"></textarea>
           <div class="reviewSourceMenu" id="reviewLossSourceMenu" hidden></div>
         </div>
       </div>
       <div class="reviewBox">
         <h4 data-i18n-key="txt_3bf1391192" data-i18n-text="1">明天应该继续什么</h4>
-        <textarea class="planTextarea" id="reviewKeep" placeholder="值得继续保持的做法"></textarea>
+        <textarea class="planTextarea" id="reviewKeep" placeholder="值得继续保持的做法" data-i18n-key="review_keep_placeholder" data-i18n-placeholder="review_keep_placeholder"></textarea>
       </div>
       <div class="reviewBox">
         <div class="reviewTitleRow">
           <h4 data-i18n-key="txt_0150d584fd" data-i18n-text="1">明天应该停止什么</h4>
           <span class="diagnosticStopHint" id="diagnosticStopHint" data-i18n-key="txt_1641340caa" data-i18n-text="1">系统诊断：尚未生成。</span>
         </div>
-        <textarea class="planTextarea" id="reviewStop" placeholder="明天要主动避免什么？"></textarea>
+        <textarea class="planTextarea" id="reviewStop" placeholder="明天要主动避免什么？" data-i18n-key="review_stop_placeholder" data-i18n-placeholder="review_stop_placeholder"></textarea>
       </div>
     </div>
     <div style="margin-top:12px">
       <h4 style="margin:0 0 8px;font-size:13px" data-i18n-key="txt_5ef37c50d1" data-i18n-text="1">明日计划</h4>
-      <textarea class="planTextarea" id="tomorrowPlan" placeholder="明天的任务同样可以自定义数量。日期切换到明天后，它会自动成为当天计划。"></textarea>
+      <textarea class="planTextarea" id="tomorrowPlan" placeholder="明天的任务同样可以自定义数量。日期切换到明天后，它会自动成为当天计划。" data-i18n-key="tomorrow_plan_placeholder" data-i18n-placeholder="tomorrow_plan_placeholder"></textarea>
     </div>
   </div>
   </section>
@@ -6585,7 +6607,7 @@ html body #addShopItemBtn{
         <label data-i18n-key="txt_8ef4886033" data-i18n-text="1">颜色</label>
         <select id="activityColor"></select>
         <label data-i18n-key="txt_3bc40569b4" data-i18n-text="1">精力</label>
-        <div class="energyQuick" id="activityEnergyQuick" aria-label="精力等级"></div>
+        <div class="energyQuick" id="activityEnergyQuick" aria-label="精力等级" data-i18n-aria-label="txt_3bc40569b4"></div>
       </div>
       <div class="smallhint" data-i18n-key="txt_ef72688921" data-i18n-text="1">例如：开始时间 08:00 + 持续 3 小时，只填写一次，系统会自动占用 08:00–11:00 的 6 个硬币。</div>
       <div class="modalActions">
@@ -6637,7 +6659,7 @@ html body #addShopItemBtn{
         <div id="rewardKpis" class="rewardKpis"></div><div id="flowComboRewardNote" class="flowComboRewardNote"></div>
         <div style="margin-top:12px;overflow:auto">
           <table class="rewardTable">
-            <thead><tr><th data-i18n-key="txt_8a12b12125" data-i18n-text="1">周期</th><th>可兑换硬币</th><th>娱乐时间（h）</th><th data-i18n-key="txt_a00375ecf2" data-i18n-text="1">奖励金额</th></tr></thead>
+            <thead><tr><th data-i18n-key="txt_8a12b12125" data-i18n-text="1">周期</th><th data-i18n-key="redeemable_coins" data-i18n-text="1">可兑换硬币</th><th data-i18n-key="leisure_hours" data-i18n-text="1">娱乐时间（h）</th><th data-i18n-key="txt_a00375ecf2" data-i18n-text="1">奖励金额</th></tr></thead>
             <tbody id="rewardRows"></tbody>
           </table>
         </div>
@@ -6675,14 +6697,14 @@ html body #addShopItemBtn{
         <h2 data-i18n-key="txt_af355cd344" data-i18n-text="1">Coin 商店</h2>
         <div class="shopSearchWrap">
           <span class="shopSearchIcon" aria-hidden="true">⌕</span>
-          <input id="shopSearchInput" class="shopSearchInput" type="search" autocomplete="off" placeholder="搜索商品名称或备注" aria-label="搜索 Coin 商店商品" data-i18n-placeholder="txt_12ab0e5f96">
+          <input id="shopSearchInput" class="shopSearchInput" type="search" autocomplete="off" placeholder="搜索商品名称或备注" aria-label="搜索 Coin 商店商品" data-i18n-key="txt_12ab0e5f96" data-i18n-placeholder="txt_12ab0e5f96" data-i18n-aria-label="shop_search_aria">
           <span id="shopSearchStatus" class="shopSearchStatus" hidden></span>
         </div>
         <button class="btn primary" id="addShopItemBtn" data-i18n-key="txt_e6e4b203ba" data-i18n-text="1">＋ 添加实物奖励</button>
       </div>
-      <div id="shopGrid" class="shopGrid"></div><div id="shopPagination" class="shopPagination" aria-label="商品翻页"></div><div class="smallhint shopEditHint" style="grid-column:1/-1">💡 自定义商品可点击 Emoji 编辑；“×”删除。</div>
+      <div id="shopGrid" class="shopGrid"></div><div id="shopPagination" class="shopPagination" aria-label="商品翻页"></div><div class="smallhint shopEditHint" style="grid-column:1/-1" data-i18n-key="shop_edit_hint" data-i18n-text="1">💡 自定义商品可点击 Emoji 编辑；“×”删除。</div>
       <div class="historyBox">
-        <div class="historyTitle">最近兑换 <span class="historyHint" data-i18n-key="txt_9fb577fb83" data-i18n-text="1">每页 5 条</span></div>
+        <div class="historyTitle"><span data-i18n-key="txt_eb310a7bd7" data-i18n-text="1">最近兑换</span> <span class="historyHint" data-i18n-key="txt_9fb577fb83" data-i18n-text="1">每页 5 条</span></div>
         <div id="purchaseHistory" class="historyList"></div>
         <div id="purchaseHistoryPagination" class="historyPagination"></div>
       </div>
@@ -6697,12 +6719,12 @@ html body #addShopItemBtn{
         <div class="emojiField">
           <div class="emojiManualRow">
             <div class="emojiPreview" id="emojiPreview">🎁</div>
-            <input id="itemEmoji" class="emojiInput" type="text" maxlength="8" value="🎁" placeholder="可直接粘贴 Emoji，例如 🥛 🍎 🎧">
+            <input id="itemEmoji" class="emojiInput" type="text" maxlength="8" value="🎁" placeholder="可直接粘贴 Emoji，例如 🥛 🍎 🎧" data-i18n-key="emoji_paste_placeholder" data-i18n-placeholder="emoji_paste_placeholder">
           </div>
           <div class="emojiPickerTools">
             <div class="emojiSearchWrap">
               <span>⌕</span>
-              <input id="emojiSearch" type="search" placeholder="搜索 Emoji / 关键词，例如：牛奶、耳机、衣服">
+              <input id="emojiSearch" type="search" placeholder="搜索 Emoji / 关键词，例如：牛奶、耳机、衣服" data-i18n-key="emoji_search_placeholder" data-i18n-placeholder="emoji_search_placeholder">
             </div>
             <div class="emojiCategories" id="emojiCategories"></div>
           </div>
@@ -6713,13 +6735,13 @@ html body #addShopItemBtn{
         </div>
 
         <label data-i18n-key="txt_47b74133f2" data-i18n-text="1">商品名称</label>
-        <input id="itemName" maxlength="40" placeholder="例如：安佳牛奶 12L">
+        <input id="itemName" maxlength="40" placeholder="例如：安佳牛奶 12L" data-i18n-key="shop_item_name_placeholder" data-i18n-placeholder="shop_item_name_placeholder">
 
         <label data-i18n-key="txt_70b9a8697c" data-i18n-text="1">人民币价格</label>
         <input id="itemPrice" type="number" min="0" step="0.1" placeholder="100">
 
         <label data-i18n-key="txt_e0361480e3" data-i18n-text="1">备注</label>
-        <input id="itemNote" maxlength="80" placeholder="可选">
+        <input id="itemNote" maxlength="80" placeholder="可选" data-i18n-key="shop_item_note_placeholder" data-i18n-placeholder="shop_item_note_placeholder">
       </div>
       <div class="smallhint" data-i18n-key="txt_5cdaad37eb" data-i18n-text="1">Coin 商店只提供可以实际兑换的实物奖励；主题皮肤、头像框等虚拟奖励已移除。</div>
       <div class="modalActions">
@@ -6740,21 +6762,21 @@ html body #addShopItemBtn{
       </div>
       <div id="resilienceBanner" class="resilienceBanner" hidden></div>
       <div class="diagnosticLegend">
-        <span><i class="diagLegendDot prime"></i>Prime Time · 高能时段</span>
-        <span><i class="diagLegendDot vulnerable"></i>Vulnerable Time · 拖延风险</span>
-        <span><i class="diagLegendDot normal"></i>普通</span>
-        <span><i class="diagLegendDot insufficient"></i>样本不足</span>
+        <span><i class="diagLegendDot prime"></i><span data-i18n-key="diag_legend_prime" data-i18n-text="1">Prime Time · 高能时段</span></span>
+        <span><i class="diagLegendDot vulnerable"></i><span data-i18n-key="diag_legend_risk" data-i18n-text="1">Vulnerable Time · 拖延风险</span></span>
+        <span><i class="diagLegendDot normal"></i><span data-i18n-key="diag_legend_normal" data-i18n-text="1">普通</span></span>
+        <span><i class="diagLegendDot insufficient"></i><span data-i18n-key="diag_legend_insufficient" data-i18n-text="1">样本不足</span></span>
       </div>
       <div class="diagnosticHeatmapScroll">
         <div id="diagnosticHeatmap" class="diagnosticHeatmap" aria-label="过去四周时段诊断热力图"></div>
       </div>
       <div class="diagnosticInsights">
         <div class="diagnosticInsight primeInsight">
-          <div class="diagnosticInsightTitle"><span>⚡</span> Prime Time · 我的高能窗口</div>
+          <div class="diagnosticInsightTitle"><span>⚡</span> <span data-i18n-key="txt_25cf91b159" data-i18n-text="1">Prime Time · 我的高能窗口</span></div>
           <div id="diagnosticPrimeList" class="diagnosticChipList"></div>
         </div>
         <div class="diagnosticInsight vulnerableInsight">
-          <div class="diagnosticInsightTitle"><span>⚠</span> Vulnerable Time · 我的拖延重灾区</div>
+          <div class="diagnosticInsightTitle"><span>⚠</span> <span data-i18n-key="txt_7d74ef8850" data-i18n-text="1">Vulnerable Time · 我的拖延重灾区</span></div>
           <div id="diagnosticVulnerableList" class="diagnosticChipList"></div>
         </div>
       </div>
@@ -6806,7 +6828,7 @@ html body #addShopItemBtn{
 
     <div class="card analysisSummaryCard">
       <h3 data-i18n-key="txt_d6bca501bb" data-i18n-text="1">本周总结</h3>
-      <textarea class="summary" id="weekSummary" placeholder="写下本周做得好的地方、最大的时间黑洞、下周准备怎么调整……"></textarea>
+      <textarea class="summary" id="weekSummary" placeholder="写下本周做得好的地方、最大的时间黑洞、下周准备怎么调整……" data-i18n-key="week_summary_placeholder" data-i18n-placeholder="week_summary_placeholder"></textarea>
       <div class="smallhint" data-i18n-key="txt_e2338d2ef1" data-i18n-text="1">总结会按“周一所在周”自动保存。</div>
     </div>
 
@@ -6816,7 +6838,7 @@ html body #addShopItemBtn{
     <div class="card monthThumbCard">
       <div class="monthThumbHead">
         <h3>2026 年 9 月时间缩略图</h3>
-        <span>每格代表一天；颜色面积代表当天时间结构</span>
+        <span data-i18n-key="txt_d50434e4d0" data-i18n-text="1">每格代表一天；颜色面积代表当天时间结构</span>
       </div>
       <div class="analysisPeriodPager" id="monthPeriodPager" role="group" aria-label="月度分析翻页">
         <button type="button" class="analysisPeriodBtn" id="monthPrevBtn" aria-label="上个月" title="上个月">‹</button>
@@ -6835,7 +6857,7 @@ html body #addShopItemBtn{
           <div class="rateLineAxis">100%<span data-i18n-key="txt_abcc3195e1" data-i18n-text="1">有效/34</span>0%</div>
           <div class="rateHoverTooltip" id="monthRateTooltip" role="status" aria-live="polite"></div>
         </div>
-        <div class="rateLegend"><span><i class="rateLegendLine"></i>有效硬币产出率</span><span data-i18n-key="txt_b604112ca7" data-i18n-text="1">悬停每日拐点查看日期与有效率</span></div>
+        <div class="rateLegend"><span><i class="rateLegendLine"></i><span data-i18n-key="txt_1113080921" data-i18n-text="1">有效硬币产出率</span></span><span data-i18n-key="txt_b604112ca7" data-i18n-text="1">悬停每日拐点查看日期与有效率</span></div>
       </div>
       <div class="card analysisCard">
         <h3 data-i18n-key="txt_b6fa0aba51" data-i18n-text="1">本月时间结构</h3>
@@ -6845,7 +6867,7 @@ html body #addShopItemBtn{
 
     <div class="card analysisSummaryCard">
       <h3 data-i18n-key="txt_e65ca80982" data-i18n-text="1">本月总结</h3>
-      <textarea class="summary" id="monthSummary" placeholder="写下本月的主要成果、问题、规律，以及下个月最重要的改进……"></textarea>
+      <textarea class="summary" id="monthSummary" placeholder="写下本月的主要成果、问题、规律，以及下个月最重要的改进……" data-i18n-key="month_summary_placeholder" data-i18n-placeholder="month_summary_placeholder"></textarea>
       <div class="smallhint" data-i18n-key="txt_7ecb42c60b" data-i18n-text="1">总结按月份自动保存。</div>
     </div>
 
@@ -6867,7 +6889,7 @@ html body #addShopItemBtn{
         <div class="rateLineAxis">100%<span data-i18n-key="txt_abcc3195e1" data-i18n-text="1">有效/34</span>0%</div>
         <div class="rateHoverTooltip" id="yearRateTooltip" role="status" aria-live="polite"></div>
       </div>
-      <div class="rateLegend"><span><i class="rateLegendLine"></i>有效硬币产出率</span><span data-i18n-key="txt_d60ea600fa" data-i18n-text="1">悬停每月拐点查看月份与有效率</span></div>
+      <div class="rateLegend"><span><i class="rateLegendLine"></i><span data-i18n-key="txt_1113080921" data-i18n-text="1">有效硬币产出率</span></span><span data-i18n-key="txt_d60ea600fa" data-i18n-text="1">悬停每月拐点查看月份与有效率</span></div>
     </div>
     <div class="analysisGrid">
       <div class="card analysisCard">
@@ -6895,7 +6917,7 @@ html body #addShopItemBtn{
 
     <div class="card analysisSummaryCard">
       <h3 data-i18n-key="txt_8ca795a967" data-i18n-text="1">趋势总结</h3>
-      <textarea class="summary" id="trendSummary" placeholder="记录长期趋势：什么时候状态最好？哪类时间持续增加/减少？你准备采取什么措施？"></textarea>
+      <textarea class="summary" id="trendSummary" placeholder="记录长期趋势：什么时候状态最好？哪类时间持续增加/减少？你准备采取什么措施？" data-i18n-key="trend_summary_placeholder" data-i18n-placeholder="trend_summary_placeholder"></textarea>
     </div>
     <div class="card outputCorrelationCard" id="outputCorrelationCard">
       <div class="outputCorrelationHead"><div><h3>投入 × 产出关联</h3><span>按同一指标比较每日有效投入与实际成果；数据越多，结论越稳定。</span></div><span class="outputCorrelationBadge">相关 ≠ 因果</span></div>
@@ -6916,21 +6938,19 @@ html body #addShopItemBtn{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v170</span>
+  <span class="siteFooterVersion">v178</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle">v170 更新说明</h3>
-    <div class="releaseNotesIntro">v170：修复持久化自测使用空白日期样本导致测试提前中断的问题，并统一页面版本标记。</div>
+    <h3 id="releaseNotesTitle" data-i18n-key="release_v178_title" data-i18n-text="1">v178 更新说明</h3>
+    <div class="releaseNotesIntro" data-i18n-key="release_v178_intro" data-i18n-text="1">v178：对齐商店商品价格，并修复英文辅助标签与无效日期校验。</div>
     <div class="releaseNotesList">
-      <div class="releaseNoteItem"><b>硬性防覆盖</b><span>升级启动时同时检查 LocalStorage 与 IndexedDB；空数据、记录更少的数据不会自动覆盖历史数据。</span></div>
-      <div class="releaseNoteItem"><b>跨日期保存</b><span>快速切换日期时，所有尚未落盘的实际修改日期都会一起保存，不再只保存当前日期。</span></div>
-      <div class="releaseNoteItem"><b>保守合并</b><span>两份本地数据同时存在时，按日期保留非空记录；无法安全判定的冲突不自动删除。</span></div>
-      <div class="releaseNoteItem"><b>升级快照</b><span>检测到新版本且已有本地数据时，先生成独立的本地安全快照，再继续启动。</span></div>
-      <div class="releaseNoteItem"><b>启动回归测试</b><span>加入“空候选不能覆盖非空历史”等持久化自测，避免后续版本再次出现同类问题。</span></div>
+      <div class="releaseNoteItem"><b data-i18n-key="release_goal_title" data-i18n-text="1">目标显示</b><span data-i18n-key="release_goal_body" data-i18n-text="1">修复语言切换时目标名称与日期被空状态文案覆盖的问题。</span></div>
+      <div class="releaseNoteItem"><b data-i18n-key="release_week_title" data-i18n-text="1">周度标签</b><span data-i18n-key="release_week_body" data-i18n-text="1">英文界面的周度图表现在使用英文星期名称和辅助说明。</span></div>
+      <div class="releaseNoteItem"><b data-i18n-key="release_accessibility_title" data-i18n-text="1">动态控件</b><span data-i18n-key="release_accessibility_body" data-i18n-text="1">目标管理、奖励统计和冲突提示的动态文字与无障碍标签会跟随界面语言。</span></div>
     </div>
     <div class="modalActions">
       <button class="btn primary" id="releaseNotesClose" type="button" data-i18n-key="txt_cb63c62e50" data-i18n-text="1">知道了</button>
@@ -6940,8 +6960,8 @@ html body #addShopItemBtn{
 </div>
 <script>
 
-// 34 Coins v170 · standalone local release · hard overwrite protection · boot reconciliation · mirror consistency · no external runtime dependencies
-const APP_VERSION='170';
+// 34 Coins v178 · standalone local release · localized dynamic labels · no external runtime dependencies
+const APP_VERSION='178';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -7772,6 +7792,68 @@ function safeLocalSet(key,value){try{localStorage.setItem(key,String(value));ret
 function safeLocalRemove(key){try{localStorage.removeItem(key);return true;}catch{return false;}}
 let currentLang='zh';
 const I18N_SEMANTIC={"txt_c3304d1e49":{"zh":"天","en":"days","zh_key":"天"},"txt_17e83cc25e":{"zh":"今天","en":"Today","zh_key":"今天"},"txt_fe9ea3f070":{"zh":"今年","en":"This year","zh_key":"今年"},"txt_4d0b4688c7":{"zh":"取消","en":"Cancel","zh_key":"取消"},"txt_8a12b12125":{"zh":"周期","en":"Period","zh_key":"周期"},"txt_e0361480e3":{"zh":"备注","en":"Notes","zh_key":"备注"},"txt_33246f6a5e":{"zh":"完成","en":"Done","zh_key":"完成"},"txt_7cda072d45":{"zh":"普通","en":"Normal","zh_key":"普通"},"txt_941f08313a":{"zh":"目标","en":"Goal","zh_key":"目标"},"txt_6a0e665087":{"zh":"签到","en":"Check in","zh_key":"签到"},"txt_3bc40569b4":{"zh":"精力","en":"Energy","zh_key":"精力"},"txt_8ef4886033":{"zh":"颜色","en":"Color","zh_key":"颜色"},"txt_d94731eaa9":{"zh":"已记录","en":"Recorded","zh_key":"已记录"},"txt_7369b4b9a3":{"zh":"恢复日","en":"Recovery day","zh_key":"恢复日"},"txt_a1eb66d357":{"zh":"时间流","en":"Time flow","zh_key":"时间流"},"txt_cb63c62e50":{"zh":"知道了","en":"Got it","zh_key":"知道了"},"txt_953443b639":{"zh":"今日农历","en":"Lunar date","zh_key":"今日农历"},"txt_fdb84efa1d":{"zh":"今日复盘","en":"Daily review","zh_key":"今日复盘"},"txt_973fde7657":{"zh":"今日签到","en":"Daily check-in","zh_key":"今日签到"},"txt_8edd0f641d":{"zh":"今日计划","en":"Today’s plan","zh_key":"今日计划"},"txt_51521c52c6":{"zh":"休闲娱乐","en":"Leisure","zh_key":"休闲娱乐"},"txt_29fa80a652":{"zh":"保存商品","en":"Save item","zh_key":"保存商品"},"txt_f485883644":{"zh":"做了什么","en":"What did you do?","zh_key":"做了什么"},"txt_8ce9e55cf3":{"zh":"分析中心","en":"Analytics","zh_key":"分析中心"},"txt_8fc7972599":{"zh":"去年今日","en":"Same day last year","zh_key":"去年今日"},"txt_000a97406d":{"zh":"周度分析","en":"Weekly analysis","zh_key":"周度分析"},"txt_47b74133f2":{"zh":"商品名称","en":"Item name","zh_key":"商品名称"},"txt_0a5343e344":{"zh":"商品图标","en":"Item icon","zh_key":"商品图标"},"txt_2bd4d6d86d":{"zh":"复盘思考","en":"Reflection","zh_key":"复盘思考"},"txt_a0064f5f32":{"zh":"奖励规则","en":"Reward rules","zh_key":"奖励规则"},"txt_a00375ecf2":{"zh":"奖励金额","en":"Reward amount","zh_key":"奖励金额"},"txt_57a47fc722":{"zh":"娱乐时间","en":"Leisure time","zh_key":"娱乐时间"},"txt_a26f1abe64":{"zh":"导入备份","en":"Import backup","zh_key":"导入备份"},"txt_d11b66842a":{"zh":"导出备份","en":"Export backup","zh_key":"导出备份"},"txt_2aadd3e0b6":{"zh":"备份","en":"Backup","zh_key":"备份"},"txt_b5561dd5e7":{"zh":"尚未设置","en":"Not set","zh_key":"尚未设置"},"txt_21ecec0b14":{"zh":"年度分析","en":"Annual analysis","zh_key":"年度分析"},"txt_2402bdfd00":{"zh":"开始今天","en":"Start today","zh_key":"开始今天"},"txt_e8868af6eb":{"zh":"开始时间","en":"Start time","zh_key":"开始时间"},"txt_67589ea29e":{"zh":"持续时间","en":"Duration","zh_key":"持续时间"},"txt_f1f1a3ab7f":{"zh":"收起说明","en":"Collapse guide","zh_key":"收起说明"},"txt_f0f33e26b7":{"zh":"数据安全","en":"Data safety","zh_key":"数据安全"},"txt_3724531cb7":{"zh":"数据看板","en":"Dashboard","zh_key":"数据看板"},"txt_5ef37c50d1":{"zh":"明日计划","en":"Tomorrow’s plan","zh_key":"明日计划"},"txt_eb310a7bd7":{"zh":"最近兑换","en":"Recent redemptions","zh_key":"最近兑换"},"txt_3dd8fccd92":{"zh":"月度分析","en":"Monthly analysis","zh_key":"月度分析"},"txt_b96c19d2e2":{"zh":"有效硬币","en":"Effective coins","zh_key":"有效硬币"},"txt_d6bca501bb":{"zh":"本周总结","en":"Weekly summary","zh_key":"本周总结"},"txt_e65ca80982":{"zh":"本月总结","en":"Monthly summary","zh_key":"本月总结"},"txt_6e7c567ac1":{"zh":"样本不足","en":"Insufficient sample","zh_key":"样本不足"},"txt_5444202bfd":{"zh":"添加目标","en":"Add goal","zh_key":"添加目标"},"txt_6996c52847":{"zh":"清空当天","en":"Clear today","zh_key":"清空当天"},"txt_32b2806a45":{"zh":"生活事务","en":"Life admin","zh_key":"生活事务"},"txt_d90e7eb36e":{"zh":"目标管理","en":"Goal management","zh_key":"目标管理"},"txt_6f651b7bec":{"zh":"硬币钱包","en":"Coin wallet","zh_key":"硬币钱包"},"txt_a6c2f0c0b6":{"zh":"经济规则","en":"Economics rules","zh_key":"经济规则"},"txt_1a1bdf7714":{"zh":"强迫工作 / 学习","en":"Forced work / study","zh_key":"强迫工作 / 学习"},"txt_650b38bcad":{"zh":"记录时间","en":"Track time","zh_key":"记录时间"},"txt_cc7a872401":{"zh":"趋势分析","en":"Trend analysis","zh_key":"趋势分析"},"txt_8ca795a967":{"zh":"趋势总结","en":"Trend summary","zh_key":"趋势总结"},"txt_51f2680d72":{"zh":"趋势解读","en":"Trend interpretation","zh_key":"趋势解读"},"txt_db0f8a9e8e":{"zh":"距离目标","en":"Until goal","zh_key":"距离目标"},"txt_70b9a8697c":{"zh":"人民币价格","en":"RMB price","zh_key":"人民币价格"},"txt_e3095e26d2":{"zh":"今日完成度","en":"Today’s completion","zh_key":"今日完成度"},"txt_a439ddd919":{"zh":"保存时间块","en":"Save time block","zh_key":"保存时间块"},"txt_76f3409f29":{"zh":"已完成目标","en":"Completed goals","zh_key":"已完成目标"},"txt_fccf37a3b6":{"zh":"按状态整理","en":"Sort by status","zh_key":"按状态整理"},"txt_abcc3195e1":{"zh":"有效/34","en":"Effective / 34","zh_key":"有效/34"},"txt_74a7af88f0":{"zh":"添加新目标","en":"Add new goal","zh_key":"添加新目标"},"txt_bf58ab2020":{"zh":"添加时间块","en":"Add time block","zh_key":"添加时间块"},"txt_be45e25544":{"zh":"目标完成墙","en":"Goal wall","zh_key":"目标完成墙"},"txt_1c8dbbb352":{"zh":"给时间分类","en":"Classify time","zh_key":"给时间分类"},"txt_514f2f23ea":{"zh":"🌿 恢复日","en":"🌿 Recovery day","zh_key":"🌿 恢复日"},"txt_e81b0ce83d":{"zh":"☁️ 仅本地","en":"☁️ Local only","zh_key":"☁️ 仅本地"},"txt_fca6d8aefe":{"zh":"尚未设置目标","en":"No goal set","zh_key":"尚未设置目标"},"txt_74c30c68b2":{"zh":"恢复默认规则","en":"Restore defaults","zh_key":"恢复默认规则"},"txt_95f8c67fc2":{"zh":"有效硬币统计","en":"Effective coin stats","zh_key":"有效硬币统计"},"txt_8890de5c87":{"zh":"本周时间结构","en":"This week’s time structure","zh_key":"本周时间结构"},"txt_b6fa0aba51":{"zh":"本月时间结构","en":"This month’s time structure","zh_key":"本月时间结构"},"txt_9fb577fb83":{"zh":"每页 5 条","en":"5 per page","zh_key":"每页 5 条"},"txt_c3a4b42760":{"zh":"添加完成目标","en":"Add completed goal","zh_key":"添加完成目标"},"txt_a0c91e97d5":{"zh":"添加实物奖励","en":"Add physical reward","zh_key":"添加实物奖励"},"txt_5a3aa4d53f":{"zh":"目标管理 →","en":"Goal management →","zh_key":"目标管理 →"},"txt_b92e79c0f1":{"zh":"看统计与奖励","en":"View stats & rewards","zh_key":"看统计与奖励"},"txt_943bdffd94":{"zh":"＋ 添加任务","en":"+ Add task","zh_key":"＋ 添加任务"},"txt_af355cd344":{"zh":"Coin 商店","en":"Coin shop","zh_key":"Coin 商店"},"txt_0be695db43":{"zh":"今天的时间概览","en":"Today’s time overview","zh_key":"今天的时间概览"},"txt_5c7ef49634":{"zh":"你好，追梦人！","en":"Hello, dreamer!","zh_key":"你好，追梦人！"},"txt_0e647cb207":{"zh":"拖延浪费","en":"Procrastination / waste","zh_key":"拖延浪费"},"txt_b990a57274":{"zh":"最大的时间损失","en":"Biggest time loss","zh_key":"最大的时间损失"},"txt_832bfd66c5":{"zh":"有效硬币与奖励","en":"Effective coins & rewards","zh_key":"有效硬币与奖励"},"txt_1113080921":{"zh":"有效硬币产出率","en":"Effective coin rate","zh_key":"有效硬币产出率"},"txt_8ae98d927b":{"zh":"本周时间缩略图","en":"Weekly time thumbnail","zh_key":"本周时间缩略图"},"txt_e0fbf32c1c":{"zh":"本年度时间结构","en":"This year’s time structure","zh_key":"本年度时间结构"},"txt_bcaa023549":{"zh":"本年度累计时长","en":"This year’s recorded time","zh_key":"本年度累计时长"},"txt_e79c8b505f":{"zh":"本月时间缩略图","en":"Monthly time thumbnail","zh_key":"本月时间缩略图"},"txt_daa4755a68":{"zh":"目标进度 0%","en":"Goal progress 0%","zh_key":"目标进度 0%"},"txt_e1b7461c95":{"zh":"自动化时间诊断","en":"Automated time diagnosis","zh_key":"自动化时间诊断"},"txt_3c5fad1d6e":{"zh":"计划会自动保存","en":"Plan saves automatically","zh_key":"计划会自动保存"},"txt_44579f99df":{"zh":"↗ 继承昨日任务","en":"↗ Carry over yesterday’s tasks","zh_key":"↗ 继承昨日任务"},"txt_d16c137c2d":{"zh":"今天最重要的成果","en":"Most important result today","zh_key":"今天最重要的成果"},"txt_0150d584fd":{"zh":"明天应该停止什么","en":"What to stop tomorrow","zh_key":"明天应该停止什么"},"txt_3bf1391192":{"zh":"明天应该继续什么","en":"What to continue tomorrow","zh_key":"明天应该继续什么"},"txt_9d58940d3c":{"zh":"本年度时间缩略图","en":"Annual time thumbnail","zh_key":"本年度时间缩略图"},"txt_fd51ae2138":{"zh":"记录一次娱乐兑换","en":"Record leisure redemption","zh_key":"记录一次娱乐兑换"},"txt_a50d352076":{"zh":"连续低谷减负模式","en":"Consecutive low-period relief mode","zh_key":"连续低谷减负模式"},"txt_e6e4b203ba":{"zh":"＋ 添加实物奖励","en":"+ Add physical reward","zh_key":"＋ 添加实物奖励"},"txt_5fd12960d4":{"zh":"每周最低任务完成率","en":"Weekly minimum task completion","zh_key":"每周最低任务完成率"},"txt_5398a0dc05":{"zh":"＋ 添加已完成目标","en":"+ Add completed goal","zh_key":"＋ 添加已完成目标"},"txt_7ecb42c60b":{"zh":"总结按月份自动保存。","en":"Summary is saved by month automatically.","zh_key":"总结按月份自动保存。"},"txt_1641340caa":{"zh":"系统诊断：尚未生成。","en":"System diagnosis: not generated yet.","zh_key":"系统诊断：尚未生成。"},"txt_3e31b7173c":{"zh":"v90 更新说明","en":"v90 release notes","zh_key":"v90 更新说明"},"txt_27b0a3719a":{"zh":"当天首次打开后自动缓存","en":"Cached automatically after the first open of the day","zh_key":"当天首次打开后自动缓存"},"txt_01c3e12110":{"zh":"每周固定生活费（参考）","en":"Weekly fixed living cost (reference)","zh_key":"每周固定生活费（参考）"},"txt_03d2289513":{"zh":"添加一个目标开始倒计时","en":"Add a goal to start the countdown","zh_key":"添加一个目标开始倒计时"},"txt_e6aaee5c06":{"zh":"今天，专注于下一枚硬币。","en":"Today, focus on the next coin.","zh_key":"今天，专注于下一枚硬币。"},"txt_a95b63f324":{"zh":"高效工作 / 学习","en":"High-efficiency work / study","zh_key":"高效工作 / 学习"},"txt_43d170ba19":{"zh":"本周每天 · 有效时长","en":"Daily effective time this week","zh_key":"本周每天 · 有效时长"},"txt_f9ac72d8e7":{"zh":"Prime Time 更准确","en":"More accurate Prime Time","zh_key":"Prime Time 更准确"},"txt_b604112ca7":{"zh":"悬停每日拐点查看日期与有效率","en":"Hover a daily point to see date and rate","zh_key":"悬停每日拐点查看日期与有效率"},"txt_d60ea600fa":{"zh":"悬停每月拐点查看月份与有效率","en":"Hover a monthly point to see month and rate","zh_key":"悬停每月拐点查看月份与有效率"},"txt_e8f84a8e53":{"zh":"本月每天 · 有效硬币产出率","en":"Daily effective coin rate this month","zh_key":"本月每天 · 有效硬币产出率"},"txt_2b99b48a85":{"zh":"近 8 周 · 记录时长趋势","en":"Recorded-time trend · last 8 weeks","zh_key":"近 8 周 · 记录时长趋势"},"txt_7d786a9eb3":{"zh":"34 COINS · 本次更新","en":"34 COINS · Release notes","zh_key":"34 COINS · 本次更新"},"txt_0252924bc2":{"zh":"把“计划”和“实际”放在一起看","en":"View your plan and reality together","zh_key":"把“计划”和“实际”放在一起看"},"txt_1e7296a9c7":{"zh":"把有效时间转成你的“内部货币”","en":"Turn effective time into your “internal currency”","zh_key":"把有效时间转成你的“内部货币”"},"txt_62e713ebe0":{"zh":"本年度每月 · 有效硬币产出率","en":"Monthly effective coin rate this year","zh_key":"本年度每月 · 有效硬币产出率"},"txt_cd4255bfe5":{"zh":"精力 / 心流 Overlay","en":"Energy / flow overlay","zh_key":"精力 / 心流 Overlay"},"txt_e2338d2ef1":{"zh":"总结会按“周一所在周”自动保存。","en":"Summary is saved by Monday-based week.","zh_key":"总结会按“周一所在周”自动保存。"},"txt_3a68e3076c":{"zh":"1 个有效硬币 = 奖励金额（元）","en":"1 effective coin = reward amount (RMB)","zh_key":"1 个有效硬币 = 奖励金额（元）"},"txt_6b80c0de9b":{"zh":"34 Coins · 每日时间账本","en":"34 Coins · Daily time ledger","zh_key":"34 Coins · 每日时间账本"},"txt_184ff2825b":{"zh":"KEEP GOING · 继续向前","en":"KEEP GOING · Keep moving forward","zh_key":"KEEP GOING · 继续向前"},"txt_414f0a6606":{"zh":"Prime Time · 高能时段","en":"Prime Time · High-energy window","zh_key":"Prime Time · 高能时段"},"txt_d7230539cd":{"zh":"完成今天的一次签到，记录你的坚持。","en":"Check in once today to keep your streak going.","zh_key":"完成今天的一次签到，记录你的坚持。"},"txt_9981c309fe":{"zh":"把“完成有效时间”转成可消费的奖励","en":"Turn effective time into spendable rewards","zh_key":"把“完成有效时间”转成可消费的奖励"},"txt_fda8bfdf95":{"zh":"1 个有效硬币 = 娱乐时间（分钟）","en":"1 effective coin = leisure minutes","zh_key":"1 个有效硬币 = 娱乐时间（分钟）"},"txt_b0121fa47e":{"zh":"34 Coins · 时间记录与分析","en":"34 Coins · Time tracking & analytics","zh_key":"34 Coins · 时间记录与分析"},"txt_25cf91b159":{"zh":"Prime Time · 我的高能窗口","en":"Prime Time · My high-energy windows","zh_key":"Prime Time · 我的高能窗口"},"txt_d50434e4d0":{"zh":"每格代表一天，颜色面积代表当天时间结构","en":"Each cell is a day; color area shows that day’s time structure","zh_key":"每格代表一天，颜色面积代表当天时间结构"},"txt_484bdbfbe0":{"zh":"五年后的你，不会后悔今天认真努力的自己。","en":"Five years from now, you won’t regret the effort you made today.","zh_key":"五年后的你，不会后悔今天认真努力的自己。"},"txt_74ab94a446":{"zh":"34 Coins 是什么？｜3 步快速上手","en":"What is 34 Coins? | 3-step quick start","zh_key":"34 Coins 是什么？｜3 步快速上手"},"txt_7c75ea7a1e":{"zh":"Vulnerable Time · 拖延风险","en":"Vulnerable Time · procrastination risk","zh_key":"Vulnerable Time · 拖延风险"},"txt_28a9342b42":{"zh":"记录已经完成的目标，并回看完成时的真实效率。","en":"Record completed goals and review their real efficiency.","zh_key":"记录已经完成的目标，并回看完成时的真实效率。"},"txt_31c2062358":{"zh":"今天也向前走一步，未来会感谢现在认真生活的你。","en":"Take one step forward today; your future self will thank you.","zh_key":"今天也向前走一步，未来会感谢现在认真生活的你。"},"txt_f99861e288":{"zh":"坚持走好每一步，平凡的积累终会变成非凡的结果。","en":"Consistent small steps turn ordinary days into extraordinary results.","zh_key":"坚持走好每一步，平凡的积累终会变成非凡的结果。"},"txt_54a4019a54":{"zh":"每列 = 1 天；颜色面积 = 该天各类时间占比","en":"Each column = 1 day; color area = that day’s time share","zh_key":"每列 = 1 天；颜色面积 = 该天各类时间占比"},"txt_7d74ef8850":{"zh":"Vulnerable Time · 我的拖延重灾区","en":"Vulnerable Time · My high-risk windows","zh_key":"Vulnerable Time · 我的拖延重灾区"},"txt_cdb813804d":{"zh":"每格代表一个月；颜色面积 = 当月各类时间累计占比","en":"Each cell is a month; color area = that month’s time share","zh_key":"每格代表一个月；颜色面积 = 当月各类时间累计占比"},"txt_e2cb219db4":{"zh":"— 今天的每一枚 Coin，都是写给未来自己的答案。","en":"— Every coin today is an answer written to your future self.","zh_key":"— 今天的每一枚 Coin，都是写给未来自己的答案。"},"txt_e56783e3a0":{"zh":"可直接粘贴/输入，也可以按分类选择实物 Emoji。","en":"Paste/type directly, or choose a physical-item emoji by category.","zh_key":"可直接粘贴/输入，也可以按分类选择实物 Emoji。"},"txt_2366a987ee":{"zh":"把一天的时间变成可记录、可统计、可奖励的“时间硬币”。","en":"Turn a day into trackable, measurable, rewardable time coins.","zh_key":"把一天的时间变成可记录、可统计、可奖励的“时间硬币”。"},"txt_a33a0f2b15":{"zh":"统计会随着每天的填写自动更新 · 年度缩略图按月份累计","en":"Stats update as you log time · annual thumbnails accumulate by month","zh_key":"统计会随着每天的填写自动更新 · 年度缩略图按月份累计"},"txt_570f7f647b":{"zh":"💡 点击商品的 Emoji 可直接编辑；“×”用于删除商品。","en":"💡 Click a product emoji to edit; “×” deletes it.","zh_key":"💡 点击商品的 Emoji 可直接编辑；“×”用于删除商品。"},"txt_f79b63aa8c":{"zh":"基于过去 4 个完整周的历史记录，识别稳定的高能窗口与风险窗口。","en":"Uses the last 4 complete weeks to detect stable high-energy and risk windows.","zh_key":"基于过去 4 个完整周的历史记录，识别稳定的高能窗口与风险窗口。"},"txt_f5e1c493fb":{"zh":"用颜色区分五种时间：高效工作 / 学习、尽情娱乐、必要休息、强迫工作 / 学习和拖延浪费。","en":"Use five time categories: high-efficiency work/study, wholehearted leisure, necessary rest, forced work/study, and procrastination/waste.","zh_key":"用颜色区分五种时间：高效工作 / 学习、尽情娱乐、必要休息、强迫工作 / 学习和拖延浪费。"},"txt_f723ee4cae":{"zh":"任务数量可完全自定义，考研期间可以添加 5、10、20 个甚至更多任务。","en":"Add as many tasks as you like; 5, 10, 20 or more are supported.","zh_key":"任务数量可完全自定义，考研期间可以添加 5、10、20 个甚至更多任务。"},"txt_0980463564":{"zh":"每个时间块增加 1–3 级精力标记，可快速记录低能、正常与高光心流状态。","en":"Each time block supports a 1–3 energy level for low, normal, and flow states.","zh_key":"每个时间块增加 1–3 级精力标记，可快速记录低能、正常与高光心流状态。"},"txt_18d0727ccd":{"zh":"每格 = 30 分钟；按早晨、下午、晚间分组。点击时间格即可添加或编辑。","en":"Each cell = 30 minutes; grouped into morning, afternoon, and evening. Click a cell to add or edit.","zh_key":"每格 = 30 分钟；按早晨、下午、晚间分组。点击时间格即可添加或编辑。"},"txt_ae630f6e7e":{"zh":"☀️ DAILY MORNING BOOST · 香港时间 05:00 更新","en":"☀️ DAILY MORNING BOOST · Updated at 05:00 Hong Kong time","zh_key":"☀️ DAILY MORNING BOOST · 香港时间 05:00 更新"},"txt_e14aa89d97":{"zh":"高能窗口诊断同时参考有效产出率与精力评分，减少“坐在桌前但其实强撑”的误判。","en":"High-energy diagnosis considers both effective rate and energy to reduce false positives from “sitting at the desk but forcing it.”","zh_key":"高能窗口诊断同时参考有效产出率与精力评分，减少“坐在桌前但其实强撑”的误判。"},"txt_5cdaad37eb":{"zh":"Coin 商店只提供可以实际兑换的实物奖励；主题皮肤、头像框等虚拟奖励已移除。","en":"Coin shop includes physical rewards and recovery privileges; virtual skins and frames have been removed.","zh_key":"Coin 商店只提供可以实际兑换的实物奖励；主题皮肤、头像框等虚拟奖励已移除。"},"txt_d4130308e3":{"zh":"系统自动统计日、周、月的有效 Coins，并把时间投入转化成钱包、奖励和趋势。","en":"The system tracks effective coins by day, week, and month, then turns time into wallet, rewards, and trends.","zh_key":"系统自动统计日、周、月的有效 Coins，并把时间投入转化成钱包、奖励和趋势。"},"txt_a1acd3134c":{"zh":"可主动将某一天标记为恢复日，该日不进入拖延诊断，降低偶发低谷对长期记录的心理压力。","en":"Mark a day as a recovery day; it is excluded from procrastination diagnosis to reduce pressure from short-term dips.","zh_key":"可主动将某一天标记为恢复日，该日不进入拖延诊断，降低偶发低谷对长期记录的心理压力。"},"txt_65f5b66ce4":{"zh":"本次版本加入精力/心流记录与弹性恢复机制，让诊断更关注真实状态，而不只是记录数量。","en":"This release adds energy/flow tracking and resilient recovery so diagnosis focuses on real state, not just volume.","zh_key":"本次版本加入精力/心流记录与弹性恢复机制，让诊断更关注真实状态，而不只是记录数量。"},"txt_ed3a048424":{"zh":"检测到连续 3 天风险明显升高时，欢迎语与复盘页会切换为减负建议，而不是继续施压。","en":"After 3 consecutive high-risk days, the greeting and reflection page switch to relief suggestions instead of adding pressure.","zh_key":"检测到连续 3 天风险明显升高时，欢迎语与复盘页会切换为减负建议，而不是继续施压。"},"txt_da4de75aa8":{"zh":"可以添加多个目标，顶部会自动轮播；开始日期用于计算目标完成墙的持续天数与日均有效硬币产出率。","en":"Add multiple goals; the top rotates automatically. Start date powers completion-wall duration and daily effective-rate calculations.","zh_key":"可以添加多个目标，顶部会自动轮播；开始日期用于计算目标完成墙的持续天数与日均有效硬币产出率。"},"txt_0ef4d505eb":{"zh":"每枚 Coin 默认代表 30 分钟。连续做同一件事，可以合并成 1、2、3 小时的大时间块。","en":"Each coin represents 30 minutes by default. Consecutive identical work can be merged into 1, 2, or 3-hour blocks.","zh_key":"每枚 Coin 默认代表 30 分钟。连续做同一件事，可以合并成 1、2、3 小时的大时间块。"},"txt_489d9e70f3":{"zh":"默认按“30分钟硬币”计算，但奖励换算可以自行调整。奖励不是必须兑现成现金，也可以只兑换娱乐时间。","en":"Default: 30-minute coins. Reward conversion is adjustable; rewards can stay as leisure time instead of cash.","zh_key":"默认按“30分钟硬币”计算，但奖励换算可以自行调整。奖励不是必须兑现成现金，也可以只兑换娱乐时间。"},"txt_1175896ef6":{"zh":"最简单的开始方式：每天先安排任务，再记录实际做了什么；当天结束后看一次“今日概览”，每周再看“周度缩略图”。","en":"Easiest start: plan tasks first, then log what you actually did; review today’s overview at day end and the weekly thumbnail each week.","zh_key":"最简单的开始方式：每天先安排任务，再记录实际做了什么；当天结束后看一次“今日概览”，每周再看“周度缩略图”。"},"txt_ef72688921":{"zh":"例如：开始时间 08:00 + 持续 3 小时，只填写一次，系统会自动占用 08:00–11:00 的 6 个硬币。","en":"Example: start 08:00 + 3 hours uses 08:00–11:00 automatically, filling 6 coins.","zh_key":"例如：开始时间 08:00 + 持续 3 小时，只填写一次，系统会自动占用 08:00–11:00 的 6 个硬币。"},"txt_54ee5ecb0e":{"zh":"根据你给出的每周 ¥500 固定生活费，系统默认把 1 Coin 设为约 ¥2.10：34 Coins × 7 天 ≈ ¥500。","en":"Based on the weekly ¥500 fixed living cost you provided, 1 coin defaults to about ¥2.10: 34 coins × 7 days ≈ ¥500.","zh_key":"根据你给出的每周 ¥500 固定生活费，系统默认把 1 Coin 设为约 ¥2.10：34 Coins × 7 天 ≈ ¥500。"},"txt_6e49f6215a":{"zh":"📱 Android 也支持：Chrome / 常见现代浏览器可直接本地使用；以后还可以“添加到主屏幕”，像 App 一样打开。","en":"📱 Android supported: Chrome and modern browsers work locally; you can also add it to the home screen like an app.","zh_key":"📱 Android 也支持：Chrome / 常见现代浏览器可直接本地使用；以后还可以“添加到主屏幕”，像 App 一样打开。"},"txt_378901c612":{"zh":"今日时间概览","en":"Today’s time overview","zh_key":"今日时间概览"},"txt_2b7f0e4333":{"zh":"📚 学习","en":"📚 Study","zh_key":"📚 学习"},"txt_c69db4c40d":{"zh":"💼 工作/事业","en":"💼 Work / career","zh_key":"💼 工作/事业"},"txt_d73affc66c":{"zh":"🏃 健康","en":"🏃 Health","zh_key":"🏃 健康"},"txt_26604e039d":{"zh":"🏠 生活事务","en":"🏠 Life admin","zh_key":"🏠 生活事务"},"txt_c900a80c66":{"zh":"👥 社交","en":"👥 Social","zh_key":"👥 社交"},"txt_c429c937e0":{"zh":"🎮 娱乐","en":"🎮 Entertainment","zh_key":"🎮 娱乐"},"txt_6292f2b9c5":{"zh":"🎨 兴趣/个人成长","en":"🎨 Interests / growth","zh_key":"🎨 兴趣/个人成长"},"txt_791736a72f":{"zh":"🛒 购物/财务","en":"🛒 Shopping / finance","zh_key":"🛒 购物/财务"},"txt_e95353d8c8":{"zh":"🚇 出行","en":"🚇 Travel","zh_key":"🚇 出行"},"txt_aa9e5e9a3b":{"zh":"🧘 休息/恢复","en":"🧘 Rest / recovery","zh_key":"🧘 休息/恢复"},"txt_d71f1d6768":{"zh":"＋ 自定义","en":"+ Custom","zh_key":"＋ 自定义"},"txt_a7f814c0a4":{"zh":"编辑","en":"Edit","zh_key":"编辑"},"txt_3755f56f2f":{"zh":"删除","en":"Delete","zh_key":"删除"},"txt_25e74dceac":{"zh":"当前","en":"Current","zh_key":"当前"},"txt_df334e287b":{"zh":"设为当前","en":"Set current","zh_key":"设为当前"},"txt_a998a263a3":{"zh":"设为当前目标","en":"Set as current","zh_key":"设为当前目标"},"txt_3cea483afd":{"zh":"添加已完成目标","en":"Add completed goal","zh_key":"添加已完成目标"},"txt_d397fce55a":{"zh":"目标名称","en":"Goal name","zh_key":"目标名称"},"txt_5586ea7ac7":{"zh":"目标截止日期","en":"Goal deadline","zh_key":"目标截止日期"},"txt_bfcdd6c656":{"zh":"目标开始日期","en":"Goal start date","zh_key":"目标开始日期"},"txt_c01c7227e8":{"zh":"目标完成日期","en":"Goal completion date","zh_key":"目标完成日期"},"txt_1f29196891":{"zh":"开始日期","en":"Start date","zh_key":"开始日期"},"txt_9b3177f0b7":{"zh":"截止日期","en":"Deadline","zh_key":"截止日期"},"txt_02cb025ca3":{"zh":"完成日期","en":"Completion date","zh_key":"完成日期"},"txt_7edaa864ff":{"zh":"目标名称，例如：考研","en":"Goal name, e.g. exam prep","zh_key":"目标名称，例如：考研"},"txt_b0ac425530":{"zh":"目标名称，例如：雅思 7.5","en":"Goal name, e.g. IELTS 7.5","zh_key":"目标名称，例如：雅思 7.5"},"txt_0b5fbb71e3":{"zh":"实物奖励","en":"Physical reward","zh_key":"实物奖励"},"txt_a6fe6bdd9f":{"zh":"兑换","en":"Redeem","zh_key":"兑换"},"txt_12ab0e5f96":{"zh":"搜索商品名称或备注","en":"Search item name or notes","zh_key":"搜索商品名称或备注"},"txt_fa5849ab35":{"zh":"没有找到匹配的商品。","en":"No matching items.","zh_key":"没有找到匹配的商品。"},"txt_dae828fe4f":{"zh":"第","en":"Page","zh_key":"第"},"txt_73422182ab":{"zh":"页","en":"Page","zh_key":"页"},"txt_574cd4fb79":{"zh":"今日","en":"Today","zh_key":"今日"},"txt_e16e8248b1":{"zh":"本周","en":"This week","zh_key":"本周"},"txt_389f0007de":{"zh":"本月","en":"This month","zh_key":"本月"},"txt_25e591cc19":{"zh":"本周平均/天","en":"Weekly average / day","zh_key":"本周平均/天"},"txt_adcd8bda24":{"zh":"本月平均/天","en":"Monthly average / day","zh_key":"本月平均/天"},"txt_c02d697612":{"zh":"钱包","en":"Wallet","zh_key":"钱包"},"txt_51cc55073e":{"zh":"余额","en":"Balance","zh_key":"余额"},"txt_595ac22cfc":{"zh":"累计有效硬币","en":"Total effective coins","zh_key":"累计有效硬币"},"txt_68a5f6cc06":{"zh":"连续打卡奖励","en":"Check-in streak bonus","zh_key":"连续打卡奖励"},"txt_8100dd3e00":{"zh":"已兑换/消费","en":"Redeemed / spent","zh_key":"已兑换/消费"},"txt_0005b7de18":{"zh":"1 Coin = 人民币","en":"1 coin = RMB","zh_key":"1 Coin = 人民币"},"txt_a40bb42659":{"zh":"时间黑洞折损","en":"Time black-hole loss","zh_key":"时间黑洞折损"},"txt_c1505b0429":{"zh":"连续达标打卡","en":"Check-in streak","zh_key":"连续达标打卡"},"txt_bcc5dca840":{"zh":"里程碑奖励","en":"Milestone rewards","zh_key":"里程碑奖励"},"txt_6d2bfbc2b8":{"zh":"我的高能窗口","en":"My high-energy windows","zh_key":"我的高能窗口"},"txt_d0498a3216":{"zh":"我的拖延重灾区","en":"My high-risk windows","zh_key":"我的拖延重灾区"},"txt_425621629d":{"zh":"暂无稳定高能时段","en":"No stable high-energy window yet","zh_key":"暂无稳定高能时段"},"txt_fc2bebaa1d":{"zh":"暂无稳定风险时段","en":"No stable risk window yet","zh_key":"暂无稳定风险时段"},"txt_3cfc703841":{"zh":"系统诊断：当前历史样本不足，暂不预填。","en":"System diagnosis: not enough historical samples to prefill.","zh_key":"系统诊断：当前历史样本不足，暂不预填。"},"txt_99d96a401a":{"zh":"系统诊断：已根据过去 4 个完整周预填，内容可直接修改。","en":"System diagnosis: prefilled from the last 4 complete weeks; edit freely.","zh_key":"系统诊断：已根据过去 4 个完整周预填，内容可直接修改。"},"txt_c8a476234e":{"zh":"恢复日：今天不做拖延诊断，先恢复。","en":"Recovery day: no procrastination diagnosis today. Recover first.","zh_key":"恢复日：今天不做拖延诊断，先恢复。"},"txt_9f5a07a577":{"zh":"减负干预：最近连续 3 天风险升高，建议先恢复节奏。","en":"Relief mode: risk has risen for 3 consecutive days. Stabilize first.","zh_key":"减负干预：最近连续 3 天风险升高，建议先恢复节奏。"},"txt_0fed6781a5":{"zh":"🌿 今日是恢复日","en":"🌿 Today is a recovery day","zh_key":"🌿 今日是恢复日"},"txt_5f84ce7d23":{"zh":"今天不计入拖延诊断，先恢复体力与节奏。","en":"Today is excluded from procrastination diagnosis. Recover first.","zh_key":"今天不计入拖延诊断，先恢复体力与节奏。"},"txt_d44bd12b14":{"zh":"🫧 减负模式","en":"🫧 Relief mode","zh_key":"🫧 减负模式"},"txt_b9dab79c59":{"zh":"例如：396 数学真题","en":"e.g. 396 math problems","zh_key":"例如：396 数学真题"},"txt_2786371aaa":{"zh":"编辑时间块","en":"Edit time block","zh_key":"编辑时间块"},"txt_21d82d239c":{"zh":"低能","en":"Low","zh_key":"低能"},"txt_f78d037abc":{"zh":"正常","en":"Normal","zh_key":"正常"},"txt_1622f2ddd2":{"zh":"高光","en":"Flow","zh_key":"高光"},"txt_6e01538b7f":{"zh":"能量","en":"Energy","zh_key":"能量"},"txt_930c5e19ad":{"zh":"能量评分","en":"Energy score","zh_key":"能量评分"},"txt_376df657e6":{"zh":"趋势","en":"Trend","zh_key":"趋势"},"txt_bd2428b0ef":{"zh":"最近一周","en":"Latest week","zh_key":"最近一周"},"txt_c5134eb19c":{"zh":"建议","en":"Suggestion","zh_key":"建议"},"txt_affbf7c991":{"zh":"可消费的奖励","en":"Spendable rewards","zh_key":"可消费的奖励"},"txt_6087c5ee21":{"zh":"奖励金额（元）","en":"Reward amount (RMB)","zh_key":"奖励金额（元）"},"txt_1c7cb2c365":{"zh":"娱乐时间（分钟）","en":"Leisure time (minutes)","zh_key":"娱乐时间（分钟）"},"txt_fadf24dbc5":{"zh":"保存","en":"Save","zh_key":"保存"},"txt_6c14bd7f6f":{"zh":"关闭","en":"Close","zh_key":"关闭"},"txt_23bb68e0f5":{"zh":"已签到 ✓","en":"Checked in ✓","zh_key":"已签到 ✓"},"txt_9ed627bcf6":{"zh":"邮箱","en":"Email","zh_key":"邮箱"},"txt_699ec2aa39":{"zh":"密码（至少 6 位）","en":"Password (6+ characters)","zh_key":"密码（至少 6 位）"},"txt_c839a8ff17":{"zh":"密码","en":"Password","zh_key":"密码"},"txt_87c2be267c":{"zh":"切换语言","en":"Switch language","zh_key":"切换语言"},"txt_3d127c8d78":{"zh":"第 1 页","en":"Page 1","zh_key":"第 1 页"},"txt_dcfb419253":{"zh":"没有找到匹配的 Emoji，试试更换关键词。","en":"No matching emoji. Try another keyword.","zh_key":"没有找到匹配的 Emoji，试试更换关键词。"},"txt_b5f4827cae":{"zh":"按分类选择 Emoji","en":"Choose an emoji by category","zh_key":"按分类选择 Emoji"},"txt_71265fc4cb":{"zh":"最近使用","en":"Recent","zh_key":"最近使用"},"txt_778fc8f994":{"zh":"全部","en":"All","zh_key":"全部"},"txt_50783db68a":{"zh":"常用","en":"Common","zh_key":"常用"},"txt_fecd664062":{"zh":"表情","en":"Smileys","zh_key":"表情"},"txt_b755b68373":{"zh":"人物","en":"People","zh_key":"人物"},"txt_41ac3e62af":{"zh":"动物","en":"Animals","zh_key":"动物"},"txt_8183773155":{"zh":"食物","en":"Food","zh_key":"食物"},"txt_b2548636f0":{"zh":"活动","en":"Activities","zh_key":"活动"},"txt_578f5fe3dc":{"zh":"交通","en":"Travel","zh_key":"交通"},"txt_5c2475c0b4":{"zh":"物品","en":"Objects","zh_key":"物品"},"txt_e2cf6fbb19":{"zh":"符号","en":"Symbols","zh_key":"符号"},"txt_5cf448ac40":{"zh":"旗帜","en":"Flags","zh_key":"旗帜"},"txt_90fec09fdb":{"zh":"每格 = 30 分钟","en":"Each cell = 30 minutes","zh_key":"每格 = 30 分钟"},"txt_450505ac23":{"zh":"空白时间","en":"Unlogged time","zh_key":"空白时间"},"txt_1b93795b97":{"zh":"—","en":"—","zh_key":"—"},"txt_3b346faa12":{"zh":"尽情娱乐","en":"Wholehearted leisure","zh_key":"尽情娱乐"},"txt_995ef72aca":{"zh":"必要休息","en":"Necessary rest","zh_key":"必要休息"},"txt_600552cda3":{"zh":"全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。","en":"Core time with deep focus, high output, and growth value, such as intensive vocabulary study, problem solving, and report writing.","zh_key":"全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。"},"txt_e8051b01f7":{"zh":"高质量、无愧疚感的玩乐与放松，如朋友聚会、专心看一部好电影、健身运动。","en":"High-quality, guilt-free leisure and relaxation, such as meeting friends, focusing on a great movie, or exercising.","zh_key":"高质量、无愧疚感的玩乐与放松，如朋友聚会、专心看一部好电影、健身运动。"},"txt_206faa1234":{"zh":"维持身体机能的必要生理缓冲，如三餐吃饭、午休小憩、通勤放空。","en":"Necessary physiological buffers that maintain the body, such as meals, a short nap, or mentally unwinding during a commute.","zh_key":"维持身体机能的必要生理缓冲，如三餐吃饭、午休小憩、通勤放空。"},"txt_c9fdbb0c76":{"zh":"不得不做但个人主动性不高、专注度一般的事务，如机械性开会、被动应酬。","en":"Tasks you have to do with low personal agency and average focus, such as mechanical meetings or obligatory socializing.","zh_key":"不得不做但个人主动性不高、专注度一般的事务，如机械性开会、被动应酬。"},"txt_fa6c40c746":{"zh":"毫无价值、事后懊悔的虚度时间，如无目的刷短视频、拖延发呆。","en":"Time spent with little value that you regret afterward, such as purposeless short-video scrolling or procrastinating in a daze.","zh_key":"毫无价值、事后懊悔的虚度时间，如无目的刷短视频、拖延发呆。"},"undo":{"zh":"撤销","en":"Undo","zh_key":"撤销"},"today":{"zh":"今天","en":"Today","zh_key":"今天"},"backup_export":{"zh":"导出备份","en":"Export backup","zh_key":"导出备份"},"backup_import":{"zh":"导入备份","en":"Import backup","zh_key":"导入备份"},"time_flow":{"zh":"时间流","en":"Time flow","zh_key":"时间流"},"dashboard":{"zh":"数据看板","en":"Dashboard","zh_key":"数据看板"},"weekly":{"zh":"周度分析","en":"Weekly analysis","zh_key":"周度分析"},"monthly":{"zh":"月度分析","en":"Monthly analysis","zh_key":"月度分析"},"yearly":{"zh":"年度分析","en":"Yearly analysis","zh_key":"年度分析"},"trends":{"zh":"趋势分析","en":"Trend analysis","zh_key":"趋势分析"},"output_prompt":{"zh":"把今天的成果记录成一个数字","en":"Turn today’s result into a number","zh_key":"把今天的成果记录成一个数字"},"metric_name":{"zh":"指标名称","en":"Metric name","zh_key":"指标名称"},"unit":{"zh":"单位","en":"Unit","zh_key":"单位"},"delete":{"zh":"删除","en":"Delete","zh_key":"删除"},"no_numeric_output":{"zh":"暂无可分析的数值产出","en":"No numeric output metrics to analyze yet","zh_key":"暂无可分析的数值产出"},"data_accumulating":{"zh":"数据积累中","en":"Building data history","zh_key":"数据积累中"},"keep_logging":{"zh":"继续记录","en":"Keep logging","zh_key":"继续记录"},"min_20_data":{"zh":"至少 20 个同类数据点","en":"At least 20 comparable data points","zh_key":"至少 20 个同类数据点"},"trend_30_more_stable":{"zh":"达到 30 个后趋势会更稳健","en":"The trend becomes more stable after 30 points","zh_key":"达到 30 个后趋势会更稳健"},"correlation_window_note":{"zh":"按过去 90 天的非恢复日计算；Spearman 相关系数只表示关联，不代表因果。样本较少时仅作探索性参考。","en":"Based on non-recovery days over the past 90 days; Spearman measures association, not causation. Treat small samples as exploratory only.","zh_key":"按过去 90 天的非恢复日计算；Spearman 相关系数只表示关联，不代表因果。样本较少时仅作探索性参考。"},"no_stable_association":{"zh":"目前没有稳定关联","en":"No stable association yet","zh_key":"目前没有稳定关联"},"higher_input_higher_output":{"zh":"投入越多，产出通常越高","en":"Higher input is generally associated with higher output","zh_key":"投入越多，产出通常越高"},"higher_input_lower_output":{"zh":"投入越多，产出反而下降","en":"Higher input is associated with lower output","zh_key":"投入越多，产出反而下降"},"data_points":{"zh":"数据点","en":"Data points","zh_key":"数据点"},"low_input_avg":{"zh":"低投入日均值","en":"Low-input average","zh_key":"低投入日均值"},"high_input_avg":{"zh":"高投入日均值","en":"High-input average","zh_key":"高投入日均值"},"more_stable":{"zh":"较稳定","en":"More stable","zh_key":"较稳定"},"exploratory_trend":{"zh":"探索性趋势","en":"Exploratory trend","zh_key":"探索性趋势"},"no_causal_claim":{"zh":"不做因果结论","en":"No causal claim","zh_key":"不做因果结论"},"flow_combo":{"zh":"心流连击","en":"Flow combo","zh_key":"心流连击"}};
+Object.assign(I18N_SEMANTIC,{
+  header_subtitle:{zh:'06:00—23:00 · 34 个时间硬币 · 纯本地版 · 数据保存在当前浏览器',en:'06:00–23:00 · 34 time coins · Fully local · Data is stored in this browser',zh_key:'06:00—23:00 · 34 个时间硬币 · 纯本地版 · 数据保存在当前浏览器'},
+  quick_classify_desc:{zh:'每一枚 Coin 都按当时真实状态分类，不用“做了什么”替代“这段时间是什么质量”。',en:'Classify each Coin by the actual quality of that time—not just by what you did.',zh_key:'每一枚 Coin 都按当时真实状态分类，不用“做了什么”替代“这段时间是什么质量”。'},
+  category_guide_aria:{zh:'34 Coins 五种时间分类',en:'34 Coins: five time categories',zh_key:'34 Coins 五种时间分类'},
+  quick_tip:{zh:'使用方式：每天先安排任务，再记录实际做了什么；当天结束后看“今日概览”，每周看“周度缩略图”。',en:'How to use: Plan your tasks first, then record what you actually did. Review today’s overview at the end of the day and the weekly thumbnail each week.',zh_key:'使用方式：每天先安排任务，再记录实际做了什么；当天结束后看“今日概览”，每周看“周度缩略图”。'},
+  sync_hint:{zh:'💾 本地保存：每次修改都会保存到当前浏览器；重要数据建议定期导出备份。',en:'💾 Stored locally: Changes are saved in this browser. Export a backup regularly to protect important data.',zh_key:'💾 本地保存：每次修改都会保存到当前浏览器；重要数据建议定期导出备份。'}
+  ,stat_today:{zh:'今日有效硬币',en:'Today’s effective coins',zh_key:'今日有效硬币'}
+  ,stat_week:{zh:'本周有效硬币',en:'This week’s effective coins',zh_key:'本周有效硬币'}
+  ,stat_month:{zh:'本月有效硬币',en:'This month’s effective coins',zh_key:'本月有效硬币'}
+  ,stat_week_average:{zh:'本周日均有效硬币',en:'Weekly average effective coins / day',zh_key:'本周日均有效硬币'}
+  ,completed_goal_empty:{zh:'还没有完成目标。完成一个目标后，可以把它留在这里作为长期记录。',en:'No completed goals yet. When you complete a goal, save it here as a long-term record.',zh_key:'还没有完成目标。完成一个目标后，可以把它留在这里作为长期记录。'}
+  ,shop_edit_hint:{zh:'💡 自定义商品可点击 Emoji 编辑；“×”删除。',en:'💡 Click a custom item’s emoji to edit it; click “×” to delete it.',zh_key:'💡 自定义商品可点击 Emoji 编辑；“×”删除。'}
+  ,week_summary_placeholder:{zh:'写下本周做得好的地方、最大的时间黑洞、下周准备怎么调整……',en:'What went well this week? What was your biggest time sink, and what will you adjust next week?',zh_key:'写下本周做得好的地方、最大的时间黑洞、下周准备怎么调整……'}
+  ,emoji_paste_placeholder:{zh:'可直接粘贴 Emoji，例如 🥛 🍎 🎧',en:'Paste an emoji, e.g. 🥛 🍎 🎧',zh_key:'可直接粘贴 Emoji，例如 🥛 🍎 🎧'}
+  ,emoji_search_placeholder:{zh:'搜索 Emoji / 关键词，例如：牛奶、耳机、衣服',en:'Search emoji or keywords, e.g. milk, headphones, clothes',zh_key:'搜索 Emoji / 关键词，例如：牛奶、耳机、衣服'}
+  ,shop_item_name_placeholder:{zh:'例如：安佳牛奶 12L',en:'e.g. milk, 12 L',zh_key:'例如：安佳牛奶 12L'}
+  ,shop_item_note_placeholder:{zh:'可选',en:'Optional',zh_key:'可选'}
+  ,shop_search_aria:{zh:'搜索 Coin 商店商品',en:'Search Coin shop items',zh_key:'搜索 Coin 商店商品'}
+  ,month_summary_placeholder:{zh:'写下本月的主要成果、问题、规律，以及下个月最重要的改进……',en:'Note this month’s wins, challenges, patterns, and the most important improvement for next month…',zh_key:'写下本月的主要成果、问题、规律，以及下个月最重要的改进……'}
+  ,trend_summary_placeholder:{zh:'记录长期趋势：什么时候状态最好？哪类时间持续增加/减少？你准备采取什么措施？',en:'Reflect on longer-term patterns: When are you at your best? Which kinds of time are rising or falling, and what will you do about it?',zh_key:'记录长期趋势：什么时候状态最好？哪类时间持续增加/减少？你准备采取什么措施？'}
+  ,history_empty:{zh:'暂无兑换记录',en:'No redemption history yet',zh_key:'暂无兑换记录'}
+  ,review_win_placeholder:{zh:'今天真正完成了什么？',en:'What did you actually accomplish today?',zh_key:'今天真正完成了什么？'}
+  ,review_loss_placeholder:{zh:'哪段时间偏离计划？为什么？',en:'When did you drift from your plan, and why?',zh_key:'哪段时间偏离计划？为什么？'}
+  ,review_keep_placeholder:{zh:'值得继续保持的做法',en:'What worked well and is worth continuing?',zh_key:'值得继续保持的做法'}
+  ,review_stop_placeholder:{zh:'明天要主动避免什么？',en:'What will you intentionally avoid tomorrow?',zh_key:'明天要主动避免什么？'}
+  ,tomorrow_plan_placeholder:{zh:'明天的任务同样可以自定义数量。日期切换到明天后，它会自动成为当天计划。',en:'Add as many tasks as you need for tomorrow. When you switch to tomorrow, this list becomes that day’s plan.',zh_key:'明天的任务同样可以自定义数量。日期切换到明天后，它会自动成为当天计划。'}
+  ,task_title_placeholder:{zh:'任务名称，例如：396 数学基础',en:'Task name, e.g. calculus practice',zh_key:'任务名称，例如：396 数学基础'}
+  ,task_hours_placeholder:{zh:'计划时长',en:'Planned hours',zh_key:'计划时长'}
+  ,output_metrics_head:{zh:'关键数值产出',en:'Output metrics',zh_key:'关键数值产出'}
+  ,output_optional:{zh:'可选',en:'Optional',zh_key:'可选'}
+  ,output_metrics_subtitle:{zh:'把成果变成可比较的数据',en:'Turn results into comparable data',zh_key:'把成果变成可比较的数据'}
+  ,output_metrics_hint:{zh:'例如：396 刷题 25 题、背词 120 词、模拟考正确率 82%。',en:'Examples: solve 25 practice problems, memorize 120 words, or score 82% on a mock exam.',zh_key:'例如：396 刷题 25 题、背词 120 词、模拟考正确率 82%。'}
+  ,output_suggestion_problems:{zh:'刷题数',en:'Problems solved',zh_key:'刷题数'}
+  ,output_suggestion_words:{zh:'背词数',en:'Words memorized',zh_key:'背词数'}
+  ,output_suggestion_accuracy:{zh:'正确率',en:'Accuracy',zh_key:'正确率'}
+  ,output_add_metric:{zh:'＋ 添加指标',en:'+ Add metric',zh_key:'＋ 添加指标'}
+  ,redeemable_coins:{zh:'可兑换硬币',en:'Redeemable coins',zh_key:'可兑换硬币'}
+  ,leisure_hours:{zh:'娱乐时间（h）',en:'Leisure (h)',zh_key:'娱乐时间（h）'}
+  ,overview_cat_high:{zh:'高效工作 / 学习',en:'Deep work',zh_key:'高效工作 / 学习'}
+  ,overview_cat_leisure:{zh:'尽情娱乐',en:'Leisure',zh_key:'尽情娱乐'}
+  ,overview_cat_rest:{zh:'必要休息',en:'Rest',zh_key:'必要休息'}
+  ,overview_cat_forced:{zh:'强迫工作 / 学习',en:'Forced work',zh_key:'强迫工作 / 学习'}
+  ,overview_cat_waste:{zh:'拖延浪费',en:'Time waste',zh_key:'拖延浪费'}
+  ,diag_legend_prime:{zh:'Prime Time · 高能时段',en:'Prime Time · High-energy',zh_key:'Prime Time · 高能时段'}
+  ,diag_legend_risk:{zh:'Vulnerable Time · 拖延风险',en:'Vulnerable Time · At risk',zh_key:'Vulnerable Time · 拖延风险'}
+  ,diag_legend_normal:{zh:'普通',en:'Typical',zh_key:'普通'}
+  ,diag_legend_insufficient:{zh:'样本不足',en:'Insufficient data',zh_key:'样本不足'}
+});
+Object.assign(I18N_SEMANTIC,{
+  release_v178_title:{zh:'v178 更新说明',en:'v178 release notes',zh_key:'v178 更新说明'},
+  release_v178_intro:{zh:'v178：对齐商店商品价格，并修复英文辅助标签与无效日期校验。',en:'v178 aligns shop prices and fixes English accessibility labels and invalid-date validation.',zh_key:'v178：对齐商店商品价格，并修复英文辅助标签与无效日期校验。'},
+  release_goal_title:{zh:'目标管理',en:'Goal controls',zh_key:'目标管理'},
+  release_goal_body:{zh:'目标管理按钮与完成目标记录现在会正确跟随界面语言。',en:'Goal-management controls and completed-goal records now follow the selected language.',zh_key:'目标管理按钮与完成目标记录现在会正确跟随界面语言。'},
+  release_week_title:{zh:'时间块标签',en:'Time-block labels',zh_key:'时间块标签'},
+  release_week_body:{zh:'时间块、能量切换、删除操作和空时段的辅助说明现在会跟随界面语言。',en:'Accessible descriptions for time blocks, energy controls, delete actions, and empty slots now follow the selected language.',zh_key:'时间块、能量切换、删除操作和空时段的辅助说明现在会跟随界面语言。'},
+  release_accessibility_title:{zh:'图表提示',en:'Chart tooltips',zh_key:'图表提示'},
+  release_accessibility_body:{zh:'修复目标进度标签和周度、年度图表悬浮提示中的语言遗漏。',en:'Fixes missing localization in goal-progress labels and weekly/annual chart tooltips.',zh_key:'修复目标进度标签和周度、年度图表悬浮提示中的语言遗漏。'},
+  multi_tab_updated:{zh:'检测到其他标签页刚刚更新了数据。',en:'Another tab has just updated the data.',zh_key:'检测到其他标签页刚刚更新了数据。'},
+  multi_tab_no_overwrite:{zh:'当前页面有未同步改动时不会静默覆盖。',en:'Unsynced changes on this page will not be silently overwritten.',zh_key:'当前页面有未同步改动时不会静默覆盖。'},
+  multi_tab_export:{zh:'导出当前草稿',en:'Export this draft',zh_key:'导出当前草稿'},
+  multi_tab_reload:{zh:'载入最新数据',en:'Load latest data',zh_key:'载入最新数据'}
+});
 const I18N_ZH_TO_KEY=Object.create(null);
 for(const[key,entry] of Object.entries(I18N_SEMANTIC)){I18N_ZH_TO_KEY[entry.zh]=key;}
 function t(key){
@@ -7791,6 +7873,39 @@ function applySemanticLanguage(root=document){
       if(attrKey && I18N_SEMANTIC[attrKey])el.setAttribute(attr,currentLang==='en'?I18N_SEMANTIC[attrKey].en:I18N_SEMANTIC[attrKey].zh);
     }
   }
+}
+function applyStaticAccessibilityLanguage(){
+  const labels=[
+    ['#greetingAvatar','aria-label','34 Coins 个人徽章','34 Coins personal badge'],
+    ['.goalProgress','aria-label','目标进度','Goal progress'],
+    ['#goalDots','aria-label','目标轮播','Goal carousel'],
+    ['#editCountdownBtn','aria-label','目标管理','Goal management'],
+    ['#reviewLossSourceBtn','aria-label','引用今天的低效时间','Reference today’s low-efficiency time'],
+    ['.lunarPrevYear','aria-label','去年今日有效硬币','Effective coins on this day last year'],
+    ['.mainSegments','aria-label','主要模块','Main sections'],
+    ['.goalCompletionWall','aria-label','目标完成墙','Completed goals'],
+    ['#diagnosticHeatmap','aria-label','过去四周时段诊断热力图','Time-of-day diagnosis for the last four weeks'],
+    ['.analysisYearBar','aria-label','分析年份','Analysis year'],
+    ['#weekPeriodPager','aria-label','周度分析翻页','Weekly analysis navigation'],
+    ['#monthPeriodPager','aria-label','月度分析翻页','Monthly analysis navigation'],
+    ['#planPager','aria-label','今日计划翻页','Today’s plan navigation'],
+    ['#goalPager','aria-label','目标翻页','Goal navigation'],
+    ['#completedGoalsPager','aria-label','已完成目标翻页','Completed goal navigation'],
+    ['.siteFooter','aria-label','版本与设计信息','Version and design information']
+  ];
+  for(const[selector,attr,zh,en]of labels){const el=document.querySelector(selector);if(el)el.setAttribute(attr,currentLang==='en'?en:zh);}
+  const goalManagerButton=document.getElementById('editCountdownBtn');
+  if(goalManagerButton)goalManagerButton.title=currentLang==='en'?'Goal management':'目标管理';
+  const buttonLabels=[
+    ['#analysisPrevYear','上一年','Previous year'],['#analysisNextYear','下一年','Next year'],
+    ['#weekPrevBtn','上一周','Previous week'],['#weekNextBtn','下一周','Next week'],
+    ['#monthPrevBtn','上个月','Previous month'],['#monthNextBtn','下个月','Next month']
+  ];
+  for(const[selector,zh,en]of buttonLabels){const el=document.querySelector(selector);if(el){el.setAttribute('aria-label',currentLang==='en'?en:zh);if(el.hasAttribute('title'))el.title=currentLang==='en'?en:zh;}}
+  const languageToggle=document.getElementById('languageToggle');
+  if(languageToggle)languageToggle.setAttribute('aria-label',currentLang==='en'?'Switch language':'切换语言');
+  const undo=document.getElementById('undoBtn');
+  if(undo)undo.title=currentLang==='en'?'Undo the previous data change (⌘/Ctrl+Z)':'撤销上一项数据操作（⌘/Ctrl+Z）';
 }
 function annotateI18nSubtree(root){
   if(!root||root.nodeType===3)return;
@@ -7825,14 +7940,32 @@ function seedSemanticI18n(){
   ];
   for(const[selector,key] of map)document.querySelectorAll(selector).forEach(el=>{el.setAttribute('data-i18n-key',key);el.setAttribute('data-i18n-text','1');});
 }
+function syncGoalDateHint(input){
+  const field=input?.closest('.goalDateField');
+  if(!field)return;
+  const hasValue=!!input.value;
+  field.classList.toggle('hasValue',hasValue);
+  input.dataset.dateEmpty=hasValue?'false':'true';
+}
 function applyLanguage(){
   document.documentElement.lang=currentLang==='en'?'en':'zh-CN';
+  const dateControlLang=currentLang==='en'?'en':'zh-CN';
+  document.querySelectorAll('input[type="date"]').forEach(input=>{input.lang=dateControlLang;});
+  document.querySelectorAll('.goalDateField').forEach(field=>{
+    const input=field.querySelector('input[type="date"]'),hint=field.querySelector('.goalDatePlaceholder');
+    if(!input||!hint)return;
+    hint.textContent=currentLang==='en'?'YYYY-MM-DD':'年 / 月 / 日';
+    if(!input.dataset.goalDateHintBound){const sync=()=>syncGoalDateHint(input);input.addEventListener('input',sync);input.addEventListener('change',sync);input.dataset.goalDateHintBound='1';}
+    syncGoalDateHint(input);
+  });
   document.title=currentLang==='en'?'34 Coins · Time Tracking & Analytics':'34 Coins · 时间记录与分析';
   seedSemanticI18n();
   applySemanticLanguage(document);
+  applyStaticAccessibilityLanguage();
   const toggle=document.getElementById('languageToggle');
   if(toggle){toggle.setAttribute('aria-pressed',currentLang==='en'?'true':'false');toggle.title=currentLang==='en'?'Switch to Chinese':'Switch to English';}
   try{translateDynamicText(document.body);}catch(e){recordRuntimeError('i18n-dynamic',e)}
+  updateUndoUI();
 }
 
 function initLanguageToggle(){
@@ -7845,13 +7978,27 @@ function initLanguageToggle(){
       try{updateRecoveryToggle();}catch(e){recordRuntimeError('i18n.recoveryToggle',e)}
       try{renderCountdown();}catch(e){recordRuntimeError('i18n.countdown',e)}
       applyLanguage();
+      try{render();}catch(e){recordRuntimeError('i18n.render',e)}
+      try{if(document.getElementById('countdownModal')?.classList.contains('show')){renderGoalList();renderCompletedGoals();}}catch(e){recordRuntimeError('i18n.goalManager',e)}
       try{renderLunar();}catch(e){recordRuntimeError('i18n.renderLunar',e)}
+      try{
+        if(document.getElementById('activityModal')?.classList.contains('show')){
+          const start=document.getElementById('activityStart'),color=document.getElementById('activityColor');
+          const startValue=start?.value,colorValue=color?.value;
+          buildActivitySelectors();
+          if(start&&startValue!==undefined)start.value=startValue;
+          if(color&&colorValue!==undefined)color.value=colorValue;
+          renderDurationButtons();renderActivityEnergyButtons();renderActivityPlanQuickFill();
+        }
+        if(document.getElementById('shopModal')?.classList.contains('show')){renderEmojiCategories();renderEmojiPalette();}
+      }catch(e){recordRuntimeError('i18n.openModal',e)}
     });
     btn.dataset.bound='1';
   }
   try{updateRecoveryToggle();}catch(e){recordRuntimeError('silent-catch',e)}
   annotateI18nSubtree(document.body);
   applyLanguage();
+  try{render();}catch(e){recordRuntimeError('i18n.initialRender',e)}
   try{renderLunar();}catch(e){recordRuntimeError('i18n.renderLunar',e)}
   if(!window.__34coinsI18nObserver && document.body){
     let queued=false;
@@ -7910,6 +8057,7 @@ function translateDynamicText(root){
   }
 }
 Object.assign(I18N,{'🌊 心流连击奖励':'🌊 Flow combo bonus','心流连击':'Flow combo','关键数值产出':'Output metrics','可选':'Optional','把成果变成可比较的数据':'Turn results into comparable data','刷题数':'Problems solved','背诵单词数':'Words memorized','背词数':'Words memorized','正确率':'Accuracy','题':'questions','词':'words','指标名称':'Metric name','单位':'Unit','投入 × 产出关联':'Input × output relationship','按同一指标比较每日有效投入与实际成果；数据越多，结论越稳定。':'Compare effective input with actual output for the same metric; more data makes the signal more stable.','相关 ≠ 因果':'Correlation ≠ causation','数据积累中':'Building data history','早期趋势':'Early trend','较稳定':'More stable','数据点':'Data points','继续记录':'Keep logging','目前没有稳定关联':'No stable association yet','暂无可分析的数值产出':'No numeric output metrics to analyze yet','投入越多，产出通常越高':'More input is generally associated with higher output','投入越多，产出反而下降':'Higher input is associated with lower output','不做因果结论':'No causal claim is made','低投入日均值':'Low-input avg.','高投入日均值':'High-input avg.','关联系数':'Association coefficient','添加指标':'+ Add metric','把今天的成果记录成一个数字':'Record today’s result as a number','至少 14 个同类数据点':'at least 14 comparable points','达到 30 个后趋势会更稳健':'the trend becomes more robust after 30 points','按过去 90 天的非恢复日计算；相关系数只表示关联，不代表因果。':'Based on non-recovery days in the last 90 days; correlation does not imply causation.','更稳定':'More stable'});
+Object.assign(I18N,{'高效工作 / 学习':'High-efficiency work / study','尽情娱乐':'Wholehearted leisure','必要休息':'Necessary rest','强迫工作 / 学习':'Forced work / study','拖延浪费':'Procrastination / waste','本周有效硬币':'This week’s effective coins','本月有效硬币':'This month’s effective coins','今日有效硬币':'Today’s effective coins','本周日均有效硬币':'Weekly average effective coins / day','最近兑换':'Recent redemptions','暂无兑换记录':'No redemption history yet','💡 自定义商品可点击 Emoji 编辑；“×”删除。':'💡 Click a custom item’s emoji to edit it; click “×” to delete it.','还没有完成目标。完成一个目标后，可以把它留在这里作为长期记录。':'No completed goals yet. When you complete a goal, save it here as a long-term record.','今日':'Today','本周':'This week','本月':'This month','本周平均/天':'Weekly average / day','本月平均/天':'Monthly average / day'});
 
 const COLORS = [
   {key:'c1',name:'高效工作 / 学习',var:'--c1',desc:'全神贯注、产出高、具成长价值的核心时间，如深度背单词、刷题、写报告。'},
@@ -8137,8 +8285,8 @@ function flushBeforePageLeave(){void persistLocalNow();}
 __34coinsLifecycle.add(window,'visibilitychange',()=>{if(document.visibilityState==='hidden')flushBeforePageLeave();});
 __34coinsLifecycle.add(window,'pagehide',flushBeforePageLeave);__34coinsLifecycle.add(window,'freeze',flushBeforePageLeave);
 function saveDB(options={}){try{const active=document.activeElement,editing=!!active&&active.matches?.('input, textarea, select, [contenteditable="true"]');if(options.recordUndo!==false&&!editing&&!undoInProgress&&lastSavedSnapshot){const current=captureUndoSnapshot();if(stableHash(lastSavedSnapshot)!==stableHash(current)){undoStack.push(cloneState(lastSavedSnapshot));if(undoStack.length>UNDO_LIMIT)undoStack.shift();}}if(options.markDirty!==false)markLocalDirty();dataRevision++;invalidateAnalysisCache();if(!editing||options.forceUndoSnapshot===true)lastSavedSnapshot=captureUndoSnapshot();scheduleLocalPersist();updateUndoUI();}catch(e){store.lastPersistError=e;emitStorageWarning('save-schedule-failed','本地保存调度失败；当前改动仍在页面内，请立即导出备份。');window.showToast?.('⚠️ 保存调度异常，请立即导出备份。');}}
-function updateUndoUI(){const btn=document.getElementById('undoBtn');if(btn){btn.disabled=undoStack.length===0;btn.title=undoStack.length?`撤销上一项数据操作（⌘/Ctrl+Z），还可撤销 ${undoStack.length} 次`:'暂无可撤销操作';}}
-function performUndo(){if(!undoStack.length)return;const snapshot=undoStack.pop();undoInProgress=true;try{restoreUndoSnapshot(snapshot);dataRevision++;invalidateAnalysisCache();markLocalDirty();lastSavedSnapshot=captureUndoSnapshot();scheduleLocalPersist();render();updateUndoUI();window.showToast?.(`↶ 已撤销上一项数据操作${undoStack.length?`，还可继续撤销 ${undoStack.length} 次`:''}`);}catch(e){store.lastPersistError=e;undoStack.push(snapshot);emitStorageWarning('undo-failed','撤销失败，当前数据未改变。');window.showToast?.('⚠️ 撤销失败');}finally{undoInProgress=false;}}
+function updateUndoUI(){const btn=document.getElementById('undoBtn');if(btn){btn.disabled=undoStack.length===0;btn.title=currentLang==='en'?(undoStack.length?`Undo the previous data change (⌘/Ctrl+Z); ${undoStack.length} undo${undoStack.length===1?'':'s'} remaining`:'Nothing to undo'):(undoStack.length?`撤销上一项数据操作（⌘/Ctrl+Z），还可撤销 ${undoStack.length} 次`:'暂无可撤销操作');}}
+function performUndo(){if(!undoStack.length)return;const snapshot=undoStack.pop();undoInProgress=true;try{restoreUndoSnapshot(snapshot);dataRevision++;invalidateAnalysisCache();markLocalDirty();lastSavedSnapshot=captureUndoSnapshot();scheduleLocalPersist();render();updateUndoUI();window.showToast?.(currentLang==='en'?`↶ Undid the previous data change${undoStack.length?`; ${undoStack.length} undo${undoStack.length===1?'':'s'} remaining`:''}`:`↶ 已撤销上一项数据操作${undoStack.length?`，还可继续撤销 ${undoStack.length} 次`:''}`);}catch(e){store.lastPersistError=e;undoStack.push(snapshot);emitStorageWarning('undo-failed','撤销失败，当前数据未改变。');window.showToast?.(currentLang==='en'?'⚠️ Undo failed':'⚠️ 撤销失败');}finally{undoInProgress=false;}}
 function signedInOn(key){return !!(db.checkIns && db.checkIns[String(key)]);}
 function recordCheckIn(key=hongKongCheckInDayKey()){
   if(!db.checkIns)db.checkIns={};
@@ -8163,20 +8311,25 @@ function renderCheckinYearProgress(){
     const checked=signedInOn(dayKey);
     if(checked)count++;
     const cls='checkinDaySegment'+(checked?' checked':'')+(dayKey===hkKey?' today':'');
-    const title=`${dayKey}${checked?' · 已签到':' · 未签到'}`;
+    const title=currentLang==='en'?`${dayKey} · ${checked?'Checked in':'Not checked in'}`:`${dayKey}${checked?' · 已签到':' · 未签到'}`;
     segs.push(`<span class="${cls}" title="${title}" aria-label="${title}"></span>`);
   }
   const pct=Math.round(count/total*100);
+  const title=currentLang==='en'?`📅 ${year} check-ins`:`📅 ${year} 年签到进度`;
+  const countLabel=currentLang==='en'?`${count} / ${total} days · ${pct}% · ${streak}-day streak`:`${count} / ${total} 天 · ${pct}% · 连续 ${streak} 天`;
+  const startLabel=currentLang==='en'?'Jan 1':'1月1日';
+  const endLabel=currentLang==='en'?'Dec 31':'12月31日';
+  const trackLabel=currentLang==='en'?`${year} check-ins: ${count} of ${total} days; current streak ${streak} days`:`${year} 年签到进度 ${count} / ${total} 天，连续 ${streak} 天`;
   el.innerHTML=`
     <div class="checkinYearHead">
       <span class="checkinYearTitleWrap">
-        <span class="checkinYearTitle">📅 ${year} 年签到进度</span>
-        <button type="button" class="checkinCalendarOpenBtn" id="checkinCalendarOpenBtn" aria-label="打开签到日历" title="打开签到日历">▦</button>
+        <span class="checkinYearTitle">${title}</span>
+        <button type="button" class="checkinCalendarOpenBtn" id="checkinCalendarOpenBtn" aria-label="${currentLang==='en'?'Open check-in calendar':'打开签到日历'}" title="${currentLang==='en'?'Open check-in calendar':'打开签到日历'}">▦</button>
       </span>
-      <span class="checkinYearCount">${count} / ${total} 天 · ${pct}% · 连续 ${streak} 天</span>
+      <span class="checkinYearCount">${countLabel}</span>
     </div>
-    <div class="checkinYearTrack" role="img" aria-label="${year} 年签到进度 ${count} / ${total} 天，连续 ${streak} 天">${segs.join('')}</div>
-    <div class="checkinYearMeta"><span>1月1日</span><span>12月31日</span></div>`;
+    <div class="checkinYearTrack" role="img" aria-label="${trackLabel}">${segs.join('')}</div>
+    <div class="checkinYearMeta"><span>${startLabel}</span><span>${endLabel}</span></div>`;
   const openBtn=document.getElementById('checkinCalendarOpenBtn');
   if(openBtn)openBtn.onclick=openMorningCheckinCalendar;
 }
@@ -8456,7 +8609,7 @@ function renderGoalDots(goals){
   goals.forEach(g=>{
     const dot=document.createElement('button');
     dot.type='button'; dot.className='goalDot'+(g.id===activeGoalId?' active':'');
-    dot.setAttribute('aria-label',`显示目标：${g.name}`);
+    dot.setAttribute('aria-label',currentLang==='en'?`Show goal: ${g.name}`:`显示目标：${g.name}`);
     dot.addEventListener('click',()=>setActiveGoal(g.id));
     wrap.appendChild(dot);
   });
@@ -8498,28 +8651,30 @@ function renderCountdown(){
   const goals=ensureGoals();
 
   if(!goal){
-    cd.textContent='—'; meta.textContent='尚未设置目标';
-    heroName.textContent='尚未设置'; heroDate.textContent='添加一个目标开始倒计时';
-    fill.style.width='0%'; label.textContent='目标进度 0%'; daysEl.textContent='—';
+    cd.textContent='—'; meta.textContent=currentLang==='en'?'No goal set':'尚未设置目标';
+    heroName.textContent=currentLang==='en'?'Not set':'尚未设置';
+    heroDate.textContent=currentLang==='en'?'Add a goal to start the countdown':'添加一个目标开始倒计时';
+    fill.style.width='0%'; label.textContent=currentLang==='en'?'Goal progress 0%':'目标进度 0%'; daysEl.textContent='—';
     renderGoalDots([]); clearInterval(goalCarouselTimer); return;
   }
   const days=daysUntil(goal.date,currentDate);
   if(days>0){cd.textContent=days;meta.textContent=`${goal.name} · ${goal.date}`;}
-  else if(days===0){cd.textContent='0';meta.textContent=`${goal.name} · 就是今天`;}
-  else{cd.textContent=Math.abs(days);meta.textContent=`${goal.name} · 已过 ${Math.abs(days)} 天`;}
+  else if(days===0){cd.textContent='0';meta.textContent=`${goal.name} · ${currentLang==='en'?'Today':'就是今天'}`;}
+  else{cd.textContent=Math.abs(days);meta.textContent=currentLang==='en'?`${goal.name} · ${Math.abs(days)} days past`:`${goal.name} · 已过 ${Math.abs(days)} 天`;}
   const startKey=goal.startDate||currentDate;
   const total=Math.max(1,daysUntil(goal.date,startKey));
   const elapsed=Math.max(0,Math.min(total,total-daysUntil(goal.date,currentDate)));
   const pct=goal.date===startKey ? (currentDate>=goal.date?100:0) : Math.round((elapsed/total)*100);
-  fill.style.width=`${pct}%`; label.textContent=`目标进度 ${pct}%`; daysEl.textContent=`已用 ${elapsed} / ${total} 天`;
+  fill.style.width=`${pct}%`; label.textContent=currentLang==='en'?`Goal progress ${pct}%`:`目标进度 ${pct}%`; daysEl.textContent=currentLang==='en'?`${elapsed} / ${total} days used`:`已用 ${elapsed} / ${total} 天`;
   heroName.textContent=goal.name;
-  heroDate.textContent=`${goal.date} · ${days>0?`还有 ${days} 天`:days===0?'就是今天':`已过 ${Math.abs(days)} 天`}`;
+  const dateStatus=currentLang==='en'?(days>0?`${days} days left`:days===0?'Today':`${Math.abs(days)} days past`):(days>0?`还有 ${days} 天`:days===0?'就是今天':`已过 ${Math.abs(days)} 天`);
+  heroDate.textContent=`${goal.date} · ${dateStatus}`;
   renderGoalDots(goals); scheduleGoalCarousel();
   const prevYear=document.getElementById('prevYearEffective');
   if(prevYear){
     const prevKey=sameDatePreviousYear(currentDate);
     prevYear.textContent=fmt(effectiveCoinsForDay(prevKey));
-    prevYear.title=`${prevKey} 有效硬币`;
+    prevYear.title=currentLang==='en'?`${prevKey} effective coins`:`${prevKey} 有效硬币`;
   }
 }
 function completedGoalStats(goal){
@@ -8560,23 +8715,23 @@ function renderCompletedGoals(){
   list.innerHTML=items.length?items.map(g=>{
     const stats=completedGoalStats(g);
     return `<div class="completedGoalItem" data-completed-goal="${escapeHtml(g.id)}">
-      <div class="completedGoalMain"><b>${escapeHtml(g.name)}</b><span>完成于 ${escapeHtml(g.completedDate)}</span></div>
-      <div class="completedGoalMetrics"><span><b>${stats.days}</b><small>持续天数</small></span><span><b>${stats.rate.toFixed(1)}%</b><small>日均有效率</small></span></div>
-      <button type="button" class="completedGoalDelete" data-delete-completed="${escapeHtml(g.id)}" aria-label="删除已完成目标">×</button>
+      <div class="completedGoalMain"><b>${escapeHtml(g.name)}</b><span>${currentLang==='en'?'Completed':'完成于'} ${escapeHtml(g.completedDate)}</span></div>
+      <div class="completedGoalMetrics"><span><b>${stats.days}</b><small>${currentLang==='en'?'Duration (days)':'持续天数'}</small></span><span><b>${stats.rate.toFixed(1)}%</b><small>${currentLang==='en'?'Daily average efficiency':'日均有效率'}</small></span></div>
+      <button type="button" class="completedGoalDelete" data-delete-completed="${escapeHtml(g.id)}" aria-label="${currentLang==='en'?'Delete completed goal':'删除已完成目标'}">×</button>
     </div>`;
-  }).join(''):'<div class="completedGoalEmpty">还没有完成目标。完成一个目标后，可以把它留在这里作为长期记录。</div>';
+  }).join(''):`<div class="completedGoalEmpty">${currentLang==='en'?'No completed goals yet. When you complete a goal, save it here as a long-term record.':'还没有完成目标。完成一个目标后，可以把它留在这里作为长期记录。'}</div>`;
   list.querySelectorAll('[data-delete-completed]').forEach(btn=>btn.addEventListener('click',()=>{
     const id=btn.dataset.deleteCompleted;
     const goal=ensureCompletedGoals().find(g=>g.id===id);
     if(!goal)return;
-    if(!confirm(`删除完成记录“${goal.name}”？`))return;
+    if(!confirm(currentLang==='en'?`Delete completed goal “${goal.name}”?`:`删除完成记录“${goal.name}”？`))return;
     db.settings.completedGoals=db.settings.completedGoals.filter(g=>g.id!==id);
     saveDB();
     renderCompletedGoals();
   }));
   if(!pager)return;
   if(pages<=1){pager.innerHTML='';return;}
-  pager.innerHTML=`<button type="button" class="completedPagerBtn" data-cg-prev ${completedGoalPage===1?'disabled':''}>‹</button><span>第 ${completedGoalPage} / ${pages} 页</span><button type="button" class="completedPagerBtn" data-cg-next ${completedGoalPage===pages?'disabled':''}>›</button>`;
+  pager.innerHTML=`<button type="button" class="completedPagerBtn" data-cg-prev aria-label="${currentLang==='en'?'Previous page':'上一页'}" ${completedGoalPage===1?'disabled':''}>‹</button><span>${currentLang==='en'?`Page ${completedGoalPage} of ${pages}`:`第 ${completedGoalPage} / ${pages} 页`}</span><button type="button" class="completedPagerBtn" data-cg-next aria-label="${currentLang==='en'?'Next page':'下一页'}" ${completedGoalPage===pages?'disabled':''}>›</button>`;
   pager.querySelector('[data-cg-prev]')?.addEventListener('click',()=>{if(completedGoalPage>1){completedGoalPage--;renderCompletedGoals()}});
   pager.querySelector('[data-cg-next]')?.addEventListener('click',()=>{if(completedGoalPage<pages){completedGoalPage++;renderCompletedGoals()}});
 }
@@ -8612,20 +8767,21 @@ function renderGoalList(){
   const start= (goalPage-1)*GOAL_PAGE_SIZE;
   const visible=goals.slice(start,start+GOAL_PAGE_SIZE);
   wrap.innerHTML='';
-  if(!goals.length){wrap.innerHTML='<div class="goalEmpty">还没有目标。用下面的表单添加第一个目标。</div>'; if(pager)pager.innerHTML=''; return;}
+  if(!goals.length){wrap.innerHTML=`<div class="goalEmpty">${currentLang==='en'?'No goals yet. Use the form below to add your first goal.':'还没有目标。用下面的表单添加第一个目标。'}</div>`; if(pager)pager.innerHTML=''; return;}
   visible.forEach(g=>{
     const row=document.createElement('div'); row.className='goalListItem'+(g.id===activeGoalId?' active':'');
-    row.innerHTML=`<div class="goalListFields"><input class="goalNameEdit" value="${escapeHtml(g.name)}" maxlength="30" aria-label="目标名称"><input class="goalStartEdit" type="date" value="${escapeHtml(g.startDate||currentDate)}" aria-label="目标开始日期" title="目标开始日期"><input class="goalDateEdit" type="date" value="${escapeHtml(g.date)}" aria-label="目标截止日期" title="截止日期"></div>`;
+    row.innerHTML=`<div class="goalListFields"><input class="goalNameEdit" value="${escapeHtml(g.name)}" maxlength="30" aria-label="${currentLang==='en'?'Goal name':'目标名称'}"><input class="goalStartEdit" type="date" value="${escapeHtml(g.startDate||currentDate)}" aria-label="${currentLang==='en'?'Goal start date':'目标开始日期'}" title="${currentLang==='en'?'Goal start date':'目标开始日期'}"><input class="goalDateEdit" type="date" value="${escapeHtml(g.date)}" aria-label="${currentLang==='en'?'Goal deadline':'目标截止日期'}" title="${currentLang==='en'?'Goal deadline':'截止日期'}"></div>`;
     const actions=document.createElement('div'); actions.className='goalListActions';
-    const setBtn=document.createElement('button'); setBtn.type='button'; setBtn.className='goalSetBtn'+(g.id===activeGoalId?' selected':''); setBtn.textContent=g.id===activeGoalId?'当前':'设为当前'; setBtn.onclick=()=>setActiveGoal(g.id,{persist:true});
-    const doneBtn=document.createElement('button'); doneBtn.type='button'; doneBtn.className='goalCompleteBtn'; doneBtn.textContent='完成'; doneBtn.onclick=()=>{
-      const doneDate=prompt('目标完成日期（YYYY-MM-DD）',currentDate);
-      if(!doneDate||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(doneDate))return;
-      if(doneDate < (g.startDate||currentDate)){alert('完成日期不能早于目标开始日期。');return;}
-      if(confirm(`将“${g.name}”记为已完成？\\n完成日期：${doneDate}`))completeGoalById(g.id,doneDate);
+    const setBtn=document.createElement('button'); setBtn.type='button'; setBtn.className='goalSetBtn'+(g.id===activeGoalId?' selected':''); setBtn.textContent=g.id===activeGoalId?(currentLang==='en'?'Current':'当前'):(currentLang==='en'?'Set current':'设为当前'); setBtn.onclick=()=>setActiveGoal(g.id,{persist:true});
+    const doneBtn=document.createElement('button'); doneBtn.type='button'; doneBtn.className='goalCompleteBtn'; doneBtn.textContent=currentLang==='en'?'Complete':'完成'; doneBtn.onclick=()=>{
+      const doneDate=prompt(currentLang==='en'?'Goal completion date (YYYY-MM-DD)':'目标完成日期（YYYY-MM-DD）',currentDate);
+      if(!doneDate)return;
+      if(!isValidDateKey(doneDate)){alert(currentLang==='en'?'Enter a valid calendar date in YYYY-MM-DD format.':'请输入有效日期，格式为 YYYY-MM-DD。');return;}
+      if(doneDate < (g.startDate||currentDate)){alert(currentLang==='en'?'The completion date cannot be before the goal start date.':'完成日期不能早于目标开始日期。');return;}
+      if(confirm(currentLang==='en'?`Mark “${g.name}” as completed?\\nCompletion date: ${doneDate}`:`将“${g.name}”记为已完成？\\n完成日期：${doneDate}`))completeGoalById(g.id,doneDate);
     };
-    const delBtn=document.createElement('button'); delBtn.type='button'; delBtn.className='goalDeleteBtn'; delBtn.textContent='删除'; delBtn.onclick=()=>{
-      if(!confirm(`删除目标“${g.name}”？`))return;
+    const delBtn=document.createElement('button'); delBtn.type='button'; delBtn.className='goalDeleteBtn'; delBtn.textContent=currentLang==='en'?'Delete':'删除'; delBtn.onclick=()=>{
+      if(!confirm(currentLang==='en'?`Delete goal “${g.name}”?`:`删除目标“${g.name}”？`))return;
       db.settings.goals=db.settings.goals.filter(x=>x.id!==g.id);
       if(activeGoalId===g.id) activeGoalId=db.settings.goals[0]?.id||'';
       db.settings.activeGoalId=activeGoalId;
@@ -8637,9 +8793,9 @@ function renderGoalList(){
     const nameInput=row.querySelector('.goalNameEdit'), startInput=row.querySelector('.goalStartEdit'), dateInput=row.querySelector('.goalDateEdit');
     const saveEdit=()=>{
       const target=db.settings.goals.find(x=>x.id===g.id); if(!target)return;
-      const nextName=nameInput.value.trim()||'目标', nextStart=startInput.value||currentDate, nextDate=dateInput.value;
+      const nextName=nameInput.value.trim()||(currentLang==='en'?'Goal':'目标'), nextStart=startInput.value||currentDate, nextDate=dateInput.value;
       if(!nextDate)return;
-      if(nextStart>nextDate){alert('开始日期不能晚于截止日期。'); startInput.value=target.startDate||currentDate; return;}
+      if(nextStart>nextDate){alert(currentLang==='en'?'The start date cannot be after the deadline.':'开始日期不能晚于截止日期。'); startInput.value=target.startDate||currentDate; return;}
       target.name=nextName; target.startDate=nextStart; target.date=nextDate;
       if(activeGoalId===g.id){db.settings.examName=target.name;db.settings.examDate=target.date;db.settings.examStartDate=target.startDate;}
       saveDB(); renderCountdown();
@@ -8650,7 +8806,7 @@ function renderGoalList(){
   if(pager){
     if(pages<=1){pager.innerHTML='';}
     else{
-      pager.innerHTML=`<button type="button" data-goal-prev ${goalPage===1?'disabled':''}>‹</button><span>第 ${goalPage} / ${pages} 页 · 共 ${goals.length} 个目标</span><button type="button" data-goal-next ${goalPage===pages?'disabled':''}>›</button>`;
+      pager.innerHTML=`<button type="button" data-goal-prev aria-label="${currentLang==='en'?'Previous page':'上一页'}" ${goalPage===1?'disabled':''}>‹</button><span>${currentLang==='en'?`Page ${goalPage} of ${pages} · ${goals.length} goals`:`第 ${goalPage} / ${pages} 页 · 共 ${goals.length} 个目标`}</span><button type="button" data-goal-next aria-label="${currentLang==='en'?'Next page':'下一页'}" ${goalPage===pages?'disabled':''}>›</button>`;
       pager.querySelector('[data-goal-prev]')?.addEventListener('click',()=>{if(goalPage>1){goalPage--;renderGoalList()}});
       pager.querySelector('[data-goal-next]')?.addEventListener('click',()=>{if(goalPage<pages){goalPage++;renderGoalList()}});
     }
@@ -8672,15 +8828,15 @@ function closeGoalManager(){
 document.getElementById('cancelCountdownBtn').onclick=closeGoalManager;
 document.getElementById('countdownModal').onclick=e=>{if(e.target.id==='countdownModal')closeGoalManager()};
 document.getElementById('addGoalBtn').onclick=()=>{
-  const name=document.getElementById('examNameInput').value.trim()||'目标';
+  const name=document.getElementById('examNameInput').value.trim()||(currentLang==='en'?'Goal':'目标');
   const start=document.getElementById('examStartInput').value||currentDate;
   const date=document.getElementById('examDateInput').value;
-  if(!date){alert('请选择目标截止日期。');return;}
-  if(start>date){alert('开始日期不能晚于截止日期。');return;}
+  if(!date){alert(currentLang==='en'?'Choose a goal deadline.':'请选择目标截止日期。');return;}
+  if(start>date){alert(currentLang==='en'?'The start date cannot be after the deadline.':'开始日期不能晚于截止日期。');return;}
   const goal={id:`goal-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,6)}`,name,date,startDate:start};
   ensureGoals().push(goal); activeGoalId=goal.id; safeLocalSet('34coins_active_goal',activeGoalId); db.settings.activeGoalId=activeGoalId;
   db.settings.examName=name; db.settings.examDate=date; db.settings.examStartDate=start;
-  saveDB(); document.getElementById('examNameInput').value=''; document.getElementById('examStartInput').value=''; document.getElementById('examDateInput').value=''; renderGoalList(); renderCountdown();
+  saveDB(); document.getElementById('examNameInput').value=''; document.getElementById('examStartInput').value=''; document.getElementById('examDateInput').value=''; syncGoalDateHint(document.getElementById('examStartInput')); syncGoalDateHint(document.getElementById('examDateInput')); renderGoalList(); renderCountdown();
 };
 
 __34coinsLifecycle.add(document.getElementById('showCompletedGoalAddBtn'),'click',()=>{
@@ -8688,15 +8844,17 @@ __34coinsLifecycle.add(document.getElementById('showCompletedGoalAddBtn'),'click
   if(form)form.hidden=!form.hidden;
 });
 __34coinsLifecycle.add(document.getElementById('addCompletedGoalBtn'),'click',()=>{
-  const name=document.getElementById('completedGoalNameInput').value.trim()||'已完成目标';
+  const name=document.getElementById('completedGoalNameInput').value.trim()||(currentLang==='en'?'Completed goal':'已完成目标');
   const start=document.getElementById('completedGoalStartInput').value||currentDate;
   const done=document.getElementById('completedGoalDateInput').value||currentDate;
-  if(start>done){alert('开始日期不能晚于完成日期。');return;}
+  if(start>done){alert(currentLang==='en'?'The start date cannot be after the completion date.':'开始日期不能晚于完成日期。');return;}
   ensureCompletedGoals().unshift({id:`completed-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,6)}`,name,startDate:start,completedDate:done});
   saveDB();
   document.getElementById('completedGoalNameInput').value='';
   document.getElementById('completedGoalStartInput').value='';
   document.getElementById('completedGoalDateInput').value='';
+  syncGoalDateHint(document.getElementById('completedGoalStartInput'));
+  syncGoalDateHint(document.getElementById('completedGoalDateInput'));
   document.getElementById('completedGoalAddForm').hidden=true;
   renderCompletedGoals();
 });
@@ -8713,6 +8871,12 @@ function chineseDayNumber(n){
   return '三十';
 }
 const lunarMemoryCache=new Map();
+function lunarEnglishLabel(date){
+  try{
+    const value=new Intl.DateTimeFormat('en-u-ca-chinese',{year:'numeric',month:'long',day:'numeric'}).format(date);
+    return /[\u3400-\u9fff]/.test(value)?'Lunar date unavailable':value;
+  }catch{return 'Lunar date unavailable';}
+}
 function renderLunar(){
   const el=document.getElementById('lunarDate'), meta=document.getElementById('lunarMeta');
   if(!el||!meta)return;
@@ -8725,8 +8889,9 @@ function renderLunar(){
     }catch(e){}
   }
   if(cached && cached.text && cached.meta){
-    el.textContent=currentLang==='en'?`Lunar · ${cached.text}`:cached.text;
-    meta.textContent=currentLang==='en'?`${new Intl.DateTimeFormat('en-US',{weekday:'long'}).format(dateObj(currentDate))} · Gregorian ${currentDate}`:cached.meta;
+    const d=dateObj(currentDate);
+    el.textContent=currentLang==='en'?`Lunar · ${lunarEnglishLabel(d)}`:cached.text;
+    meta.textContent=currentLang==='en'?`${new Intl.DateTimeFormat('en-US',{weekday:'long'}).format(d)} · Gregorian ${currentDate}`:cached.meta;
     return;
   }
   try{
@@ -8741,7 +8906,7 @@ function renderLunar(){
     const metaText=weekday+' · 公历 '+currentDate;
     cached={text,meta:metaText,savedAt:Date.now()};
     lunarMemoryCache.set(cacheKey,cached);
-    el.textContent=currentLang==='en'?`Lunar · ${text}`:text;
+    el.textContent=currentLang==='en'?`Lunar · ${lunarEnglishLabel(d)}`:text;
     meta.textContent=currentLang==='en'?`${new Intl.DateTimeFormat('en-US',{weekday:'long'}).format(d)} · Gregorian ${currentDate}`:metaText;
     try{safeLocalSet(cacheKey,JSON.stringify(cached));}catch(e){}
   }catch(e){
@@ -8856,7 +9021,7 @@ function render(){
 }
 function timeLabel(i){return formatTime(i).split('–')[0]}
 function slotCountForDuration(minutes){return Math.max(1,Math.min(SLOTS,Math.round(minutes/30)))}
-function durationText(count){const h=count*.5; return h<1?'30分钟':(h%1===0?`${h}小时`:`${h}小时`)}
+function durationText(count){const h=count*.5; if(currentLang==='en')return h<1?'30 min':`${h} hr`; return h<1?'30分钟':`${h}小时`;}
 function mergeAdjacentSameContent(day){
   // Intentionally disabled as an automatic render-time merge.
   // Time-block boundaries are user intent; only explicit “merge blocks” may
@@ -8895,9 +9060,9 @@ function getBlocks(day){
   return blocks;
 }
 function formatDurationOption(min){
-  if(min<60)return `${min}分钟`;
+  if(min<60)return currentLang==='en'?`${min} min`:`${min}分钟`;
   const h=min/60;
-  return Number.isInteger(h)?`${h}小时`:`${h}小时`;
+  return currentLang==='en'?`${h} hr`:`${h}小时`;
 }
 function buildActivitySelectors(){
   const start=document.getElementById('activityStart');
@@ -8908,7 +9073,7 @@ function buildActivitySelectors(){
   if(!quick)return;
   quick.innerHTML='';
   quick.setAttribute('role','radiogroup');
-  quick.setAttribute('aria-label','持续时间');
+  quick.setAttribute('aria-label',currentLang==='en'?'Duration':'持续时间');
   for(let min=30;min<=480;min+=30){
     const b=document.createElement('button');
     b.type='button';
@@ -8942,8 +9107,10 @@ function renderDurationButtons(focusSelected=false){
 function renderActivityEnergyButtons(){
   const wrap=document.getElementById('activityEnergyQuick');
   if(!wrap)return;
+  wrap.setAttribute('aria-label',currentLang==='en'?'Energy level':'精力等级');
   wrap.innerHTML='';
-  [['1','低能','恢复/强撑'],['2','正常','稳定'],['3','高光','心流/高专注']].forEach(([value,label,tip])=>{
+  const options=currentLang==='en'?[['1','Low','Recovery or pushing through'],['2','Normal','Steady'],['3','Flow','Flow or deep focus']]:[['1','低能','恢复/强撑'],['2','正常','稳定'],['3','高光','心流/高专注']];
+  options.forEach(([value,label,tip])=>{
     const b=document.createElement('button');
     b.type='button'; b.dataset.energy=value; b.textContent=label; b.title=tip;
     b.className='energyQuickBtn'+(Number(value)===activityEnergy?' active':'');
@@ -9131,9 +9298,9 @@ function renderDay(){
   list.innerHTML='';
 
   const groups=[
-    {name:'早晨',start:0,end:12,range:'06:00–12:00'},
-    {name:'下午',start:12,end:24,range:'12:00–18:00'},
-    {name:'晚间',start:24,end:34,range:'18:00–23:00'}
+    {name:currentLang==='en'?'Morning':'早晨',start:0,end:12,range:'06:00–12:00'},
+    {name:currentLang==='en'?'Afternoon':'下午',start:12,end:24,range:'12:00–18:00'},
+    {name:currentLang==='en'?'Evening':'晚间',start:24,end:34,range:'18:00–23:00'}
   ];
   const SLOT_WIDTH=80;
   const GRID_GAP=8;
@@ -9171,7 +9338,7 @@ function renderDay(){
 
     const stat=document.createElement('div');
     stat.className='coinMatrixGroupStat';
-    stat.textContent=`${fmt(recorded*.5)} 小时 · ${recorded}/${group.end-group.start} 硬币`;
+    stat.textContent=currentLang==='en'?`${fmt(recorded*.5)} h · ${recorded}/${group.end-group.start} coins`:`${fmt(recorded*.5)} 小时 · ${recorded}/${group.end-group.start} 硬币`;
     head.append(title,stat);
 
     const rail=document.createElement('div');
@@ -9221,10 +9388,12 @@ function renderDay(){
 
         if(block.filled){
           cell.style.setProperty('--block-rgb',blockColorRgb(block.color));
-          cell.setAttribute('aria-label',`${block.text||'未填写'}，${formatTime(startIndex)}${len>1?`，${durationText(len)}`:''}`);
-          cell.title=block.text||'未填写';
+          const description=block.text||(currentLang==='en'?'No description':'未填写');
+          const timeRange=`${formatTime(startIndex).split('–')[0]}–${formatTime(endIndex).split('–')[1]}`;
+          cell.setAttribute('aria-label',currentLang==='en'?`${description}, ${timeRange}, ${durationText(len)}`:`${description}，${timeRange}，${durationText(len)}`);
+          cell.title=block.text||(currentLang==='en'?'No description':'未填写');
         }else{
-          cell.setAttribute('aria-label',`添加 ${formatTime(startIndex)} 时间块`);
+          cell.setAttribute('aria-label',currentLang==='en'?`Add time block at ${formatTime(startIndex)}`:`添加 ${formatTime(startIndex)} 时间块`);
         }
 
         if(block.filled){
@@ -9234,13 +9403,13 @@ function renderDay(){
           const badge=document.createElement('span');
           badge.className='coinMatrixCoinBadge';
           badge.textContent=compact?'🪙':`🪙 ${len}`;
-          badge.setAttribute('aria-label',`${len} 个硬币`);
+          badge.setAttribute('aria-label',currentLang==='en'?`${len} coins`:`${len} 个硬币`);
           top.appendChild(badge);
 
           const text=document.createElement('div');
           text.className='coinMatrixText';
-          text.textContent=block.text||'未填写';
-          text.title=block.text||'未填写';
+          text.textContent=block.text||(currentLang==='en'?'No description':'未填写');
+          text.title=block.text||(currentLang==='en'?'No description':'未填写');
 
           if(compact){
             // 30-minute blocks use the same physical card height as larger blocks.
@@ -9261,7 +9430,7 @@ function renderDay(){
           const e=Math.max(1,Math.min(3,Number(block.energy)||2));
           energyMark.dataset.energy=String(e);
           energyMark.innerHTML=`<span class="energyBars" data-energy="${e}"><i></i><i></i><i></i></span>`;
-          energyMark.title=`精力 ${e}/3 · 点击切换`;
+          energyMark.title=currentLang==='en'?`Energy ${e}/3 · Click to change`:`精力 ${e}/3 · 点击切换`;
           energyMark.setAttribute('aria-label',energyMark.title);
           energyMark.onclick=(ev)=>{
             ev.stopPropagation();
@@ -9286,8 +9455,8 @@ function renderDay(){
           del.type='button';
           del.className='coinMatrixDelete';
           del.textContent='×';
-          del.title='删除这个时间块';
-          del.setAttribute('aria-label','删除这个时间块');
+          del.title=currentLang==='en'?'Delete this time block':'删除这个时间块';
+          del.setAttribute('aria-label',del.title);
           del.onclick=(ev)=>{
             ev.stopPropagation();
             for(let k=block.start;k<=block.end;k++){
@@ -9325,7 +9494,8 @@ function updateDayStats(){
   const day=getDay(currentDate).coins; const counts=[0,0,0,0,0], recorded=day.filter(isRecordedCoin).length;
   day.forEach(x=>{if(isRecordedCoin(x) && Number.isInteger(x.color)) counts[x.color]++});
   const stats=document.getElementById('stats');
-  stats.innerHTML=DISPLAY_COLORS.map(c=>{const i=COLORS.indexOf(c);return `<div class="stat"><b>${counts[i]*.5}h</b><span>${c.name}</span></div>`;}).join('');
+  const shortNames={'高效工作 / 学习':'Deep work','尽情娱乐':'Leisure','必要休息':'Rest','强迫工作 / 学习':'Forced work','拖延浪费':'Time waste'};
+  stats.innerHTML=DISPLAY_COLORS.map(c=>{const i=COLORS.indexOf(c),name=currentLang==='en'?(shortNames[c.name]||c.name):c.name;return `<div class="stat"><b>${counts[i]*.5}h</b><span>${name}</span></div>`;}).join('');
   const pct=Math.round(recorded/SLOTS*100);
   document.getElementById('ring').style.background=`conic-gradient(#5568d8 ${pct*3.6}deg,#edf0f5 0deg)`;
   document.getElementById('ringPct').textContent=pct+'%';
@@ -9361,10 +9531,13 @@ function renderBars(el, keys, compact=false, monthLabels=false){
   const max=Math.max(...vals,1);
   const isNarrow=globalThis.matchMedia?.('(max-width:760px)').matches===true;
   const BAR_MAX_HEIGHT=isNarrow?126:150;
+  const weekdayLabels=currentLang==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['日','一','二','三','四','五','六'];
+  const monthNames=currentLang==='en'?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:null;
   el.innerHTML=keys.map((k,i)=>{
-    const label=monthLabels?`${Number(k.slice(5,7))}月`:(compact?`${k.slice(8)}日`:['日','一','二','三','四','五','六'][dateObj(k).getDay()]);
+    const label=monthLabels?(currentLang==='en'?monthNames[Number(k.slice(5,7))-1]:`${Number(k.slice(5,7))}月`):(compact?(currentLang==='en'?`${Number(k.slice(8))}`:`${Number(k.slice(8))}日`):weekdayLabels[dateObj(k).getDay()]);
     const h=vals[i]/max*BAR_MAX_HEIGHT;
-    return `<button type="button" class="barcol isClickable thumbLink" data-bar-date="${k}" aria-label="打开 ${k}：${fmt(vals[i])} 小时有效时长">
+    const aria=currentLang==='en'?`Open ${k}: ${fmt(vals[i])} h effective time`:`打开 ${k}：${fmt(vals[i])} 小时有效时长`;
+    return `<button type="button" class="barcol isClickable thumbLink" data-bar-date="${k}" aria-label="${aria}">
       <div class="barStage">
         <div class="barval">${fmt(vals[i])}h</div>
         <div class="bar" style="height:${Math.max(3,h)}px"></div>
@@ -9392,7 +9565,7 @@ function jumpFromThumbnail(targetKey){
 function renderWeekThumbnail(keys){
   const grid=document.getElementById('weekThumb');
   const totals=document.getElementById('weekThumbTotals');
-  const labels=['日','一','二','三','四','五','六'];
+  const labels=currentLang==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['日','一','二','三','四','五','六'];
   const colorTotals=[0,0,0,0,0];
 
   const matrix=keys.map(k=>{
@@ -9410,16 +9583,16 @@ function renderWeekThumbnail(keys){
       CATEGORY_DISPLAY_ORDER.forEach(i=>{
         const pct=counts[i]/recorded*100;
         if(pct>0){
-          bar+=`<div class="weekSeg ${COLORS[i].key}" title="${COLORS[i].name} ${fmt(counts[i]*.5)}h" style="height:${pct}%"></div>`;
+          bar+=`<div class="weekSeg ${COLORS[i].key}" title="${tx(COLORS[i].name)} ${fmt(counts[i]*.5)}h" style="height:${pct}%"></div>`;
         }
       });
     }
 
     return `<div class="weekThumbDayCol">
-      <button type="button" class="weekThumbDay thumbLink" data-thumb-date="${k}" aria-label="打开 ${k}">
+      <button type="button" class="weekThumbDay thumbLink" data-thumb-date="${k}" aria-label="${currentLang==='en'?'Open':'打开'} ${k}">
         ${labels[dt.getDay()]}<br>${String(dt.getMonth()+1).padStart(2,'0')}/${String(dt.getDate()).padStart(2,'0')}
       </button>
-      <button type="button" class="weekThumbBar thumbLink" data-thumb-date="${k}" aria-label="打开 ${k}">
+      <button type="button" class="weekThumbBar thumbLink" data-thumb-date="${k}" aria-label="${currentLang==='en'?'Open':'打开'} ${k}">
         ${bar}
       </button>
     </div>`;
@@ -9454,7 +9627,7 @@ function renderMonthThumbnail(keys){
   const totals=document.getElementById('monthMiniTotals');
   if(!grid||!totals)return;
 
-  const weekdayNames=['一','二','三','四','五','六','日'];
+  const weekdayNames=currentLang==='en'?['Mon','Tue','Wed','Thu','Fri','Sat','Sun']:['一','二','三','四','五','六','日'];
   const firstKey=keys[0];
   const firstDayOffset=firstKey ? ((dateObj(firstKey).getDay()+6)%7) : 0; // Monday-first: Mon=0 ... Sun=6
 
@@ -9485,8 +9658,8 @@ function renderMonthThumbnail(keys){
 
     monthCells.push(`
       <div class="monthMiniDayCol">
-        <button type="button" class="monthMiniDate thumbLink" data-thumb-date="${k}" aria-label="打开 ${k}">${dt.getDate()}</button>
-        <button type="button" class="monthMiniBar thumbLink" data-thumb-date="${k}" aria-label="打开 ${k}">${bar}</button>
+        <button type="button" class="monthMiniDate thumbLink" data-thumb-date="${k}" aria-label="${currentLang==='en'?'Open':'打开'} ${k}">${dt.getDate()}</button>
+        <button type="button" class="monthMiniBar thumbLink" data-thumb-date="${k}" aria-label="${currentLang==='en'?'Open':'打开'} ${k}">${bar}</button>
       </div>`);
   });
 
@@ -9522,7 +9695,7 @@ function renderYearThumbnail(){
   if(!grid||!legend)return;
 
   const year=String(analysisYear);
-  const names=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  const names=currentLang==='en'?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
   const colorTotals=[0,0,0,0,0];
   let totalAll=0;
   let cells='';
@@ -9538,7 +9711,7 @@ function renderYearThumbnail(){
     totalAll+=total;
 
     const firstDay=`${mk}-01`;
-    cells+=`<button type="button" class="yearMini thumbLink" data-thumb-date="${firstDay}" aria-label="打开 ${mk}">
+    cells+=`<button type="button" class="yearMini thumbLink" data-thumb-date="${firstDay}" aria-label="${currentLang==='en'?'Open':'打开'} ${mk}">
       <div class="yearMiniLabel">${names[m-1]}</div>
       <div class="yearMiniBar">`;
     if(total===0){
@@ -9547,7 +9720,7 @@ function renderYearThumbnail(){
       CATEGORY_DISPLAY_ORDER.forEach(i=>{
         if(counts[i]>0){
           const pct=counts[i]/total*100;
-          cells+=`<div class="yearMiniSeg ${COLORS[i].key}" title="${COLORS[i].name} ${fmt(counts[i]*.5)}h" style="height:${pct}%"></div>`;
+          cells+=`<div class="yearMiniSeg ${COLORS[i].key}" title="${tx(COLORS[i].name)} ${fmt(counts[i]*.5)}h" style="height:${pct}%"></div>`;
         }
       });
     }
@@ -9592,6 +9765,7 @@ function renderRateLine(svgId, rates, labels, tooltipId){
   const svg=document.getElementById(svgId);
   const tooltip=document.getElementById(tooltipId);
   if(!svg)return;
+  svg.setAttribute('aria-label',currentLang==='en'?(svgId==='yearRateSvg'?'Monthly effective coin rate this year':'Daily effective coin rate this month'):(svgId==='yearRateSvg'?'本年度有效硬币产出率':'本月有效硬币产出率'));
   const W=1000,H=220,padL=20,padR=24,padT=18,padB=18;
   const n=Math.max(rates.length,1);
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
@@ -9625,7 +9799,7 @@ function renderRateLine(svgId, rates, labels, tooltipId){
     if(!tooltip||!points[idx])return;
     const p=points[idx];
     const label=labels?.[idx]||'';
-    tooltip.innerHTML=`<strong>${label}</strong><span>有效率 ${p[2].toFixed(1)}%</span>`;
+    tooltip.innerHTML=`<strong>${label}</strong><span>${currentLang==='en'?'Effective rate':'有效率'} ${p[2].toFixed(1)}%</span>`;
     tooltip.classList.add('show');
     const rect=svg.getBoundingClientRect();
     const x=(p[0]/W)*rect.width;
@@ -9649,14 +9823,15 @@ function renderRateLine(svgId, rates, labels, tooltipId){
 }
 function renderMonthRateChart(keys){
   const rates=keys.map(k=>effectiveCoinsForDay(k)/34*100);
-  const labels=keys.map(k=>{const [,m,d]=k.split('-');return `${Number(m)}月${Number(d)}日`;});
+  const labels=keys.map(k=>{const [,m,d]=k.split('-');return currentLang==='en'?`${Number(m)}/${Number(d)}`:`${Number(m)}月${Number(d)}日`;});
   renderRateLine('monthRateSvg',rates,labels,'monthRateTooltip');
 }
 function renderYearRateChart(){
   const year=String(analysisYear), rates=[], labels=[];
+  const englishMonths=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   for(let m=1;m<=12;m++){
     const mk=`${year}-${String(m).padStart(2,'0')}`, n=daysInMonth(mk+'-01');
-    labels.push(`${m}月`);
+    labels.push(currentLang==='en'?englishMonths[m-1]:`${m}月`);
     const eff=Array.from({length:n},(_,i)=>effectiveCoinsForDay(`${mk}-${String(i+1).padStart(2,'0')}`)).reduce((a,b)=>a+b,0);
     rates.push(eff/(n*34)*100);
   }
@@ -9686,7 +9861,8 @@ function renderYearAnalysis(){
   const tt=document.getElementById('yearTotalText');
   if(bd)renderBreakdown(bd,agg);
   if(tt){
-    tt.innerHTML=`<div class="row"><div>年度累计</div><div style="grid-column:2/4;color:#4d5667">${fmt(agg.hours)} 小时 · ${agg.recorded} 个时间硬币</div></div>
+    tt.innerHTML=currentLang==='en'?`<div class="row"><div>Year total</div><div style="grid-column:2/4;color:#4d5667">${fmt(agg.hours)} h · ${agg.recorded} time coins</div></div>
+      <div class="row"><div>Year</div><div style="grid-column:2/4;color:#4d5667">${year}</div></div>`:`<div class="row"><div>年度累计</div><div style="grid-column:2/4;color:#4d5667">${fmt(agg.hours)} 小时 · ${agg.recorded} 个时间硬币</div></div>
       <div class="row"><div>统计年份</div><div style="grid-column:2/4;color:#4d5667">${year}</div></div>`;
   }
 }
@@ -9767,7 +9943,7 @@ function diagnosticAllCells(){
   });
   return {cells,globalAvg,primeThreshold};
 }
-function diagnosticWeekdayName(i){return ['周一','周二','周三','周四','周五','周六','周日'][i]||'';}
+function diagnosticWeekdayName(i){return (currentLang==='en'?['Mon','Tue','Wed','Thu','Fri','Sat','Sun']:['周一','周二','周三','周四','周五','周六','周日'])[i]||'';}
 function diagnosticRangeLabel(weekday,startHour,endHour){
   const start=`${String(6+startHour).padStart(2,'0')}:00`;
   const end=`${String(6+endHour+1).padStart(2,'0')}:00`;
@@ -9807,9 +9983,13 @@ function renderDiagnosticHeatmap(diag){
       else if(c.isVulnerable)cls='vulnerable';
       else if(c.effectiveRate>=60)cls='strong';
       else if(c.riskRate>=40)cls='risk';
-      const title=c.insufficient
-        ? `${diagnosticRangeLabel(weekday,hour,hour)} · 历史样本不足（${c.samples} 次，需要至少 3 次）`
-        : `${diagnosticRangeLabel(weekday,hour,hour)} · 有效率 ${c.effectiveRate.toFixed(1)}% · 风险 ${c.riskRate.toFixed(1)}% · ${c.samples} 次样本`;
+      const title=currentLang==='en'
+        ? c.insufficient
+          ? `${diagnosticRangeLabel(weekday,hour,hour)} · Insufficient history (${c.samples} samples; 3 required)`
+          : `${diagnosticRangeLabel(weekday,hour,hour)} · Effective ${c.effectiveRate.toFixed(1)}% · Risk ${c.riskRate.toFixed(1)}% · ${c.samples} samples`
+        : c.insufficient
+          ? `${diagnosticRangeLabel(weekday,hour,hour)} · 历史样本不足（${c.samples} 次，需要至少 3 次）`
+          : `${diagnosticRangeLabel(weekday,hour,hour)} · 有效率 ${c.effectiveRate.toFixed(1)}% · 风险 ${c.riskRate.toFixed(1)}% · ${c.samples} 次样本`;
       html+=`<div class="diagCell ${cls}" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}"></div>`;
     }
   }
@@ -9822,9 +10002,11 @@ function renderDiagnosticSummaries(diag){
   const noteEl=document.getElementById('diagnosticSampleNote');
   const primes=diagnosticRuns(diag.cells,'isPrime').slice(0,4);
   const vulns=diagnosticRuns(diag.cells,'isVulnerable').slice(0,4);
-  if(primeEl)primeEl.innerHTML=primes.length?primes.map(r=>`<span class="diagChip prime">${diagnosticRangeLabel(r.weekday,r.startHour,r.endHour)}</span>`).join(''):'<span class="diagEmpty">暂无稳定高能时段</span>';
-  if(vulnEl)vulnEl.innerHTML=vulns.length?vulns.map(r=>`<span class="diagChip vulnerable">${diagnosticRangeLabel(r.weekday,r.startHour,r.endHour)}</span>`).join(''):'<span class="diagEmpty">暂无稳定风险时段</span>';
-  if(noteEl)noteEl.textContent=`统计窗口：过去 4 个完整周；恢复日不参与诊断；单个时段至少需要 3 次历史样本。Prime Time 同时参考有效率与精力评分。当前可诊断时段 ${diag.cells.filter(c=>!c.insufficient).length} / 119。`;
+  if(primeEl)primeEl.innerHTML=primes.length?primes.map(r=>`<span class="diagChip prime">${diagnosticRangeLabel(r.weekday,r.startHour,r.endHour)}</span>`).join(''):`<span class="diagEmpty">${currentLang==='en'?'No stable high-energy window yet':'暂无稳定高能时段'}</span>`;
+  if(vulnEl)vulnEl.innerHTML=vulns.length?vulns.map(r=>`<span class="diagChip vulnerable">${diagnosticRangeLabel(r.weekday,r.startHour,r.endHour)}</span>`).join(''):`<span class="diagEmpty">${currentLang==='en'?'No stable risk window yet':'暂无稳定风险时段'}</span>`;
+  if(noteEl)noteEl.textContent=currentLang==='en'
+    ? `Window: last 4 complete weeks; recovery days are excluded; each time slot needs at least 3 samples. Prime Time considers both effective-time rate and energy. Currently diagnosable slots: ${diag.cells.filter(c=>!c.insufficient).length} / 119.`
+    : `统计窗口：过去 4 个完整周；恢复日不参与诊断；单个时段至少需要 3 次历史样本。Prime Time 同时参考有效率与精力评分。当前可诊断时段 ${diag.cells.filter(c=>!c.insufficient).length} / 119。`;
 }
 function diagnosticTomorrowInsight(diag){
   const tomorrow=addDays(currentDate,1), dt=dateObj(tomorrow), weekday=(dt.getDay()+6)%7;
@@ -9846,8 +10028,13 @@ function diagnosticTomorrowInsight(diag){
       }
     }
   });
-  const names=[...counts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,2).map(([name,count])=>`${name}（${count}次）`);
+  const names=[...counts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,2).map(([name,count])=>currentLang==='en'?`${name} (${count}×)`:`${name}（${count}次）`);
   const range=diagnosticRangeLabel(weekday,top.hourIndex,endHour);
+  if(currentLang==='en'){
+    const detail=`Tomorrow is ${diagnosticWeekdayName(weekday)}. This ${range} window repeatedly showed high-risk entries over the last 4 weeks (about ${Math.round(top.riskRate)}% risk).`;
+    const common=names.length?`Common entries: ${names.join(', ')}.`:'This window was mostly left unrecorded.';
+    return `${detail} ${common} Choose your next task in advance to reduce aimless switching or procrastination.`;
+  }
   const detail=`明天是${diagnosticWeekdayName(weekday)}。历史 4 周中，${range} 连续出现高风险记录；风险占比约 ${Math.round(top.riskRate)}%。`;
   const common=names.length?`常见记录：${names.join('、')}。`:'该时段以空白记录为主。';
   return `${detail}${common}建议提前写好下一项任务，避免在该窗口无目的切换或拖延。`;
@@ -9888,7 +10075,9 @@ function consecutiveVulnerableDays(key=currentDate){
 function resilienceInterventionActive(key=currentDate){return consecutiveVulnerableDays(key)>=3;}
 function resilienceAdvice(key=currentDate){
   if(!resilienceInterventionActive(key))return null;
-  return '最近连续 3 天出现明显的高风险时段。明天先降低目标密度，只保留 1–2 件最重要的事，把恢复和稳定节奏放在完成量之前。';
+  return currentLang==='en'
+    ? 'Several high-risk periods have appeared for 3 days in a row. Reduce tomorrow’s load, keep only 1–2 essential tasks, and prioritize recovery and a steady pace over volume.'
+    : '最近连续 3 天出现明显的高风险时段。明天先降低目标密度，只保留 1–2 件最重要的事，把恢复和稳定节奏放在完成量之前。';
 }
 
 function seedDiagnosticStop(){
@@ -9928,8 +10117,8 @@ function renderDiagnostics(){
   const recovery=getDay(currentDate).recoveryDay===true;
   const advice=resilienceAdvice(currentDate);
   if(banner){
-    if(recovery){banner.hidden=false;banner.className='resilienceBanner recovery';banner.innerHTML='<b>🌿 今日是恢复日</b><span>今天不计入拖延诊断，先恢复体力与节奏。</span>';}
-    else if(advice){banner.hidden=false;banner.className='resilienceBanner intervention';banner.innerHTML=`<b>🫧 减负模式</b><span>${escapeHtml(advice)}</span>`;}
+    if(recovery){banner.hidden=false;banner.className='resilienceBanner recovery';banner.innerHTML=currentLang==='en'?'<b>🌿 Recovery day</b><span>Today is excluded from risk diagnosis. Focus on restoring your energy and pace.</span>':'<b>🌿 今日是恢复日</b><span>今天不计入拖延诊断，先恢复体力与节奏。</span>';}
+    else if(advice){banner.hidden=false;banner.className='resilienceBanner intervention';banner.innerHTML=`<b>🫧 ${currentLang==='en'?'Lighten the load':'减负模式'}</b><span>${escapeHtml(advice)}</span>`;}
     else{banner.hidden=true;banner.textContent='';}
   }
   seedDiagnosticStop();
@@ -9949,9 +10138,13 @@ function renderTrend(){
   points.forEach(([x,y],i)=>{html+=`<circle cx="${x}" cy="${y}" r="2.4" fill="#fff" stroke="#8a92a0" stroke-opacity=".52" stroke-width="1.4"/><text x="${x}" y="${H-14}" text-anchor="middle" font-size="10" fill="#a0a7b3">W${i+1}</text>`});
   svg.innerHTML=html;
   const first=vals[0], last=vals[vals.length-1], delta=last-first;
-  const trend = delta>1 ? `记录时长从 ${fmt(first)}h 上升到 ${fmt(last)}h，长期记录量呈上升趋势。` : delta<-1 ? `记录时长从 ${fmt(first)}h 降到 ${fmt(last)}h，最近记录量有所下降。` : `近 8 周记录时长整体比较稳定，首尾相差 ${fmt(Math.abs(delta))}h。`;
+  const trend=currentLang==='en'
+    ?(delta>1?`Recorded time rose from ${fmt(first)} h to ${fmt(last)} h over the last 8 weeks.`:delta<-1?`Recorded time fell from ${fmt(first)} h to ${fmt(last)} h over the last 8 weeks.`:`Recorded time was broadly stable over the last 8 weeks; the first-to-last difference was ${fmt(Math.abs(delta))} h.`)
+    :(delta>1?`记录时长从 ${fmt(first)}h 上升到 ${fmt(last)}h，长期记录量呈上升趋势。`:delta<-1?`记录时长从 ${fmt(first)}h 降到 ${fmt(last)}h，最近记录量有所下降。`:`近 8 周记录时长整体比较稳定，首尾相差 ${fmt(Math.abs(delta))}h。`);
   const agg=aggregate(getRangeKeys(starts[starts.length-1],addDays(starts[starts.length-1],6)));
-  document.getElementById('trendText').innerHTML=`<div class="row"><div>趋势</div><div style="grid-column:2/4;color:#4d5667">${trend}</div></div>
+  document.getElementById('trendText').innerHTML=currentLang==='en'?`<div class="row"><div>Trend</div><div style="grid-column:2/4;color:#4d5667">${trend}</div></div>
+  <div class="row"><div>Latest week</div><div style="grid-column:2/4;color:#4d5667">${fmt(agg.hours)} h recorded across ${agg.recorded} time coins</div></div>
+  <div class="row"><div>Suggestion</div><div style="grid-column:2/4;color:#4d5667">Watch changes over 2–3 consecutive weeks rather than reacting to a single day.</div></div>`:`<div class="row"><div>趋势</div><div style="grid-column:2/4;color:#4d5667">${trend}</div></div>
   <div class="row"><div>最近一周</div><div style="grid-column:2/4;color:#4d5667">${fmt(agg.hours)}h 被记录，共 ${agg.recorded} 个硬币</div></div>
   <div class="row"><div>建议</div><div style="grid-column:2/4;color:#4d5667">关注连续 2～3 周的变化，而不是单日波动。</div></div>`;
   const trendKey=`trend:${analysisYear}`; const ta=document.getElementById('trendSummary'); ta.value=db.summaries[trendKey]||''; ta.oninput=()=>{db.summaries[trendKey]=ta.value;saveDB();}
@@ -10038,19 +10231,20 @@ function renderTasks(){
     task.type=ensureCustomType(task.type);
     const row=document.createElement('div');row.className='planItem';
     const no=document.createElement('div');no.className='dragNo';no.textContent=i+1;
-    const title=document.createElement('input');title.placeholder='任务名称，例如：396 数学基础';title.value=task.title||'';
+    const title=document.createElement('input');title.placeholder=t('task_title_placeholder');title.value=task.title||'';
     const type=document.createElement('select');type.className='taskType';
     TASK_TYPES.forEach(([v,t])=>{const o=document.createElement('option');o.value=v;o.textContent=t;if(task.type===v)o.selected=true;type.appendChild(o)});
     if(task.type==='custom' && task.customType){
-      const o=document.createElement('option');o.value='custom';o.textContent='自定义：'+task.customType;o.selected=true;type.insertBefore(o,type.firstChild);
+      const o=document.createElement('option');o.value='custom';o.textContent=(currentLang==='en'?'Custom: ':'自定义：')+task.customType;o.selected=true;type.insertBefore(o,type.firstChild);
     }
     const hoursWrap=document.createElement('div');hoursWrap.className='taskHoursWrap';
-    const hours=document.createElement('input');hours.type='number';hours.min='0';hours.step='0.5';hours.placeholder='计划时长';hours.value=task.hours||'';hours.className='taskHoursInput';
-    const hoursUnit=document.createElement('span');hoursUnit.className='taskHoursUnit';hoursUnit.textContent='小时';
+    const hours=document.createElement('input');hours.type='number';hours.min='0';hours.step='0.5';hours.placeholder=t('task_hours_placeholder');hours.value=task.hours||'';hours.className='taskHoursInput';
+    const hoursUnit=document.createElement('span');hoursUnit.className='taskHoursUnit';hoursUnit.textContent=currentLang==='en'?'h':'小时';
     hoursWrap.append(hours,hoursUnit);
     const status=document.createElement('select');
-    [['pending','未开始'],['doing','进行中'],['done','已完成'],['partial','部分完成'],['defer','延期']].forEach(([v,t])=>{const o=document.createElement('option');o.value=v;o.textContent=t;if(task.status===v)o.selected=true;status.appendChild(o)});
-    const del=document.createElement('button');del.className='removeTask';del.textContent='×';del.title='删除任务';
+    const statusLabels=currentLang==='en'?{pending:'Not started',doing:'In progress',done:'Completed',partial:'Partially complete',defer:'Deferred'}:{pending:'未开始',doing:'进行中',done:'已完成',partial:'部分完成',defer:'延期'};
+    [['pending',statusLabels.pending],['doing',statusLabels.doing],['done',statusLabels.done],['partial',statusLabels.partial],['defer',statusLabels.defer]].forEach(([v,label])=>{const o=document.createElement('option');o.value=v;o.textContent=label;if(task.status===v)o.selected=true;status.appendChild(o)});
+    const del=document.createElement('button');del.className='removeTask';del.textContent='×';del.title=currentLang==='en'?'Delete task':'删除任务';del.setAttribute('aria-label',del.title);
     title.oninput=()=>{task.title=title.value;saveDB();updatePlanSummary();if(document.getElementById('activityModal')?.classList.contains('show'))renderActivityPlanQuickFill()};
     hours.oninput=()=>{task.hours=hours.value;saveDB();updatePlanSummary()};
     status.onchange=()=>{
@@ -10115,13 +10309,15 @@ function updatePlanSummary(){
   const planned=tasks.reduce((s,t)=>s+(parseFloat(t.hours)||0),0);
   const completion=total?Math.round((done+partial*.5)/total*100):0;
   const hoursDone=tasks.filter(t=>t.status==='done').reduce((s,t)=>s+(parseFloat(t.hours)||0),0);
+  const en=currentLang==='en',hoursUnit=en?'h':'小时';
+  const labels=en?['Tasks','Completion','Planned','Completed plan hours']:['任务总数','任务完成度','计划时长','已完成计划时长'];
   document.getElementById('planSummary').innerHTML=`
-    <div class="planStat"><b>${total}</b><span>任务总数</span></div>
-    <div class="planStat"><b>${completion}%</b><span>任务完成度</span></div>
-    <div class="planStat"><b>${fmt(planned)}<small class="metricUnit">小时</small></b><span>计划时长</span></div>
-    <div class="planStat"><b>${fmt(hoursDone)}<small class="metricUnit">小时</small></b><span>已完成计划时长</span></div>`;
+    <div class="planStat"><b>${total}</b><span>${labels[0]}</span></div>
+    <div class="planStat"><b>${completion}%</b><span>${labels[1]}</span></div>
+    <div class="planStat"><b>${fmt(planned)}<small class="metricUnit">${hoursUnit}</small></b><span>${labels[2]}</span></div>
+    <div class="planStat"><b>${fmt(hoursDone)}<small class="metricUnit">${hoursUnit}</small></b><span>${labels[3]}</span></div>`;
   const hint=document.getElementById('planHint');
-  hint.textContent=`已完成 ${done} · 部分完成 ${partial} · 延期 ${defer} · 可继续添加`;
+  hint.textContent=en?`${done} completed · ${partial} partial · ${defer} deferred · Add more as needed`:`已完成 ${done} · 部分完成 ${partial} · 延期 ${defer} · 可继续添加`;
 }
 function sortTasks(){
   const order={done:0,doing:1,partial:2,pending:3,defer:4};
@@ -10213,7 +10409,7 @@ function autoGrowTextarea(el){
   el.style.height=next+'px';
 }
 
-document.querySelectorAll('[data-output-example]').forEach(btn=>{if(btn.dataset.boundOutput==='1')return;btn.dataset.boundOutput='1';btn.onclick=()=>{const [label,value,unit]=(btn.dataset.outputExample||'').split('|');addOutputAnchor(label,value,unit);};});
+document.querySelectorAll('[data-output-example]').forEach(btn=>{if(btn.dataset.boundOutput==='1')return;btn.dataset.boundOutput='1';btn.onclick=()=>{const source=currentLang==='en'?(btn.dataset.outputExampleEn||btn.dataset.outputExample):(btn.dataset.outputExample||'');const [label,value,unit]=source.split('|');addOutputAnchor(label,value,unit);};});
 const addOutputAnchorBtn=document.getElementById('addOutputAnchorBtn');if(addOutputAnchorBtn&&!addOutputAnchorBtn.dataset.boundOutput){addOutputAnchorBtn.dataset.boundOutput='1';addOutputAnchorBtn.onclick=()=>addOutputAnchor();}
 
 const reviewLossSourceBtn=document.getElementById('reviewLossSourceBtn');
@@ -10286,15 +10482,17 @@ function renderRewards(){
   const monthEconomic=monthKeys.reduce((sum,key)=>sum+economicCoinsForDay(key),0);
   const dayAvg=wk.days?wk.coins/wk.days:0, monthAvg=mon.days?mon.coins/mon.days:0;
   document.getElementById('rewardKpis').innerHTML=`
-    <div class="rewardKpi"><b>${fmt(today)}</b><span>今日有效硬币</span></div>
-    <div class="rewardKpi"><b>${fmt(wk.coins)}</b><span>本周有效硬币</span></div>
-    <div class="rewardKpi"><b>${fmt(mon.coins)}</b><span>本月有效硬币</span></div>
-    <div class="rewardKpi"><b>${fmt(dayAvg)}</b><span>本周日均有效硬币</span></div>`;
+    <div class="rewardKpi"><b>${fmt(today)}</b><span>${currentLang==='en'?'Today’s effective coins':'今日有效硬币'}</span></div>
+    <div class="rewardKpi"><b>${fmt(wk.coins)}</b><span>${currentLang==='en'?'This week’s effective coins':'本周有效硬币'}</span></div>
+    <div class="rewardKpi"><b>${fmt(mon.coins)}</b><span>${currentLang==='en'?'This month’s effective coins':'本月有效硬币'}</span></div>
+    <div class="rewardKpi"><b>${fmt(dayAvg)}</b><span>${currentLang==='en'?'Weekly average effective coins / day':'本周日均有效硬币'}</span></div>`;
   const periods=[['今日',todayEconomic],['本周',wkEconomic],['本月',monthEconomic],['本周平均/天',wkEconomic/(wk.days||1)],['本月平均/天',monthEconomic/(mon.days||1)]];
   const comboToday=flowComboBonusForDay(currentDate);
   const comboWeek=wkKeys.reduce((sum,key)=>sum+flowComboBonusForDay(key),0);
   const comboBox=document.getElementById('flowComboRewardNote');
-  if(comboBox)comboBox.innerHTML=`🌊 <b>${t('flow_combo')}</b>：连续 ${FLOW_COMBO_MIN_SLOTS*30} 分钟以上深度工作进入 ${Number(db.settings.flowComboMultiplier||FLOW_COMBO_MULTIPLIER).toFixed(1)}× 奖励。今天 +${fmt(comboToday)} Coins，本周 +${fmt(comboWeek)} Coins。`;
+  if(comboBox)comboBox.innerHTML=currentLang==='en'
+    ? `🌊 <b>${t('flow_combo')}</b>: ${FLOW_COMBO_MIN_SLOTS*30}+ minutes of consecutive deep work earns ${Number(db.settings.flowComboMultiplier||FLOW_COMBO_MULTIPLIER).toFixed(1)}× rewards. Today: +${fmt(comboToday)} Coins · This week: +${fmt(comboWeek)} Coins.`
+    : `🌊 <b>${t('flow_combo')}</b>：连续 ${FLOW_COMBO_MIN_SLOTS*30} 分钟以上深度工作进入 ${Number(db.settings.flowComboMultiplier||FLOW_COMBO_MULTIPLIER).toFixed(1)}× 奖励。今天 +${fmt(comboToday)} Coins，本周 +${fmt(comboWeek)} Coins。`;
 
   document.getElementById('rewardRows').innerHTML=periods.map(([n,c])=>{const hours=(c*minutes)/60; const h=Number.isInteger(hours)?String(hours):hours.toFixed(2).replace(/0+$/,'').replace(/\.$/,''); return `<tr><td>${n}</td><td>${fmt(c)}</td><td>${h} h</td><td>¥${(c*money).toFixed(2)}</td></tr>`;}).join('');
   renderCompletedGoals();
@@ -10319,7 +10517,15 @@ document.getElementById('redeemBtn').onclick=()=>{
   }finally{leisureRedeemInFlight=false;if(btn)btn.disabled=false;}
 };
 
-function isValidDateKey(key){return /^\d{4}-\d{2}-\d{2}$/.test(String(key));}
+function isValidDateKey(key){
+  const match=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(key));
+  if(!match)return false;
+  const year=Number(match[1]),month=Number(match[2]),day=Number(match[3]);
+  if(year<1||month<1||month>12||day<1)return false;
+  const leap=year%4===0&&(year%100!==0||year%400===0);
+  const monthDays=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+  return day<=monthDays[month-1];
+}
 function allDayKeys(){return Object.keys(db.days||{}).filter(isValidDateKey).sort();}
 function earnedDayKeys(){const today=todayKey();return allDayKeys().filter(k=>k<=today);}
 function dayTaskStats(key){
@@ -10427,20 +10633,20 @@ function renderShop(){
     const noteText=String(item.note||'');
     const noteDensity=shopNoteDensityClass(noteText);
     return `<div class="shopItem">
-      <button class="shopDelete" title="删除商品" data-id="${escapeHtml(item.id)}">×</button>
-      <button class="shopEmoji shopEmojiEdit" type="button" title="点击 Emoji 编辑商品" data-edit-emoji="${escapeHtml(item.id)}" aria-label="点击 ${escapeHtml(item.name||'商品')} 的 Emoji 编辑">${escapeHtml(emoji)}</button>
-      <div class="rewardTypeBadge">🛍️ 实物奖励</div>
+      <button class="shopDelete" title="${currentLang==='en'?'Delete item':'删除商品'}" aria-label="${currentLang==='en'?'Delete '+escapeHtml(item.name||'item'):'删除商品 '+escapeHtml(item.name||'商品')}" data-id="${escapeHtml(item.id)}">×</button>
+      <button class="shopEmoji shopEmojiEdit" type="button" title="${currentLang==='en'?'Edit item emoji':'点击 Emoji 编辑商品'}" data-edit-emoji="${escapeHtml(item.id)}" aria-label="${currentLang==='en'?'Edit emoji for '+escapeHtml(item.name||'item'):'点击 '+escapeHtml(item.name||'商品')+' 的 Emoji 编辑'}">${escapeHtml(emoji)}</button>
+      <div class="rewardTypeBadge">${currentLang==='en'?'🛍️ Physical reward':'🛍️ 实物奖励'}</div>
       <div class="shopName">${escapeHtml(item.name||'未命名商品')}</div>
-      <div class="shopDesc ${noteDensity}">${escapeHtml(noteText)}</div>
+      <div class="shopDesc ${noteDensity}" title="${escapeHtml(noteText)}">${escapeHtml(noteText)}</div>
       <div class="shopPrice">
         <div class="shopCoinValue"><span class="shopCoinIcon">🪙</span><b>${fmt(coins)}</b><span class="shopCoinUnit">Coins</span></div>
         <span class="shopRmbValue">≈ ¥${rmb.toFixed(2)}</span>
       </div>
       <div class="shopBtns">
-        <button class="btn shopRedeemBtn" data-buy="${escapeHtml(item.id)}">兑换</button>
+        <button class="btn shopRedeemBtn" data-buy="${escapeHtml(item.id)}">${currentLang==='en'?'Redeem':'兑换'}</button>
       </div>
     </div>`;
-  }).join('') || '<div class="empty" style="grid-column:1/-1">还没有实物奖励。可以添加实物奖励。</div>';
+  }).join('') || `<div class="empty" style="grid-column:1/-1">${currentLang==='en'?'No physical rewards yet. Add one to get started.':'还没有实物奖励。可以添加实物奖励。'}</div>`;
 
   grid.querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>buyShopItem(b.dataset.buy));
   grid.querySelectorAll('[data-edit-emoji]').forEach(b=>b.onclick=()=>openShopModal(b.dataset.editEmoji));
@@ -10474,7 +10680,7 @@ function renderShop(){
   const history=document.getElementById('purchaseHistory');
   history.innerHTML=recent.length
     ? recent.map(p=>`<div class="historyItem"><span>${escapeHtml(p.emoji||'🎁')} ${escapeHtml(p.name)}</span><span>-${fmt(p.coins)} Coins · ${escapeHtml(p.date)}</span></div>`).join('')
-    : '<div style="font-size:11px;color:#9aa2b1">暂无兑换记录</div>';
+    : `<div style="font-size:11px;color:#9aa2b1">${t('history_empty')}</div>`;
 
   const pager=document.getElementById('purchaseHistoryPagination');
   if(pager){
@@ -10571,7 +10777,11 @@ function getEmojiEntries(){
 
 function renderEmojiCategories(){
   const box=document.getElementById('emojiCategories'); if(!box)return;
-  box.innerHTML=EMOJI_CATEGORIES.map(cat=>`<button type="button" class="emojiCategoryBtn ${selectedEmojiCategory===cat?'active':''}" data-category="${cat}">${cat}</button>`).join('');
+  box.innerHTML=EMOJI_CATEGORIES.map(cat=>{
+    const entry=Object.values(I18N_SEMANTIC).find(value=>value.zh===cat);
+    const label=currentLang==='en'?(cat==='最近'?t('txt_71265fc4cb'):(entry?.en||tx(cat))):cat;
+    return `<button type="button" class="emojiCategoryBtn ${selectedEmojiCategory===cat?'active':''}" data-category="${cat}">${escapeHtml(label)}</button>`;
+  }).join('');
   box.querySelectorAll('[data-category]').forEach(btn=>btn.onclick=()=>{
     selectedEmojiCategory=btn.dataset.category;
     emojiSearchText='';
@@ -10588,7 +10798,7 @@ function renderEmojiPalette(){
   renderEmojiCategories();
   const list=getEmojiEntries();
   if(!list.length){
-    box.innerHTML='<div class="emojiEmpty">没有找到匹配的 Emoji，试试更换关键词。</div>';
+    box.innerHTML=`<div class="emojiEmpty">${escapeHtml(t('txt_dcfb419253'))}</div>`;
     return;
   }
   box.innerHTML=list.map(x=>`<button type="button" class="emojiChoice ${x.e===selectedShopEmoji?'active':''}" data-emoji="${x.e}" data-name="${escapeHtml(x.n)}" title="${escapeHtml(x.n)}">${x.e}</button>`).join('');
@@ -10719,11 +10929,12 @@ function normalizeShopItems(){
 
 function streakMilestoneProgress(streak){
   const milestones=[3,7,14,30,60,90];
-  if(streak>=90)return {base:90,next:90,pct:100,label:'90 天里程碑已完成'};
+  if(streak>=90)return {base:90,next:90,pct:100,label:currentLang==='en'?'90-day milestone reached':'90 天里程碑已完成'};
   const next=milestones.find(x=>x>streak)||90;
   const base=milestones.filter(x=>x<=streak).slice(-1)[0]||0;
   const pct=Math.max(0,Math.min(100,((streak-base)/(next-base||1))*100));
-  return {base,next,pct,label:`距离 ${next} 天里程碑还差 ${next-streak} 天`};
+  const label=currentLang==='en'?`${next-streak} days to the ${next}-day milestone`:`距离 ${next} 天里程碑还差 ${next-streak} 天`;
+  return {base,next,pct,label};
 }
 function renderTimeBlackHoleWarning(){
   const el=document.getElementById('timeBlackHoleWarning');
@@ -10748,29 +10959,35 @@ function renderWallet(){
   const bonus=streakBonusForCurrentData(), penalty=weeklyPenaltyTotal().total, spent=totalPurchasedCoins()+totalRedeemedCoins(), balance=walletBalance();
   document.getElementById('walletBalance').textContent=fmt(balance);
   document.getElementById('walletKpis').innerHTML=`
-    <div class="walletKpi"><b>${fmt(baseEarned)}</b><span>累计有效硬币</span></div>
-    <div class="walletKpi"><b>+${fmt(comboBonus)}</b><span>🌊 心流连击奖励</span></div>
-    <div class="walletKpi"><b>−${fmt(penalty)}</b><span>周任务未达标扣除</span></div>
-    <div class="walletKpi"><b>−${fmt(spent)}</b><span>已兑换/消费</span></div>`;
+    <div class="walletKpi"><b>${fmt(baseEarned)}</b><span>${currentLang==='en'?'Total effective coins':'累计有效硬币'}</span></div>
+    <div class="walletKpi"><b>+${fmt(comboBonus)}</b><span>🌊 ${currentLang==='en'?'Flow combo bonus':'心流连击奖励'}</span></div>
+    <div class="walletKpi"><b>−${fmt(penalty)}</b><span>${currentLang==='en'?'Weekly shortfall penalties':'周任务未达标扣除'}</span></div>
+    <div class="walletKpi"><b>−${fmt(spent)}</b><span>${currentLang==='en'?'Redeemed / spent':'已兑换/消费'}</span></div>`;
   document.getElementById('coinRmb').value=rate;
   document.getElementById('weeklyBudget').value=Number(db.settings.weeklyBudget)||500;
   document.getElementById('weeklyTarget').value=Number(db.settings.weeklyTarget)||70;
   updateCoinRuleHint();
   const pn=weeklyPenaltyTotal();
   document.getElementById('penaltyBox').innerHTML=pn.detail.length
-    ? `最近已结束周中，有 <b>${pn.detail.length}</b> 周未达到 ${fmt(db.settings.weeklyTarget)}% 任务完成率，共扣除 <b>${fmt(pn.total)} Coins</b>。中度未达标扣 ${fmt(db.settings.penaltyMid)}，严重未达标扣 ${fmt(db.settings.penaltyLow)}。`
-    : `周任务完成率达到 ${fmt(db.settings.weeklyTarget)}% 不扣币；低于 ${fmt(db.settings.weeklyTarget)}% 的已结束周才会产生扣除。`;
+    ? currentLang==='en'
+      ? `Among recent completed weeks, <b>${pn.detail.length}</b> fell short of the ${fmt(db.settings.weeklyTarget)}% task target, for a total penalty of <b>${fmt(pn.total)} Coins</b>. Moderate shortfalls cost ${fmt(db.settings.penaltyMid)}; severe shortfalls cost ${fmt(db.settings.penaltyLow)}.`
+      : `最近已结束周中，有 <b>${pn.detail.length}</b> 周未达到 ${fmt(db.settings.weeklyTarget)}% 任务完成率，共扣除 <b>${fmt(pn.total)} Coins</b>。中度未达标扣 ${fmt(db.settings.penaltyMid)}，严重未达标扣 ${fmt(db.settings.penaltyLow)}。`
+    : currentLang==='en'
+      ? `No penalty if weekly task completion reaches ${fmt(db.settings.weeklyTarget)}%. Penalties apply only to completed weeks below that target.`
+      : `周任务完成率达到 ${fmt(db.settings.weeklyTarget)}% 不扣币；低于 ${fmt(db.settings.weeklyTarget)}% 的已结束周才会产生扣除。`;
 
   const streak=streakAtDate(hongKongCheckInDayKey()), pg=streakMilestoneProgress(streak);
   const combo=flowComboForDay(currentDate);
   const comboEl=document.getElementById('flowComboBox');
-  if(comboEl){const runText=combo.runs.length?combo.runs.map(r=>`${r.length*30} 分钟`).join('、'):'暂无';comboEl.innerHTML=`🌊 <b>${t('flow_combo')}</b>：连续 ${FLOW_COMBO_MIN_SLOTS*30} 分钟以上深度工作，参与段按 ${Number(db.settings.flowComboMultiplier||FLOW_COMBO_MULTIPLIER).toFixed(1)}× 结算。今天 ${combo.runs.length?`已触发 ${runText}`:'还未触发'}，额外 +${fmt(combo.bonusCoins)} Coins。`;}
-  document.getElementById('streakBox').innerHTML=`当前连续签到：<b>${streak} 天</b>。里程碑奖励：3天 +${fmt(db.settings.streak3)}、7天 +${fmt(db.settings.streak7)}、14天 +${fmt(db.settings.streak14)}、30天 +${fmt(db.settings.streak30)}、60天 +${fmt(db.settings.streak60)}、90天 +${fmt(db.settings.streak90)} Coins。`;
+  if(comboEl){const runText=combo.runs.length?combo.runs.map(r=>`${r.length*30} ${currentLang==='en'?'min':'分钟'}`).join(currentLang==='en'?', ':'、'):(currentLang==='en'?'none':'暂无');comboEl.innerHTML=currentLang==='en'?`🌊 <b>${t('flow_combo')}</b>: ${FLOW_COMBO_MIN_SLOTS*30}+ minutes of consecutive deep work. Qualifying blocks earn ${Number(db.settings.flowComboMultiplier||FLOW_COMBO_MULTIPLIER).toFixed(1)}×. Today: ${combo.runs.length?`triggered (${runText})`:'not triggered'} · Bonus: +${fmt(combo.bonusCoins)} Coins.`:`🌊 <b>${t('flow_combo')}</b>：连续 ${FLOW_COMBO_MIN_SLOTS*30} 分钟以上深度工作，参与段按 ${Number(db.settings.flowComboMultiplier||FLOW_COMBO_MULTIPLIER).toFixed(1)}× 结算。今天 ${combo.runs.length?`已触发 ${runText}`:'还未触发'}，额外 +${fmt(combo.bonusCoins)} Coins。`;}
+  document.getElementById('streakBox').innerHTML=currentLang==='en'
+    ? `Current streak: <b>${streak} days</b>. Milestone rewards: 3 days +${fmt(db.settings.streak3)}, 7 days +${fmt(db.settings.streak7)}, 14 days +${fmt(db.settings.streak14)}, 30 days +${fmt(db.settings.streak30)}, 60 days +${fmt(db.settings.streak60)}, and 90 days +${fmt(db.settings.streak90)} Coins.`
+    : `当前连续签到：<b>${streak} 天</b>。里程碑奖励：3天 +${fmt(db.settings.streak3)}、7天 +${fmt(db.settings.streak7)}、14天 +${fmt(db.settings.streak14)}、30天 +${fmt(db.settings.streak30)}、60天 +${fmt(db.settings.streak60)}、90天 +${fmt(db.settings.streak90)} Coins。`;
   const sp=document.getElementById('streakProgress');
   if(sp)sp.innerHTML=`
-    <div class="streakProgressTop"><span>🔥 连续达标进度</span><b>${pg.label}</b></div>
+    <div class="streakProgressTop"><span>🔥 ${currentLang==='en'?'Streak milestone progress':'连续达标进度'}</span><b>${pg.label}</b></div>
     <div class="streakTrack"><div class="streakFill" style="width:${pg.pct}%"></div></div>
-    <div class="streakMilestoneRow"><span>${pg.base} 天</span><span>${pg.next} 天</span></div>`;
+    <div class="streakMilestoneRow"><span>${currentLang==='en'?`${pg.base} days`:`${pg.base} 天`}</span><span>${currentLang==='en'?`${pg.next} days`:`${pg.next} 天`}</span></div>`;
 
   
   renderTimeBlackHoleWarning();
@@ -10791,7 +11008,9 @@ function updateCoinRuleHint(){
   const rateText=rate.toFixed(2).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1');
   const budgetText=budget.toFixed(0);
   const impliedText=impliedBudget.toFixed(2).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1');
-  el.textContent=`每周固定生活费参考 ¥${budgetText}；当前 1 Coin = ¥${rateText}。按标准 34 Coins × 7 天计算，每周对应约 ¥${impliedText}。`;
+  el.textContent=currentLang==='en'
+    ? `Weekly living-cost reference: ¥${budgetText}. Current rate: 1 Coin = ¥${rateText}. At 34 Coins × 7 days, that equals about ¥${impliedText} per week.`
+    : `每周固定生活费参考 ¥${budgetText}；当前 1 Coin = ¥${rateText}。按标准 34 Coins × 7 天计算，每周对应约 ¥${impliedText}。`;
 }
 
 document.getElementById('coinRmb').oninput=()=>{
@@ -10921,12 +11140,12 @@ function renderAnalysisYearBar(){
   const yearTitle=document.querySelector('#yearPanel .yearThumbHead h3');
   const yearSub=document.querySelector('#yearPanel .yearThumbHead span');
   const trendTitle=document.querySelector('#trendPanel .analysisCard h3');
-  if(weekTitle)weekTitle.textContent=`${analysisYear} · ${weekStart.slice(5)}—${weekEnd.slice(5)} 周度记录`;
-  if(weekSub)weekSub.textContent='每列 = 1 天；点击日期可跳转到当天';
-  if(monthTitle)monthTitle.textContent=`${analysisYear} 年 ${Number(analysisMonthCursorKey.slice(5,7))} 月时间缩略图`;
-  if(yearTitle)yearTitle.textContent=`${analysisYear} 年时间缩略图`;
-  if(yearSub)yearSub.textContent='每格代表一个月；颜色面积 = 当月各类时间累计占比';
-  if(trendTitle)trendTitle.textContent=`截至 ${ref} · 近 8 周记录时长趋势`;
+  if(weekTitle)weekTitle.textContent=currentLang==='en'?`${analysisYear} · ${weekStart.slice(5)}–${weekEnd.slice(5)} Weekly log`:`${analysisYear} · ${weekStart.slice(5)}—${weekEnd.slice(5)} 周度记录`;
+  if(weekSub)weekSub.textContent=currentLang==='en'?'Each column is one day; click a date to jump to it':'每列 = 1 天；点击日期可跳转到当天';
+  if(monthTitle)monthTitle.textContent=currentLang==='en'?`${analysisYear} · ${new Intl.DateTimeFormat('en-US',{month:'long'}).format(new Date(`${analysisMonthCursorKey}-01T12:00:00`))} time thumbnail`:`${analysisYear} 年 ${Number(analysisMonthCursorKey.slice(5,7))} 月时间缩略图`;
+  if(yearTitle)yearTitle.textContent=currentLang==='en'?`${analysisYear} time thumbnail`:`${analysisYear} 年时间缩略图`;
+  if(yearSub)yearSub.textContent=currentLang==='en'?'Each cell is a month; color area shows the monthly time mix':'每格代表一个月；颜色面积 = 当月各类时间累计占比';
+  if(trendTitle)trendTitle.textContent=currentLang==='en'?`Through ${ref} · Time trend over the last 8 weeks`:`截至 ${ref} · 近 8 周记录时长趋势`;
 }
 
 function renderAnalysis(){
@@ -11144,18 +11363,83 @@ function getAppContext(){
 async function run34CoinsSelfTests(showPanel=false){
   const results=[],assert=(name,ok)=>results.push({name,ok:!!ok});
   const panel=document.getElementById('34coinsSelfTestPanel');
-  const finish=(fatal=null)=>{const passed=results.filter(x=>x.ok).length,total=results.length,failed=total-passed;if(panel&&showPanel){panel.hidden=false;panel.className='selfTestPanel '+(failed||fatal?'fail':'pass');const fatalText=fatal?' · '+escapeHtml(String(fatal.message||fatal)):'';const failedHtml=results.filter(x=>!x.ok).slice(0,4).map(x=>'<div>✕ '+escapeHtml(x.name)+'</div>').join('')||'<div>✓ 核心持久化与冲突测试通过</div>';panel.innerHTML='<strong>34 Coins self-test</strong><div style="margin-top:4px">'+passed+'/'+total+' passed'+fatalText+'</div><div style="margin-top:6px;font-size:11px">'+failedHtml+'</div>';}if(failed||fatal)console.error('[34 Coins self-test]',{results,fatal});else console.info('[34 Coins] self-tests: '+passed+'/'+total+' passed');return !failed&&!fatal;};
+  const finish=(fatal=null)=>{const passed=results.filter(x=>x.ok).length,total=results.length,failed=total-passed;if(panel&&showPanel){panel.hidden=false;panel.className='selfTestPanel '+(failed||fatal?'fail':'pass');const fatalText=fatal?' · '+escapeHtml(String(fatal.message||fatal)):'';const failedHtml=results.filter(x=>!x.ok).slice(0,4).map(x=>'<div>✕ '+escapeHtml(x.name)+'</div>').join('')||`<div>✓ ${currentLang==='en'?'Core persistence and conflict checks passed':'核心持久化与冲突测试通过'}</div>`;panel.innerHTML='<strong>34 Coins self-test</strong><div style="margin-top:4px">'+passed+'/'+total+' passed'+fatalText+'</div><div style="margin-top:6px;font-size:11px">'+failedHtml+'</div>';}if(failed||fatal)console.error('[34 Coins self-test]',{results,fatal});else console.info('[34 Coins] self-tests: '+passed+'/'+total+' passed');return !failed&&!fatal;};
   try{
     const sample=normalizeState({days:{'2026-01-01':{coins:Array.from({length:34},(_,i)=>i===0?{text:'自检记录',color:0,groupId:null,energy:2}:{text:'',color:null,groupId:null,energy:null})}},settings:{rewardMinutes:10,rewardMoney:1}});
     assert('normalizeState preserves valid day',Object.keys(sample.days).includes('2026-01-01'));assert('34 slots preserved',sample.days['2026-01-01'].coins.length===34);
+    assert('calendar date validation rejects impossible dates',isValidDateKey('2024-02-29')&&!isValidDateKey('2026-02-29')&&!isValidDateKey('2026-04-31')&&!isValidDateKey('2026-13-01'));
     const flow=calculateFlowCombo(Array.from({length:3},()=>({text:'x',color:0})));assert('flow combo non-negative',flow.bonusCoins>=0);assert('spearman monotonic = 1',Math.abs((spearman([1,2,3],[10,20,30])||0)-1)<1e-9);
     const backup=normalizeBackupState(sample,{slots:34});assert('backup normalize keeps all days',Object.keys(backup.days).length===1);assert('backup round-trip keeps 34 slots',backup.days['2026-01-01'].coins.length===34);assert('escapeHtml neutralizes markup',escapeHtml('<img src=x onerror=alert(1)>').includes('&lt;img')&&!escapeHtml('<img src=x onerror=alert(1)>').includes('<img'));assert('semantic i18n dictionary uses non-Chinese keys',Object.keys(I18N_SEMANTIC).every(k=>!/[\u3400-\u9fff]/.test(k)));
+    applySemanticLanguage(document);
+    try{renderMainPanel('dashboard');applyLanguage()}catch(e){recordRuntimeError('i18n.selfTestRender',e)}
+    const englishGuideKeys=['header_subtitle','quick_classify_desc','quick_tip','sync_hint'];
+    assert('English quick guide has no untranslated Chinese',currentLang==='en'&&englishGuideKeys.every(key=>{const el=document.querySelector(`[data-i18n-key="${key}"]`);return el&&el.textContent===I18N_SEMANTIC[key].en&&!/[\u3400-\u9fff]/.test(el.textContent);})&&document.querySelector('.categoryGuide')?.getAttribute('aria-label')===I18N_SEMANTIC.category_guide_aria.en&&document.querySelector('#backupMenuBtn span')?.textContent===I18N_SEMANTIC.txt_2aadd3e0b6.en);
+    const dashboardI18nSelectors=['#rewardKpis','#flowComboRewardNote','#flowComboBox','#penaltyBox','#coinRuleHint','#walletKpis','#weekThumbTotals','.shopEditHint','.historyTitle','.diagnosticInsightTitle','#multiTabSyncBanner','#releaseNotesTitle','.releaseNotesIntro','.releaseNoteItem'];
+    for(const selector of dashboardI18nSelectors){const text=[...document.querySelectorAll(selector)].map(el=>el.textContent).join(' ');assert(`English UI copy translated: ${selector}`,currentLang!=='en'||!/[\u3400-\u9fff]/.test(text));}
+    assert('English weekly-summary placeholder translated',currentLang!=='en'||!/[\u3400-\u9fff]/.test(document.getElementById('weekSummary')?.getAttribute('placeholder')||''));
+    const redemptionEmpty=document.querySelector('#purchaseHistory > div:not(.historyItem)');
+    assert('English redemption empty state translated',currentLang!=='en'||!redemptionEmpty||!/[\u3400-\u9fff]/.test(redemptionEmpty.textContent));
+    assert('English completed-goal empty state translated',currentLang!=='en'||!/[\u3400-\u9fff]/.test(document.querySelector('.completedGoalEmpty')?.textContent||''));
+    assert('English weekly thumbnail and category labels translated',currentLang!=='en'||(!/[\u3400-\u9fff]/.test(document.querySelector('#weekPanel .weekThumbHead')?.textContent||'')&&!/[\u3400-\u9fff]/.test(document.querySelector('#weekThumb')?.textContent||'')));
+    try{renderDay();renderTasks();renderMainPanel('flow');applyLanguage();renderLunar();renderRewards();applyLanguage()}catch(e){recordRuntimeError('i18n.timeFlowSelfTest',e)}
+    const generatedTimeLabels=[...document.querySelectorAll('.coinMatrixCell.empty[aria-label],.coinMatrixCoinBadge[aria-label],.energyMark[aria-label],.coinMatrixDelete[aria-label]')].map(el=>el.getAttribute('aria-label')||'').join(' ');
+    assert('English generated time-block accessibility labels translated',currentLang!=='en'||!/[\u3400-\u9fff]/.test(generatedTimeLabels));
+    assert('English task delete accessibility labels translated',currentLang!=='en'||[...document.querySelectorAll('#planList .removeTask')].every(el=>el.title==='Delete task'&&el.getAttribute('aria-label')==='Delete task'));
+    assert('English review-source and undo labels translated',currentLang!=='en'||(document.getElementById('reviewLossSourceBtn')?.getAttribute('aria-label')==='Reference today’s low-efficiency time'&&!/[\u3400-\u9fff]/.test(document.getElementById('undoBtn')?.title||'')));
+    const shopPriceOffsets=[...document.querySelectorAll('#shopGrid .shopItem .shopPrice')].map(el=>el.getBoundingClientRect().top-el.closest('.shopItem').getBoundingClientRect().top);
+    assert('Coin shop price rows align across products',shopPriceOffsets.length<2||Math.max(...shopPriceOffsets)-Math.min(...shopPriceOffsets)<1.5);
+    assert('Shop descriptions clamp to two lines and keep full tooltip text',[...document.querySelectorAll('#shopGrid .shopDesc:not(.shopDesc--empty)')].every(el=>getComputedStyle(el).getPropertyValue('-webkit-line-clamp')==='2'&&el.title===el.textContent));
+    const hasCjk=value=>/[\u3400-\u9fff]/.test(String(value||''));
+    try{renderWeek();renderCountdown();applyLanguage()}catch(e){recordRuntimeError('i18n.dynamicDisplaySelfTest',e)}
+    const activeGoalForSelfTest=getActiveGoal();
+    const countdownConsistent=activeGoalForSelfTest
+      ? document.getElementById('goalHeroName')?.textContent===activeGoalForSelfTest.name&&document.getElementById('examMeta')?.textContent.includes(activeGoalForSelfTest.name)&&document.getElementById('goalHeroDate')?.textContent.includes(activeGoalForSelfTest.date)
+      : document.getElementById('goalHeroName')?.textContent===(currentLang==='en'?'Not set':'尚未设置')&&document.getElementById('examMeta')?.textContent===(currentLang==='en'?'No goal set':'尚未设置目标');
+    assert('Goal countdown stays consistent after language rendering',!!countdownConsistent);
+    const savedGoalRows=db.settings?.goals,savedActiveGoalId=activeGoalId;
+    try{db.settings.goals=[];activeGoalId='';renderCountdown();assert('English empty-goal progress state translated',currentLang!=='en'||document.getElementById('goalProgressLabel')?.textContent==='Goal progress 0%');}
+    finally{db.settings.goals=savedGoalRows;activeGoalId=savedActiveGoalId;renderCountdown();}
+    const goalManageButton=document.getElementById('editCountdownBtn');
+    assert('English goal-management accessible label translated',currentLang!=='en'||goalManageButton?.getAttribute('aria-label')==='Goal management'&&goalManageButton?.title==='Goal management');
+    try{renderGoalList();renderCompletedGoals()}catch(e){recordRuntimeError('i18n.goalManagerSelfTest',e)}
+    const goalManagerCopy=[...document.querySelectorAll('#goalList .goalEmpty,#goalList .goalListActions button,#goalPager,#completedGoalsList .completedGoalEmpty,#completedGoalsList .completedGoalMain span,#completedGoalsList .completedGoalMetrics small,#completedGoalsList button')].map(el=>el.getAttribute('aria-label')||el.textContent).join(' ');
+    assert('English goal-manager generated copy translated',currentLang!=='en'||!hasCjk(goalManagerCopy));
+    assert('English weekly chart labels and descriptions are translated',currentLang!=='en'||(!hasCjk([...document.querySelectorAll('#weekBars .barlabel')].map(el=>el.textContent).join(' '))&&!hasCjk([...document.querySelectorAll('#weekBars [aria-label],#weekThumb [aria-label]')].map(el=>el.getAttribute('aria-label')).join(' '))));
+    assert('English dynamic accessibility labels are translated',currentLang!=='en'||(!hasCjk([...document.querySelectorAll('#goalDots,[aria-label="目标进度"],#weekPeriodPager,#monthPeriodPager,#analysisPrevYear,#analysisNextYear,#weekPrevBtn,#weekNextBtn,#monthPrevBtn,#monthNextBtn')].map(el=>el.getAttribute('aria-label')||'').join(' '))));
+    assert('English release notes and multi-tab warning are translated',currentLang!=='en'||(!hasCjk(document.querySelector('.releaseNotesModal')?.textContent||'')&&!hasCjk(document.getElementById('multiTabSyncBanner')?.textContent||'')));
+    try{buildActivitySelectors();renderActivityEnergyButtons();renderEmojiCategories();renderMonth();renderYearThumbnail();renderYearAnalysis();renderTrend();applyLanguage()}catch(e){recordRuntimeError('i18n.analysisSelfTest',e)}
+    const dynamicModalCopy=[...document.querySelectorAll('#durationQuick button,#activityEnergyQuick button,#emojiCategories button')].map(el=>el.textContent).join(' ');
+    assert('English dynamic modal choices translated',currentLang!=='en'||!hasCjk(dynamicModalCopy));
+    const newPlaceholderSelectors=['#emojiSearch','#itemEmoji','#itemName','#itemNote','#monthSummary','#trendSummary','#examNameInput','#shopSearchInput'];
+    for(const selector of newPlaceholderSelectors){const value=document.querySelector(selector)?.getAttribute('placeholder')||'';assert(`English placeholder translated: ${selector}`,currentLang!=='en'||!hasCjk(value));}
+    assert('English shop search accessible name translated',currentLang!=='en'||!hasCjk(document.getElementById('shopSearchInput')?.getAttribute('aria-label')||''));
+    assert('Goal date controls follow the active UI language', [...document.querySelectorAll('#countdownModal input[type="date"]')].every(input=>input.lang===(currentLang==='en'?'en':'zh-CN')));
+    assert('Goal date placeholders follow the active UI language', [...document.querySelectorAll('#countdownModal .goalDatePlaceholder')].every(el=>el.textContent===(currentLang==='en'?'YYYY-MM-DD':'年 / 月 / 日')));
+    assert('Goal date placeholders hide when a date is selected', [...document.querySelectorAll('#countdownModal .goalDateField input[type="date"]')].every(input=>input.closest('.goalDateField')?.classList.contains('hasValue')===!!input.value));
+    assert('English goal date accessible names translated',currentLang!=='en'||['#examStartInput','#examDateInput','#completedGoalStartInput','#completedGoalDateInput'].every(selector=>!hasCjk(document.querySelector(selector)?.getAttribute('aria-label')||'')));
+    const yearRateHit=document.querySelector('#yearRateSvg .rateHit');yearRateHit?.dispatchEvent(new Event('mouseenter'));
+    const analysisCopy=['#trendText','#yearTotalText','.monthThumbHead span','.rateLegend','#monthMiniGrid .monthMiniWeekHeader','#yearMiniGrid .yearMiniLabel','#yearRateTooltip'].map(selector=>[...document.querySelectorAll(selector)].map(el=>el.textContent).join(' ')).join(' ');
+    assert('English trend, year and month analysis copy translated',currentLang!=='en'||!hasCjk(analysisCopy));
+    const chartTooltips=[...document.querySelectorAll('#weekThumb .weekSeg,#yearMiniGrid .yearMiniSeg')].map(el=>el.title).join(' ');
+    assert('English weekly and annual chart category tooltips translated',currentLang!=='en'||!hasCjk(chartTooltips));
+    yearRateHit?.dispatchEvent(new Event('mouseleave'));
+    const statusLabels=[...document.querySelectorAll('#planList select:not(.taskType) option')].map(option=>option.textContent).join(' ');
+    assert('English task statuses and plan summary translated',currentLang!=='en'||(!hasCjk(statusLabels)&&!hasCjk(document.querySelector('#planSummary')?.textContent)&&!hasCjk(document.querySelector('#planHint')?.textContent)));
+    const flowSelectors=['.overview .legend','#stats','.coinMatrixGroupHead','#streakBox','#streakProgress','#checkinYearProgress','#diagnosticSection .diagnosticLegend','#diagnosticSection .diagnosticSubtitle','#diagnosticSection .diagDayLabel','#diagnosticSection #diagnosticSampleNote','#diagnosticSection .diagnosticInsightTitle','#diagnosticPrimeList','#diagnosticVulnerableList'];
+    for(const selector of flowSelectors){const text=[...document.querySelectorAll(selector)].map(el=>el.textContent).join(' ');assert(`English time-flow copy translated: ${selector}`,currentLang!=='en'||!hasCjk(text));}
+    const placeholderSelectors=['#reviewWin','#reviewLoss','#reviewKeep','#reviewStop','#tomorrowPlan','#planList input:not([type="number"])','#planList .taskHoursInput'];
+    for(const selector of placeholderSelectors){const value=[...document.querySelectorAll(selector)].map(el=>el.getAttribute('placeholder')).join(' ');assert(`English placeholder translated: ${selector}`,currentLang!=='en'||!hasCjk(value));}
+    assert('English lunar date translated',currentLang!=='en'||!hasCjk(document.getElementById('lunarDate')?.textContent));
+    assert('English output metrics panel translated',currentLang!=='en'||!hasCjk(document.querySelector('.outputAnchorPanel')?.textContent));
+    assert('English reward-table headers translated',currentLang!=='en'||!hasCjk([...document.querySelectorAll('.rewardTable thead th')].map(el=>el.textContent).join(' ')));
+    const legend=document.querySelector('.overview .legend');
+    assert('English time legend fits without horizontal overflow',currentLang!=='en'||!!legend&&legend.scrollWidth<=legend.clientWidth+2&&[...legend.querySelectorAll('.chip')].every(chip=>getComputedStyle(chip).whiteSpace!=='nowrap'));
     const rich=cloneState(sample);
     rich.days['2026-01-03']=cloneState(sample.days['2026-01-01']);
     rich.days['2026-01-03'].coins[0]={text:'重要历史',color:0,groupId:null,energy:2};
     const blank=normalizeState({days:{},settings:{}});
     const keepRich=selectSafeBootstrapCandidate(blank,rich,{localSavedAt:2,remoteSavedAt:1});
-    assert('boot guard rejects empty candidate',stateProfile(keepRich.state).meaningfulDayCount===1);
+    assert('boot guard preserves all meaningful source days',stateProfile(keepRich.state).meaningfulDayCount===stateProfile(rich).meaningfulDayCount);
     const mergedHistory=selectSafeBootstrapCandidate(rich,sample,{localSavedAt:2,remoteSavedAt:1});
     assert('boot reconciliation preserves richer history',stateProfile(mergedHistory.state).meaningfulDayCount>=stateProfile(rich).meaningfulDayCount);
     const localDate=cloneState(sample);localDate.days['2026-02-01']=cloneState(sample.days['2026-01-01']);
