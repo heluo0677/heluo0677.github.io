@@ -4405,6 +4405,22 @@ html body .weekSeg.c5, html body .monthMiniSeg.c5, html body .yearMiniSeg.c5, ht
 .rateHoverTooltip.show{opacity:1;transform:translateY(0)}
 .rateHoverTooltip strong{font-weight:700}
 .rateHoverTooltip span{color:#6e7480}
+.trendOnlyChart{
+  position:relative;
+  height:230px;
+  overflow:visible;
+  border-radius:14px;
+}
+.trendOnlyChart .trendSvg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:230px;
+  overflow:visible;
+  pointer-events:auto;
+}
+.trendOnlyChart .trendHit{cursor:crosshair}
+.trendOnlyChart .trendPoint{pointer-events:none;transition:r .16s ease,stroke-width .16s ease}
 @media(max-width:760px){
   .rateOnlyChart{height:210px}
   .rateOnlyChart .rateLineSvg{height:210px}
@@ -6295,6 +6311,12 @@ html body #shopGrid.shopGrid > .shopItem .shopDesc:not(.shopDesc--empty){
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
+/* V179 — Keep the reward and wallet section titles on the same left guide. */
+html body .rewardCard > .planHead{
+  padding-left:22px;
+  padding-right:22px;
+}
 </style>
 
 
@@ -6907,7 +6929,10 @@ html body #shopGrid.shopGrid > .shopItem .shopDesc:not(.shopDesc--empty){
     <div class="analysisGrid">
       <div class="card analysisCard">
         <h3 data-i18n-key="txt_2b99b48a85" data-i18n-text="1">近 8 周 · 记录时长趋势</h3>
-        <svg id="trendSvg" class="trendSvg" viewBox="0 0 800 230" preserveAspectRatio="none"></svg>
+        <div class="trendOnlyChart">
+          <svg id="trendSvg" class="trendSvg" viewBox="0 0 800 230" preserveAspectRatio="none" aria-label="近 8 周记录时长趋势"></svg>
+          <div class="rateHoverTooltip" id="trendTooltip" role="status" aria-live="polite"></div>
+        </div>
       </div>
       <div class="card analysisCard">
         <h3 data-i18n-key="txt_51f2680d72" data-i18n-text="1">趋势解读</h3>
@@ -6938,15 +6963,15 @@ html body #shopGrid.shopGrid > .shopItem .shopDesc:not(.shopDesc--empty){
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v178</span>
+  <span class="siteFooterVersion">v180</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle" data-i18n-key="release_v178_title" data-i18n-text="1">v178 更新说明</h3>
-    <div class="releaseNotesIntro" data-i18n-key="release_v178_intro" data-i18n-text="1">v178：对齐商店商品价格，并修复英文辅助标签与无效日期校验。</div>
+    <h3 id="releaseNotesTitle" data-i18n-key="release_v180_title" data-i18n-text="1">v180 更新说明</h3>
+    <div class="releaseNotesIntro" data-i18n-key="release_v180_intro" data-i18n-text="1">v180：为近 8 周趋势图补上悬浮详情提示。</div>
     <div class="releaseNotesList">
       <div class="releaseNoteItem"><b data-i18n-key="release_goal_title" data-i18n-text="1">目标显示</b><span data-i18n-key="release_goal_body" data-i18n-text="1">修复语言切换时目标名称与日期被空状态文案覆盖的问题。</span></div>
       <div class="releaseNoteItem"><b data-i18n-key="release_week_title" data-i18n-text="1">周度标签</b><span data-i18n-key="release_week_body" data-i18n-text="1">英文界面的周度图表现在使用英文星期名称和辅助说明。</span></div>
@@ -6960,8 +6985,8 @@ html body #shopGrid.shopGrid > .shopItem .shopDesc:not(.shopDesc--empty){
 </div>
 <script>
 
-// 34 Coins v178 · standalone local release · localized dynamic labels · no external runtime dependencies
-const APP_VERSION='178';
+// 34 Coins v180 · standalone local release · localized dynamic labels · no external runtime dependencies
+const APP_VERSION='180';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -7841,8 +7866,8 @@ Object.assign(I18N_SEMANTIC,{
   ,diag_legend_insufficient:{zh:'样本不足',en:'Insufficient data',zh_key:'样本不足'}
 });
 Object.assign(I18N_SEMANTIC,{
-  release_v178_title:{zh:'v178 更新说明',en:'v178 release notes',zh_key:'v178 更新说明'},
-  release_v178_intro:{zh:'v178：对齐商店商品价格，并修复英文辅助标签与无效日期校验。',en:'v178 aligns shop prices and fixes English accessibility labels and invalid-date validation.',zh_key:'v178：对齐商店商品价格，并修复英文辅助标签与无效日期校验。'},
+  release_v180_title:{zh:'v180 更新说明',en:'v180 release notes',zh_key:'v180 更新说明'},
+  release_v180_intro:{zh:'v180：为近 8 周趋势图补上悬浮详情提示。',en:'v180 adds hover details to the last-8-weeks trend chart.',zh_key:'v180：为近 8 周趋势图补上悬浮详情提示。'},
   release_goal_title:{zh:'目标管理',en:'Goal controls',zh_key:'目标管理'},
   release_goal_body:{zh:'目标管理按钮与完成目标记录现在会正确跟随界面语言。',en:'Goal-management controls and completed-goal records now follow the selected language.',zh_key:'目标管理按钮与完成目标记录现在会正确跟随界面语言。'},
   release_week_title:{zh:'时间块标签',en:'Time-block labels',zh_key:'时间块标签'},
@@ -7881,6 +7906,7 @@ function applyStaticAccessibilityLanguage(){
     ['#goalDots','aria-label','目标轮播','Goal carousel'],
     ['#editCountdownBtn','aria-label','目标管理','Goal management'],
     ['#reviewLossSourceBtn','aria-label','引用今天的低效时间','Reference today’s low-efficiency time'],
+    ['#datePicker','aria-label','选择日期','Select date'],
     ['.lunarPrevYear','aria-label','去年今日有效硬币','Effective coins on this day last year'],
     ['.mainSegments','aria-label','主要模块','Main sections'],
     ['.goalCompletionWall','aria-label','目标完成墙','Completed goals'],
@@ -7897,6 +7923,7 @@ function applyStaticAccessibilityLanguage(){
   const goalManagerButton=document.getElementById('editCountdownBtn');
   if(goalManagerButton)goalManagerButton.title=currentLang==='en'?'Goal management':'目标管理';
   const buttonLabels=[
+    ['#prevDay','上一天','Previous day'],['#nextDay','下一天','Next day'],
     ['#analysisPrevYear','上一年','Previous year'],['#analysisNextYear','下一年','Next year'],
     ['#weekPrevBtn','上一周','Previous week'],['#weekNextBtn','下一周','Next week'],
     ['#monthPrevBtn','上个月','Previous month'],['#monthNextBtn','下个月','Next month']
@@ -10128,15 +10155,43 @@ function renderTrend(){
   const ref=analysisReferenceDate();
   const end=weekKey(ref), starts=[]; let s=end;
   for(let i=7;i>=0;i--){starts.push(addDays(s,-7*i))}
-  const vals=starts.map(st=>aggregate(getRangeKeys(st,addDays(st,6))).hours);
+  const weekly=starts.map(st=>aggregate(getRangeKeys(st,addDays(st,6))));
+  const vals=weekly.map(item=>item.hours);
   const svg=document.getElementById('trendSvg'); const W=800,H=230,padL=38,padR=20,padT=18,padB=38;
+  const tooltip=document.getElementById('trendTooltip');
+  if(!svg)return;
+  svg.setAttribute('aria-label',currentLang==='en'?'Recorded-time trend for the last 8 weeks':'近 8 周记录时长趋势');
   const max=Math.max(...vals,1), plotW=W-padL-padR, plotH=H-padT-padB;
   let html='';
   for(let j=0;j<4;j++){const y=padT+j*plotH/3; html+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#f1f2f5" stroke-width="1" stroke-dasharray="4 6"/>`; const val=max*(1-j/3); html+=`<text x="2" y="${y+4}" font-size="11" fill="#a1a8b5">${fmt(val)}h</text>`}
   const points=vals.map((v,i)=>[padL+i*plotW/7,padT+plotH-(v/max)*plotH]);
   html+=`<path d="${smoothRatePath(points)}" fill="none" stroke="#8a92a0" stroke-opacity=".60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`;
-  points.forEach(([x,y],i)=>{html+=`<circle cx="${x}" cy="${y}" r="2.4" fill="#fff" stroke="#8a92a0" stroke-opacity=".52" stroke-width="1.4"/><text x="${x}" y="${H-14}" text-anchor="middle" font-size="10" fill="#a0a7b3">W${i+1}</text>`});
+  points.forEach(([x,y],i)=>{html+=`<circle class="trendPoint" data-index="${i}" cx="${x}" cy="${y}" r="2.8" fill="#fff" stroke="#8a92a0" stroke-opacity=".62" stroke-width="1.6"/><text x="${x}" y="${H-14}" text-anchor="middle" font-size="10" fill="#a0a7b3">W${i+1}</text>`});
+  points.forEach(([x],i)=>{
+    const left=i===0?padL:(points[i-1][0]+x)/2;
+    const right=i===points.length-1?W-padR:(x+points[i+1][0])/2;
+    html+=`<rect class="trendHit" data-index="${i}" tabindex="0" role="button" aria-label="${currentLang==='en'?`Week ${i+1}, ${fmt(weekly[i].hours)} hours, ${weekly[i].recorded} recorded coins`:`第 ${i+1} 周，${fmt(weekly[i].hours)} 小时，${weekly[i].recorded} 个有效硬币`}" x="${left}" y="${padT}" width="${Math.max(2,right-left)}" height="${plotH}" fill="transparent"/>`;
+  });
   svg.innerHTML=html;
+  const showTooltip=(idx)=>{
+    if(!tooltip||!points[idx]||!weekly[idx])return;
+    const p=points[idx],st=starts[idx],weekEnd=addDays(st,6),label=currentLang==='en'?`Week ${idx+1} · ${st} – ${weekEnd}`:`第 ${idx+1} 周 · ${st} 至 ${weekEnd}`;
+    tooltip.innerHTML=`<strong>${label}</strong><span>${currentLang==='en'?`${fmt(weekly[idx].hours)} h recorded · ${weekly[idx].recorded} coins`:`${fmt(weekly[idx].hours)} 小时 · ${weekly[idx].recorded} 个有效硬币`}</span>`;
+    tooltip.classList.add('show');
+    const rect=svg.getBoundingClientRect(),x=(p[0]/W)*rect.width,y=(p[1]/H)*rect.height,tw=tooltip.offsetWidth||150,th=tooltip.offsetHeight||48,parentRect=tooltip.parentElement.getBoundingClientRect();
+    let left=x-tw/2; left=Math.max(8,Math.min(parentRect.width-tw-8,left));
+    tooltip.style.left=`${left}px`; tooltip.style.top=`${Math.max(8,y-th-10)}px`;
+  };
+  const hideTooltip=()=>tooltip?.classList.remove('show');
+  svg.querySelectorAll('.trendHit').forEach(hit=>{
+    const idx=Number(hit.dataset.index);
+    hit.addEventListener('mouseenter',()=>showTooltip(idx));
+    hit.addEventListener('mousemove',()=>showTooltip(idx));
+    hit.addEventListener('mouseleave',hideTooltip);
+    hit.addEventListener('focus',()=>showTooltip(idx));
+    hit.addEventListener('blur',hideTooltip);
+    hit.addEventListener('click',()=>showTooltip(idx));
+  });
   const first=vals[0], last=vals[vals.length-1], delta=last-first;
   const trend=currentLang==='en'
     ?(delta>1?`Recorded time rose from ${fmt(first)} h to ${fmt(last)} h over the last 8 weeks.`:delta<-1?`Recorded time fell from ${fmt(first)} h to ${fmt(last)} h over the last 8 weeks.`:`Recorded time was broadly stable over the last 8 weeks; the first-to-last difference was ${fmt(Math.abs(delta))} h.`)
@@ -11390,6 +11445,7 @@ async function run34CoinsSelfTests(showPanel=false){
     assert('Coin shop price rows align across products',shopPriceOffsets.length<2||Math.max(...shopPriceOffsets)-Math.min(...shopPriceOffsets)<1.5);
     assert('Shop descriptions clamp to two lines and keep full tooltip text',[...document.querySelectorAll('#shopGrid .shopDesc:not(.shopDesc--empty)')].every(el=>getComputedStyle(el).getPropertyValue('-webkit-line-clamp')==='2'&&el.title===el.textContent));
     const hasCjk=value=>/[\u3400-\u9fff]/.test(String(value||''));
+    assert('English date navigation labels translated',currentLang!=='en'||(!hasCjk(document.getElementById('datePicker')?.getAttribute('aria-label')||'')&&!hasCjk(document.getElementById('prevDay')?.getAttribute('aria-label')||'')&&!hasCjk(document.getElementById('nextDay')?.getAttribute('aria-label')||'')));
     try{renderWeek();renderCountdown();applyLanguage()}catch(e){recordRuntimeError('i18n.dynamicDisplaySelfTest',e)}
     const activeGoalForSelfTest=getActiveGoal();
     const countdownConsistent=activeGoalForSelfTest
@@ -11422,6 +11478,9 @@ async function run34CoinsSelfTests(showPanel=false){
     assert('English trend, year and month analysis copy translated',currentLang!=='en'||!hasCjk(analysisCopy));
     const chartTooltips=[...document.querySelectorAll('#weekThumb .weekSeg,#yearMiniGrid .yearMiniSeg')].map(el=>el.title).join(' ');
     assert('English weekly and annual chart category tooltips translated',currentLang!=='en'||!hasCjk(chartTooltips));
+    const trendHit=document.querySelector('#trendSvg .trendHit');trendHit?.dispatchEvent(new Event('mouseenter'));
+    assert('Trend points expose hover details',!!trendHit&&!!document.getElementById('trendTooltip')?.classList.contains('show')&&!hasCjk(document.getElementById('trendTooltip')?.textContent));
+    trendHit?.dispatchEvent(new Event('mouseleave'));
     yearRateHit?.dispatchEvent(new Event('mouseleave'));
     const statusLabels=[...document.querySelectorAll('#planList select:not(.taskType) option')].map(option=>option.textContent).join(' ');
     assert('English task statuses and plan summary translated',currentLang!=='en'||(!hasCjk(statusLabels)&&!hasCjk(document.querySelector('#planSummary')?.textContent)&&!hasCjk(document.querySelector('#planHint')?.textContent)));
