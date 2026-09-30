@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="168">
+<meta name="application-version" content="170">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -6916,15 +6916,15 @@ html body #addShopItemBtn{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v169</span>
+  <span class="siteFooterVersion">v170</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle">v169 更新说明</h3>
-    <div class="releaseNotesIntro">v169：补强启动合并、全量替换与 Fast Boot 的一致性保护，进一步避免本地数据回退或覆盖。</div>
+    <h3 id="releaseNotesTitle">v170 更新说明</h3>
+    <div class="releaseNotesIntro">v170：修复持久化自测使用空白日期样本导致测试提前中断的问题，并统一页面版本标记。</div>
     <div class="releaseNotesList">
       <div class="releaseNoteItem"><b>硬性防覆盖</b><span>升级启动时同时检查 LocalStorage 与 IndexedDB；空数据、记录更少的数据不会自动覆盖历史数据。</span></div>
       <div class="releaseNoteItem"><b>跨日期保存</b><span>快速切换日期时，所有尚未落盘的实际修改日期都会一起保存，不再只保存当前日期。</span></div>
@@ -6940,8 +6940,8 @@ html body #addShopItemBtn{
 </div>
 <script>
 
-// 34 Coins v169 · standalone local release · hard overwrite protection · boot reconciliation · mirror consistency · no external runtime dependencies
-const APP_VERSION='169';
+// 34 Coins v170 · standalone local release · hard overwrite protection · boot reconciliation · mirror consistency · no external runtime dependencies
+const APP_VERSION='170';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -11140,13 +11140,13 @@ function getAppContext(){
     storageKey:STORAGE_KEY
   };
 }
-// ===== v169 persistence self-tests =====
+// ===== v170 persistence self-tests =====
 async function run34CoinsSelfTests(showPanel=false){
   const results=[],assert=(name,ok)=>results.push({name,ok:!!ok});
   const panel=document.getElementById('34coinsSelfTestPanel');
   const finish=(fatal=null)=>{const passed=results.filter(x=>x.ok).length,total=results.length,failed=total-passed;if(panel&&showPanel){panel.hidden=false;panel.className='selfTestPanel '+(failed||fatal?'fail':'pass');const fatalText=fatal?' · '+escapeHtml(String(fatal.message||fatal)):'';const failedHtml=results.filter(x=>!x.ok).slice(0,4).map(x=>'<div>✕ '+escapeHtml(x.name)+'</div>').join('')||'<div>✓ 核心持久化与冲突测试通过</div>';panel.innerHTML='<strong>34 Coins self-test</strong><div style="margin-top:4px">'+passed+'/'+total+' passed'+fatalText+'</div><div style="margin-top:6px;font-size:11px">'+failedHtml+'</div>';}if(failed||fatal)console.error('[34 Coins self-test]',{results,fatal});else console.info('[34 Coins] self-tests: '+passed+'/'+total+' passed');return !failed&&!fatal;};
   try{
-    const sample=normalizeState({days:{'2026-01-01':{coins:Array.from({length:34},()=>({text:'',color:null,groupId:null,energy:null}))}},settings:{rewardMinutes:10,rewardMoney:1}});
+    const sample=normalizeState({days:{'2026-01-01':{coins:Array.from({length:34},(_,i)=>i===0?{text:'自检记录',color:0,groupId:null,energy:2}:{text:'',color:null,groupId:null,energy:null})}},settings:{rewardMinutes:10,rewardMoney:1}});
     assert('normalizeState preserves valid day',Object.keys(sample.days).includes('2026-01-01'));assert('34 slots preserved',sample.days['2026-01-01'].coins.length===34);
     const flow=calculateFlowCombo(Array.from({length:3},()=>({text:'x',color:0})));assert('flow combo non-negative',flow.bonusCoins>=0);assert('spearman monotonic = 1',Math.abs((spearman([1,2,3],[10,20,30])||0)-1)<1e-9);
     const backup=normalizeBackupState(sample,{slots:34});assert('backup normalize keeps all days',Object.keys(backup.days).length===1);assert('backup round-trip keeps 34 slots',backup.days['2026-01-01'].coins.length===34);assert('escapeHtml neutralizes markup',escapeHtml('<img src=x onerror=alert(1)>').includes('&lt;img')&&!escapeHtml('<img src=x onerror=alert(1)>').includes('<img'));assert('semantic i18n dictionary uses non-Chinese keys',Object.keys(I18N_SEMANTIC).every(k=>!/[\u3400-\u9fff]/.test(k)));
