@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="159">
+<meta name="application-version" content="164">
 <title>34 Coins · 时间记录与分析</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238e6ac8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235b5bd6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%225%22%20fill%3D%22none%22%20stroke%3D%22%238e6ac8%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M30%2018c-6-1-12%203-15%2010%204-2%208-2%2011%201-4%204-6%209-5%2014%205-1%209-4%2011-8%202%204%206%207%2011%208%201-5-1-10-5-14%203-3%207-3%2011-1-3-7-9-11-15-10v18c0%208-3%2014-8%2019h12l-2-13-2%2013h12c-5-5-8-11-8-19Z%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
@@ -3579,6 +3579,135 @@ html body /* Keep the shop responsive row counts introduced earlier. */
   text-align:left;
 }
 .morningCheckinCopy{min-width:0;display:flex;flex-direction:column;gap:3px}
+
+.morningCheckinCalendar{
+  width:min(520px,100%);
+  margin:18px auto 0;
+  padding:12px 14px 13px;
+  border:1px solid rgba(0,0,0,.045);
+  border-radius:18px;
+  background:rgba(247,248,250,.78);
+  box-shadow:0 1px 2px rgba(0,0,0,.02),inset 0 1px 0 rgba(255,255,255,.7);
+}
+.morningCalendarHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:9px;
+}
+.morningCalendarMonthWrap{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.morningCalendarMonth{font-size:13px;font-weight:700;color:#1d1d1f;letter-spacing:-.01em}
+.morningCalendarNav{
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+  padding:2px;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
+}
+.morningCalendarNavBtn{
+  width:22px;
+  height:22px;
+  padding:0;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:#687182;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  line-height:1;
+  cursor:pointer;
+  transition:background-color .15s ease,color .15s ease,transform .15s ease;
+}
+.morningCalendarNavBtn:hover{background:rgba(0,0,0,.05);color:#1d1d1f}
+.morningCalendarNavBtn:active{transform:scale(.94)}
+.morningCalendarNavBtn:disabled{opacity:.28;cursor:default;transform:none}
+.morningCalendarCount{font-size:10px;color:#8a93a2;white-space:nowrap}
+.morningCalendarWeek{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:4px;
+  margin-bottom:4px;
+}
+.morningCalendarWeek span{
+  text-align:center;
+  font-size:9px;
+  color:#9aa2b1;
+  line-height:18px;
+  font-weight:650;
+}
+.morningCalendarGrid{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  grid-auto-rows:30px;
+  gap:4px;
+}
+.morningCalendarDay{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  border:1px solid transparent;
+  border-radius:9px;
+  color:#5f6775;
+  font-size:10px;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+  box-sizing:border-box;
+}
+.morningCalendarDay.isOutside{color:transparent;pointer-events:none}
+.morningCalendarDay.isWeekend:not(.isChecked){color:#88909d}
+.morningCalendarDay.isChecked{
+  color:#1f7a43;
+  background:rgba(52,199,89,.10);
+  border-color:rgba(52,199,89,.10);
+}
+.morningCalendarDay.isToday{
+  border-color:rgba(0,122,255,.30);
+  box-shadow:inset 0 0 0 1px rgba(0,122,255,.06);
+}
+.morningCalendarDay.isChecked.isToday{
+  background:rgba(52,199,89,.12);
+  border-color:rgba(0,122,255,.28);
+}
+.morningCalendarMark{
+  position:absolute;
+  right:4px;
+  bottom:3px;
+  font-size:8px;
+  line-height:1;
+  color:#248a45;
+  font-weight:800;
+}
+.morningCalendarLegend{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:8px;
+  color:#9aa2b1;
+  font-size:9px;
+}
+.morningCalendarLegend span{display:inline-flex;align-items:center;gap:4px}
+.morningCalendarDot{width:7px;height:7px;border-radius:3px;background:rgba(52,199,89,.18);border:1px solid rgba(52,199,89,.16)}
+.morningCalendarDot.today{background:transparent;border-color:rgba(0,122,255,.28)}
+@media(max-width:650px){
+  .morningCheckinCalendar{padding:11px 10px 12px;margin-top:15px}
+  .morningCalendarGrid{grid-auto-rows:28px;gap:3px}
+  .morningCalendarWeek{gap:3px}
+  .morningCalendarDay{border-radius:8px;font-size:9.5px}
+  .morningCalendarMark{right:3px;bottom:2px;font-size:7px}
+}
 .morningCheckinTitle{font-size:12px;font-weight:700;color:#1d1d1f}
 .morningCheckinSub{font-size:10px;line-height:1.45;color:#8a93a2}
 .morningCheckinBtn{
@@ -3654,6 +3783,39 @@ html body .morningClose:hover{color:#1d1d1f ;transform:none }
   margin-top:6px;
   color:#9aa2b1;
   font-size:10px;
+}
+/* V162 — quick access to the daily check-in calendar */
+.checkinYearTitleWrap{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-width:0;
+}
+.checkinCalendarOpenBtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
+  padding:0;
+  border:1px solid rgba(0,122,255,.12);
+  border-radius:8px;
+  background:rgba(0,122,255,.07);
+  color:#6f7d95;
+  font-size:12px;
+  line-height:1;
+  cursor:pointer;
+  transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease;
+}
+.checkinCalendarOpenBtn:hover,.checkinCalendarOpenBtn:focus-visible{
+  background:rgba(0,122,255,.12);
+  border-color:rgba(0,122,255,.22);
+  color:#007aff;
+  transform:translateY(-1px);
+}
+.checkinCalendarOpenBtn:active{transform:none}
+@media(max-width:650px){
+  .checkinCalendarOpenBtn{width:22px;height:22px;border-radius:7px;font-size:11px}
 }
 @media(max-width:650px){
   .morningCheckinRow{align-items:flex-start}
@@ -6138,6 +6300,7 @@ html body #addShopItemBtn{
       <div class="morningQuote" id="morningQuote">Small steps, taken consistently, become extraordinary results.</div>
       <div class="morningCn" id="morningCn" data-i18n-key="txt_f99861e288" data-i18n-text="1">坚持走好每一步，平凡的积累终会变成非凡的结果。</div>
       <div class="morningMeta" id="morningMeta" data-i18n-key="txt_e6aaee5c06" data-i18n-text="1">今天，专注于下一枚硬币。</div>
+      <div class="morningCheckinCalendar" id="morningCheckinCalendar" aria-label="签到日历"></div>
       <div class="morningCheckinRow">
         <div class="morningCheckinCopy">
           <span class="morningCheckinTitle" data-i18n-key="txt_973fde7657" data-i18n-text="1">今日签到</span>
@@ -6753,19 +6916,20 @@ html body #addShopItemBtn{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v159</span>
+  <span class="siteFooterVersion">v164</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle">v159 更新说明</h3>
-    <div class="releaseNotesIntro">v159：优化启动路径，首次打开先用本地数据立即渲染，再后台完成 IndexedDB 同步，降低首屏等待时间。</div>
+    <h3 id="releaseNotesTitle">v164 更新说明</h3>
+    <div class="releaseNotesIntro">v164：签到月历新增苹果风格月度翻页控件，可浏览往月签到记录。</div>
     <div class="releaseNotesList">
       <div class="releaseNoteItem"><b>兑换按钮统一</b><span>“兑换”按钮与顶部“＋添加实物奖励”采用同一套浅蓝背景、蓝色文字和细边框。</span></div>
       <div class="releaseNoteItem"><b>交互保持一致</b><span>悬停、聚焦和按下状态仍保留明确反馈，但默认状态不再使用高饱和蓝色。</span></div>
       <div class="releaseNoteItem"><b>启动性能</b><span>首次打开不再等待 IndexedDB 全量读取；本地首屏先渲染，后台同步后仅在发现更新时二次刷新。</span></div>
+      <div class="releaseNoteItem"><b>签到月历</b><span>每日激励弹窗加入当月签到日历；已签到日期显示对勾，今天用蓝色描边标记，保持轻量 Apple 风格。</span></div>
     </div>
     <div class="modalActions">
       <button class="btn primary" id="releaseNotesClose" type="button" data-i18n-key="txt_cb63c62e50" data-i18n-text="1">知道了</button>
@@ -6775,8 +6939,8 @@ html body #addShopItemBtn{
 </div>
 <script>
 
-// 34 Coins v159 · standalone local release · no external runtime dependencies
-const APP_VERSION='159';
+// 34 Coins v164 · standalone local release · no external runtime dependencies
+const APP_VERSION='164';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -7043,6 +7207,26 @@ function emitStorageWarning(type,message){
   catch(e){recordRuntimeError('silent-catch',e)}
 }
 
+
+function readFastBootSnapshot(storage=globalThis?.localStorage){
+  try{
+    const raw=storage?.getItem?.(FAST_BOOT_KEY);
+    if(!raw)return null;
+    const x=JSON.parse(raw);
+    if(!x || typeof x!=='object' || !x.settings)return null;
+    return x;
+  }catch(e){recordRuntimeError('fast-boot-read',e);return null;}
+}
+function writeFastBootSnapshot(state,meta={}){
+  try{
+    const payload={
+      savedAt:Number(meta.savedAt||Date.now()),
+      revision:Number(meta.revision||0),
+      settings:cloneState(state?.settings||{})
+    };
+    localStorage.setItem(FAST_BOOT_KEY,JSON.stringify(payload));
+  }catch(e){recordRuntimeError('fast-boot-write',e);}
+}
 class DataStore{
   constructor({key,storage,idbName='34coins_local_v2'}={}){
     if(!key)throw new Error('DataStore requires a storage key');
@@ -7052,21 +7236,83 @@ class DataStore{
     this.idb=null;this.idbAvailable=false;this.lastPersistError=null;this.persistPromise=Promise.resolve(true);this.lastAppBytes=0;this.dayBytes=new Map();this.revision=Number(meta.revision)||0;this.lastPersistedAt=Number(meta.savedAt)||0;this.ready=this.initialize();
   }
   _readLocalRaw(){try{return this.storage.getItem(this.key);}catch(e){this.persistent=false;this.storage=this.memoryStorage;emitStorageWarning('unavailable','本地存储读取失败，已降级为内存模式。');return null;}}
-  load(){const raw=this._readLocalRaw();if(!raw)return normalizeState({});try{const state=normalizeState(JSON.parse(raw));this.lastAppBytes=raw.length;return state;}catch(e){emitStorageWarning('corrupt','本地数据格式异常，主数据未被删除；请立即导出或恢复备份。');return normalizeState({});}}
+  load(){
+    const raw=this._readLocalRaw();
+    let state=normalizeState({});
+    if(raw){
+      try{
+        state=normalizeState(JSON.parse(raw));
+        this.lastAppBytes=raw.length;
+      }catch(e){
+        emitStorageWarning('corrupt','本地数据格式异常，主数据未被删除；请立即导出或恢复备份。');
+      }
+    }
+    const fast=readFastBootSnapshot(this.storage);
+    const localMeta=this.readMeta?.()||{};
+    if(fast && Number(fast.revision||0)>=Number(localMeta.revision||0)){
+      state.settings=Object.assign({},state.settings||{},cloneState(fast.settings||{}));
+      state=normalizeState(state);
+    }
+    return state;
+  }
   async initialize(){
     this.requestPersistentStorage();if(!('indexedDB'in globalThis))return null;
     try{
       this.idb=await new Promise((resolve,reject)=>{const req=indexedDB.open(this.idbName,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(this.idbDays))db.createObjectStore(this.idbDays);if(!db.objectStoreNames.contains(this.idbMeta))db.createObjectStore(this.idbMeta);};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('IndexedDB open failed'));});
       this.idbAvailable=true;
-      const idbState=await this.idbLoadState();const localRaw=this._readLocalRaw(),localMeta=this.readMeta();
-      if(idbState){this.revision=Number(idbState.revision)||this.revision;this.lastPersistedAt=Number(idbState.savedAt)||this.lastPersistedAt;if(!localRaw||Number(idbState.revision||0)>=Number(localMeta?.revision||0))return idbState.state;}
-      if(localRaw){const state=normalizeState(JSON.parse(localRaw));await this.migrateStateToIndexedDB(state,Number(localMeta?.savedAt||Date.now()));return null;}
+      const idbMetaState=await this.idbLoadMetaState();
+      const localRaw=this._readLocalRaw(),localMeta=this.readMeta();
+      if(idbMetaState){
+        this.revision=Number(idbMetaState.revision)||this.revision;
+        this.lastPersistedAt=Number(idbMetaState.savedAt)||this.lastPersistedAt;
+        writeFastBootSnapshot(idbMetaState.state,{savedAt:idbMetaState.savedAt,revision:idbMetaState.revision});
+        // Return only the lightweight meta/settings snapshot here.
+        if(!localRaw||Number(idbMetaState.revision||0)>=Number(localMeta?.revision||0))return idbMetaState.state;
+      }
+      if(localRaw){
+        const state=normalizeState(JSON.parse(localRaw));
+        // Keep the synchronous startup path cheap. If the IDB is empty, migrate
+        // the legacy local snapshot in the background after the lightweight boot.
+        __34coinsLifecycle?.setTimeout?.(()=>{
+          void this.migrateStateToIndexedDB(state,Number(localMeta?.savedAt||Date.now())).then(()=>{
+            writeFastBootSnapshot(state,{savedAt:Number(localMeta?.savedAt||Date.now()),revision:Number(this.revision||0)});
+          }).catch(e=>{this.lastPersistError=e;});
+        },0);
+        writeFastBootSnapshot(state,{savedAt:Number(localMeta?.savedAt||Date.now()),revision:Number(localMeta?.revision||this.revision||0)});
+        return state;
+      }
     }catch(e){this.idbAvailable=false;this.lastPersistError=e;emitStorageWarning('idb-unavailable','IndexedDB 当前不可用，暂时继续使用浏览器本地存储。');}
     return null;
   }
   requestPersistentStorage(){try{if(navigator.storage?.persist)navigator.storage.persist().then(granted=>{safeLocalSet(`${this.key}.persist`,granted?'1':'0');}).catch(e=>{this.lastPersistError=e;});}catch(e){this.lastPersistError=e;}}
   readMeta(){try{const raw=this.storage.getItem(this.metaKey);return raw?JSON.parse(raw):null;}catch(e){this.lastPersistError=e;return null;}}
   writeMeta(meta){try{this.storage.setItem(this.metaKey,JSON.stringify(meta));return true;}catch(e){this.lastPersistError=e;return false;}}
+  idbLoadMetaState(){
+    if(!this.idbAvailable||!this.idb)return Promise.resolve(null);
+    return new Promise((resolve,reject)=>{
+      const tx=this.idb.transaction([this.idbMeta],'readonly');
+      const metaReq=tx.objectStore(this.idbMeta).get('root');
+      metaReq.onsuccess=()=>{
+        const meta=metaReq.result||null;
+        if(!meta?.savedAt){resolve(null);return;}
+        const state={
+          days:{},
+          settings:meta.settings||{},
+          summaries:meta.summaries||{},
+          redeems:meta.redeems||[],
+          shop:meta.shop||[],
+          purchases:meta.purchases||[],
+          checkIns:meta.checkIns||{},
+          schemaVersion:meta.schemaVersion
+        };
+        this.revision=Number(meta.revision)||this.revision;
+        this.lastPersistedAt=Number(meta.savedAt)||this.lastPersistedAt;
+        resolve({state:normalizeState(state),savedAt:Number(meta.savedAt)||0,revision:Number(meta.revision)||0});
+      };
+      metaReq.onerror=()=>reject(metaReq.error||new Error('IndexedDB meta read failed'));
+      tx.onerror=()=>reject(tx.error||new Error('IndexedDB meta transaction failed'));
+    });
+  }
   idbLoadState(){
     if(!this.idbAvailable||!this.idb)return Promise.resolve(null);
     return new Promise((resolve,reject)=>{
@@ -7109,7 +7355,10 @@ class DataStore{
   save(state,date){
     const now=Date.now();this.lastPersistError=null;
     if(this.idbAvailable){
-      this.persistPromise=this.idbWriteDayAndMeta(state,date).then(()=>{safeLocalRemove(`${this.key}.persist-failed`);return true;}).catch(e=>{this.lastPersistError=e;safeLocalSet(`${this.key}.persist-failed`,'1');emitStorageWarning('idb-write-failed','IndexedDB 写入失败，当前改动可能尚未持久化；请立即导出备份。');return false;});
+      this.persistPromise=this.idbWriteDayAndMeta(state,date).then(()=>{
+        writeFastBootSnapshot(state,{savedAt:this.lastPersistedAt||Date.now(),revision:this.revision||0});
+        safeLocalRemove(`${this.key}.persist-failed`);return true;
+      }).catch(e=>{this.lastPersistError=e;safeLocalSet(`${this.key}.persist-failed`,'1');emitStorageWarning('idb-write-failed','IndexedDB 写入失败，当前改动可能尚未持久化；请立即导出备份。');return false;});
       // Keep the legacy LocalStorage snapshot as a compatibility mirror only when small.
       try{const raw=this._readLocalRaw();if(raw&&raw.length<=5*1024*1024)this.writeMeta({savedAt:now,bytes:this.lastAppBytes,backend:'idb-primary'});}catch(e){recordRuntimeError('silent-catch',e)}
       if(this.lastAppBytes>5*1024*1024)emitStorageWarning('oversize','数据已超过 5 MB 阈值，主数据继续由 IndexedDB 按天保存；请立即导出备份。');
@@ -7134,7 +7383,10 @@ class DataStore{
         metaReq.onsuccess=()=>{const remoteMeta=metaReq.result||{},remoteRevision=Number(remoteMeta.revision)||0;if(remoteRevision>expectedRevision){const err=new Error('Another tab has newer data');err.code='CONFLICT';tx.abort();reject(err);return;}ds.clear();for(const[date,data] of days)ds.put({date,data},date);ms.put(meta,'root');tx.__34meta=meta;};
         tx.oncomplete=()=>{this.revision=Number(tx.__34meta?.revision)||this.revision+1;this.lastPersistedAt=Number(tx.__34meta?.savedAt)||Date.now();this.lastAppBytes=meta.totalBytes;resolve(true);};
         tx.onerror=()=>reject(tx.error||new Error('IndexedDB replace failed'));tx.onabort=()=>{};
-      }).then(()=>{safeLocalRemove(`${this.key}.persist-failed`);return true;}).catch(e=>{this.lastPersistError=e;safeLocalSet(`${this.key}.persist-failed`,'1');if(e.code==='CONFLICT')emitStorageWarning('multi-tab-conflict','检测到其他标签页有更新，已阻止覆盖并等待你选择是否载入最新数据。');else emitStorageWarning('idb-replace-failed','导入备份后写入 IndexedDB 失败；请立即再次导出备份。');return false;});
+      }).then(()=>{
+        writeFastBootSnapshot(state,{savedAt:this.lastPersistedAt||Date.now(),revision:this.revision||0});
+        safeLocalRemove(`${this.key}.persist-failed`);return true;
+      }).catch(e=>{this.lastPersistError=e;safeLocalSet(`${this.key}.persist-failed`,'1');if(e.code==='CONFLICT')emitStorageWarning('multi-tab-conflict','检测到其他标签页有更新，已阻止覆盖并等待你选择是否载入最新数据。');else emitStorageWarning('idb-replace-failed','导入备份后写入 IndexedDB 失败；请立即再次导出备份。');return false;});
       try{const raw=JSON.stringify(state);if(raw.length<=5*1024*1024){this.storage.setItem(this.key,raw);this.writeMeta({savedAt:now,revision:this.revision,bytes:raw.length,backend:'idb-primary'});}}catch(e){this.lastPersistError=this.lastPersistError||e;}
       return state;
     }
@@ -7142,6 +7394,10 @@ class DataStore{
     if(bytes<=5*1024*1024){try{const localMeta=this.readMeta()||{},remoteRevision=Number(localMeta.revision)||0;if(remoteRevision>Number(this.revision||0)){const err=new Error('Another tab has newer data');err.code='CONFLICT';throw err;}this.revision=remoteRevision+1;this.storage.setItem(this.key,payload);this.persistent=this.storage?.__persistent!==false;this.writeMeta({savedAt:nowTs,revision:this.revision,bytes,backend:'localStorage-fallback'});this.lastPersistedAt=nowTs;this.lastAppBytes=bytes;this.lastPersistError=null;return state;}catch(e){this.lastPersistError=e;if(e.code==='CONFLICT')emitStorageWarning('multi-tab-conflict','检测到其他标签页有更新，已阻止覆盖并等待你选择是否载入最新数据。');else{this.persistent=false;emitStorageWarning('write-failed','导入备份写入本地存储失败；请立即导出备份。');}return state;}}
     emitStorageWarning('oversize','导入备份超过 5 MB 且 IndexedDB 不可用，请立即导出备份；主数据未被删除。');
     return state;
+  }
+  hydrateAll(){
+    if(!this.idbAvailable||!this.idb)return Promise.resolve(null);
+    return this.idbLoadState();
   }
   async loadFreshState(){
     if(this.idbAvailable&&this.idb){const fresh=await this.idbLoadState();if(fresh){this.revision=fresh.revision||this.revision;this.lastPersistedAt=fresh.savedAt||this.lastPersistedAt;return fresh.state;}}
@@ -7533,6 +7789,7 @@ const COLORS = [
 const CATEGORY_DISPLAY_ORDER=[0,2,1,4,3];
 const DISPLAY_COLORS=CATEGORY_DISPLAY_ORDER.map(i=>COLORS[i]);
 const STORAGE_KEY='coins34_local_v2';
+const FAST_BOOT_KEY=STORAGE_KEY+'.fast_boot_v1';
 // v146: personal history is intentionally NOT embedded in the release file.
 // Existing data under STORAGE_KEY continues to load normally; fresh installs start clean.
 const LOCAL_DIRTY_KEY='34coins_local_dirty_v1';
@@ -7618,11 +7875,16 @@ function renderCheckinYearProgress(){
   const pct=Math.round(count/total*100);
   el.innerHTML=`
     <div class="checkinYearHead">
-      <span class="checkinYearTitle">📅 ${year} 年签到进度</span>
+      <span class="checkinYearTitleWrap">
+        <span class="checkinYearTitle">📅 ${year} 年签到进度</span>
+        <button type="button" class="checkinCalendarOpenBtn" id="checkinCalendarOpenBtn" aria-label="打开签到日历" title="打开签到日历">▦</button>
+      </span>
       <span class="checkinYearCount">${count} / ${total} 天 · ${pct}% · 连续 ${streak} 天</span>
     </div>
     <div class="checkinYearTrack" role="img" aria-label="${year} 年签到进度 ${count} / ${total} 天，连续 ${streak} 天">${segs.join('')}</div>
     <div class="checkinYearMeta"><span>1月1日</span><span>12月31日</span></div>`;
+  const openBtn=document.getElementById('checkinCalendarOpenBtn');
+  if(openBtn)openBtn.onclick=openMorningCheckinCalendar;
 }
 
 function isRecordedCoin(coin){return Boolean(coin && String(coin.text??'').trim());}
@@ -7716,6 +7978,76 @@ const MORNING_QUOTES=[
   ["Start before you feel ready. Momentum comes after action.","不要等到准备好才开始，行动之后，势能才会出现。"],
   ["Be patient with the results and relentless with the process.","对结果保持耐心，对过程保持坚定。"]
 ];
+let morningCalendarMonthKey=hongKongCheckInDayKey().slice(0,7);
+function renderMorningCheckinCalendar(){
+  const el=document.getElementById('morningCheckinCalendar');
+  if(!el)return;
+  const todayKey=hongKongCheckInDayKey();
+  const todayMonth=todayKey.slice(0,7);
+  if(!/^\d{4}-\d{2}$/.test(String(morningCalendarMonthKey||'')))morningCalendarMonthKey=todayMonth;
+  const viewKey=`${morningCalendarMonthKey}-01`;
+  const d=dateObj(viewKey);
+  const year=d.getFullYear();
+  const month=d.getMonth();
+  const monthDays=new Date(year,month+1,0).getDate();
+  const firstDayMonday=(new Date(year,month,1).getDay()+6)%7;
+  const monthKeyText=`${year}-${pad2(month+1)}`;
+  let checkedCount=0;
+  const weekdayNames=currentLang==='en'?['Mon','Tue','Wed','Thu','Fri','Sat','Sun']:['一','二','三','四','五','六','日'];
+  const monthLabel=currentLang==='en'
+    ? `${new Intl.DateTimeFormat('en-US',{month:'long'}).format(new Date(year,month,1))} ${year}`
+    : `${year} 年 ${month+1} 月`;
+  const startLabel=currentLang==='en'?'Check-ins this month':'本月签到';
+  let grid='';
+  for(let i=0;i<firstDayMonday;i++)grid+='<div class="morningCalendarDay isOutside" aria-hidden="true"></div>';
+  for(let day=1;day<=monthDays;day++){
+    const dayKey=`${monthKeyText}-${pad2(day)}`;
+    const checked=signedInOn(dayKey);
+    if(checked)checkedCount++;
+    const dayDate=new Date(year,month,day);
+    const dow=(dayDate.getDay()+6)%7;
+    const classes=['morningCalendarDay'];
+    if(dow>=5)classes.push('isWeekend');
+    if(checked)classes.push('isChecked');
+    if(dayKey===todayKey)classes.push('isToday');
+    const label=`${dayKey}${checked?(currentLang==='en'?' · Checked in':' · 已签到'):(currentLang==='en'?' · Not checked in':' · 未签到')}`;
+    grid+=`<div class="${classes.join(' ')}" title="${label}" aria-label="${label}">${day}${checked?'<span class="morningCalendarMark" aria-hidden="true">✓</span>':''}</div>`;
+  }
+  const trailingDays=Math.max(0,42-firstDayMonday-monthDays);
+  for(let i=0;i<trailingDays;i++)grid+='<div class="morningCalendarDay isOutside" aria-hidden="true"></div>';
+  const countText=currentLang==='en'?`${checkedCount} checked`:`已签到 ${checkedCount} 天`;
+  const legendChecked=currentLang==='en'?'Checked in':'已签到';
+  const legendToday=currentLang==='en'?'Today':'今天';
+  const monthPrev=addMonthsKey(morningCalendarMonthKey,-1);
+  const monthNext=addMonthsKey(morningCalendarMonthKey,1);
+  el.innerHTML=`
+    <div class="morningCalendarHead">
+      <div class="morningCalendarMonthWrap">
+        <span class="morningCalendarMonth">${monthLabel}</span>
+        <span class="morningCalendarNav" aria-label="${currentLang==='en'?'Browse months':'浏览月份'}">
+          <button type="button" class="morningCalendarNavBtn" id="morningCalendarPrev" aria-label="${currentLang==='en'?'Previous month':'上个月'}" title="${currentLang==='en'?'Previous month':'上个月'}">‹</button>
+          <button type="button" class="morningCalendarNavBtn" id="morningCalendarNext" aria-label="${currentLang==='en'?'Next month':'下个月'}" title="${currentLang==='en'?'Next month':'下个月'}" ${monthNext>todayMonth?'disabled':''}>›</button>
+        </span>
+      </div>
+      <span class="morningCalendarCount">${startLabel} · ${countText}</span>
+    </div>
+    <div class="morningCalendarWeek">${weekdayNames.map(x=>`<span>${x}</span>`).join('')}</div>
+    <div class="morningCalendarGrid">${grid}</div>
+    <div class="morningCalendarLegend">
+      <span><i class="morningCalendarDot"></i>${legendChecked}</span>
+      <span><i class="morningCalendarDot today"></i>${legendToday}</span>
+    </div>`;
+  document.getElementById('morningCalendarPrev')?.addEventListener('click',()=>{
+    morningCalendarMonthKey=addMonthsKey(morningCalendarMonthKey,-1);
+    renderMorningCheckinCalendar();
+  });
+  document.getElementById('morningCalendarNext')?.addEventListener('click',()=>{
+    const next=addMonthsKey(morningCalendarMonthKey,1);
+    if(next>todayMonth)return;
+    morningCalendarMonthKey=next;
+    renderMorningCheckinCalendar();
+  });
+}
 function refreshMorningCheckinUI(){
   const key=hongKongCheckInDayKey();
   const btn=document.getElementById('morningCheckinBtn');
@@ -7728,6 +8060,7 @@ function refreshMorningCheckinUI(){
   if(meta)meta.textContent=checked
     ? `香港时间 ${key} 已完成签到，继续保持。`
     : `香港时间 ${key} · 完成今天的一次签到，记录你的坚持。`;
+  renderMorningCheckinCalendar();
 }
 const MORNING_SEEN_VERSION='v3';
 function morningSeenKey(key){
@@ -7739,27 +8072,31 @@ function hasSeenMorningToday(key){
 function markMorningSeenToday(key){
   try{safeLocalSet(morningSeenKey(key),'1');}catch(e){recordRuntimeError('silent-catch',e)}
 }
-function showMorningMotivation(){
+function showMorningMotivation(forceOpen=false){
   const key=hongKongCheckInDayKey();
   const back=document.getElementById('morningBack');
   if(!back)return;
 
-  // Only a completed check-in or an explicit dismissal counts as "seen".
-  // Rendering the popup itself must never permanently suppress today's prompt.
-  if(signedInOn(key) || hasSeenMorningToday(key)){
+  // Automatic daily prompt respects today's seen/check-in state; manual calendar
+  // access intentionally bypasses that guard so the user can review history anytime.
+  if(!forceOpen && (signedInOn(key) || hasSeenMorningToday(key))){
     back.classList.remove('show');
     return;
   }
 
-  if(back.classList.contains('show'))return;
+  if(back.classList.contains('show') && !forceOpen)return;
 
   const index=yearDayIndex(key,key.slice(0,4))%MORNING_QUOTES.length;
+  morningCalendarMonthKey=key.slice(0,7);
   const q=MORNING_QUOTES[index];
   document.getElementById('morningQuote').textContent=q[0];
   document.getElementById('morningCn').textContent=q[1];
   document.getElementById('morningMeta').textContent=`${key} · 香港时间 05:00 后的今日激励`;
   refreshMorningCheckinUI();
   back.classList.add('show');
+}
+function openMorningCheckinCalendar(){
+  showMorningMotivation(true);
 }
 function dismissMorningForNow(){
   const key=hongKongCheckInDayKey();
@@ -10435,10 +10772,12 @@ document.getElementById('importInput').onchange=e=>{
 let __34coinsFastBootPhase=true;
 
 async function finalizeAppBoot(){
-  // Fast path: render immediately from the synchronous local snapshot.
-  // IndexedDB hydration continues in parallel and only triggers a second render
-  // when its revision is newer than the local snapshot we just rendered.
   const bootRevision=Number(store.revision)||0;
+  const bootDataRevision=dataRevision;
+  const fastBoot=readFastBootSnapshot();
+  if(fastBoot?.settings){
+    db.settings=normalizeState({...db,settings:Object.assign({},db.settings||{},cloneState(fastBoot.settings))}).settings;
+  }
   getDay(currentDate);
   lastSavedSnapshot=captureUndoSnapshot();
   refreshBaseHashesFromState(db);
@@ -10452,9 +10791,15 @@ async function finalizeAppBoot(){
   initMultiTabSync();
 
   try{
-    const hydrated=await store.ready;
+    // The store.open/meta phase is intentionally lightweight.
+    await store.ready;
+    // Full historical day hydration happens only after the first render.
+    const hydrated=await store.hydrateAll();
     const hydratedRevision=Number(store.revision)||0;
-    if(hydrated&&hydrated.days&&hydratedRevision>bootRevision){
+    if(hydrated&&hydrated.days&&
+       hydratedRevision>=bootRevision&&
+       dataRevision===bootDataRevision&&
+       !isLocalDirty()){
       db=normalizeState(hydrated);
       dataRevision++;
       invalidateAnalysisCache();
@@ -10475,6 +10820,7 @@ async function finalizeAppBoot(){
     __34coinsLifecycle.setTimeout(()=>window.showToast?.('⚠️ '+(window.__34coinsStorageWarning.message||'本地存储当前状态需要检查。')),900);
   }
 }
+
 void finalizeAppBoot();
 
 function getAppContext(){
