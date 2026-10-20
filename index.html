@@ -7024,6 +7024,47 @@ function cloneState(value){
   catch(e){return Array.isArray(value)?value.slice():Object.assign({},value);}
 }
 
+function coinPayloadEqual(a,b){
+  return String(a?.text??'')===String(b?.text??'')
+    && normalizeCoinColor(a?.color)===normalizeCoinColor(b?.color)
+    && (Number(a?.energy)||null)===(Number(b?.energy)||null);
+}
+
+/*
+ * Older records were stored as one object per 30-minute coin and had no
+ * groupId.  Once the timeline learned to render variable-length blocks, those
+ * records came back as two separate cards after a reload.  Recover the only
+ * boundary information that still exists: adjacent coins with the same
+ * payload. Explicitly different groupIds remain separate so a deliberate
+ * boundary made in the current editor is never overwritten.
+ */
+function repairLegacyAdjacentGroups(day,dayKey='legacy'){
+  const coins=Array.isArray(day?.coins)?day.coins:[];
+  let changed=false;
+  for(let i=0;i<coins.length;){
+    const first=coins[i];
+    if(!first || !String(first.text??'').trim()){i++;continue;}
+    let end=i+1;
+    while(end<coins.length&&isRecordedCoinForNormalization(coins[end])&&coinPayloadEqual(first,coins[end]))end++;
+    if(end-i>=2){
+      const ids=[...new Set(coins.slice(i,end).map(c=>c?.groupId?String(c.groupId):'').filter(Boolean))];
+      // A single existing id indicates a partially persisted group; fill its
+      // missing members. With no id, create a deterministic one so repeated
+      // loads do not keep changing the state hash.
+      if(ids.length<=1){
+        const gid=ids[0]||`legacy-${stableHash(`${dayKey}|${i}|${end}|${first.text}|${first.color}|${first.energy}`)}`;
+        for(let k=i;k<end;k++){
+          if(coins[k].groupId!==gid){coins[k].groupId=gid;changed=true;}
+        }
+      }
+    }
+    i=end;
+  }
+  return changed;
+}
+
+function isRecordedCoinForNormalization(coin){return Boolean(coin&&String(coin.text??'').trim());}
+
 function normalizeState(input){
   const x = (input && typeof input==='object' && !Array.isArray(input)) ? cloneState(input) : {};
   const parsedVersion=Number(x.schemaVersion);
@@ -7068,7 +7109,7 @@ function normalizeState(input){
       x.days[key]={coins:[],tasks:[],review:{win:'',loss:'',keep:'',stop:'',tomorrow:'',outputs:[]},recoveryDay:false};
     }
   });
-  Object.values(x.days).forEach(day=>{
+  Object.entries(x.days).forEach(([dayKey,day])=>{
     if(!Array.isArray(day.coins))day.coins=[];
     const normalizedCoins=day.coins.map(c=>c&&typeof c==='object'?c:{text:'',color:null,groupId:null,energy:null});
     while(normalizedCoins.length<34)normalizedCoins.push({text:'',color:null,groupId:null,energy:null});
@@ -7176,7 +7217,7 @@ function normalizeState(input){
   // v139+: color values stay unchanged; the current five-category model controls their meanings.
   if(Number(x.settings.categoryPaletteVersion||0)<3)x.settings.categoryPaletteVersion=3;
   // V69.19: resilience day + energy overlay migration.
-  Object.values(x.days).forEach(day=>{
+  Object.entries(x.days).forEach(([dayKey,day])=>{
     if(!day || typeof day!=='object' || Array.isArray(day))return;
     day.recoveryDay=day.recoveryDay===true;
     if(!Array.isArray(day.coins))return;
@@ -7194,18 +7235,22 @@ function normalizeState(input){
       const e=Number(coin.energy);
       coin.energy=(e>=1&&e<=3)?Math.round(e):null;
     });
-    // A group is valid only when it is contiguous and its payload is identical.
-    // Broken/legacy boundaries are split instead of being silently merged.
+    // A group id continues only while its payload stays identical. A different
+    // explicit id starts a new block; ungrouped legacy runs are repaired below.
     let prev=null;
     day.coins.forEach((coin)=>{
       if(!coin.text.trim()){coin.groupId=null;prev=null;return;}
       const gid=coin.groupId?String(coin.groupId):null;
       if(!gid){coin.groupId=null;prev={gid:null,text:coin.text,color:coin.color,energy:coin.energy};return;}
       const sameRun=prev&&prev.gid===gid&&prev.text===coin.text&&prev.color===coin.color&&prev.energy===coin.energy;
-      const startsRun=!prev || prev.gid===null;
+      // A different explicit id is a deliberate new block, even when its
+      // payload happens to match the previous block. Only the same id is
+      // required to keep an identical payload across the run.
+      const startsRun=!prev || prev.gid===null || prev.gid!==gid;
       if(sameRun || startsRun){prev={gid,text:coin.text,color:coin.color,energy:coin.energy};return;}
       coin.groupId=null;prev={gid:null,text:coin.text,color:coin.color,energy:coin.energy};
     });
+    repairLegacyAdjacentGroups(day,dayKey);
   });
   // Remove truly empty day documents created only by browsing/history reads.
   Object.keys(x.days).forEach(key=>{
@@ -8315,11 +8360,34 @@ function saveDB(options={}){try{const active=document.activeElement,editing=!!ac
 function updateUndoUI(){const btn=document.getElementById('undoBtn');if(btn){btn.disabled=undoStack.length===0;btn.title=currentLang==='en'?(undoStack.length?`Undo the previous data change (⌘/Ctrl+Z); ${undoStack.length} undo${undoStack.length===1?'':'s'} remaining`:'Nothing to undo'):(undoStack.length?`撤销上一项数据操作（⌘/Ctrl+Z），还可撤销 ${undoStack.length} 次`:'暂无可撤销操作');}}
 function performUndo(){if(!undoStack.length)return;const snapshot=undoStack.pop();undoInProgress=true;try{restoreUndoSnapshot(snapshot);dataRevision++;invalidateAnalysisCache();markLocalDirty();lastSavedSnapshot=captureUndoSnapshot();scheduleLocalPersist();render();updateUndoUI();window.showToast?.(currentLang==='en'?`↶ Undid the previous data change${undoStack.length?`; ${undoStack.length} undo${undoStack.length===1?'':'s'} remaining`:''}`:`↶ 已撤销上一项数据操作${undoStack.length?`，还可继续撤销 ${undoStack.length} 次`:''}`);}catch(e){store.lastPersistError=e;undoStack.push(snapshot);emitStorageWarning('undo-failed','撤销失败，当前数据未改变。');window.showToast?.(currentLang==='en'?'⚠️ Undo failed':'⚠️ 撤销失败');}finally{undoInProgress=false;}}
 function signedInOn(key){return !!(db.checkIns && db.checkIns[String(key)]);}
+function playCheckInSound(){
+  try{
+    const AudioContextCtor=globalThis.AudioContext||globalThis.webkitAudioContext;
+    if(!AudioContextCtor)return;
+    const context=playCheckInSound.context||(playCheckInSound.context=new AudioContextCtor());
+    const resume=context.state==='suspended'?context.resume():Promise.resolve();
+    void resume.then(()=>{
+      const now=context.currentTime;
+      const oscillator=context.createOscillator();
+      const gain=context.createGain();
+      oscillator.type='sine';
+      oscillator.frequency.setValueAtTime(660,now);
+      oscillator.frequency.exponentialRampToValueAtTime(880,now+0.13);
+      gain.gain.setValueAtTime(0.0001,now);
+      gain.gain.exponentialRampToValueAtTime(0.12,now+0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001,now+0.28);
+      oscillator.connect(gain);gain.connect(context.destination);
+      oscillator.start(now);oscillator.stop(now+0.3);
+      oscillator.addEventListener('ended',()=>{try{oscillator.disconnect();gain.disconnect();}catch(_){}} ,{once:true});
+    }).catch(e=>recordRuntimeError('checkin-sound',e));
+  }catch(e){recordRuntimeError('checkin-sound',e);}
+}
 function recordCheckIn(key=hongKongCheckInDayKey()){
   if(!db.checkIns)db.checkIns={};
   if(signedInOn(key))return false;
   db.checkIns[key]={at:new Date().toISOString()};
   saveDB();
+  playCheckInSound();
   renderWallet();
   refreshMorningCheckinUI();
   return true;
@@ -11422,6 +11490,18 @@ async function run34CoinsSelfTests(showPanel=false){
   try{
     const sample=normalizeState({days:{'2026-01-01':{coins:Array.from({length:34},(_,i)=>i===0?{text:'自检记录',color:0,groupId:null,energy:2}:{text:'',color:null,groupId:null,energy:null})}},settings:{rewardMinutes:10,rewardMoney:1}});
     assert('normalizeState preserves valid day',Object.keys(sample.days).includes('2026-01-01'));assert('34 slots preserved',sample.days['2026-01-01'].coins.length===34);
+    const legacyCoins=Array.from({length:34},()=>({text:'',color:null,groupId:null,energy:null}));
+    legacyCoins[2]={text:'做饭',color:1,groupId:null,energy:2};
+    legacyCoins[3]={text:'做饭',color:1,groupId:null,energy:2};
+    const legacyDay=normalizeState({days:{'2026-01-02':{coins:legacyCoins}},settings:{}}).days['2026-01-02'].coins;
+    assert('legacy adjacent records are restored as one block',!!legacyDay[2].groupId&&legacyDay[2].groupId===legacyDay[3].groupId);
+    const legacyRoundTrip=normalizeState({days:{'2026-01-02':{coins:legacyCoins}},settings:{}});
+    assert('legacy group repair is idempotent',stableHash(legacyRoundTrip)===stableHash(normalizeState(legacyRoundTrip)));
+    const separateCoins=Array.from({length:34},()=>({text:'',color:null,groupId:null,energy:null}));
+    separateCoins[2]={text:'做饭',color:1,groupId:'g-a',energy:2};
+    separateCoins[3]={text:'做饭',color:1,groupId:'g-b',energy:2};
+    const separateDay=normalizeState({days:{'2026-01-03':{coins:separateCoins}},settings:{}}).days['2026-01-03'].coins;
+    assert('explicit adjacent boundaries stay separate',separateDay[2].groupId==='g-a'&&separateDay[3].groupId==='g-b');
     assert('calendar date validation rejects impossible dates',isValidDateKey('2024-02-29')&&!isValidDateKey('2026-02-29')&&!isValidDateKey('2026-04-31')&&!isValidDateKey('2026-13-01'));
     const flow=calculateFlowCombo(Array.from({length:3},()=>({text:'x',color:0})));assert('flow combo non-negative',flow.bonusCoins>=0);assert('spearman monotonic = 1',Math.abs((spearman([1,2,3],[10,20,30])||0)-1)<1e-9);
     const backup=normalizeBackupState(sample,{slots:34});assert('backup normalize keeps all days',Object.keys(backup.days).length===1);assert('backup round-trip keeps 34 slots',backup.days['2026-01-01'].coins.length===34);assert('escapeHtml neutralizes markup',escapeHtml('<img src=x onerror=alert(1)>').includes('&lt;img')&&!escapeHtml('<img src=x onerror=alert(1)>').includes('<img'));assert('semantic i18n dictionary uses non-Chinese keys',Object.keys(I18N_SEMANTIC).every(k=>!/[\u3400-\u9fff]/.test(k)));
