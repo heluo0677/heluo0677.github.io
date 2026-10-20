@@ -6963,15 +6963,15 @@ html body .rewardCard > .planHead{
 
 
 <div class="siteFooter" aria-label="版本与设计信息">
-  <span class="siteFooterVersion">v180</span>
+  <span class="siteFooterVersion">v181</span>
   <span class="siteFooterDot">·</span>
   <span class="siteFooterCredit">Designed by Jiahui He.</span>
 </div>
 <div class="modalBack releaseNotesBack" id="releaseNotesBack" aria-hidden="true">
   <div class="modal releaseNotesModal" role="dialog" aria-modal="true" aria-labelledby="releaseNotesTitle">
     <div class="releaseNotesKicker" data-i18n-key="txt_7d786a9eb3" data-i18n-text="1">34 COINS · 本次更新</div>
-    <h3 id="releaseNotesTitle" data-i18n-key="release_v180_title" data-i18n-text="1">v180 更新说明</h3>
-    <div class="releaseNotesIntro" data-i18n-key="release_v180_intro" data-i18n-text="1">v180：为近 8 周趋势图补上悬浮详情提示。</div>
+    <h3 id="releaseNotesTitle" data-i18n-key="release_v181_title" data-i18n-text="1">v181 更新说明</h3>
+    <div class="releaseNotesIntro" data-i18n-key="release_v181_intro" data-i18n-text="1">v181：修复连续时间记录在重新打开页面后被拆成多个半小时块。</div>
     <div class="releaseNotesList">
       <div class="releaseNoteItem"><b data-i18n-key="release_goal_title" data-i18n-text="1">目标显示</b><span data-i18n-key="release_goal_body" data-i18n-text="1">修复语言切换时目标名称与日期被空状态文案覆盖的问题。</span></div>
       <div class="releaseNoteItem"><b data-i18n-key="release_week_title" data-i18n-text="1">周度标签</b><span data-i18n-key="release_week_body" data-i18n-text="1">英文界面的周度图表现在使用英文星期名称和辅助说明。</span></div>
@@ -6985,8 +6985,8 @@ html body .rewardCard > .planHead{
 </div>
 <script>
 
-// 34 Coins v180 · standalone local release · localized dynamic labels · no external runtime dependencies
-const APP_VERSION='180';
+// 34 Coins v181 · standalone local release · localized dynamic labels · no external runtime dependencies
+const APP_VERSION='181';
 // ===== shared/core/data-store.js =====
 const CURRENT_SCHEMA_VERSION = 4;
 
@@ -7035,8 +7035,9 @@ function coinPayloadEqual(a,b){
  * groupId.  Once the timeline learned to render variable-length blocks, those
  * records came back as two separate cards after a reload.  Recover the only
  * boundary information that still exists: adjacent coins with the same
- * payload. Explicitly different groupIds remain separate so a deliberate
- * boundary made in the current editor is never overwritten.
+ * payload. Older builds could assign a different groupId to each half-hour
+ * while saving one longer record, so groupId itself cannot be trusted as a
+ * boundary. A contiguous run with the same payload is one time block.
  */
 function repairLegacyAdjacentGroups(day,dayKey='legacy'){
   const coins=Array.isArray(day?.coins)?day.coins:[];
@@ -7048,14 +7049,12 @@ function repairLegacyAdjacentGroups(day,dayKey='legacy'){
     while(end<coins.length&&isRecordedCoinForNormalization(coins[end])&&coinPayloadEqual(first,coins[end]))end++;
     if(end-i>=2){
       const ids=[...new Set(coins.slice(i,end).map(c=>c?.groupId?String(c.groupId):'').filter(Boolean))];
-      // A single existing id indicates a partially persisted group; fill its
-      // missing members. With no id, create a deterministic one so repeated
-      // loads do not keep changing the state hash.
-      if(ids.length<=1){
-        const gid=ids[0]||`legacy-${stableHash(`${dayKey}|${i}|${end}|${first.text}|${first.color}|${first.energy}`)}`;
-        for(let k=i;k<end;k++){
-          if(coins[k].groupId!==gid){coins[k].groupId=gid;changed=true;}
-        }
+      // Keep a stable id when the whole run already uses one. If old data has
+      // multiple ids (the bug this repair targets), replace them all with one
+      // deterministic id so the block stays merged after every reload.
+      const gid=ids.length===1?ids[0]:`legacy-${stableHash(`${dayKey}|${i}|${end}|${first.text}|${first.color}|${first.energy}`)}`;
+      for(let k=i;k<end;k++){
+        if(coins[k].groupId!==gid){coins[k].groupId=gid;changed=true;}
       }
     }
     i=end;
@@ -7235,17 +7234,17 @@ function normalizeState(input){
       const e=Number(coin.energy);
       coin.energy=(e>=1&&e<=3)?Math.round(e):null;
     });
-    // A group id continues only while its payload stays identical. A different
-    // explicit id starts a new block; ungrouped legacy runs are repaired below.
+    // A group id continues only while its payload stays identical. The repair
+    // pass below then canonicalizes adjacent same-payload runs whose old ids
+    // were split during persistence.
     let prev=null;
     day.coins.forEach((coin)=>{
       if(!coin.text.trim()){coin.groupId=null;prev=null;return;}
       const gid=coin.groupId?String(coin.groupId):null;
       if(!gid){coin.groupId=null;prev={gid:null,text:coin.text,color:coin.color,energy:coin.energy};return;}
       const sameRun=prev&&prev.gid===gid&&prev.text===coin.text&&prev.color===coin.color&&prev.energy===coin.energy;
-      // A different explicit id is a deliberate new block, even when its
-      // payload happens to match the previous block. Only the same id is
-      // required to keep an identical payload across the run.
+      // Preserve the raw id while validating its payload; adjacent same-
+      // payload ids are merged by repairLegacyAdjacentGroups below.
       const startsRun=!prev || prev.gid===null || prev.gid!==gid;
       if(sameRun || startsRun){prev={gid,text:coin.text,color:coin.color,energy:coin.energy};return;}
       coin.groupId=null;prev={gid:null,text:coin.text,color:coin.color,energy:coin.energy};
@@ -7911,8 +7910,8 @@ Object.assign(I18N_SEMANTIC,{
   ,diag_legend_insufficient:{zh:'样本不足',en:'Insufficient data',zh_key:'样本不足'}
 });
 Object.assign(I18N_SEMANTIC,{
-  release_v180_title:{zh:'v180 更新说明',en:'v180 release notes',zh_key:'v180 更新说明'},
-  release_v180_intro:{zh:'v180：为近 8 周趋势图补上悬浮详情提示。',en:'v180 adds hover details to the last-8-weeks trend chart.',zh_key:'v180：为近 8 周趋势图补上悬浮详情提示。'},
+  release_v181_title:{zh:'v181 更新说明',en:'v181 release notes',zh_key:'v181 更新说明'},
+  release_v181_intro:{zh:'v181：修复连续时间记录在重新打开页面后被拆成多个半小时块。',en:'v181 keeps one continuous activity as a single block after reload.',zh_key:'v181：修复连续时间记录在重新打开页面后被拆成多个半小时块。'},
   release_goal_title:{zh:'目标管理',en:'Goal controls',zh_key:'目标管理'},
   release_goal_body:{zh:'目标管理按钮与完成目标记录现在会正确跟随界面语言。',en:'Goal-management controls and completed-goal records now follow the selected language.',zh_key:'目标管理按钮与完成目标记录现在会正确跟随界面语言。'},
   release_week_title:{zh:'时间块标签',en:'Time-block labels',zh_key:'时间块标签'},
@@ -8465,7 +8464,7 @@ function getDay(key){
   if(!Array.isArray(d.review.outputs))d.review.outputs=[];
   d.review.outputs=d.review.outputs.filter(x=>x&&typeof x==='object').slice(0,6).map(x=>({label:String(x.label||'').slice(0,32),value:String(x.value??''),unit:String(x.unit||'').slice(0,12)}));
   d.recoveryDay=d.recoveryDay===true;
-  migrateGroups(d);
+  migrateGroups(d,key);
   return d;
 }
 function peekDay(key){
@@ -8473,14 +8472,15 @@ function peekDay(key){
   if(existing&&typeof existing==='object')return existing;
   return {coins:Array.from({length:SLOTS},()=>({text:'',color:null,groupId:null,energy:null})),tasks:[],review:{win:'',loss:'',keep:'',stop:'',tomorrow:'',outputs:[]},recoveryDay:false};
 }
-function migrateGroups(d){
-  // Never infer/merge user-intended boundaries from adjacent content.
-  // Explicit groupId is the only source of multi-slot block boundaries.
+function migrateGroups(d,dayKey='legacy'){
+  // Repair old saved runs here as well as during full-state normalization. This
+  // covers fast boot, direct day reads, and any state restored by an older tab.
   const coins=Array.isArray(d?.coins)?d.coins:[];
   coins.forEach(c=>{
     if(!c || !(String(c.text||'').trim())){ if(c)c.groupId=null; return; }
     c.groupId=c.groupId?String(c.groupId):null;
   });
+  return repairLegacyAdjacentGroups(d,dayKey);
 }
 
 function fmt(n){return (n%1===0?n:n.toFixed(1)).toString()}
@@ -9118,11 +9118,7 @@ function timeLabel(i){return formatTime(i).split('–')[0]}
 function slotCountForDuration(minutes){return Math.max(1,Math.min(SLOTS,Math.round(minutes/30)))}
 function durationText(count){const h=count*.5; if(currentLang==='en')return h<1?'30 min':`${h} hr`; return h<1?'30分钟':`${h}小时`;}
 function mergeAdjacentSameContent(day){
-  // Intentionally disabled as an automatic render-time merge.
-  // Time-block boundaries are user intent; only explicit “merge blocks” may
-  // combine separately created blocks. Keeping this a no-op prevents an
-  // energy change from absorbing later independent blocks with identical text/category.
-  return false;
+  return repairLegacyAdjacentGroups({coins:day},currentDate);
 }
 function blockColorRgb(colorIndex){
   const rgbMap={
@@ -11501,7 +11497,7 @@ async function run34CoinsSelfTests(showPanel=false){
     separateCoins[2]={text:'做饭',color:1,groupId:'g-a',energy:2};
     separateCoins[3]={text:'做饭',color:1,groupId:'g-b',energy:2};
     const separateDay=normalizeState({days:{'2026-01-03':{coins:separateCoins}},settings:{}}).days['2026-01-03'].coins;
-    assert('explicit adjacent boundaries stay separate',separateDay[2].groupId==='g-a'&&separateDay[3].groupId==='g-b');
+    assert('adjacent legacy ids are collapsed into one block',!!separateDay[2].groupId&&separateDay[2].groupId===separateDay[3].groupId);
     assert('calendar date validation rejects impossible dates',isValidDateKey('2024-02-29')&&!isValidDateKey('2026-02-29')&&!isValidDateKey('2026-04-31')&&!isValidDateKey('2026-13-01'));
     const flow=calculateFlowCombo(Array.from({length:3},()=>({text:'x',color:0})));assert('flow combo non-negative',flow.bonusCoins>=0);assert('spearman monotonic = 1',Math.abs((spearman([1,2,3],[10,20,30])||0)-1)<1e-9);
     const backup=normalizeBackupState(sample,{slots:34});assert('backup normalize keeps all days',Object.keys(backup.days).length===1);assert('backup round-trip keeps 34 slots',backup.days['2026-01-01'].coins.length===34);assert('escapeHtml neutralizes markup',escapeHtml('<img src=x onerror=alert(1)>').includes('&lt;img')&&!escapeHtml('<img src=x onerror=alert(1)>').includes('<img'));assert('semantic i18n dictionary uses non-Chinese keys',Object.keys(I18N_SEMANTIC).every(k=>!/[\u3400-\u9fff]/.test(k)));
